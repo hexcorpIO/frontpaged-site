@@ -37,25 +37,44 @@ export default function LeadForm({ initialPlan = "free-check" }: { initialPlan?:
       <div className="grid gap-4 sm:grid-cols-2">
         <label className={labelBase}>
           Name
-          <input name="name" required className={inputBase} />
+          <input
+            name="name"
+            required
+            className={inputBase}
+            aria-invalid={!!state.fieldErrors?.name}
+            aria-describedby={state.fieldErrors?.name ? "name-error" : undefined}
+          />
           {state.fieldErrors?.name && (
-            <span className="font-normal text-coral">{state.fieldErrors.name}</span>
+            <span id="name-error" className="font-normal text-coral">{state.fieldErrors.name}</span>
           )}
         </label>
         <label className={labelBase}>
           Clinic name
-          <input name="clinic" required className={inputBase} />
+          <input
+            name="clinic"
+            required
+            className={inputBase}
+            aria-invalid={!!state.fieldErrors?.clinic}
+            aria-describedby={state.fieldErrors?.clinic ? "clinic-error" : undefined}
+          />
           {state.fieldErrors?.clinic && (
-            <span className="font-normal text-coral">{state.fieldErrors.clinic}</span>
+            <span id="clinic-error" className="font-normal text-coral">{state.fieldErrors.clinic}</span>
           )}
         </label>
       </div>
 
       <label className={labelBase}>
         Email
-        <input name="email" type="email" required className={inputBase} />
+        <input
+          name="email"
+          type="email"
+          required
+          className={inputBase}
+          aria-invalid={!!state.fieldErrors?.email}
+          aria-describedby={state.fieldErrors?.email ? "email-error" : undefined}
+        />
         {state.fieldErrors?.email && (
-          <span className="font-normal text-coral">{state.fieldErrors.email}</span>
+          <span id="email-error" className="font-normal text-coral">{state.fieldErrors.email}</span>
         )}
       </label>
 
@@ -82,7 +101,7 @@ export default function LeadForm({ initialPlan = "free-check" }: { initialPlan?:
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center justify-center rounded-lg bg-teal px-8 py-4 text-[17px] font-semibold text-white transition hover:bg-teal-dark disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex items-center justify-center rounded-lg bg-teal px-8 py-4 text-[17px] font-semibold text-white transition hover:bg-teal-dark disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
       >
         {pending ? "Sending…" : "Send my request"}
       </button>

@@ -3,6 +3,8 @@
 import { leadSchema } from "@/lib/leadSchema";
 import { sendLeadEmail } from "@/lib/mailer";
 
+export const HONEYPOT_FIELD = "company_website";
+
 export type LeadFormState = {
   status: "idle" | "success" | "error";
   message?: string;
@@ -19,7 +21,7 @@ export async function submitLead(
   formData: FormData,
 ): Promise<LeadFormState> {
   // Honeypot: humans never fill this hidden field. Pretend success, drop it.
-  const honeypot = formData.get("company_website");
+  const honeypot = formData.get(HONEYPOT_FIELD);
   if (typeof honeypot === "string" && honeypot.trim() !== "") {
     return { status: "success" };
   }

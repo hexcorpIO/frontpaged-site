@@ -9,7 +9,7 @@ export type LeadMessage = {
   text: string;
 };
 
-// Pure: turn a validated lead into the email we send. Trivial to unit test.
+// Turn a validated lead into the email we send (reads LEAD_FROM/LEAD_TO from env).
 export function buildLeadMessage(lead: Lead): LeadMessage {
   const from = process.env.LEAD_FROM ?? "hello@frontpaged.io";
   const to = process.env.LEAD_TO ?? "hello@frontpaged.io";

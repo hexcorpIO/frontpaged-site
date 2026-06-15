@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { buildLeadMessage, sendLeadEmail } from "@/lib/mailer";
 import type { Lead } from "@/lib/leadSchema";
+import type { Transporter } from "nodemailer";
 
 const lead: Lead = {
   name: "Dr. Lin",
@@ -19,6 +20,7 @@ describe("buildLeadMessage", () => {
   it("builds subject, replyTo, and body from a lead", () => {
     const msg = buildLeadMessage(lead);
     expect(msg.subject).toBe("New lead: Authority — Glow Med Spa");
+    expect(msg.from).toBe("hello@frontpaged.io");
     expect(msg.replyTo).toBe("lin@glowmedspa.com");
     expect(msg.to).toBe("hello@frontpaged.io");
     expect(msg.text).toContain("Glow Med Spa");
@@ -35,7 +37,7 @@ describe("buildLeadMessage", () => {
 describe("sendLeadEmail", () => {
   it("sends the built message through the transport", async () => {
     const sendMail = vi.fn().mockResolvedValue(undefined);
-    await sendLeadEmail(lead, { sendMail } as never);
+    await sendLeadEmail(lead, { sendMail } as unknown as Transporter);
     expect(sendMail).toHaveBeenCalledTimes(1);
     const arg = sendMail.mock.calls[0][0];
     expect(arg.subject).toBe("New lead: Authority — Glow Med Spa");

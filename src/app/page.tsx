@@ -7,8 +7,16 @@ import Faq from "@/components/Faq";
 import ContactBand from "@/components/ContactBand";
 import SiteFooter from "@/components/SiteFooter";
 import JsonLd from "@/components/JsonLd";
+import { isPlan, type Plan } from "@/lib/leadSchema";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ plan?: string }>;
+}) {
+  const { plan } = await searchParams;
+  const initialPlan: Plan = isPlan(plan) ? plan : "free-check";
+
   return (
     <>
       <JsonLd />
@@ -19,7 +27,7 @@ export default function Home() {
         <HowItWorks />
         <Pricing />
         <Faq />
-        <ContactBand />
+        <ContactBand initialPlan={initialPlan} />
       </main>
       <SiteFooter />
     </>

@@ -24,14 +24,18 @@
 .DS_Store
 *.pem
 
+# local agent/session scratch
+.remember/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (secrets — never commit these)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,6 +43,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Packaged export for Hostinger upload
-/frontpaged-site.zip

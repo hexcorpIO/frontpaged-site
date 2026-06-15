@@ -5,13 +5,9 @@ export const alt = "Frontpaged — Be the first answer patients see";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Required for `output: export` — prerender this image as a static file at build time.
-export const dynamic = "force-static";
-
 const NAVY = "#15263f";
 const TEAL = "#2e8b8b";
 
-// Generated at build time and emitted as a static PNG in the export.
 export default function OpengraphImage() {
   return new ImageResponse(
     (

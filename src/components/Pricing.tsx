@@ -48,6 +48,7 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
+              {/* Tier names lowercase to plan slugs (visibility/authority/domination). */}
               <Button
                 href={`/?plan=${t.name.toLowerCase()}#contact`}
                 variant={t.featured ? "solid" : "ghost"}

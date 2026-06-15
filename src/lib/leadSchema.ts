@@ -11,6 +11,11 @@ export const PLAN_LABELS: Record<Plan, string> = {
   domination: "Domination",
 };
 
+// Type guard for narrowing an untrusted value (e.g. a query param) to a Plan.
+export function isPlan(value: unknown): value is Plan {
+  return typeof value === "string" && (PLANS as readonly string[]).includes(value);
+}
+
 export const leadSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name"),
   clinic: z.string().trim().min(1, "Please enter your clinic name"),

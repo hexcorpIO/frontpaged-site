@@ -1,53 +1,35 @@
 # frontpaged-site
 
-A [Next.js](https://nextjs.org) 16 + [Tailwind CSS](https://tailwindcss.com) site,
-configured as a **static export** for hosting on **Hostinger**.
+A [Next.js](https://nextjs.org) 16 + [Tailwind CSS](https://tailwindcss.com) marketing
+site for **Frontpaged.io** — an agency providing SEO + Generative Engine Optimization
+(GEO) content for medical spas in Dallas–Fort Worth.
+
+It is a **dynamic** Next.js app (App Router + Server Actions): the "free visibility check"
+and plan-signup CTAs open a lead form that emails submissions to hello@frontpaged.io.
 
 ## Development
 
 ```bash
 pnpm install
-pnpm dev        # http://localhost:3000
+cp .env.example .env   # then fill in SMTP_PASS
+pnpm dev               # http://localhost:3000
 ```
 
-## Build
+## Scripts
 
-```bash
-pnpm build      # outputs static site to ./out
-pnpm preview    # build, then serve ./out locally to test the real output
-```
+- `pnpm dev` — start the dev server
+- `pnpm build` — production build
+- `pnpm start` — run the production server (after build)
+- `pnpm test` — run unit tests (Vitest)
+- `pnpm lint` — run ESLint
 
-The site is configured with `output: "export"` in [`next.config.ts`](next.config.ts),
-so `pnpm build` produces a fully static `out/` folder (HTML/CSS/JS) — no Node.js
-server is required at runtime.
+## Lead form
 
-> **Static-only constraints:** no SSR, Server Actions, dynamic API routes, cookies,
-> redirects/rewrites/headers, or default `next/image` optimization. See
-> `node_modules/next/dist/docs/01-app/02-guides/static-exports.md` for the full list.
+`LeadForm` (client) submits to the `submitLead` server action, which validates with zod,
+drops honeypot spam, and sends an email via Nodemailer + Hostinger SMTP. Required env vars
+are documented in [.env.example](.env.example).
 
-## Deploy to Hostinger
+## Deployment
 
-The `out/` folder is everything that goes into your site's `public_html`.
-An [`.htaccess`](public/.htaccess) (404 page, compression, cache headers) is
-included in the export automatically.
-
-### Option A — File Manager (simplest)
-
-```bash
-pnpm package    # builds and creates frontpaged-site.zip
-```
-
-1. hPanel → **Files → File Manager** → open `public_html`.
-2. Upload `frontpaged-site.zip`, then **Extract** it there.
-3. Delete the zip. (Make sure the extracted files land directly in
-   `public_html`, not in a nested `out/` subfolder.)
-
-### Option B — FTP / SFTP
-
-Upload the **contents** of `out/` (including the hidden `.htaccess`) into
-`public_html` with FileZilla or any FTP client, using the FTP credentials from
-hPanel → **Files → FTP Accounts**.
-
-### Redeploying
-
-Re-run `pnpm build` (or `pnpm package`) and re-upload — overwrite the old files.
+Deployed on a Hostinger VPS via Coolify with Git-based auto-deploy. See
+[docs/deploy-coolify.md](docs/deploy-coolify.md).

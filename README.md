@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# frontpaged-site
 
-## Getting Started
+A [Next.js](https://nextjs.org) 16 + [Tailwind CSS](https://tailwindcss.com) site,
+configured as a **static export** for hosting on **Hostinger**.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm build      # outputs static site to ./out
+pnpm preview    # build, then serve ./out locally to test the real output
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The site is configured with `output: "export"` in [`next.config.ts`](next.config.ts),
+so `pnpm build` produces a fully static `out/` folder (HTML/CSS/JS) — no Node.js
+server is required at runtime.
 
-## Learn More
+> **Static-only constraints:** no SSR, Server Actions, dynamic API routes, cookies,
+> redirects/rewrites/headers, or default `next/image` optimization. See
+> `node_modules/next/dist/docs/01-app/02-guides/static-exports.md` for the full list.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy to Hostinger
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The `out/` folder is everything that goes into your site's `public_html`.
+An [`.htaccess`](public/.htaccess) (404 page, compression, cache headers) is
+included in the export automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Option A — File Manager (simplest)
 
-## Deploy on Vercel
+```bash
+pnpm package    # builds and creates frontpaged-site.zip
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. hPanel → **Files → File Manager** → open `public_html`.
+2. Upload `frontpaged-site.zip`, then **Extract** it there.
+3. Delete the zip. (Make sure the extracted files land directly in
+   `public_html`, not in a nested `out/` subfolder.)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Option B — FTP / SFTP
+
+Upload the **contents** of `out/` (including the hidden `.htaccess`) into
+`public_html` with FileZilla or any FTP client, using the FTP credentials from
+hPanel → **Files → FTP Accounts**.
+
+### Redeploying
+
+Re-run `pnpm build` (or `pnpm package`) and re-upload — overwrite the old files.

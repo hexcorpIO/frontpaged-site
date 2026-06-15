@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "preview": "next build && npx --yes serve out",
+    "package": "next build && cd out && zip -r -X ../frontpaged-site.zip . && cd ..",
     "lint": "eslint"
   },
   "dependencies": {

@@ -40,6 +40,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Packaged export for Hostinger upload
-/frontpaged-site.zip

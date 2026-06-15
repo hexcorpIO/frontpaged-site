@@ -7,6 +7,7 @@ export const site = {
   url: "https://frontpaged.io",
   tagline: "Be the first answer patients see.",
   email: "hello@frontpaged.io",
+  linkedin: "https://www.linkedin.com/company/frontpaged-io/",
   areaServed: "Dallas–Fort Worth",
   description:
     "Frontpaged helps medical spas get found first on Google and cited by AI search " +

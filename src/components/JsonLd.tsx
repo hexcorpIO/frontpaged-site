@@ -13,6 +13,7 @@ export default function JsonLd() {
       email: site.email,
       slogan: site.tagline,
       description: site.description,
+      sameAs: [site.linkedin],
       areaServed: { "@type": "City", name: site.areaServed },
       serviceType: "SEO & Generative Engine Optimization (GEO) content for medical spas",
       makesOffer: tiers.map((t) => ({

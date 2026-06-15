@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Brand palette — exposes utilities like bg-navy, text-teal, border-line, etc. */
+@theme {
+  --color-navy: #15263f;
+  --color-teal: #2e8b8b;
+  --color-teal-dark: #246e6e;
+  --color-ink: #1d2733;
+  --color-grey: #5b6672;
+  --color-soft: #eef5f5;
+  --color-line: #e3e9ee;
+  --color-amber: #fff4e6;
+  --color-coral: #e8794b;
 }
 
+/* Map the Geist font (loaded in layout.tsx) onto Tailwind's font-sans. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-ink);
 }

@@ -5,6 +5,12 @@
 # Serve Next.js's prerendered 404 page for missing routes.
 ErrorDocument 404 /404.html
 
+# The generated Open Graph image is emitted without a file extension, so force
+# its MIME type — otherwise social scrapers reject it as application/octet-stream.
+<Files "opengraph-image">
+  ForceType image/png
+</Files>
+
 # Compress text assets.
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml

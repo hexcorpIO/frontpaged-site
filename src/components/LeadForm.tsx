@@ -2,7 +2,8 @@
 
 import { useActionState } from "react";
 import { PLANS, PLAN_LABELS, type Plan } from "@/lib/leadSchema";
-import { submitLead, initialLeadState, HONEYPOT_FIELD } from "@/app/actions/submitLead";
+import { submitLead } from "@/app/actions/submitLead";
+import { initialLeadState, HONEYPOT_FIELD } from "@/app/actions/submitLeadTypes";
 
 const inputBase =
   "w-full rounded-lg border border-line bg-white px-4 py-3 text-ink outline-none focus:border-teal";

@@ -2,7 +2,8 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 
 vi.mock("@/lib/mailer", () => ({ sendLeadEmail: vi.fn() }));
 
-import { submitLead, initialLeadState } from "@/app/actions/submitLead";
+import { submitLead } from "@/app/actions/submitLead";
+import { initialLeadState } from "@/app/actions/submitLeadTypes";
 import { sendLeadEmail } from "@/lib/mailer";
 
 const mockedSend = vi.mocked(sendLeadEmail);

@@ -1,10 +1,9 @@
 import Container from "./Container";
-import Button from "./Button";
+import LeadForm from "./LeadForm";
 import { site } from "@/lib/site";
+import type { Plan } from "@/lib/leadSchema";
 
-const subject = encodeURIComponent("Free AI-visibility check");
-
-export default function ContactBand() {
+export default function ContactBand({ initialPlan = "free-check" }: { initialPlan?: Plan }) {
   return (
     <section
       id="contact"
@@ -19,11 +18,11 @@ export default function ContactBand() {
           We&rsquo;ll run the AI test on your clinic and send a short breakdown of your three
           fastest visibility wins. No pitch required.
         </p>
-        <div className="mt-7 flex justify-center">
-          <Button href={`mailto:${site.email}?subject=${subject}`} size="lg">
-            Request my free visibility check
-          </Button>
+
+        <div className="mx-auto mt-8 max-w-xl rounded-2xl bg-white p-6 shadow-[0_14px_38px_rgba(0,0,0,0.25)] sm:p-8">
+          <LeadForm initialPlan={initialPlan} />
         </div>
+
         <p className="mt-6 text-[15px] text-[#9fb6cc]">
           Or email us directly:{" "}
           <a href={`mailto:${site.email}`} className="text-white underline">

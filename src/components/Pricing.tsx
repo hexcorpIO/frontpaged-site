@@ -49,7 +49,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <Button
-                href="#contact"
+                href={`/?plan=${t.name.toLowerCase()}#contact`}
                 variant={t.featured ? "solid" : "ghost"}
                 className="w-full"
               >

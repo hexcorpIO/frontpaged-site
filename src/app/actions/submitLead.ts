@@ -2,16 +2,7 @@
 
 import { leadSchema } from "@/lib/leadSchema";
 import { sendLeadEmail } from "@/lib/mailer";
-
-export const HONEYPOT_FIELD = "company_website";
-
-export type LeadFormState = {
-  status: "idle" | "success" | "error";
-  message?: string;
-  fieldErrors?: Partial<Record<"name" | "clinic" | "email", string>>;
-};
-
-export const initialLeadState: LeadFormState = { status: "idle" };
+import { HONEYPOT_FIELD, type LeadFormState } from "@/app/actions/submitLeadTypes";
 
 type FieldErrorKey = "name" | "clinic" | "email";
 const FIELD_ERROR_KEYS = new Set<string>(["name", "clinic", "email"]);

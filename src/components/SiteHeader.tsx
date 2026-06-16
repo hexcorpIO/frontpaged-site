@@ -21,6 +21,14 @@ const locations: NavLink[] = [
   { href: "/med-spa-seo-frisco", label: "Frisco" },
 ];
 
+function LinkedInIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
 function Chevron() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className="mt-0.5">
@@ -78,6 +86,15 @@ export default function SiteHeader() {
             <Link href="/blog" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Blog
             </Link>
+            <a
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Frontpaged on LinkedIn"
+              className="text-navy/70 transition hover:text-teal-dark"
+            >
+              <LinkedInIcon />
+            </a>
             <Link
               href="/#contact"
               className="rounded-full bg-teal px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-teal-dark"
@@ -148,6 +165,14 @@ export default function SiteHeader() {
               <Link href="/blog" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 Blog
               </Link>
+              <a
+                href={site.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[15px] font-medium text-navy hover:text-teal-dark"
+              >
+                <LinkedInIcon className="h-[18px] w-[18px]" /> LinkedIn
+              </a>
             </div>
             <Link
               href="/#contact"

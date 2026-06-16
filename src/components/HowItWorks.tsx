@@ -22,7 +22,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how" className="border-t border-line py-[72px]" aria-labelledby="how-heading">
+    <section id="how" className="border-t border-warm-line bg-white py-20 sm:py-28" aria-labelledby="how-heading">
       <Container>
         <SectionHeading
           id="how-heading"
@@ -33,14 +33,12 @@ export default function HowItWorks() {
         <ol className="mt-10 grid gap-5 md:grid-cols-4">
           {steps.map((s, i) => (
             <li key={s.title}>
-              <div
-                aria-hidden="true"
-                className="mb-3.5 flex h-[38px] w-[38px] items-center justify-center rounded-full bg-navy font-bold text-white"
-              >
-                {i + 1}
+              <div className="mb-4 flex items-center gap-3">
+                <span className="font-serif text-3xl font-semibold text-gold">{i + 1}</span>
+                <span className="h-px flex-1 bg-warm-line" />
               </div>
-              <h3 className="mb-1.5 text-[17px] font-semibold text-navy">{s.title}</h3>
-              <p className="text-[14.5px] text-grey">{s.body}</p>
+              <h3 className="font-serif text-[18px] font-semibold text-navy">{s.title}</h3>
+              <p className="mt-2 text-[15px] leading-[1.6] text-warm-grey">{s.body}</p>
             </li>
           ))}
         </ol>

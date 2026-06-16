@@ -3,17 +3,14 @@ import SectionHeading from "./SectionHeading";
 
 const cards = [
   {
-    icon: "🤖",
     title: "AI answers replace the scroll",
     body: "ChatGPT, Perplexity, and Google's AI Overviews hand patients one curated recommendation instead of ten links. There's no page two.",
   },
   {
-    icon: "📍",
     title: '"Near me" is decided for them',
     body: 'When AI names "the best Botox in your city," that\'s the shortlist patients trust — before they ever visit a website.',
   },
   {
-    icon: "💸",
     title: "One missed patient is expensive",
     body: "A single new injectable patient is worth thousands over a year. Being left off the answer costs far more than the content that fixes it.",
   },
@@ -21,7 +18,7 @@ const cards = [
 
 export default function Problem() {
   return (
-    <section id="problem" className="border-t border-line py-[72px]" aria-labelledby="problem-heading">
+    <section id="problem" className="border-t border-warm-line bg-cream py-20 sm:py-28" aria-labelledby="problem-heading">
       <Container>
         <SectionHeading
           id="problem-heading"
@@ -30,16 +27,19 @@ export default function Problem() {
           sub="80% of patients still find clinics on Google — but a fast-growing share now ask an AI assistant first. Both increasingly answer with a single short list. If you're not on it, you're invisible."
         />
         <div className="mt-10 grid gap-[22px] md:grid-cols-3">
-          {cards.map((c) => (
-            <article key={c.title} className="rounded-xl border border-line bg-white p-[26px]">
-              <div
-                aria-hidden="true"
-                className="mb-3.5 flex h-[42px] w-[42px] items-center justify-center rounded-[10px] bg-soft text-[22px]"
-              >
-                {c.icon}
+          {cards.map((c, i) => (
+            <article
+              key={c.title}
+              className="rounded-2xl border border-warm-line bg-white p-8 shadow-[0_8px_30px_rgba(21,38,63,0.05)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_rgba(21,38,63,0.10)]"
+            >
+              <div className="mb-5 flex items-baseline gap-3">
+                <span className="font-serif text-4xl font-semibold text-teal">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="h-px flex-1 bg-warm-line" />
               </div>
-              <h3 className="mb-2 text-[19px] font-semibold text-navy">{c.title}</h3>
-              <p className="text-[15px] text-grey">{c.body}</p>
+              <h3 className="font-serif text-[21px] font-semibold text-navy">{c.title}</h3>
+              <p className="mt-2.5 text-[15.5px] leading-[1.65] text-warm-grey">{c.body}</p>
             </article>
           ))}
         </div>

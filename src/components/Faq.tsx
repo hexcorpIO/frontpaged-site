@@ -4,7 +4,7 @@ import { faqs } from "@/lib/site";
 
 export default function Faq() {
   return (
-    <section id="faq" className="border-t border-line py-[72px]" aria-labelledby="faq-heading">
+    <section id="faq" className="border-t border-warm-line bg-white py-20 sm:py-28" aria-labelledby="faq-heading">
       <Container>
         <SectionHeading id="faq-heading" kicker="Questions" title="Frequently asked" />
         <div className="mt-10 max-w-[760px]">
@@ -12,9 +12,9 @@ export default function Faq() {
             <details
               key={f.q}
               open={i === 0}
-              className="group mb-3 overflow-hidden rounded-[10px] border border-line bg-white"
+              className="group mb-3 overflow-hidden rounded-xl border border-warm-line bg-cream"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between px-[22px] py-[18px] text-[17px] font-semibold text-navy [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between px-[22px] py-[18px] font-serif text-[18px] font-semibold text-navy [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <span
                   aria-hidden="true"
@@ -29,7 +29,7 @@ export default function Faq() {
                   –
                 </span>
               </summary>
-              <p className="px-[22px] pb-5 text-[15.5px] text-grey">{f.a}</p>
+              <p className="px-5 pb-5 text-[15.5px] leading-[1.7] text-warm-grey">{f.a}</p>
             </details>
           ))}
         </div>

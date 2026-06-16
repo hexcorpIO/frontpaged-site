@@ -8,17 +8,17 @@ type Props = {
 };
 
 const base =
-  "inline-flex items-center justify-center rounded-lg font-semibold transition " +
+  "inline-flex items-center justify-center rounded-full font-semibold transition " +
   "hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal";
 
 const variants = {
   solid: "bg-teal text-white hover:bg-teal-dark",
-  ghost: "border-[1.5px] border-line bg-transparent text-navy hover:border-teal hover:bg-soft",
+  ghost: "border border-warm-line bg-transparent text-navy hover:border-teal hover:bg-soft",
 };
 
 const sizes = {
-  md: "px-6 py-3 text-[15px]",
-  lg: "px-8 py-4 text-[17px]",
+  md: "px-7 py-3 text-[15px]",
+  lg: "px-9 py-4 text-[17px]",
 };
 
 export default function Button({

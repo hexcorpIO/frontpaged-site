@@ -12,16 +12,16 @@ export default function SectionHeading({
 }) {
   return (
     <>
-      <p className="mb-3 text-[13px] font-bold uppercase tracking-[1px] text-teal-dark">
+      <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-teal-dark">
         {kicker}
       </p>
       <h2
         id={id}
-        className="max-w-2xl text-3xl font-bold tracking-tight text-navy sm:text-[34px]"
+        className="max-w-2xl font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-navy sm:text-[40px]"
       >
         {title}
       </h2>
-      {sub && <p className="mt-3.5 max-w-2xl text-lg text-grey">{sub}</p>}
+      {sub && <p className="mt-4 max-w-2xl text-[17px] leading-[1.7] text-warm-grey">{sub}</p>}
     </>
   );
 }

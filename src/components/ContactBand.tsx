@@ -6,19 +6,19 @@ export default function ContactBand() {
   return (
     <section
       id="contact"
-      className="border-t border-line bg-navy py-[72px] text-center text-white"
+      className="border-t border-warm-line bg-navy py-20 text-center text-white sm:py-28"
       aria-labelledby="contact-heading"
     >
       <Container>
-        <h2 id="contact-heading" className="text-3xl font-bold tracking-tight sm:text-[34px]">
+        <h2 id="contact-heading" className="font-serif text-[34px] font-semibold tracking-tight sm:text-[40px]">
           Book your free visibility check
         </h2>
-        <p className="mx-auto mt-3.5 max-w-xl text-lg text-[#bbccdd]">
+        <p className="mx-auto mt-4 max-w-xl text-[18px] leading-[1.7] text-[#cdd6e2]">
           Grab a 30-minute slot and we&rsquo;ll run the AI test on your clinic, then walk you
           through your three fastest visibility wins. No pitch required.
         </p>
 
-        <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl bg-white p-2 shadow-[0_14px_38px_rgba(0,0,0,0.25)] sm:p-3">
+        <div className="mx-auto mt-8 max-w-3xl overflow-hidden rounded-2xl bg-white p-3 shadow-[0_24px_60px_rgba(0,0,0,0.30)]">
           <CalendlyInline url={site.calendly} />
         </div>
 

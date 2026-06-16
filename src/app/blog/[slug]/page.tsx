@@ -100,7 +100,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
             ← All articles
           </Link>
 
-          <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-grey">
+          <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-warm-grey">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span aria-hidden="true">·</span>
             <span>{post.readingTime} min read</span>
@@ -108,12 +108,12 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
             <span>{post.author}</span>
           </div>
 
-          <h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight text-navy">
+          <h1 className="mt-3 font-serif text-[40px] font-semibold leading-[1.12] tracking-tight text-navy">
             {post.title}
           </h1>
 
           {post.quickAnswer && (
-            <div className="mt-7 rounded-2xl border-l-4 border-teal bg-soft p-5">
+            <div className="mt-7 rounded-2xl border-l-4 border-teal bg-soft p-6">
               <p className="mb-1 text-[13px] font-bold uppercase tracking-wide text-teal-dark">
                 Quick answer
               </p>
@@ -122,22 +122,22 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
           )}
 
           <div
-            className="prose prose-lg mt-8 max-w-none prose-headings:text-navy prose-headings:font-bold prose-a:text-teal-dark prose-a:no-underline hover:prose-a:underline prose-strong:text-navy prose-li:marker:text-teal"
+            className="prose prose-lg mt-8 max-w-none prose-headings:font-serif prose-headings:text-navy prose-headings:font-semibold prose-a:text-teal-dark prose-a:no-underline hover:prose-a:underline prose-strong:text-navy prose-li:marker:text-teal prose-p:text-warm-grey prose-p:leading-[1.8]"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
 
           {post.faqs.length > 0 && (
             <section className="mt-12" aria-labelledby="post-faq">
-              <h2 id="post-faq" className="text-2xl font-bold text-navy">
+              <h2 id="post-faq" className="font-serif text-2xl font-semibold text-navy">
                 Frequently asked questions
               </h2>
               <div className="mt-5 space-y-3">
                 {post.faqs.map((f) => (
                   <details
                     key={f.q}
-                    className="group overflow-hidden rounded-[10px] border border-line bg-white"
+                    className="group overflow-hidden rounded-xl border border-warm-line bg-cream"
                   >
-                    <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 font-semibold text-navy [&::-webkit-details-marker]:hidden">
+                    <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 font-serif text-[17px] font-semibold text-navy [&::-webkit-details-marker]:hidden">
                       {f.q}
                       <span aria-hidden="true" className="text-2xl font-normal text-teal group-open:hidden">
                         +
@@ -146,7 +146,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
                         –
                       </span>
                     </summary>
-                    <p className="px-5 pb-4 text-[15.5px] text-grey">{f.a}</p>
+                    <p className="px-5 pb-4 text-[15.5px] leading-[1.7] text-warm-grey">{f.a}</p>
                   </details>
                 ))}
               </div>
@@ -154,7 +154,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
           )}
 
           <div className="mt-12 rounded-2xl bg-navy p-8 text-center text-white">
-            <h2 className="text-2xl font-bold tracking-tight">
+            <h2 className="font-serif text-2xl font-semibold tracking-tight">
               See where your clinic stands — free
             </h2>
             <p className="mx-auto mt-2 max-w-md text-[#bbccdd]">
@@ -162,7 +162,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
             </p>
             <Link
               href="/#contact"
-              className="mt-5 inline-flex items-center justify-center rounded-lg bg-teal px-7 py-3.5 font-semibold text-white transition hover:bg-white hover:text-navy"
+              className="mt-5 inline-flex items-center justify-center rounded-full bg-teal px-7 py-3.5 font-semibold text-white transition hover:bg-white hover:text-navy"
             >
               Book your free visibility check
             </Link>

@@ -24,15 +24,15 @@ export default function BlogIndex() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-[#f7fbfb] to-white py-16 sm:py-20">
+      <section className="bg-gradient-to-b from-cream to-white py-16 sm:py-20">
         <Container>
-          <p className="mb-3 text-[13px] font-bold uppercase tracking-[1px] text-teal-dark">
+          <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-teal-dark">
             The Frontpaged blog
           </p>
-          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-navy sm:text-5xl">
+          <h1 className="max-w-3xl font-serif text-[40px] font-semibold tracking-tight text-navy sm:text-5xl">
             Get your med spa found — on Google and in AI search.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-grey">
+          <p className="mt-5 max-w-2xl text-[18px] leading-[1.7] text-warm-grey">
             Plain-English guides on SEO, Generative Engine Optimization (GEO), and the content
             that gets your clinic recommended when patients ask Google, ChatGPT, and Perplexity
             for the best med spa near them.
@@ -40,25 +40,25 @@ export default function BlogIndex() {
         </Container>
       </section>
 
-      <section className="border-t border-line py-16">
+      <section className="border-t border-warm-line py-16">
         <Container>
           <div className="grid gap-6 md:grid-cols-2">
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="flex flex-col rounded-2xl border border-line bg-white p-7 transition hover:border-teal hover:shadow-[0_12px_34px_rgba(21,38,63,0.08)]"
+                className="flex flex-col rounded-2xl border border-warm-line bg-white p-7 shadow-[0_8px_30px_rgba(21,38,63,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-teal hover:shadow-[0_16px_44px_rgba(21,38,63,0.10)]"
               >
-                <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-medium text-grey">
+                <div className="mb-3 flex flex-wrap items-center gap-2 text-xs font-medium text-warm-grey">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <span aria-hidden="true">·</span>
                   <span>{post.readingTime} min read</span>
                 </div>
-                <h2 className="text-xl font-bold text-navy">
+                <h2 className="font-serif text-[21px] font-semibold text-navy">
                   <Link href={`/blog/${post.slug}`} className="hover:text-teal-dark">
                     {post.title}
                   </Link>
                 </h2>
-                <p className="mt-2 flex-1 text-[15px] text-grey">{post.description}</p>
+                <p className="mt-2 flex-1 text-[15px] leading-[1.6] text-warm-grey">{post.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {post.tags.slice(0, 3).map((tag) => (
                     <span
@@ -83,7 +83,7 @@ export default function BlogIndex() {
 
       <section className="border-t border-line bg-navy py-16 text-center text-white">
         <Container>
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          <h2 className="font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
             Want this done for your clinic?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[#bbccdd]">
@@ -92,7 +92,7 @@ export default function BlogIndex() {
           </p>
           <Link
             href="/#contact"
-            className="mt-6 inline-flex items-center justify-center rounded-lg bg-teal px-8 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
+            className="mt-6 inline-flex items-center justify-center rounded-full bg-teal px-8 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
           >
             Book your free visibility check
           </Link>

@@ -8,6 +8,7 @@ export const site = {
   tagline: "Be the first answer patients see.",
   email: "hello@frontpaged.io",
   linkedin: "https://www.linkedin.com/company/frontpaged-io/",
+  calendly: "https://calendly.com/benton-frontpaged/30min",
   areaServed: "Dallas–Fort Worth",
   description:
     "Frontpaged helps medical spas get found first on Google and cited by AI search " +

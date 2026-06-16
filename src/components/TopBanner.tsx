@@ -1,4 +1,4 @@
-// Thin site-wide announcement bar linking to our sister company, TagEasy.
+// Thin site-wide announcement bar linking to TagEasy (tagging & analytics).
 export default function TopBanner() {
   return (
     <div className="bg-navy text-white">
@@ -10,7 +10,7 @@ export default function TopBanner() {
           rel="noopener noreferrer"
           className="font-semibold text-white underline decoration-teal decoration-2 underline-offset-2 hover:text-teal"
         >
-          Meet TagEasy, our sister company →
+          Meet TagEasy →
         </a>
       </div>
     </div>

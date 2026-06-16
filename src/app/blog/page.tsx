@@ -81,7 +81,7 @@ export default function BlogIndex() {
         </Container>
       </section>
 
-      <section className="border-t border-line bg-navy py-16 text-center text-white">
+      <section className="border-t border-warm-line bg-navy py-16 text-center text-white">
         <Container>
           <h2 className="font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
             Want this done for your clinic?

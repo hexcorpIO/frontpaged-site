@@ -71,6 +71,15 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
         mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
         keywords: post.tags.join(", "),
       },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonical}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` },
+          { "@type": "ListItem", position: 2, name: "Blog", item: `${site.url}/blog/` },
+          { "@type": "ListItem", position: 3, name: post.title, item: canonical },
+        ],
+      },
       ...(post.faqs.length
         ? [
             {

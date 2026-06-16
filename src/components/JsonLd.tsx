@@ -1,8 +1,9 @@
 import { site, tiers, faqs } from "@/lib/site";
 
-// Structured data: a ProfessionalService describing the agency (with its plans as
-// offers) plus an FAQPage. Rendered server-side into a <script type="application/ld+json">
-// so Google and AI engines can parse the business, services, and Q&A directly.
+// Structured data for the home page: a ProfessionalService (a LocalBusiness subtype)
+// describing the agency, its DFW service area, plans, and expertise — plus a WebSite
+// node and an FAQPage. Rendered server-side so Google and AI engines can parse the
+// business, where it operates, what it offers, and the Q&A directly.
 export default function JsonLd() {
   const graph = [
     {
@@ -13,9 +14,37 @@ export default function JsonLd() {
       email: site.email,
       slogan: site.tagline,
       description: site.description,
+      logo: `${site.url}/icon.svg`,
+      image: `${site.url}/opengraph-image`,
+      priceRange: site.priceRange,
       sameAs: [site.linkedin],
-      areaServed: { "@type": "City", name: site.areaServed },
-      serviceType: "SEO & Generative Engine Optimization (GEO) content for medical spas",
+      serviceType:
+        "SEO & Generative Engine Optimization (GEO) content for medical spas",
+      knowsAbout: [
+        "Search engine optimization",
+        "Generative engine optimization",
+        "Local SEO",
+        "Google Business Profile optimization",
+        "Medical spa marketing",
+        "AI search visibility",
+      ],
+      // Service-area business: list the DFW cities served (no public street address).
+      areaServed: [
+        { "@type": "AdministrativeArea", name: "Dallas–Fort Worth metroplex" },
+        ...site.serviceCities.map((city) => ({
+          "@type": "City",
+          name: `${city}, TX`,
+        })),
+      ],
+      serviceArea: {
+        "@type": "GeoCircle",
+        geoMidpoint: {
+          "@type": "GeoCoordinates",
+          latitude: site.geo.lat,
+          longitude: site.geo.lng,
+        },
+        geoRadius: "80000", // ~80km — covers the DFW metroplex
+      },
       makesOffer: tiers.map((t) => ({
         "@type": "Offer",
         name: `${t.name} plan`,
@@ -31,6 +60,14 @@ export default function JsonLd() {
         category: t.features.join("; "),
         availability: "https://schema.org/InStock",
       })),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      publisher: { "@id": `${site.url}/#business` },
+      inLanguage: "en-US",
     },
     {
       "@type": "FAQPage",

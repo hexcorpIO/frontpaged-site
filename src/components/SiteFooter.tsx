@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-line py-10 text-sm text-grey">
+    <footer className="border-t border-warm-line bg-cream py-10 text-sm text-warm-grey">
       <Container className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-1.5">
           <Logo className="text-[18px]" /> — {site.tagline}
@@ -14,7 +14,7 @@ export default function SiteFooter() {
             href={site.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-grey hover:text-teal-dark"
+            className="font-medium hover:text-teal-dark"
           >
             LinkedIn
           </a>

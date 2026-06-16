@@ -14,7 +14,7 @@ const links = [
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-10 border-b border-line bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-10 border-b border-warm-line bg-cream/85 backdrop-blur-md">
       <Container>
         <nav className="flex h-[66px] items-center justify-between" aria-label="Primary">
           <Link href="/" className="text-[22px]">
@@ -26,14 +26,14 @@ export default function SiteHeader() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-[15px] font-medium text-ink hover:text-teal-dark"
+                className="text-[15px] font-medium text-navy/80 hover:text-teal-dark"
               >
                 {l.label}
               </Link>
             ))}
             <Link
               href="/#contact"
-              className="rounded-lg bg-teal px-[18px] py-2.5 text-[15px] font-semibold text-white transition hover:bg-teal-dark"
+              className="rounded-full bg-teal px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-teal-dark"
             >
               Free visibility check
             </Link>

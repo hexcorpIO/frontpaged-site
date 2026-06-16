@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import TopBanner from "@/components/TopBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,7 +72,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans">
+        <TopBanner />
+        {children}
+      </body>
     </html>
   );
 }

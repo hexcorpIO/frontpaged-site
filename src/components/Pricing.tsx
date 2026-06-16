@@ -1,7 +1,7 @@
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Button from "./Button";
-import { tiers, usd } from "@/lib/site";
+import { tiers, enterprise, usd } from "@/lib/site";
 
 export default function Pricing() {
   return (
@@ -57,6 +57,38 @@ export default function Pricing() {
               </Button>
             </article>
           ))}
+        </div>
+
+        {/* Enterprise / multi-location — custom, sales-led band */}
+        <div className="mt-[22px] flex flex-col gap-6 rounded-2xl bg-navy p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+          <div className="lg:max-w-md">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#7fd0d0]">
+              {enterprise.name}
+            </span>
+            <p className="mt-2 font-serif text-[34px] font-semibold leading-none">
+              Custom
+              <span className="ml-2 align-middle font-sans text-base font-medium text-[#9fb6cc]">
+                from {usd(enterprise.priceFrom)}/mo
+              </span>
+            </p>
+            <p className="mt-3 text-[15px] leading-[1.6] text-[#cdd6e2]">{enterprise.for}</p>
+            <a
+              href="#contact"
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-teal px-7 py-3.5 font-semibold text-white transition hover:bg-white hover:text-navy"
+            >
+              {enterprise.cta}
+            </a>
+          </div>
+          <ul className="grid gap-2.5 sm:grid-cols-2 lg:max-w-md">
+            {enterprise.features.map((f) => (
+              <li
+                key={f}
+                className="relative pl-6 text-[14.5px] leading-[1.5] text-[#e6edf5] before:absolute before:left-0 before:font-bold before:text-teal before:content-['✓']"
+              >
+                {f}
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

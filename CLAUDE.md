@@ -34,7 +34,8 @@ Treat every page as a portfolio piece. If it wouldn't impress an SEO-savvy prosp
 |------|-------|------|
 | Visibility | $1,500/mo | Newer / single-location clinics |
 | **Authority** | **$2,750/mo** | **Most popular** |
-| Domination | $4,000/mo | Multi-service / multi-location |
+| Domination | $4,000/mo | Multi-service / single competitive market |
+| Enterprise | Custom, from $8,000/mo | Multi-location groups / DSOs (sales-led band, not a self-serve card) |
 
 ## Conventions
 

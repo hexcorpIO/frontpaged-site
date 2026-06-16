@@ -85,6 +85,21 @@ export const tiers: Tier[] = [
   },
 ];
 
+// Custom, sales-led tier for multi-location groups / DSOs (shown as a separate band).
+export const enterprise = {
+  name: "Enterprise",
+  priceFrom: 8000,
+  for: "Multi-location groups, DSOs, and practices scaling across markets.",
+  features: [
+    "Everything in Domination — across every location",
+    "Per-location service pages & neighborhood targeting",
+    "A dedicated strategist + quarterly growth roadmap",
+    "Consolidated, per-location reporting",
+    "Priority content turnaround",
+  ],
+  cta: "Book a strategy call",
+} as const;
+
 export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [

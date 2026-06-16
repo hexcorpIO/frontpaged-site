@@ -1,4 +1,4 @@
-import { site, tiers, faqs } from "@/lib/site";
+import { site, tiers, enterprise, faqs } from "@/lib/site";
 
 // Structured data for the home page: a ProfessionalService (a LocalBusiness subtype)
 // describing the agency, its DFW service area, plans, and expertise — plus a WebSite
@@ -45,21 +45,37 @@ export default function JsonLd() {
         },
         geoRadius: "80000", // ~80km — covers the DFW metroplex
       },
-      makesOffer: tiers.map((t) => ({
-        "@type": "Offer",
-        name: `${t.name} plan`,
-        description: t.for,
-        price: t.price,
-        priceCurrency: "USD",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
+      makesOffer: [
+        ...tiers.map((t) => ({
+          "@type": "Offer",
+          name: `${t.name} plan`,
+          description: t.for,
           price: t.price,
           priceCurrency: "USD",
-          unitText: "MONTH",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: t.price,
+            priceCurrency: "USD",
+            unitText: "MONTH",
+          },
+          category: t.features.join("; "),
+          availability: "https://schema.org/InStock",
+        })),
+        {
+          "@type": "Offer",
+          name: `${enterprise.name} plan`,
+          description: enterprise.for,
+          priceCurrency: "USD",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            minPrice: enterprise.priceFrom,
+            priceCurrency: "USD",
+            unitText: "MONTH",
+          },
+          category: enterprise.features.join("; "),
+          availability: "https://schema.org/InStock",
         },
-        category: t.features.join("; "),
-        availability: "https://schema.org/InStock",
-      })),
+      ],
     },
     {
       "@type": "WebSite",

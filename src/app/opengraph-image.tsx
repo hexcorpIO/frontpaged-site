@@ -10,6 +10,8 @@ export const dynamic = "force-static";
 
 const NAVY = "#15263f";
 const TEAL = "#2e8b8b";
+// Logo mark accent (matches app/icon.svg + Logo.tsx).
+const MARK_TEAL = "#33a1a1";
 
 // Generated at build time and emitted as a static PNG in the export.
 export default function OpengraphImage() {
@@ -29,21 +31,23 @@ export default function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          {/* Logo mark: F-as-search-result, reconstructed from the icon SVG geometry. */}
           <div
             style={{
-              width: 60,
-              height: 60,
-              borderRadius: 14,
-              background: TEAL,
+              position: "relative",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 36,
-              fontWeight: 800,
-              transform: "rotate(-4deg)",
+              width: 64,
+              height: 64,
+              borderRadius: 9,
+              background: "linear-gradient(135deg, #1b2f4d 0%, #13233c 100%)",
+              border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            F
+            <div style={{ position: "absolute", left: 21, top: 19, width: 7.25, height: 27.75, borderRadius: 2, background: "#ffffff" }} />
+            <div style={{ position: "absolute", left: 21, top: 19, width: 24.5, height: 7.25, borderRadius: 2, background: MARK_TEAL }} />
+            <div style={{ position: "absolute", left: 21, top: 32, width: 19.5, height: 7.25, borderRadius: 2, background: "#ffffff" }} />
+            <div style={{ position: "absolute", left: 21, top: 49, width: 15, height: 1.75, borderRadius: 1, background: "#ffffff", opacity: 0.18 }} />
+            <div style={{ position: "absolute", left: 38, top: 49, width: 5, height: 1.75, borderRadius: 1, background: MARK_TEAL, opacity: 0.45 }} />
           </div>
           <div style={{ display: "flex", fontSize: 40, fontWeight: 800 }}>
             <span>Frontpaged</span>

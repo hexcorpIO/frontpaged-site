@@ -17,13 +17,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${site.url}/blog`,
+      // Trailing slashes match the site's canonical URLs (trailingSlash: true),
+      // so crawlers don't hit a redirect for every entry.
+      url: `${site.url}/blog/`,
       lastModified: latestPost,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     ...posts.map((post) => ({
-      url: `${site.url}/blog/${post.slug}`,
+      url: `${site.url}/blog/${post.slug}/`,
       lastModified: post.date,
       changeFrequency: "monthly" as const,
       priority: 0.7,

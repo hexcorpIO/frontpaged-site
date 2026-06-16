@@ -1,7 +1,7 @@
 ---
 title: "12 Med Spa Blog Topics That Actually Book Consultations"
 description: "The right blog topics turn browsers into booked consultations. Here are 12 content ideas for med spas in Dallas-Fort Worth that capture buyer intent and drive real revenue."
-date: "2026-02-26"
+date: "2025-03-19"
 author: "The Frontpaged Team"
 tags: ["Content", "Content Marketing", "Ideas"]
 quickAnswer: "The blog topics that actually book consultations are the ones that answer the exact questions people ask right before they decide to buy — cost, comparisons, what to expect, and recovery timelines. For a Dallas-Fort Worth med spa, that means posts like 'How much does Botox cost in Dallas?' and 'Botox vs Dysport: which lasts longer?' Those questions have clear buyer intent, and content that answers them directly earns both search rankings and AI citations."

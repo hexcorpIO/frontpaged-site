@@ -1,7 +1,7 @@
 ---
 title: "Reviews, Reputation & Rankings: How Patient Reviews Drive Visibility"
 description: "Patient reviews aren't just social proof — they directly shape your med spa's Google rankings and your odds of being recommended by AI search tools. Here's how."
-date: "2026-02-12"
+date: "2025-02-04"
 author: "The Frontpaged Team"
 tags: ["Reviews", "Local SEO", "Reputation"]
 quickAnswer: "Patient reviews influence both Google rankings and AI search recommendations through quantity, recency, average rating, and the specific words patients use. Google treats reviews as a trust signal for the local map pack. AI tools like ChatGPT and Perplexity scan review content to assess reputation before recommending a provider. Getting more reviews — ethically — is one of the highest-ROI moves a med spa can make."

@@ -1,7 +1,7 @@
 ---
 title: "How to Rank Your Med Spa for 'Botox Near Me'"
 description: "Want your med spa showing up for 'Botox near me' in DFW? Here's the exact local SEO playbook to own the map pack and attract ready-to-book patients."
-date: "2026-05-02"
+date: "2025-06-25"
 author: "The Frontpaged Team"
 tags: ["Local SEO", "Botox", "Google"]
 quickAnswer: "To rank for 'Botox near me,' you need a fully optimized Google Business Profile with Botox listed as a service, a dedicated Botox treatment page on your website, and a steady stream of reviews that mention Botox by name. NAP consistency across the web and local citations reinforce your authority. Do all three well and you'll show up in both the map pack and organic results — and get mentioned by AI assistants too."

@@ -1,7 +1,7 @@
 ---
 title: "Why Your Med Spa Isn't Showing Up in ChatGPT (and How to Fix It)"
 description: "If ChatGPT skips your med spa when recommending Botox or fillers in DFW, here's exactly why it happens and what to do about it."
-date: "2026-06-10"
+date: "2026-04-22"
 author: "The Frontpaged Team"
 tags: ["AI Search", "GEO", "ChatGPT"]
 quickAnswer: "ChatGPT recommends med spas based on how clearly and consistently your expertise is described across your website, third-party directories, and review platforms. If your content is thin, jargon-heavy, or structured for old-school SEO rather than AI comprehension, the model simply won't surface you. Fixing it means writing answer-first content that directly addresses what patients ask, and building the kind of digital footprint AI engines trust."

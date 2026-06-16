@@ -19,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       // Trailing slashes match the site's canonical URLs (trailingSlash: true),
       // so crawlers don't hit a redirect for every entry.
+      url: `${site.url}/med-spa-seo-dallas/`,
+      lastModified: "2026-06-15",
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${site.url}/blog/`,
       lastModified: latestPost,
       changeFrequency: "weekly",

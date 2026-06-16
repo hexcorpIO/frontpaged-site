@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Brand palette — exposes utilities like bg-navy, text-teal, border-line, etc. */
 @theme {

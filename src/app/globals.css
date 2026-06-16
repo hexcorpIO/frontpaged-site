@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Brand palette — exposes utilities like bg-navy, text-teal, border-line, etc. */
 @theme {
   --color-navy: #15263f;
   --color-teal: #2e8b8b;
@@ -12,11 +11,17 @@
   --color-line: #e3e9ee;
   --color-amber: #fff4e6;
   --color-coral: #e8794b;
+  /* warm editorial palette */
+  --color-cream: #faf7f1;
+  --color-sand: #f1ebe1;
+  --color-warm-line: #e7ded1;
+  --color-warm-grey: #6b6256;
+  --color-gold: #c08a3e;
 }
 
-/* Map the Geist font (loaded in layout.tsx) onto Tailwind's font-sans. */
 @theme inline {
   --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-fraunces);
 }
 
 html {
@@ -24,6 +29,13 @@ html {
 }
 
 body {
-  background: #ffffff;
+  background: var(--color-cream);
   color: var(--color-ink);
+}
+
+/* Editorial: display headings use the serif by default. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }

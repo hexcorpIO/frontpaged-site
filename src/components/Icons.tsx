@@ -64,3 +64,47 @@ export function CheckIcon({ className = "" }: IconProps) {
     </svg>
   );
 }
+
+export function StarIcon({ className = "" }: IconProps) {
+  return (
+    <svg {...base} className={className} width="24" height="24" aria-hidden="true">
+      <path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 17l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5Z" />
+    </svg>
+  );
+}
+
+export function ChatIcon({ className = "" }: IconProps) {
+  return (
+    <svg {...base} className={className} width="24" height="24" aria-hidden="true">
+      <path d="M20 11.5a7.5 7.5 0 0 1-10.9 6.7L4 19.5l1.3-4A7.5 7.5 0 1 1 20 11.5Z" />
+      <path d="M9 11h.01M12 11h.01M15 11h.01" />
+    </svg>
+  );
+}
+
+export function SlidersIcon({ className = "" }: IconProps) {
+  return (
+    <svg {...base} className={className} width="24" height="24" aria-hidden="true">
+      <path d="M5 21V14M5 10V3M12 21V12M12 8V3M19 21V16M19 12V3" />
+      <path d="M2.5 14h5M9.5 8h5M16.5 16h5" />
+    </svg>
+  );
+}
+
+export function CodeIcon({ className = "" }: IconProps) {
+  return (
+    <svg {...base} className={className} width="24" height="24" aria-hidden="true">
+      <path d="m8 9-3 3 3 3M16 9l3 3-3 3M13.5 7l-3 10" />
+    </svg>
+  );
+}
+
+export function ImageIcon({ className = "" }: IconProps) {
+  return (
+    <svg {...base} className={className} width="24" height="24" aria-hidden="true">
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+      <circle cx="9" cy="10" r="1.6" />
+      <path d="m4.5 17 4.5-4.5 4 4 3-3 3.5 3.5" />
+    </svg>
+  );
+}

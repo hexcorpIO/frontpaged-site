@@ -4,6 +4,14 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
+import CtaPanel from "@/components/CtaPanel";
+import {
+  SlidersIcon,
+  ImageIcon,
+  ChatIcon,
+  StarIcon,
+  CheckIcon,
+} from "@/components/Icons";
 import { site } from "@/lib/site";
 
 const PATH = "/services/google-business-profile";
@@ -25,26 +33,32 @@ export const metadata: Metadata = {
 
 const optimizationItems = [
   {
+    Icon: SlidersIcon,
     title: "Primary category & service attributes",
     body: "Your primary category is the most important signal Google uses to decide which map pack you appear in. Most med spas pick the wrong one — or leave it at the default. We set the category that matches how patients actually search, then layer in every relevant secondary category and service attribute your clinic offers.",
   },
   {
+    Icon: ImageIcon,
     title: "Photos that convert and satisfy Google",
     body: "Profiles with 100+ photos get dramatically more calls and direction requests than those with a handful of stock shots. We put together a photo strategy — treatment rooms, equipment, before-and-afters where appropriate, team — and keep it refreshed so your profile looks active and established.",
   },
   {
+    Icon: ChatIcon,
     title: "Google Posts on a consistent schedule",
     body: "Posts tell Google your profile is actively managed, and they give patients a reason to choose you over the clinic next door. We write and publish posts weekly — promotions, new treatments, educational content — so your profile is always current.",
   },
   {
+    Icon: ChatIcon,
     title: "Q&A seeded and managed",
     body: "The Q&A section is one of the least-used features in GBP — and one of the most powerful. We seed it with the questions your patients actually ask, write clear answers, and monitor it so no misleading user-submitted questions go unanswered.",
   },
   {
+    Icon: StarIcon,
     title: "Review strategy and response",
     body: "Reviews are a confirmed ranking factor in the local map pack. We build a system that makes it easy for satisfied patients to leave reviews, and we help you respond consistently — because Google rewards engagement, and prospective patients read every reply.",
   },
   {
+    Icon: CheckIcon,
     title: "NAP consistency across the web",
     body: "Your name, address, and phone number need to match exactly everywhere they appear online — your website, Yelp, Healthgrades, RealSelf, directories. Inconsistencies confuse Google and dilute your authority. We audit and correct them so your signals are clean.",
   },
@@ -236,11 +250,13 @@ export default function GoogleBusinessProfilePage() {
                   key={item.title}
                   className="rounded-2xl border border-warm-line bg-cream p-8 shadow-[0_8px_30px_rgba(21,38,63,0.05)]"
                 >
-                  <div className="mb-5 flex items-baseline gap-3">
-                    <span className="font-serif text-4xl font-semibold text-teal">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-soft text-teal-dark">
+                      <item.Icon className="h-6 w-6" />
+                    </span>
+                    <span className="font-serif text-4xl font-semibold text-warm-line">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="h-px flex-1 bg-warm-line" />
                   </div>
                   <h3 className="font-serif text-[20px] font-semibold text-navy">
                     {item.title}
@@ -367,33 +383,7 @@ export default function GoogleBusinessProfilePage() {
           </Container>
         </section>
 
-        {/* CTA */}
-        <section className="border-t border-warm-line bg-navy py-20 text-center text-white sm:py-28">
-          <Container>
-            <h2 className="font-serif text-[34px] font-semibold tracking-tight sm:text-[40px]">
-              Find out why your map pack competitors outrank you
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[18px] leading-[1.7] text-[#cdd6e2]">
-              We&rsquo;ll audit your Google Business Profile, show you the gaps, and
-              tell you exactly what it would take to move you into the top three in
-              your neighborhood — no obligation.
-            </p>
-            <div className="mt-7 flex justify-center">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center justify-center rounded-full bg-teal px-9 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
-              >
-                Book your free GBP audit
-              </Link>
-            </div>
-            <p className="mt-6 text-[15px] text-[#9fb6cc]">
-              Or email{" "}
-              <a href={`mailto:${site.email}`} className="text-white underline">
-                {site.email}
-              </a>
-            </p>
-          </Container>
-        </section>
+        <CtaPanel />
       </main>
       <SiteFooter />
     </>

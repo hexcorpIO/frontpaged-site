@@ -4,6 +4,16 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
+import CtaPanel from "@/components/CtaPanel";
+import {
+  SearchIcon,
+  FileIcon,
+  PinIcon,
+  CodeIcon,
+  StarIcon,
+  SlidersIcon,
+  TrendingUpIcon,
+} from "@/components/Icons";
 import { site } from "@/lib/site";
 
 const PATH = "/services/med-spa-seo";
@@ -26,36 +36,43 @@ export const metadata: Metadata = {
 const included = [
   {
     n: "01",
+    Icon: SearchIcon,
     title: "Keyword & treatment-intent targeting",
     body: "We map your treatments — Botox, fillers, laser resurfacing, Morpheus8, body contouring — to the exact phrases your local patients are typing. Then we build a content structure around those terms so every treatment has a page that can rank.",
   },
   {
     n: "02",
+    Icon: FileIcon,
     title: "Optimized service pages",
     body: "Thin or missing service pages are the most common reason med spas are invisible in search. We write and optimize individual pages for each treatment, formatted with clear headings, FAQs, and schema markup so Google understands what you offer.",
   },
   {
     n: "03",
+    Icon: PinIcon,
     title: "Google Business Profile",
     body: "Your GBP drives the map pack — the three results that appear above organic listings. We optimize your categories, services, photos, and post cadence, and build a review strategy that keeps your star rating and recency working in your favor.",
   },
   {
     n: "04",
+    Icon: CodeIcon,
     title: "Local citations & NAP consistency",
     body: "Name, address, and phone number mismatches across directories quietly erode your local rankings. We audit and correct your citations so Google's local algorithm trusts your business data.",
   },
   {
     n: "05",
+    Icon: StarIcon,
     title: "Review generation",
     body: "Patients read reviews before they book. We build a simple, compliant process to collect more of them from satisfied clients — and show you how to respond in a way that reinforces your expertise.",
   },
   {
     n: "06",
+    Icon: SlidersIcon,
     title: "Technical SEO",
     body: "Fast load times, clean site structure, proper canonical tags, and schema markup are the foundation. We handle the technical layer so search engines can crawl and understand your site without friction.",
   },
   {
     n: "07",
+    Icon: TrendingUpIcon,
     title: "Content & monthly articles",
     body: "Consistent publishing signals authority. Each month we produce SEO-optimized articles targeting the treatment and neighborhood combinations that drive bookings — content that compounds and keeps earning traffic long after it goes live.",
   },
@@ -186,9 +203,11 @@ export default function MedSpaSeoPage() {
                   key={item.n}
                   className="rounded-2xl border border-warm-line bg-white p-8 shadow-[0_8px_30px_rgba(21,38,63,0.05)]"
                 >
-                  <div className="mb-5 flex items-baseline gap-3">
-                    <span className="font-serif text-4xl font-semibold text-teal">{item.n}</span>
-                    <span className="h-px flex-1 bg-warm-line" />
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-soft text-teal-dark">
+                      <item.Icon className="h-6 w-6" />
+                    </span>
+                    <span className="font-serif text-4xl font-semibold text-warm-line">{item.n}</span>
                   </div>
                   <h3 className="font-serif text-[20px] font-semibold text-navy">{item.title}</h3>
                   <p className="mt-2.5 text-[15.5px] leading-[1.65] text-warm-grey">{item.body}</p>
@@ -201,9 +220,11 @@ export default function MedSpaSeoPage() {
                 key={item.n}
                 className="mt-[22px] rounded-2xl border border-warm-line bg-white p-8 shadow-[0_8px_30px_rgba(21,38,63,0.05)]"
               >
-                <div className="mb-5 flex items-baseline gap-3">
-                  <span className="font-serif text-4xl font-semibold text-teal">{item.n}</span>
-                  <span className="h-px flex-1 bg-warm-line" />
+                <div className="mb-5 flex items-center justify-between">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-soft text-teal-dark">
+                    <item.Icon className="h-6 w-6" />
+                  </span>
+                  <span className="font-serif text-4xl font-semibold text-warm-line">{item.n}</span>
                 </div>
                 <h3 className="font-serif text-[20px] font-semibold text-navy">{item.title}</h3>
                 <p className="mt-2.5 max-w-2xl text-[15.5px] leading-[1.65] text-warm-grey">
@@ -352,33 +373,7 @@ export default function MedSpaSeoPage() {
           </Container>
         </section>
 
-        {/* Navy CTA */}
-        <section className="border-t border-warm-line bg-navy py-20 text-center text-white sm:py-28">
-          <Container>
-            <h2 className="font-serif text-[34px] font-semibold tracking-tight sm:text-[40px]">
-              See where patients aren&rsquo;t finding you — free
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[18px] leading-[1.7] text-[#cdd6e2]">
-              Book a 30-minute visibility check and we&rsquo;ll show you the treatment searches
-              you&rsquo;re missing, how you stack up against the top-ranking clinics in your area, and your
-              three fastest wins.
-            </p>
-            <div className="mt-7 flex justify-center">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center justify-center rounded-full bg-teal px-9 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
-              >
-                Book your free visibility check
-              </Link>
-            </div>
-            <p className="mt-6 text-[15px] text-[#9fb6cc]">
-              Or email{" "}
-              <a href={`mailto:${site.email}`} className="text-white underline">
-                {site.email}
-              </a>
-            </p>
-          </Container>
-        </section>
+        <CtaPanel />
       </main>
       <SiteFooter />
     </>

@@ -4,6 +4,8 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
+import CtaPanel from "@/components/CtaPanel";
+import { FileIcon, CodeIcon, ChatIcon, SlidersIcon } from "@/components/Icons";
 import { site } from "@/lib/site";
 
 const PATH = "/services/generative-engine-optimization";
@@ -25,18 +27,22 @@ export const metadata: Metadata = {
 
 const signals = [
   {
+    Icon: FileIcon,
     title: "Answer-first content AI can actually quote",
     body: "AI engines don't browse — they retrieve. When a patient asks ChatGPT for the best Botox provider in their area, it pulls the clearest, most direct answer it can find. We write your pages so that answer is yours: specific, credible, structured to be extracted verbatim.",
   },
   {
+    Icon: CodeIcon,
     title: "Schema markup that identifies you as an entity",
     body: "FAQPage, Service, and LocalBusiness schema tell AI what your clinic does, who you serve, and where you operate — in a language the model can read without guessing. Without it, you're just text. With it, you're a named, citable source.",
   },
   {
+    Icon: ChatIcon,
     title: "Citations and E-E-A-T signals that earn trust",
     body: "AI engines weight sources that other authoritative sites reference. We build the content strategy — topical depth, consistent NAP, review volume, and external mentions — that positions your clinic as the credible answer rather than a random result.",
   },
   {
+    Icon: SlidersIcon,
     title: "Consistent, accurate information everywhere it's looked up",
     body: "ChatGPT and Perplexity cross-reference Google Business Profile, your website, directories, and review platforms. Inconsistent names, addresses, or service lists create confusion that knocks you off the shortlist. We audit and align every signal.",
   },
@@ -239,11 +245,13 @@ export default function GeoPage() {
                   key={s.title}
                   className="rounded-2xl border border-warm-line bg-cream p-8 shadow-[0_8px_30px_rgba(21,38,63,0.05)]"
                 >
-                  <div className="mb-5 flex items-baseline gap-3">
-                    <span className="font-serif text-4xl font-semibold text-teal">
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-soft text-teal-dark">
+                      <s.Icon className="h-6 w-6" />
+                    </span>
+                    <span className="font-serif text-4xl font-semibold text-warm-line">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="h-px flex-1 bg-warm-line" />
                   </div>
                   <h3 className="font-serif text-[20px] font-semibold text-navy">{s.title}</h3>
                   <p className="mt-2.5 text-[15.5px] leading-[1.65] text-warm-grey">{s.body}</p>
@@ -331,33 +339,7 @@ export default function GeoPage() {
           </Container>
         </section>
 
-        {/* Navy CTA */}
-        <section className="border-t border-warm-line bg-navy py-20 text-center text-white sm:py-28">
-          <Container>
-            <h2 className="font-serif text-[34px] font-semibold tracking-tight sm:text-[40px]">
-              Find out if AI search is naming your med spa
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[18px] leading-[1.7] text-[#cdd6e2]">
-              We&rsquo;ll run the AI citation test on your clinic live, show you where you&rsquo;re missing
-              from the shortlist, and walk you through the fastest path to getting cited. No
-              obligation.
-            </p>
-            <div className="mt-7 flex justify-center">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center justify-center rounded-full bg-teal px-9 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
-              >
-                Book your free AI visibility audit
-              </Link>
-            </div>
-            <p className="mt-6 text-[15px] text-[#9fb6cc]">
-              Or email{" "}
-              <a href={`mailto:${site.email}`} className="text-white underline">
-                {site.email}
-              </a>
-            </p>
-          </Container>
-        </section>
+        <CtaPanel />
       </main>
       <SiteFooter />
     </>

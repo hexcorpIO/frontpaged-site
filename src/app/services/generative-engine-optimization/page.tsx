@@ -3,8 +3,9 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
-import Button from "@/components/Button";
 import CtaPanel from "@/components/CtaPanel";
+import ServiceHero from "@/components/ServiceHero";
+import { GeoAnswerMock } from "@/components/ServiceVisuals";
 import { FileIcon, CodeIcon, ChatIcon, SlidersIcon } from "@/components/Icons";
 import { site } from "@/lib/site";
 
@@ -134,46 +135,28 @@ export default function GeoPage() {
       <SiteHeader />
       <main>
         {/* Hero */}
-        <section className="bg-gradient-to-b from-cream to-white py-20 sm:py-24">
-          <Container>
-            <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-teal-dark">
-              GEO for med spas
-            </p>
-            <h1 className="max-w-3xl font-serif text-[40px] font-semibold leading-[1.08] tracking-tight text-navy sm:text-[54px]">
-              Get your med spa{" "}
-              <span className="italic text-teal">recommended by AI search</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              When a patient asks ChatGPT or Perplexity for the best med spa near them, a short list
-              of clinics gets named — and everyone else is invisible. Generative Engine Optimization
-              is how you get on that list.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3.5">
-              <Button href="/#contact" size="lg">
-                Get a free AI visibility audit
-              </Button>
-              <Button href="/pricing" size="lg" variant="ghost">
-                See plans
-              </Button>
-            </div>
-
-            <div className="mt-10 max-w-2xl rounded-2xl border-l-4 border-teal bg-soft p-6">
-              <p className="mb-1 text-[12px] font-bold uppercase tracking-[0.16em] text-teal-dark">
-                Quick answer
-              </p>
-              <p className="text-[17px] leading-[1.7] text-ink">
-                Generative Engine Optimization (GEO) is the discipline of structuring your content
-                and markup so AI-powered search engines — ChatGPT, Perplexity, Google AI Overviews —
-                cite your clinic by name. That means more high-intent patients discovering you
-                before they ever open a browser tab — nationwide. GEO doesn&rsquo;t replace{" "}
-                <Link href="/services/med-spa-seo" className="text-teal underline">
-                  traditional SEO
-                </Link>{" "}
-                — it layers on top of it to capture the next wave of how patients search.
-              </p>
-            </div>
-          </Container>
-        </section>
+        <ServiceHero
+          eyebrow="GEO for med spas"
+          title={
+            <>
+              Get your med spa <span className="italic text-teal">recommended by AI search</span>
+            </>
+          }
+          lead="When a patient asks ChatGPT or Perplexity for the best med spa near them, a short list of clinics gets named — and everyone else is invisible. Generative Engine Optimization is how you get on that list."
+          quickAnswer={
+            <>
+              Generative Engine Optimization (GEO) is the discipline of structuring your content and markup so
+              AI-powered search engines — ChatGPT, Perplexity, Google AI Overviews — cite your clinic by name.
+              That means more high-intent patients discovering you before they ever open a browser tab —
+              nationwide. GEO doesn&rsquo;t replace{" "}
+              <Link href="/services/med-spa-seo" className="text-teal underline">
+                traditional SEO
+              </Link>{" "}
+              — it layers on top of it to capture the next wave of how patients search.
+            </>
+          }
+          visual={<GeoAnswerMock />}
+        />
 
         {/* What GEO is and how it differs */}
         <section className="border-t border-warm-line bg-cream py-20 sm:py-28">

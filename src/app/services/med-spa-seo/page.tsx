@@ -3,8 +3,9 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
-import Button from "@/components/Button";
 import CtaPanel from "@/components/CtaPanel";
+import ServiceHero from "@/components/ServiceHero";
+import { SerpMock } from "@/components/ServiceVisuals";
 import {
   SearchIcon,
   FileIcon,
@@ -149,44 +150,17 @@ export default function MedSpaSeoPage() {
       <SiteHeader />
       <main>
         {/* Hero */}
-        <section className="bg-gradient-to-b from-cream to-white py-20 sm:py-24">
-          <Container>
-            <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-teal-dark">
-              Med Spa SEO
-            </p>
-            <h1 className="max-w-3xl font-serif text-[40px] font-semibold leading-[1.08] tracking-tight text-navy sm:text-[54px]">
-              Med spa SEO that gets you{" "}
-              <span className="italic text-teal">found — and booked</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              When a patient in your area searches &ldquo;Botox near me&rdquo; or
-              &ldquo;best laser facial near me,&rdquo; they book from the first page of results. We
-              build the pages, signals, and content that put you there — done for you, every month.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3.5">
-              <Button href="/#contact" size="lg">
-                Get a free visibility check
-              </Button>
-              <Button href="/pricing" size="lg" variant="ghost">
-                See plans &amp; pricing
-              </Button>
-            </div>
-
-            {/* Quick-answer box */}
-            <div className="mt-10 max-w-2xl rounded-2xl border-l-4 border-teal bg-soft p-6">
-              <p className="mb-1 text-[12px] font-bold uppercase tracking-[0.16em] text-teal-dark">
-                Quick answer
-              </p>
-              <p className="text-[17px] leading-[1.7] text-ink">
-                Med spa SEO is the practice of optimizing your clinic&rsquo;s website and online
-                presence so patients find you when they search for treatments like Botox, fillers, or
-                laser on Google. It includes treatment-specific service pages, Google Business Profile
-                optimization, local citations, review strategy, technical SEO, and monthly content —
-                all working together to bring in high-intent local patients.
-              </p>
-            </div>
-          </Container>
-        </section>
+        <ServiceHero
+          eyebrow="Med Spa SEO"
+          title={
+            <>
+              Med spa SEO that gets you <span className="italic text-teal">found — and booked</span>
+            </>
+          }
+          lead="When a patient in your area searches “Botox near me” or “best laser facial near me,” they book from the first page of results. We build the pages, signals, and content that put you there — done for you, every month."
+          quickAnswer="Med spa SEO is the practice of optimizing your clinic’s website and online presence so patients find you when they search for treatments like Botox, fillers, or laser on Google. It includes treatment-specific service pages, Google Business Profile optimization, local citations, review strategy, technical SEO, and monthly content — all working together to bring in high-intent local patients."
+          visual={<SerpMock />}
+        />
 
         {/* What's included */}
         <section className="border-t border-warm-line bg-cream py-20 sm:py-28">

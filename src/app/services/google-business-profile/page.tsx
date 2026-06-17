@@ -3,8 +3,9 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
-import Button from "@/components/Button";
 import CtaPanel from "@/components/CtaPanel";
+import ServiceHero from "@/components/ServiceHero";
+import { GbpMock } from "@/components/ServiceVisuals";
 import {
   SlidersIcon,
   ImageIcon,
@@ -146,45 +147,18 @@ export default function GoogleBusinessProfilePage() {
       <SiteHeader />
       <main>
         {/* Hero */}
-        <section className="bg-gradient-to-b from-cream to-white py-20 sm:py-24">
-          <Container>
-            <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-teal-dark">
-              Local visibility
-            </p>
-            <h1 className="max-w-3xl font-serif text-[40px] font-semibold leading-[1.08] tracking-tight text-navy sm:text-[54px]">
+        <ServiceHero
+          eyebrow="Local visibility"
+          title={
+            <>
               Own the map pack in{" "}
               <span className="italic text-teal">your neighborhood</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              When a patient searches &ldquo;med spa near me&rdquo; or &ldquo;Botox in [your city],&rdquo; the
-              map pack is what they see first — three listings, a star rating, and
-              a click to call. We make sure one of those listings is yours.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3.5">
-              <Button href="/#contact" size="lg">
-                Get a free profile audit
-              </Button>
-              <Button href="/pricing" size="lg" variant="ghost">
-                See plans
-              </Button>
-            </div>
-
-            <div className="mt-10 max-w-2xl rounded-2xl border-l-4 border-teal bg-soft p-6">
-              <p className="mb-1 text-[12px] font-bold uppercase tracking-[0.16em] text-teal-dark">
-                Quick answer
-              </p>
-              <p className="text-[17px] leading-[1.7] text-ink">
-                Google Business Profile (GBP) optimization is the process of
-                making your clinic&rsquo;s Google listing as complete, accurate,
-                and active as possible so Google ranks it in the local map pack.
-                For med spas, it&rsquo;s the single highest-leverage local
-                visibility action you can take — before paid ads, before social,
-                before almost anything else. It&rsquo;s the first thing patients
-                see, and the first thing we fix.
-              </p>
-            </div>
-          </Container>
-        </section>
+            </>
+          }
+          lead="When a patient searches “med spa near me” or “Botox in [your city],” the map pack is what they see first — three listings, a star rating, and a click to call. We make sure one of those listings is yours."
+          quickAnswer="Google Business Profile (GBP) optimization is the process of making your clinic’s Google listing as complete, accurate, and active as possible so Google ranks it in the local map pack. For med spas, it’s the single highest-leverage local visibility action you can take — before paid ads, before social, before almost anything else. It’s the first thing patients see, and the first thing we fix."
+          visual={<GbpMock />}
+        />
 
         {/* Why GBP is the #1 local lever */}
         <section className="border-t border-warm-line bg-cream py-20 sm:py-28">

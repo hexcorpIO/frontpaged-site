@@ -39,3 +39,12 @@ h2,
 h3 {
   font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
+
+/* Scroll-reveal: never hide content for reduced-motion users. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

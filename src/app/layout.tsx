@@ -66,6 +66,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
+        <noscript>
+          {/* Without JS the scroll-reveal observer never runs — keep content visible. */}
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <TopBanner />
         {children}
       </body>

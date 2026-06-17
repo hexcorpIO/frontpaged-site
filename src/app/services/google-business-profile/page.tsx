@@ -12,14 +12,14 @@ const canonical = `${site.url}${PATH}`;
 export const metadata: Metadata = {
   title: "Google Business Profile Optimization for Med Spas | Frontpaged",
   description:
-    "Google Business Profile optimization for med spas in Dallas–Fort Worth. Win the local map pack, get found before competitors, and turn nearby searches into booked consultations.",
+    "Google Business Profile optimization for med spas nationwide. Win the local map pack, get found before competitors, and turn nearby searches into booked consultations.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
     title: "Google Business Profile Optimization for Med Spas | Frontpaged",
     description:
-      "Win the Dallas map pack with expert Google Business Profile optimization for med spas. More visibility, more bookings.",
+      "Win the local map pack with expert Google Business Profile optimization for med spas. More visibility, more bookings.",
   },
 };
 
@@ -84,23 +84,14 @@ export default function GoogleBusinessProfilePage() {
         serviceType:
           "Google Business Profile optimization for medical spas",
         description:
-          "Done-for-you Google Business Profile optimization helping med spas in Dallas–Fort Worth win the local map pack, attract high-intent patients, and stay ahead of competitors in local search.",
+          "Done-for-you Google Business Profile optimization helping med spas nationwide win the local map pack, attract high-intent patients, and stay ahead of competitors in local search.",
         provider: {
           "@type": "ProfessionalService",
           "@id": `${site.url}/#business`,
           name: site.name,
           url: site.url,
         },
-        areaServed: [
-          {
-            "@type": "AdministrativeArea",
-            name: "Dallas–Fort Worth metroplex",
-          },
-          ...site.serviceCities.map((city) => ({
-            "@type": "City",
-            name: `${city}, TX`,
-          })),
-        ],
+        areaServed: { "@type": "Country", name: "United States" },
       },
       {
         "@type": "FAQPage",
@@ -151,7 +142,7 @@ export default function GoogleBusinessProfilePage() {
               <span className="italic text-teal">your neighborhood</span>
             </h1>
             <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              When a patient searches &ldquo;med spa near me&rdquo; or &ldquo;Botox in Frisco,&rdquo; the
+              When a patient searches &ldquo;med spa near me&rdquo; or &ldquo;Botox in [your city],&rdquo; the
               map pack is what they see first — three listings, a star rating, and
               a click to call. We make sure one of those listings is yours.
             </p>
@@ -193,7 +184,7 @@ export default function GoogleBusinessProfilePage() {
             <div className="mt-6 max-w-3xl space-y-5 text-[17px] leading-[1.75] text-warm-grey">
               <p>
                 When someone searches &ldquo;lip filler near me&rdquo; or &ldquo;med spa in
-                Southlake,&rdquo; Google serves a map pack at the very top of the
+                [your city],&rdquo; Google serves a map pack at the very top of the
                 results — above the organic listings, often above ads. Those three
                 spots capture the majority of clicks from patients who are ready to
                 book. Everything below them fights for the scraps.
@@ -205,8 +196,8 @@ export default function GoogleBusinessProfilePage() {
                 That&rsquo;s what a well-optimized Google Business Profile does.
               </p>
               <p>
-                DFW is one of the most competitive med spa markets in the country.
-                Clinics in Dallas, Plano, Frisco, and Southlake have strong profiles,
+                Med spa markets across the U.S. are increasingly competitive.
+                Clinics in your area already have strong profiles,
                 hundreds of reviews, and weekly posting cadences. If your profile is
                 incomplete or stale, you&rsquo;re already behind — and patients are
                 choosing your competitors instead. We fix that.
@@ -285,13 +276,13 @@ export default function GoogleBusinessProfilePage() {
                 AI Overviews regularly pull from Business Profile data — your category,
                 your services, your reviews, your Q&A — when constructing local
                 recommendations in response to questions like &ldquo;where&rsquo;s the best
-                place to get Botox in Dallas?&rdquo; A well-maintained profile gives you a
+                place to get Botox near me?&rdquo; A well-maintained profile gives you a
                 seat at that table.
               </p>
               <p>
                 Combine strong GBP signals with the{" "}
                 <Link
-                  href="/med-spa-seo-dallas"
+                  href="/services/med-spa-seo"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   local SEO and GEO content

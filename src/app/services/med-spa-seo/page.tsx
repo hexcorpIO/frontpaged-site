@@ -12,14 +12,14 @@ const canonical = `${site.url}${PATH}`;
 export const metadata: Metadata = {
   title: "Med Spa SEO Services | Frontpaged",
   description:
-    "Med spa SEO that gets your clinic found on Google in Dallas–Fort Worth. Treatment-intent keywords, service pages, GBP, and content — done for you.",
+    "Med spa SEO that gets your clinic found on Google nationwide. Treatment-intent keywords, service pages, GBP, and content — done for you, wherever your clinic is.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
     title: "Med Spa SEO Services | Frontpaged",
     description:
-      "Med spa SEO for Dallas–Fort Worth clinics. We handle keyword targeting, service pages, Google Business Profile, and monthly content so patients find you first.",
+      "Med spa SEO for clinics across the U.S. We handle keyword targeting, service pages, Google Business Profile, and monthly content so patients find you first.",
   },
 };
 
@@ -64,11 +64,11 @@ const included = [
 const faqs = [
   {
     q: "How long does it take to rank with med spa SEO?",
-    a: 'Most clinics see first movement in 60–90 days, often sooner on Google Business Profile and long-tail neighborhood terms like “lip filler Frisco.” Organic rankings build from there with each month of consistent content. SEO compounds — the sooner you start, the further ahead you\'ll be at month six.',
+    a: 'Most clinics see first movement in 60–90 days, often sooner on Google Business Profile and long-tail “near me” terms. Organic rankings build from there with each month of consistent content. SEO compounds — the sooner you start, the further ahead you\'ll be at month six.',
   },
   {
     q: "Is SEO better than paid ads for a med spa?",
-    a: 'They work differently. Ads are instant but stop the moment you stop paying. SEO builds an asset — a page that ranks for "Botox Plano" keeps earning clicks for years without ongoing ad spend. Most established clinics run both, but we focus on the organic and AI-search layer that ads can\'t buy.',
+    a: 'They work differently. Ads are instant but stop the moment you stop paying. SEO builds an asset — a page that ranks for “Botox near me” keeps earning clicks for years without ongoing ad spend. Most established clinics run both, but we focus on the organic and AI-search layer that ads can\'t buy.',
   },
   {
     q: "Do you write the content, or do I?",
@@ -76,7 +76,7 @@ const faqs = [
   },
   {
     q: "What about AI search — ChatGPT, Perplexity, Google AI Overviews?",
-    a: "That's a core part of what we do. More patients are asking AI tools \"what's the best med spa in Dallas?\" before they ever open a map. We structure your content with answer-first formatting and schema markup so those engines recognize and cite your clinic. We also offer a dedicated GEO package — see our Generative Engine Optimization service for details.",
+    a: "That's a core part of what we do. More patients are asking AI tools \"what's the best med spa near me?\" before they ever open a map. We structure your content with answer-first formatting and schema markup so those engines recognize and cite your clinic. We also offer a dedicated GEO package — see our Generative Engine Optimization service for details.",
   },
   {
     q: "What does med spa SEO cost?",
@@ -94,17 +94,14 @@ export default function MedSpaSeoPage() {
         name: "Med Spa SEO",
         serviceType: "Medical spa SEO, local SEO, and content marketing",
         description:
-          "Done-for-you SEO for medical spas: treatment-intent keyword targeting, optimized service pages, Google Business Profile, local citations, review strategy, technical SEO, and monthly content — all built to get Dallas–Fort Worth clinics found and booked.",
+          "Done-for-you SEO for medical spas: treatment-intent keyword targeting, optimized service pages, Google Business Profile, local citations, review strategy, technical SEO, and monthly content — all built to get your clinic found and booked.",
         provider: {
           "@type": "ProfessionalService",
           "@id": `${site.url}/#business`,
           name: site.name,
           url: site.url,
         },
-        areaServed: [
-          { "@type": "AdministrativeArea", name: "Dallas–Fort Worth metroplex" },
-          ...site.serviceCities.map((city) => ({ "@type": "City", name: `${city}, TX` })),
-        ],
+        areaServed: { "@type": "Country", name: "United States" },
       },
       {
         "@type": "FAQPage",
@@ -145,8 +142,8 @@ export default function MedSpaSeoPage() {
               <span className="italic text-teal">found — and booked</span>
             </h1>
             <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              When a patient in Dallas or Fort Worth searches &ldquo;Botox near me&rdquo; or
-              &ldquo;best laser facial Plano,&rdquo; they book from the first page of results. We
+              When a patient in your area searches &ldquo;Botox near me&rdquo; or
+              &ldquo;best laser facial near me,&rdquo; they book from the first page of results. We
               build the pages, signals, and content that put you there — done for you, every month.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3.5">
@@ -224,21 +221,20 @@ export default function MedSpaSeoPage() {
               Why it matters
             </p>
             <h2 className="max-w-2xl font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-navy sm:text-[40px]">
-              DFW patients search before they book. Be the one they find.
+              Patients search before they book. Be the one they find.
             </h2>
             <div className="mt-8 max-w-3xl space-y-5 text-[17px] leading-[1.75] text-warm-grey">
               <p>
-                The Dallas–Fort Worth market has more med spas per square mile than almost anywhere
-                in the country. From Uptown to Southlake to Frisco, new clinics open every quarter.
-                When a patient types &ldquo;Morpheus8 Dallas&rdquo; or &ldquo;filler near me
-                Grapevine,&rdquo; they see the first page — and almost never go further. If
+                The med spa market is competitive in every city across the country. New clinics open
+                every quarter. When a patient types &ldquo;Morpheus8 near me&rdquo; or &ldquo;filler
+                in my area,&rdquo; they see the first page — and almost never go further. If
                 you&rsquo;re not there, you&rsquo;re invisible, regardless of how skilled your
                 injectors are.
               </p>
               <p>
-                Med spa searches are high-intent: the person typing &ldquo;Botox Plano&rdquo; is ready to book,
+                Med spa searches are high-intent: the person typing &ldquo;Botox near me&rdquo; is ready to book,
                 not just browsing. Ranking for those terms means your phone rings and your calendar
-                fills — without spending more on ads. Want to go deeper on the DFW opportunity? Read
+                fills — without spending more on ads. Want to go deeper? Read
                 our{" "}
                 <Link
                   href="/blog/med-spa-seo-2026-guide"
@@ -250,7 +246,7 @@ export default function MedSpaSeoPage() {
               </p>
               <p>
                 Patients are also starting their search on AI tools. ChatGPT and Google&rsquo;s AI
-                Overviews now answer &ldquo;what&rsquo;s the best med spa in Dallas?&rdquo; before a patient
+                Overviews now answer &ldquo;what&rsquo;s the best med spa near me?&rdquo; before a patient
                 ever opens a map. Our{" "}
                 <Link
                   href="/services/generative-engine-optimization"
@@ -276,7 +272,7 @@ export default function MedSpaSeoPage() {
             <div className="mt-8 max-w-3xl space-y-5 text-[17px] leading-[1.75] text-warm-grey">
               <p>
                 We start with a visibility audit — your current rankings, GBP health, and the
-                specific treatment-intent terms you&rsquo;re missing in DFW. From that, we build a
+                specific treatment-intent terms you&rsquo;re missing in your local market. From that, we build a
                 priority plan: which service pages to write first, which citations to fix, what
                 content will move the needle fastest for your clinic.
               </p>
@@ -299,14 +295,14 @@ export default function MedSpaSeoPage() {
                 >
                   View our pricing and plans
                 </Link>
-                . Or see the full picture of what we do for Dallas-area clinics on our{" "}
+                . Or learn how we help your clinic show up in AI-generated answers with our{" "}
                 <Link
-                  href="/med-spa-seo-dallas"
+                  href="/services/generative-engine-optimization"
                   className="font-medium text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
-                  Dallas med spa SEO page
-                </Link>
-                .
+                  Generative Engine Optimization
+                </Link>{" "}
+                service.
               </p>
             </div>
           </Container>
@@ -364,7 +360,7 @@ export default function MedSpaSeoPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[18px] leading-[1.7] text-[#cdd6e2]">
               Book a 30-minute visibility check and we&rsquo;ll show you the treatment searches
-              you&rsquo;re missing, how you stack up against the top-ranking DFW clinics, and your
+              you&rsquo;re missing, how you stack up against the top-ranking clinics in your area, and your
               three fastest wins.
             </p>
             <div className="mt-7 flex justify-center">

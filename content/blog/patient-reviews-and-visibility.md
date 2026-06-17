@@ -6,8 +6,8 @@ author: "The Frontpaged Team"
 tags: ["Reviews", "Local SEO", "Reputation"]
 quickAnswer: "Patient reviews influence both Google rankings and AI search recommendations through quantity, recency, average rating, and the specific words patients use. Google treats reviews as a trust signal for the local map pack. AI tools like ChatGPT and Perplexity scan review content to assess reputation before recommending a provider. Getting more reviews — ethically — is one of the highest-ROI moves a med spa can make."
 faqs:
-  - q: "How many Google reviews does a med spa need to rank in the DFW map pack?"
-    a: "It depends on your area, but most competitive DFW markets — Plano, Southlake, Frisco, Uptown Dallas — require 80 to 200+ reviews with a 4.7 or higher rating to appear consistently in the top three. Velocity matters as much as volume. Getting five new reviews a week beats having a one-time burst of 50 that trickles off."
+  - q: "How many Google reviews does a med spa need to rank in the local map pack?"
+    a: "It depends on your area, but most competitive local markets require 80 to 200+ reviews with a 4.7 or higher rating to appear consistently in the top three. Velocity matters as much as volume. Getting five new reviews a week beats having a one-time burst of 50 that trickles off."
   - q: "Do keywords in patient reviews actually affect Google rankings?"
     a: "Yes. When patients naturally mention treatment names like Botox, lip filler, or laser resurfacing in their reviews, those terms reinforce your relevance to those searches. You cannot stuff keywords into review prompts, but you can remind patients what treatment they just had when you ask for a review — which often prompts them to name it naturally."
   - q: "Can I offer discounts or gifts to patients who leave reviews?"
@@ -38,11 +38,11 @@ If you want to [rank for 'Botox near me'](/blog/how-to-rank-for-botox-near-me), 
 
 This one surprises a lot of med spa owners: AI tools like ChatGPT, Perplexity, and Google's AI Overviews don't just crawl your website. They also read your reviews, aggregate your ratings from directories, and factor in your overall reputation when deciding who to recommend.
 
-When someone asks an AI assistant "What's the best med spa for filler in Frisco?" the AI considers:
+When someone asks an AI assistant "What's the best med spa for filler near me?" the AI considers:
 
 - Your star rating and review volume on Google, Yelp, and RealSelf
 - What patients actually say — treatment outcomes, staff knowledge, cleanliness, value
-- Whether third-party sources (local blogs, DFW lifestyle sites, beauty editors) have mentioned you positively
+- Whether third-party sources (local blogs, lifestyle sites, beauty editors) have mentioned you positively
 - How consistently your information appears across the web
 
 A med spa with 300 detailed reviews and press coverage gets recommended. One with 30 generic reviews and an outdated website gets skipped. Understanding [how AI search recommends med spas](/blog/how-ai-search-recommends-med-spas) is the first step toward engineering your visibility across both traditional and AI-driven results.
@@ -61,7 +61,7 @@ The biggest mistake med spas make is waiting and hoping patients leave reviews o
 
 **Remind them what they had done.** Your follow-up can say something like: "We hope your Botox results are exactly what you were looking for — would you mind sharing your experience on Google?" That framing naturally prompts patients to name the treatment in their review, which strengthens your keyword relevance without any manipulation.
 
-**Never incentivize, fabricate, or filter.** Don't offer discounts, free products, or priority booking for reviews. Don't pay a service to generate them. Don't ask only satisfied patients to leave reviews while steering unhappy ones elsewhere — Google calls that "review gating" and it's a policy violation. These shortcuts carry real risk: profile penalties, removed reviews, or complete GBP suspension, which can be devastating for a DFW med spa that depends on local search traffic.
+**Never incentivize, fabricate, or filter.** Don't offer discounts, free products, or priority booking for reviews. Don't pay a service to generate them. Don't ask only satisfied patients to leave reviews while steering unhappy ones elsewhere — Google calls that "review gating" and it's a policy violation. These shortcuts carry real risk: profile penalties, removed reviews, or complete GBP suspension, which can be devastating for any med spa that depends on local search traffic.
 
 ## Responding to Reviews — Including the Ugly Ones
 
@@ -69,7 +69,7 @@ Responding to reviews is a ranking factor, but it's also where most med spas eit
 
 **Always respond to every review.** Google rewards active, engaged businesses. A two-sentence thank-you takes thirty seconds and signals to both Google and future patients that you're attentive.
 
-**Responding to positives is easy.** Thank the patient, mention something specific if the review allows (without confirming clinical details), and maybe name the location: "We're so glad you had a great experience at our Southlake location — can't wait to see you again."
+**Responding to positives is easy.** Thank the patient, mention something specific if the review allows (without confirming clinical details): "We're so glad you had a great experience — can't wait to see you again."
 
 **Responding to negatives is harder but more important.** A calm, professional response to a 1-star review often does more to build trust than ten 5-star reviews. Future patients can see you handled it gracefully.
 
@@ -87,13 +87,13 @@ Your GBP is the hub where review volume, ratings, and responses all live togethe
 - **Review response rate.** Aim to respond to 100% of reviews within 48 hours. Set a weekly calendar reminder if you're not doing it already.
 - **Average rating.** If you're below 4.7, focus intensely on generating new reviews before doing anything else. A lower rating actively suppresses your map pack visibility.
 - **Flag fake reviews.** Competitors sometimes leave false negative reviews. If you see a review from someone you can't identify as a patient, report it to Google through your GBP dashboard. Document everything.
-- **Track review velocity.** You should be gaining at least one to three new reviews per week in a typical DFW med spa. If that number drops to zero, something in your ask process has broken.
+- **Track review velocity.** You should be gaining at least one to three new reviews per week in a typical med spa. If that number drops to zero, something in your ask process has broken.
 
 ## Turning Review Momentum Into Long-Term Authority
 
-Reviews compound over time. A med spa with 400 reviews and a 4.9 rating in Allen or Grapevine is very hard to unseat — not because of the star count alone, but because that volume signals consistent patient satisfaction over years. Competitors can't fake their way to that.
+Reviews compound over time. A med spa with 400 reviews and a 4.9 rating is very hard to unseat — not because of the star count alone, but because that volume signals consistent patient satisfaction over years. Competitors can't fake their way to that.
 
-Build the system now. Make asking for reviews a standard part of your checkout process. Train your team. Send the follow-up texts. Respond to everything within 48 hours. Six months of consistency puts you ahead of 90% of your DFW competitors.
+Build the system now. Make asking for reviews a standard part of your checkout process. Train your team. Send the follow-up texts. Respond to everything within 48 hours. Six months of consistency puts you ahead of 90% of your local competitors.
 
 And when AI search tools start fielding questions like "What's the best med spa near me?" — your reputation will already be the answer they're looking for.
 

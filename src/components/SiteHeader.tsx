@@ -14,13 +14,6 @@ const services: NavLink[] = [
   { href: "/services/google-business-profile", label: "Google Business Profile" },
 ];
 
-const locations: NavLink[] = [
-  { href: "/med-spa-seo-dallas", label: "Dallas" },
-  { href: "/med-spa-seo-plano", label: "Plano" },
-  { href: "/med-spa-seo-fort-worth", label: "Fort Worth" },
-  { href: "/med-spa-seo-frisco", label: "Frisco" },
-];
-
 function LinkedInIcon({ className = "" }: { className?: string }) {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
@@ -79,7 +72,6 @@ export default function SiteHeader() {
           {/* Desktop nav */}
           <div className="hidden items-center gap-7 lg:flex">
             <Dropdown label="Services" items={services} />
-            <Dropdown label="Locations" items={locations} />
             <Link href="/pricing" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Pricing
             </Link>
@@ -136,20 +128,6 @@ export default function SiteHeader() {
               </p>
               <ul className="space-y-1.5">
                 {services.map((i) => (
-                  <li key={i.href}>
-                    <Link href={i.href} onClick={close} className="text-[15px] text-navy hover:text-teal-dark">
-                      {i.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="mb-2 text-[12px] font-semibold uppercase tracking-[0.16em] text-teal-dark">
-                Locations
-              </p>
-              <ul className="space-y-1.5">
-                {locations.map((i) => (
                   <li key={i.href}>
                     <Link href={i.href} onClick={close} className="text-[15px] text-navy hover:text-teal-dark">
                       {i.label}

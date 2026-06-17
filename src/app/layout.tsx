@@ -28,24 +28,17 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     "med spa SEO",
-    "med spa SEO Dallas",
-    "medical spa marketing Dallas Fort Worth",
+    "medical spa marketing",
+    "med spa SEO agency",
     "Generative Engine Optimization",
     "GEO content",
     "AI search visibility",
     "ChatGPT SEO",
     "Google AI Overviews",
-    "med spa marketing agency Dallas",
+    "med spa marketing agency",
   ],
   applicationName: site.name,
   alternates: { canonical: "/" },
-  // Local geo signals for the Dallas–Fort Worth service area.
-  other: {
-    "geo.region": "US-TX",
-    "geo.placename": "Dallas–Fort Worth",
-    "geo.position": "32.7767;-96.7970",
-    ICBM: "32.7767, -96.7970",
-  },
   openGraph: {
     type: "website",
     url: "/",

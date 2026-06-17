@@ -28,7 +28,7 @@ const costFactors = [
   {
     n: "01",
     title: "Market competition",
-    body: "A clinic in dense, affluent DFW markets like Uptown Dallas or Southlake needs more content and stronger authority-building than a newer suburb. Tougher competition means more monthly work to outrank it.",
+    body: "A clinic in a dense, affluent market needs more content and stronger authority-building than a clinic in a less competitive area. Tougher competition means more monthly work to outrank it.",
   },
   {
     n: "02",
@@ -151,11 +151,7 @@ export default function PricingPage() {
               Four things that determine your med spa SEO cost
             </h2>
             <p className="mt-4 max-w-2xl text-[17px] leading-[1.7] text-warm-grey">
-              Whether you&rsquo;re a single-location clinic in{" "}
-              <Link href="/med-spa-seo-dallas" className="text-teal underline underline-offset-2 hover:text-teal-dark">
-                Dallas–Fort Worth
-              </Link>{" "}
-              or a multi-location group, the same levers determine what a serious{" "}
+              Whether you&rsquo;re a single-location clinic or a multi-location group anywhere in the U.S., the same levers determine what a serious{" "}
               <Link href="/services/med-spa-seo" className="text-teal underline underline-offset-2 hover:text-teal-dark">
                 med spa SEO
               </Link>{" "}

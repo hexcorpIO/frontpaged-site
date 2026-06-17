@@ -1,7 +1,7 @@
 import { site, tiers, enterprise, faqs } from "@/lib/site";
 
 // Structured data for the home page: a ProfessionalService (a LocalBusiness subtype)
-// describing the agency, its DFW service area, plans, and expertise — plus a WebSite
+// describing the agency, its nationwide service area, plans, and expertise — plus a WebSite
 // node and an FAQPage. Rendered server-side so Google and AI engines can parse the
 // business, where it operates, what it offers, and the Q&A directly.
 export default function JsonLd() {
@@ -28,23 +28,8 @@ export default function JsonLd() {
         "Medical spa marketing",
         "AI search visibility",
       ],
-      // Service-area business: list the DFW cities served (no public street address).
-      areaServed: [
-        { "@type": "AdministrativeArea", name: "Dallas–Fort Worth metroplex" },
-        ...site.serviceCities.map((city) => ({
-          "@type": "City",
-          name: `${city}, TX`,
-        })),
-      ],
-      serviceArea: {
-        "@type": "GeoCircle",
-        geoMidpoint: {
-          "@type": "GeoCoordinates",
-          latitude: site.geo.lat,
-          longitude: site.geo.lng,
-        },
-        geoRadius: "80000", // ~80km — covers the DFW metroplex
-      },
+      // Remote, nationwide service-area business.
+      areaServed: { "@type": "Country", name: "United States" },
       makesOffer: [
         ...tiers.map((t) => ({
           "@type": "Offer",

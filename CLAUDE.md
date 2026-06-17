@@ -3,7 +3,7 @@
 # Frontpaged.io
 
 Marketing website for **Frontpaged**, an agency selling **SEO + Generative Engine
-Optimization (GEO)** content services to **medical spas in the Dallas–Fort Worth area**.
+Optimization (GEO)** content services to **medical spas nationwide** (remote, U.S.-wide).
 
 ## Meta-goal (most important)
 

@@ -20,7 +20,7 @@ faqs:
 
 ## What FAQ Schema Actually Does (and What It Doesn't)
 
-When someone searches "how much does Botox cost in Frisco," Google doesn't just rank pages — it looks for structured signals that say: *this page directly answers that question.* FAQ schema is one of those signals.
+When someone searches "how much does Botox cost near me," Google doesn't just rank pages — it looks for structured signals that say: *this page directly answers that question.* FAQ schema is one of those signals.
 
 Technically, it's a block of JSON-LD code added to your page that wraps your questions and answers in a format machines can parse without guessing. Here's a minimal example of what it looks like:
 
@@ -60,7 +60,7 @@ Not every FAQ is worth the effort. You want to mark up questions that:
 For most med spas, the best candidates are:
 
 **Pricing questions**
-- "How much does CoolSculpting cost in Dallas?"
+- "How much does CoolSculpting cost near me?"
 - "What's the average price for a lip filler treatment?"
 - "Do you offer payment plans for laser packages?"
 

@@ -12,21 +12,21 @@ const canonical = `${site.url}${PATH}`;
 export const metadata: Metadata = {
   title: "Generative Engine Optimization (GEO) for Med Spas | Frontpaged",
   description:
-    "Get your med spa cited by ChatGPT, Perplexity, and Google AI Overviews. Generative engine optimization built for DFW medical spas.",
+    "Get your med spa cited by ChatGPT, Perplexity, and Google AI Overviews. Nationwide generative engine optimization built for medical spas.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
     title: "Generative Engine Optimization (GEO) for Med Spas | Frontpaged",
     description:
-      "Get your DFW med spa recommended by AI search — ChatGPT, Perplexity, and Google AI Overviews. Done-for-you GEO content.",
+      "Get your med spa recommended by AI search — ChatGPT, Perplexity, and Google AI Overviews. Done-for-you GEO content, nationwide.",
   },
 };
 
 const signals = [
   {
     title: "Answer-first content AI can actually quote",
-    body: "AI engines don't browse — they retrieve. When a patient asks ChatGPT for the best Botox provider in Plano, it pulls the clearest, most direct answer it can find. We write your pages so that answer is yours: specific, credible, structured to be extracted verbatim.",
+    body: "AI engines don't browse — they retrieve. When a patient asks ChatGPT for the best Botox provider in their area, it pulls the clearest, most direct answer it can find. We write your pages so that answer is yours: specific, credible, structured to be extracted verbatim.",
   },
   {
     title: "Schema markup that identifies you as an entity",
@@ -62,7 +62,7 @@ const faqs = [
   },
   {
     q: "Which AI tools does GEO affect?",
-    a: "Our GEO work targets the tools your DFW patients are most likely to use: ChatGPT, Perplexity, and Google's AI Overviews. As AI search evolves, the underlying signals — authoritative content, structured data, consistent entity information — transfer across platforms.",
+    a: "Our GEO work targets the tools your patients are most likely to use: ChatGPT, Perplexity, and Google's AI Overviews. As AI search evolves, the underlying signals — authoritative content, structured data, consistent entity information — transfer across platforms.",
   },
   {
     q: "How do you measure GEO results?",
@@ -85,17 +85,14 @@ export default function GeoPage() {
         serviceType:
           "Generative Engine Optimization (GEO) and AI-search visibility for medical spas",
         description:
-          "Done-for-you GEO content and schema strategy that gets Dallas–Fort Worth med spas cited by ChatGPT, Perplexity, and Google AI Overviews.",
+          "Done-for-you GEO content and schema strategy that gets med spas across the U.S. cited by ChatGPT, Perplexity, and Google AI Overviews.",
         provider: {
           "@type": "ProfessionalService",
           "@id": `${site.url}/#business`,
           name: site.name,
           url: site.url,
         },
-        areaServed: [
-          { "@type": "AdministrativeArea", name: "Dallas–Fort Worth metroplex" },
-          ...site.serviceCities.map((city) => ({ "@type": "City", name: `${city}, TX` })),
-        ],
+        areaServed: { "@type": "Country", name: "United States" },
       },
       {
         "@type": "FAQPage",
@@ -141,7 +138,7 @@ export default function GeoPage() {
               <span className="italic text-teal">recommended by AI search</span>
             </h1>
             <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              When a patient asks ChatGPT or Perplexity for the best med spa in Dallas, a short list
+              When a patient asks ChatGPT or Perplexity for the best med spa near them, a short list
               of clinics gets named — and everyone else is invisible. Generative Engine Optimization
               is how you get on that list.
             </p>
@@ -161,8 +158,8 @@ export default function GeoPage() {
               <p className="text-[17px] leading-[1.7] text-ink">
                 Generative Engine Optimization (GEO) is the discipline of structuring your content
                 and markup so AI-powered search engines — ChatGPT, Perplexity, Google AI Overviews —
-                cite your clinic by name. For a DFW med spa, that means more high-intent patients
-                discovering you before they ever open a browser tab. GEO doesn&rsquo;t replace{" "}
+                cite your clinic by name. That means more high-intent patients discovering you
+                before they ever open a browser tab — nationwide. GEO doesn&rsquo;t replace{" "}
                 <Link href="/services/med-spa-seo" className="text-teal underline">
                   traditional SEO
                 </Link>{" "}
@@ -193,7 +190,7 @@ export default function GeoPage() {
               </p>
               <p>
                 But AI search works differently. When a patient types &ldquo;what&rsquo;s the best med spa for
-                microneedling in Frisco?&rdquo; into ChatGPT or Google&rsquo;s AI Overview, they don&rsquo;t get ten
+                microneedling near me?&rdquo; into ChatGPT or Google&rsquo;s AI Overview, they don&rsquo;t get ten
                 blue links. They get a paragraph that names one or two clinics and explains why.
                 The AI synthesizes its answer from indexed content, structured data, and trust
                 signals — then cites the source it found most credible.
@@ -201,7 +198,7 @@ export default function GeoPage() {
               <p>
                 GEO is the practice of engineering those signals. Answer-first formatting, FAQ
                 schema, entity consistency, citation building — all of it works together so the AI
-                picks your clinic when a DFW patient asks. We cover both disciplines because
+                picks your clinic when a patient searches in your area. We cover both disciplines because
                 you need both to win{" "}
                 <Link
                   href="/blog/what-is-generative-engine-optimization"
@@ -226,7 +223,7 @@ export default function GeoPage() {
             </h2>
             <p className="mt-4 max-w-2xl text-[17px] leading-[1.7] text-warm-grey">
               AI engines don&rsquo;t flip a coin. They weight specific signals when deciding which clinic
-              to name. These are the four that move the needle most for DFW med spas — and the ones
+              to name. These are the four that move the needle most for med spas — and the ones
               we build into everything we do. Read more in our guide to{" "}
               <Link
                 href="/blog/how-ai-search-recommends-med-spas"

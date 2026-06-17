@@ -16,11 +16,6 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${site.url}/services/med-spa-seo/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
   { url: `${site.url}/services/generative-engine-optimization/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
   { url: `${site.url}/services/google-business-profile/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
-  // Location pages
-  { url: `${site.url}/med-spa-seo-dallas/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.9 },
-  { url: `${site.url}/med-spa-seo-plano/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
-  { url: `${site.url}/med-spa-seo-fort-worth/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
-  { url: `${site.url}/med-spa-seo-frisco/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

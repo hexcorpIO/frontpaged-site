@@ -20,9 +20,9 @@ faqs:
 
 ## Why Your GBP Is More Important Than Your Website Right Now
 
-Most patients searching for a med spa in the Dallas-Fort Worth area never scroll past the map pack. They see three listings, read the star rating, scan the photos, and book. Your Google Business Profile is what gets you into that map pack and what converts the click once you're there.
+Most patients searching for a med spa in their area never scroll past the map pack. They see three listings, read the star rating, scan the photos, and book. Your Google Business Profile is what gets you into that map pack and what converts the click once you're there.
 
-The good news: most med spas in DFW have poorly optimized profiles. Half don't have their services filled in. Plenty have a handful of blurry photos from 2022. Some haven't responded to a review in months. If you work through this checklist, you'll be ahead of the competition before you spend a dollar on ads.
+The good news: most med spas in any local market have poorly optimized profiles. Half don't have their services filled in. Plenty have a handful of blurry photos from 2022. Some haven't responded to a review in months. If you work through this checklist, you'll be ahead of the competition before you spend a dollar on ads.
 
 ---
 
@@ -31,12 +31,12 @@ The good news: most med spas in DFW have poorly optimized profiles. Half don't h
 **Complete every field. No exceptions.**
 
 - [ ] **Claim and verify your listing** if you haven't already. Go to business.google.com and verify via postcard, phone, or video.
-- [ ] **Business name:** Use your real business name only. Don't keyword-stuff it (e.g., "Glow Med Spa Botox Dallas") — Google will suspend listings for this.
+- [ ] **Business name:** Use your real business name only. Don't keyword-stuff it (e.g., "Glow Med Spa Botox Near Me") — Google will suspend listings for this.
 - [ ] **Address:** Confirm it matches your signage, website, and any other directories exactly. A mismatch here can hurt your local ranking.
-- [ ] **Phone number:** Use a local DFW area code, not an 800 number. Consistency across the web matters.
+- [ ] **Phone number:** Use a local area code, not an 800 number. Consistency across the web matters.
 - [ ] **Website URL:** Link to your homepage or a landing page — not your Facebook profile.
 - [ ] **Hours:** Set them accurately. Add holiday hours ahead of major dates (New Year's, Valentine's Day, etc.) — med spas see seasonal spikes in inquiries.
-- [ ] **Business description:** You get 750 characters. Use it. Mention your location ("serving Frisco, Plano, and North Dallas"), your key treatments, and what makes your practice different. Work in your primary keyword naturally but don't stuff it.
+- [ ] **Business description:** You get 750 characters. Use it. Mention your location ("serving [your city] and surrounding areas"), your key treatments, and what makes your practice different. Work in your primary keyword naturally but don't stuff it.
 
 ---
 
@@ -68,7 +68,7 @@ If you want to [rank for 'Botox near me'](/blog/how-to-rank-for-botox-near-me), 
 - [ ] **Exterior photos:** At least 2, showing your entrance from the street during the day.
 - [ ] **Interior photos:** Treatment rooms, your waiting area, any equipment worth showing (laser devices, IV stations, body contouring machines).
 - [ ] **Staff photos:** Faces build trust. Include your lead injector, aesthetician, and front desk team.
-- [ ] **Before/after results:** Check your state board guidelines before posting. Texas allows before/after photos, but you'll want a clear disclaimer. These images drive more engagement than anything else.
+- [ ] **Before/after results:** Check your state board guidelines before posting. You'll want a clear disclaimer regardless of your state. These images drive more engagement than anything else.
 - [ ] **Add new photos every month.** Google rewards active profiles. A batch of 5 new photos per month takes 20 minutes and signals that you're open and operating.
 
 Skip stock photos. Patients can tell, and they don't convert.
@@ -96,7 +96,7 @@ Skip stock photos. Patients can tell, and they don't convert.
   - **What's New:** Spotlights on new treatments, provider introductions, equipment upgrades
   - **Event:** Open houses, consultation events, free skin analysis days
 - [ ] **Include a call to action** on every post: "Book now," "Call to schedule," or "Claim this offer."
-- [ ] **Use local context.** "Now offering PRF treatments at our Southlake location" beats a generic post every time.
+- [ ] **Use local context.** "Now offering PRF treatments at our [your city] location" beats a generic post every time.
 - [ ] **Add a photo to every post.** Engagement rates drop significantly on text-only posts.
 
 Posts expire after 7 days (except Events). Build this into your weekly routine.
@@ -107,12 +107,12 @@ Posts expire after 7 days (except Events). Build this into your weekly routine.
 
 **Seed it before someone else does.**
 
-- [ ] **Log into your profile and post the questions you get asked most.** Then answer them clearly and accurately. Good starting points for a DFW med spa:
+- [ ] **Log into your profile and post the questions you get asked most.** Then answer them clearly and accurately. Good starting points for a med spa:
   - "Do I need a consultation before getting Botox?"
   - "How much does laser hair removal cost?"
   - "Is there any downtime after filler injections?"
   - "Do you accept CareCredit or payment plans?"
-  - "Where are you located relative to 635 / the Tollway / 121?"
+  - "Where are you located and is there parking nearby?"
 - [ ] **Check the Q&A section weekly.** Flag any inaccurate community answers and post your own corrected version.
 - [ ] **Upvote your own seeded questions** when logged in as a Google user — it pushes them to the top.
 
@@ -120,7 +120,7 @@ Posts expire after 7 days (except Events). Build this into your weekly routine.
 
 ## Keep It Moving
 
-A well-optimized GBP isn't a one-time project. The practices that dominate the Dallas-Fort Worth local pack treat their profile like a channel: fresh photos, weekly posts, fast review responses, and updated hours before every holiday. It compounds over time.
+A well-optimized GBP isn't a one-time project. The practices that dominate their local map pack treat their profile like a channel: fresh photos, weekly posts, fast review responses, and updated hours before every holiday. It compounds over time.
 
 For the full picture on what drives rankings for aesthetic practices, the [med spa SEO guide](/blog/med-spa-seo-2026-guide) walks through on-site and off-site strategy alongside your GBP work.
 

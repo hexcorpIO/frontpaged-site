@@ -9,26 +9,12 @@ export const site = {
   email: "hello@frontpaged.io",
   linkedin: "https://www.linkedin.com/company/frontpaged-io/",
   calendly: "https://calendly.com/benton-frontpaged/30min",
-  areaServed: "Dallas–Fort Worth",
-  // Service-area business (no public street address). These drive local schema + copy.
-  serviceCities: [
-    "Dallas",
-    "Fort Worth",
-    "Plano",
-    "Frisco",
-    "McKinney",
-    "Arlington",
-    "Irving",
-    "Southlake",
-    "Denton",
-    "Grapevine",
-  ],
-  geo: { lat: 32.7767, lng: -96.797 }, // Dallas, TX
+  areaServed: "the United States",
   priceRange: "$1,500–$4,000/mo",
   description:
     "Frontpaged helps medical spas get found first on Google and cited by AI search " +
     "(ChatGPT, Perplexity, Google AI Overviews). Done-for-you SEO + GEO content that " +
-    "ranks and books consultations — for med spas across the Dallas–Fort Worth metroplex.",
+    "ranks and books consultations — for medical spas nationwide.",
 } as const;
 
 export type Tier = {

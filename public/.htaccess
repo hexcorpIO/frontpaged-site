@@ -5,6 +5,9 @@
 # Serve Next.js's prerendered 404 page for missing routes.
 ErrorDocument 404 /404.html
 
+# Retired location pages (nationwide pivot) -> 301 to the med spa SEO service page.
+RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /services/med-spa-seo/
+
 # The generated Open Graph image is emitted without a file extension, so force
 # its MIME type — otherwise social scrapers reject it as application/octet-stream.
 <Files "opengraph-image">

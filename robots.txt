@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://frontpaged.io
+Sitemap: https://frontpaged.io/sitemap.xml

@@ -51,14 +51,22 @@ export default function SiteFooter() {
               SEO &amp; Generative Engine Optimization content for medical spas — done for you,
               nationwide.
             </p>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-block font-medium hover:text-teal-dark"
-            >
-              LinkedIn
-            </a>
+            <div className="mt-4 flex flex-col gap-1.5">
+              <a href={site.phoneHref} className="font-medium text-navy hover:text-teal-dark">
+                {site.phone}
+              </a>
+              <a href={`mailto:${site.email}`} className="hover:text-teal-dark">
+                {site.email}
+              </a>
+              <a
+                href={site.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium hover:text-teal-dark"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
           <Column title="Services" links={services} />
           <Column title="Company" links={company} />

@@ -12,6 +12,7 @@ export default function JsonLd() {
       name: site.name,
       url: site.url,
       email: site.email,
+      telephone: "+1-615-905-1857",
       slogan: site.tagline,
       description: site.description,
       logo: `${site.url}/icon.svg`,

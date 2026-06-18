@@ -7,6 +7,8 @@ export const site = {
   url: "https://frontpaged.io",
   tagline: "Be the first answer patients see.",
   email: "hello@frontpaged.io",
+  phone: "(615) 905-1857",
+  phoneHref: "tel:+16159051857",
   linkedin: "https://www.linkedin.com/company/frontpaged-io/",
   instagram: "https://www.instagram.com/frontpaged_io/",
   calendly: "https://calendly.com/benton-frontpaged/30min",

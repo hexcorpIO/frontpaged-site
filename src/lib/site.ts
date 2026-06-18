@@ -8,6 +8,7 @@ export const site = {
   tagline: "Be the first answer patients see.",
   email: "hello@frontpaged.io",
   linkedin: "https://www.linkedin.com/company/frontpaged-io/",
+  instagram: "https://www.instagram.com/frontpaged_io/",
   calendly: "https://calendly.com/benton-frontpaged/30min",
   areaServed: "the United States",
   priceRange: "$1,500–$4,000/mo",

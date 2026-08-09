@@ -5,22 +5,29 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Pricing from "@/components/Pricing";
-import { site, tiers, enterprise, founding, auditOffer } from "@/lib/site";
+import { site, tiers, enterprise, founding, auditOffer, usd } from "@/lib/site";
 
 const PATH = "/pricing";
 const canonical = `${site.url}${PATH}`;
 
+// Cheapest and dearest self-serve tiers, used for the price ranges in copy so
+// they can never drift from the cards.
+const firstTier = tiers[0];
+const lastTier = tiers[tiers.length - 1];
+
 export const metadata: Metadata = {
   title: "Med Spa SEO Pricing — What It Costs in 2026",
-  description:
-    "Med spa SEO pricing ranges from $1,500–$4,000/mo. See what drives the cost, compare plans, and get a free visibility check for your clinic.",
+  description: founding.enabled
+    ? `Med spa SEO costs $1,500–$4,000/mo. Compare plans, see what drives the cost, and get founding-client rates from ${usd(firstTier.foundingPrice)}/mo — month-to-month.`
+    : "Med spa SEO pricing ranges from $1,500–$4,000/mo. See what drives the cost, compare plans, and start with a $500 audit credited toward month one.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
     title: "Med Spa SEO Pricing — What It Costs in 2026 · Frontpaged",
-    description:
-      "Med spa SEO cost explained: plans from $1,500–$4,000/mo, plus custom enterprise pricing from $8,000/mo for multi-location groups.",
+    description: founding.enabled
+      ? `Med spa SEO cost explained: plans from $1,500–$4,000/mo, with a founding-client rate from ${usd(firstTier.foundingPrice)}/mo for our first ${founding.slots} clinics. No contract.`
+      : "Med spa SEO cost explained: plans from $1,500–$4,000/mo, plus custom enterprise pricing from $8,000/mo for multi-location groups.",
   },
 };
 
@@ -207,12 +214,40 @@ export default function PricingPage() {
               <p className="mb-1 text-[12px] font-bold uppercase tracking-[0.16em] text-teal-dark">
                 Quick answer
               </p>
+              {/* The first paragraph stays a general market answer — it's the block AI
+                  engines lift for "how much does med spa SEO cost". Our own pricing
+                  follows it rather than replacing it. */}
               <p className="text-[17px] leading-[1.7] text-ink">
                 <strong>Med spa SEO typically costs $1,500–$4,000 per month</strong> for a single-location
                 clinic. Multi-location or enterprise groups start from $8,000/mo. The range reflects
                 market competition, the number of treatments and locations you have, and how much
                 content volume you need to outrank competitors — including appearing in AI-search results
                 from ChatGPT and Google AI Overviews.
+              </p>
+              <p className="mt-3.5 border-t border-warm-line pt-3.5 text-[17px] leading-[1.7] text-ink">
+                {founding.enabled ? (
+                  <>
+                    <strong>
+                      Frontpaged plans start at {usd(firstTier.foundingPrice)}/mo
+                    </strong>{" "}
+                    for our first {founding.slots} clinics — a founding rate of{" "}
+                    {usd(firstTier.foundingPrice)}–{usd(lastTier.foundingPrice)}/mo, locked for 12
+                    months, against a list price of {usd(firstTier.price)}–{usd(lastTier.price)}/mo.
+                    Everything is month-to-month with no contract, and you can start with a one-time{" "}
+                    {usd(auditOffer.price)}{" "}AI Visibility Audit that&rsquo;s credited in full toward
+                    your first month.
+                  </>
+                ) : (
+                  <>
+                    <strong>
+                      Frontpaged plans run {usd(firstTier.price)}–{usd(lastTier.price)}/mo
+                    </strong>
+                    , month-to-month with no contract. Prepay a year and you pay ten months&rsquo; fee
+                    for twelve months of work. You can also start with a one-time{" "}
+                    {usd(auditOffer.price)}{" "}AI Visibility Audit that&rsquo;s credited in full toward
+                    your first month.
+                  </>
+                )}
               </p>
             </div>
           </Container>

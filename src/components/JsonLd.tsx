@@ -1,4 +1,4 @@
-import { site, tiers, enterprise, faqs } from "@/lib/site";
+import { site, tiers, enterprise, faqs, founding, auditOffer } from "@/lib/site";
 
 // Structured data for the home page: a ProfessionalService (a LocalBusiness subtype)
 // describing the agency, its nationwide service area, plans, and expertise — plus a WebSite
@@ -32,21 +32,35 @@ export default function JsonLd() {
       // Remote, nationwide service-area business.
       areaServed: { "@type": "Country", name: "United States" },
       makesOffer: [
-        ...tiers.map((t) => ({
-          "@type": "Offer",
-          name: `${t.name} plan`,
-          description: t.for,
-          price: t.price,
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: t.price,
+        // Schema must state the price a buyer actually pays today, so while the
+        // founding programme is live these carry the founding rate.
+        ...tiers.map((t) => {
+          const price = founding.enabled ? t.foundingPrice : t.price;
+          return {
+            "@type": "Offer",
+            name: `${t.name} plan`,
+            description: founding.enabled ? `${t.for} Founding client rate.` : t.for,
+            price,
             priceCurrency: "USD",
-            unitText: "MONTH",
-          },
-          category: t.features.join("; "),
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price,
+              priceCurrency: "USD",
+              unitText: "MONTH",
+            },
+            category: t.features.join("; "),
+            availability: "https://schema.org/InStock",
+          };
+        }),
+        {
+          "@type": "Offer",
+          name: auditOffer.name,
+          description: `${auditOffer.for} ${auditOffer.credit}`,
+          price: auditOffer.price,
+          priceCurrency: "USD",
+          category: auditOffer.features.join("; "),
           availability: "https://schema.org/InStock",
-        })),
+        },
         {
           "@type": "Offer",
           name: `${enterprise.name} plan`,

@@ -30,12 +30,25 @@ Treat every page as a portfolio piece. If it wouldn't impress an SEO-savvy prosp
 
 ## Service tiers
 
-| Tier | Price | Note |
-|------|-------|------|
-| Visibility | $1,500/mo | Newer / single-location clinics |
-| **Authority** | **$2,750/mo** | **Most popular** |
-| Domination | $4,000/mo | Multi-service / single competitive market |
-| Enterprise | Custom, from $8,000/mo | Multi-location groups / DSOs (sales-led band, not a self-serve card) |
+| Tier | List | Founding (first 5) | Annual prepay | Note |
+|------|------|--------------------|---------------|------|
+| Visibility | $1,500/mo | $1,125/mo | $15,000/yr | Newer / single-location clinics |
+| **Authority** | **$2,750/mo** | **$2,060/mo** | **$27,500/yr** | **Most popular** |
+| Domination | $4,000/mo | $3,000/mo | $40,000/yr | Multi-service / single competitive market |
+| Enterprise | Custom, from $8,000/mo | — | — | Multi-location groups / DSOs (sales-led band, not a self-serve card) |
+
+Plus a one-time **AI Visibility Audit at $500**, credited in full toward month one.
+
+All of the above lives in [src/lib/site.ts](src/lib/site.ts) and is consumed by the pricing
+cards *and* the JSON-LD, so the two can't drift.
+
+**Founding-client programme.** While `founding.enabled` is `true`, the cards and the `Offer`
+schema both advertise the founding rate (schema must state the price a buyer actually pays).
+Setting `founding.enabled = false` retires the banner, the struck-through prices, and the
+schema discount everywhere in one edit — do that once the 5 slots are filled.
+
+**Guarantee.** Cited by at least one AI engine for a target question within 90 days, or month
+four is free. Never promise rankings.
 
 ## Conventions
 

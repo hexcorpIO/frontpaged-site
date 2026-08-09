@@ -5,7 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Pricing from "@/components/Pricing";
-import { site, tiers, enterprise } from "@/lib/site";
+import { site, tiers, enterprise, founding, auditOffer } from "@/lib/site";
 
 const PATH = "/pricing";
 const canonical = `${site.url}${PATH}`;
@@ -50,7 +50,19 @@ const costFactors = [
 const pricingFaqs = [
   {
     q: "Is there a contract or minimum commitment?",
-    a: "Plans run month-to-month. We don't lock you into an annual contract — though SEO and GEO content compounds over time, so clients who stay 6+ months see the biggest returns. You can pause or cancel with 30 days' notice.",
+    a: "Plans run month-to-month. We don't lock you into an annual contract — though SEO and GEO content compounds over time, so clients who stay 6+ months see the biggest returns. You can pause or cancel with 30 days' notice. If you'd rather prepay a year, that's ten months' fee for twelve months of work.",
+  },
+  {
+    q: "What is the founding client rate?",
+    a: "Our first five clinics get 25% off any plan, locked for twelve months, in exchange for documented before-and-after results and permission to write the work up as a case study. We're being straightforward about why: we're newer to this market and a real case study is worth more to us than the full rate.",
+  },
+  {
+    q: "What do I get for the $500 AI Visibility Audit?",
+    a: "A one-time deep audit: your clinic tested across ChatGPT, Perplexity, and Google, the competitors being cited instead of you, a page-by-page gap analysis of your site, and a prioritized 90-day plan. The full $500 is credited toward your first month if you start a plan within 30 days.",
+  },
+  {
+    q: "Do you guarantee results?",
+    a: "We guarantee one specific thing: if you're not cited by at least one AI engine for a target question within 90 days, month four is free. We deliberately don't guarantee rankings, because Google controls the algorithm and no honest agency can promise a position.",
   },
   {
     q: "What's included in each monthly retainer?",
@@ -108,22 +120,37 @@ export default function PricingPage() {
         },
         areaServed: { "@type": "Country", name: "United States" },
         offers: [
-          ...tiers.map((t) => ({
-            "@type": "Offer",
-            name: `${t.name} plan`,
-            description: t.for,
-            url: canonical,
-            price: t.price,
-            priceCurrency: "USD",
-            priceSpecification: {
-              "@type": "UnitPriceSpecification",
-              price: t.price,
+          // Mirrors the homepage graph: while the founding programme runs, the
+          // advertised price is the founding rate, so schema states that.
+          ...tiers.map((t) => {
+            const price = founding.enabled ? t.foundingPrice : t.price;
+            return {
+              "@type": "Offer",
+              name: `${t.name} plan`,
+              description: founding.enabled ? `${t.for} Founding client rate.` : t.for,
+              url: canonical,
+              price,
               priceCurrency: "USD",
-              unitText: "MONTH",
-            },
-            category: t.features.join("; "),
+              priceSpecification: {
+                "@type": "UnitPriceSpecification",
+                price,
+                priceCurrency: "USD",
+                unitText: "MONTH",
+              },
+              category: t.features.join("; "),
+              availability: "https://schema.org/InStock",
+            };
+          }),
+          {
+            "@type": "Offer",
+            name: auditOffer.name,
+            description: `${auditOffer.for} ${auditOffer.credit}`,
+            url: canonical,
+            price: auditOffer.price,
+            priceCurrency: "USD",
+            category: auditOffer.features.join("; "),
             availability: "https://schema.org/InStock",
-          })),
+          },
           {
             "@type": "Offer",
             name: `${enterprise.name} plan`,

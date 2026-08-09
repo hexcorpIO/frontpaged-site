@@ -8,6 +8,15 @@ name: Build & publish static site
 on:
   push:
     branches: [main]
+  # Daily rebuild so date-scheduled blog posts publish themselves. Posts dated in
+  # the future are excluded from the build (see src/lib/blog.ts); this run is what
+  # picks them up once their date arrives. On every other day the output is
+  # identical and the deploy is a no-op.
+  #
+  # GitHub cron is UTC-only with no DST handling, so 11:00 UTC is 06:00 Central in
+  # summer and 05:00 in winter. Irrelevant at one-day granularity.
+  schedule:
+    - cron: "0 11 * * *"
   workflow_dispatch: # allows manual runs from the Actions tab
 
 permissions:

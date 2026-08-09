@@ -83,6 +83,28 @@ Every page and post should lead with the direct answer, then expand. [Answer-fir
 
 ---
 
+## How Long This Actually Takes
+
+The honest timeline matters, because practices that expect results in three weeks abandon the work at week four.
+
+AI engines do not re-evaluate your site the moment you publish. Some run live retrieval and pick up changes within days. Others rely on training data updated on cycles nobody outside those companies can see. The result is that improvements surface unevenly across platforms.
+
+A realistic pattern for a practice starting from near-zero visibility:
+
+**Weeks 1–4.** You rebuild service pages and add FAQ content. Nothing visible changes. This is the stage where most practices conclude it is not working.
+
+**Weeks 5–10.** Perplexity, which runs live searches, begins surfacing your pages for narrow treatment questions. Google may start showing you for long-tail queries.
+
+**Weeks 10–20.** Citations become more consistent on treatment and cost questions. ChatGPT may begin mentioning you when browsing is triggered.
+
+**Beyond week 20.** Provider-selection queries — "best med spa in [city]" — start to become reachable, though these remain the hardest and are heavily influenced by reviews and third-party mentions rather than your own content.
+
+Two things accelerate this. Publishing consistently rather than in one burst, because engines weight sustained signals over spikes. And building corroboration elsewhere — reviews, directory listings, local press — since AI models look for agreement across sources before recommending a business confidently.
+
+Nothing about this is fast. It is, however, cumulative, which is the opposite of paid advertising.
+
+---
+
 ## What This Looks Like in Practice
 
 A med spa we worked with had exactly this problem. Strong clinical reputation, almost zero AI visibility. Within eight weeks of restructuring their service pages, adding a proper FAQ section, and cleaning up their GBP, they started appearing in ChatGPT responses for searches like "best laser hair removal near me" and "microneedling vs. laser resurfacing."

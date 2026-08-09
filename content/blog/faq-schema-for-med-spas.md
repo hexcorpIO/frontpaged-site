@@ -106,6 +106,26 @@ This catches a surprising number of sites that add schema as a hidden layer whil
 
 ---
 
+## Writing Answers Worth Marking Up
+
+Schema makes an answer machine-readable. It cannot make a bad answer good, and marking up weak content simply publishes the weakness in a more structured format.
+
+A few habits separate answers that earn results from answers that just fill the tag.
+
+**Lead with the answer.** The first sentence should resolve the question. Context, caveats, and detail follow. An answer opening with "That depends on several factors" has spent its most valuable sentence saying nothing.
+
+**Be specific enough to be useful.** "Results typically last three to four months" gives a reader something to plan around. "Results vary by individual" does not, and it is indistinguishable from every competitor saying the same thing.
+
+**Keep answers to two to four sentences.** Long enough to be complete, short enough to be lifted whole. Answers running to a full paragraph tend to get truncated at an awkward point or passed over.
+
+**Hedge honestly.** "Most patients," "typically," "in our experience" are appropriate for clinical content and read as credible rather than evasive. What undermines an answer is false precision, not appropriate qualification.
+
+**Write the questions the way patients say them.** "How many units of Botox do I need for my forehead?" rather than "Botox Unit Requirements." The question text is part of the markup, and matching real phrasing is what connects it to a real search.
+
+A useful test: read the answer alone, with no surrounding page. If it makes sense and tells someone something concrete, it is worth marking up. If it does not, fix the answer before adding the schema.
+
+---
+
 ## Why This Connects to AI Visibility
 
 AI engines are increasingly the first stop for patients with questions. Someone might ask ChatGPT "what's a realistic Botox budget for forehead lines" before they ever type a keyword into Google. Those engines synthesize answers from sources they deem credible — and clean, well-structured content that uses FAQ schema is a strong credibility signal.

@@ -1,6 +1,6 @@
 ---
 title: "Answer-First Content: Writing Service Pages That AI Will Actually Cite"
-description: "Learn how answer-first content structure gets your med spa service pages cited by ChatGPT, Perplexity, and Google AI Overviews. Practical guide with before/after examples."
+description: "How answer-first structure gets med spa service pages cited by ChatGPT, Perplexity, and Google AI Overviews — with before-and-after examples you can copy."
 date: "2026-03-03"
 author: "The Frontpaged Team"
 tags: ["GEO", "Content", "AI Search"]

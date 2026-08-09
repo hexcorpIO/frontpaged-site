@@ -7,7 +7,8 @@
     "build": "next build",
     "preview": "next build && npx --yes serve out",
     "package": "next build && cd out && zip -r -X ../frontpaged-site.zip . && cd ..",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:content": "node scripts/check-content.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

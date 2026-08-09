@@ -9,9 +9,9 @@ import { site } from "@/lib/site";
 type NavLink = { href: string; label: string };
 
 const services: NavLink[] = [
-  { href: "/services/med-spa-seo", label: "Med Spa SEO" },
-  { href: "/services/generative-engine-optimization", label: "Generative Engine Optimization" },
-  { href: "/services/google-business-profile", label: "Google Business Profile" },
+  { href: "/services/med-spa-seo/", label: "Med Spa SEO" },
+  { href: "/services/generative-engine-optimization/", label: "Generative Engine Optimization" },
+  { href: "/services/google-business-profile/", label: "Google Business Profile" },
 ];
 
 function InstagramIcon({ className = "" }: { className?: string }) {
@@ -82,10 +82,10 @@ export default function SiteHeader() {
           {/* Desktop nav */}
           <div className="hidden items-center gap-7 lg:flex">
             <Dropdown label="Services" items={services} />
-            <Link href="/pricing" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
+            <Link href="/pricing/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Pricing
             </Link>
-            <Link href="/blog" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
+            <Link href="/blog/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Blog
             </Link>
             <a
@@ -156,10 +156,10 @@ export default function SiteHeader() {
               </ul>
             </div>
             <div className="flex flex-col gap-1.5">
-              <Link href="/pricing" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+              <Link href="/pricing/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 Pricing
               </Link>
-              <Link href="/blog" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+              <Link href="/blog/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 Blog
               </Link>
               <a

@@ -40,6 +40,18 @@ function estimateReadingTime(text: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
+// The site is built with `trailingSlash: true`, so an in-content link written as
+// `/blog/some-post` costs the reader (and crawlers) a 301 hop. Normalize every
+// root-relative link to the canonical trailing-slash form, leaving anchors,
+// query strings, and file paths (e.g. /icon.svg) alone.
+function withTrailingSlashes(html: string): string {
+  return html.replace(
+    /href="(\/[^"#?]*?)"/g,
+    (match, pathname: string) =>
+      pathname.endsWith("/") || path.extname(pathname) ? match : `href="${pathname}/"`,
+  );
+}
+
 function parsePost(slug: string): Post {
   const raw = fs.readFileSync(path.join(BLOG_DIR, `${slug}.md`), "utf8");
   const { data, content } = matter(raw);
@@ -56,7 +68,7 @@ function parsePost(slug: string): Post {
       ? data.faqs.map((f: { q: string; a: string }) => ({ q: String(f.q), a: String(f.a) }))
       : [],
     readingTime: estimateReadingTime(content),
-    html: marked.parse(content, { async: false }) as string,
+    html: withTrailingSlashes(marked.parse(content, { async: false }) as string),
   };
 }
 

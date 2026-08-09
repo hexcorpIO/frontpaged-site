@@ -7,7 +7,9 @@ export default function TopBanner() {
         <a
           href="https://tageasy.io"
           target="_blank"
-          rel="noopener noreferrer"
+          // Site-wide cross-promo — nofollow so it doesn't pass link equity off
+          // every page on the site.
+          rel="noopener noreferrer nofollow"
           className="font-semibold text-white underline decoration-teal decoration-2 underline-offset-2 hover:text-teal"
         >
           Meet TagEasy →

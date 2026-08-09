@@ -48,7 +48,8 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const canonical = `${site.url}/blog/${post.slug}`;
+  // Trailing slash so the schema @ids match the canonical URLs exactly.
+  const canonical = `${site.url}/blog/${post.slug}/`;
 
   // BlogPosting + FAQPage structured data so Google and AI engines can parse the
   // article, its author/date, and the Q&A directly.
@@ -62,11 +63,14 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
         description: post.description,
         datePublished: post.date,
         dateModified: post.date,
+        // Article rich results want an image and a publisher logo.
+        image: `${site.url}/opengraph-image`,
         author: { "@type": "Organization", name: post.author, url: site.url },
         publisher: {
           "@type": "Organization",
           name: site.name,
           url: site.url,
+          logo: { "@type": "ImageObject", url: `${site.url}/icon.svg` },
         },
         mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
         keywords: post.tags.join(", "),
@@ -105,7 +109,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
 
       <article className="py-14 sm:py-16">
         <Container className="!max-w-3xl">
-          <Link href="/blog" className="text-sm font-semibold text-teal-dark hover:text-teal">
+          <Link href="/blog/" className="text-sm font-semibold text-teal-dark hover:text-teal">
             ← All articles
           </Link>
 

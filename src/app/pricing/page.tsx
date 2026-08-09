@@ -5,20 +5,20 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Pricing from "@/components/Pricing";
-import { site } from "@/lib/site";
+import { site, tiers, enterprise } from "@/lib/site";
 
 const PATH = "/pricing";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Med Spa SEO Pricing — What It Costs in 2026 | Frontpaged",
+  title: "Med Spa SEO Pricing — What It Costs in 2026",
   description:
     "Med spa SEO pricing ranges from $1,500–$4,000/mo. See what drives the cost, compare plans, and get a free visibility check for your clinic.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
-    title: "Med Spa SEO Pricing — What It Costs in 2026 | Frontpaged",
+    title: "Med Spa SEO Pricing — What It Costs in 2026 · Frontpaged",
     description:
       "Med spa SEO cost explained: plans from $1,500–$4,000/mo, plus custom enterprise pricing from $8,000/mo for multi-location groups.",
   },
@@ -91,6 +91,56 @@ export default function PricingPage() {
           { "@type": "ListItem", position: 2, name: "Pricing", item: canonical },
         ],
       },
+      // The page that actually states the prices should own the offer catalog —
+      // built from the same `tiers`/`enterprise` constants the cards render from.
+      {
+        "@type": "Service",
+        "@id": `${canonical}#service`,
+        name: "Med spa SEO & Generative Engine Optimization (GEO)",
+        description:
+          "Done-for-you SEO and GEO content retainers for medical spas — articles, optimized service pages, schema markup, and Google Business Profile management.",
+        serviceType: "SEO & Generative Engine Optimization (GEO) content for medical spas",
+        provider: {
+          "@type": "ProfessionalService",
+          "@id": `${site.url}/#business`,
+          name: site.name,
+          url: site.url,
+        },
+        areaServed: { "@type": "Country", name: "United States" },
+        offers: [
+          ...tiers.map((t) => ({
+            "@type": "Offer",
+            name: `${t.name} plan`,
+            description: t.for,
+            url: canonical,
+            price: t.price,
+            priceCurrency: "USD",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: t.price,
+              priceCurrency: "USD",
+              unitText: "MONTH",
+            },
+            category: t.features.join("; "),
+            availability: "https://schema.org/InStock",
+          })),
+          {
+            "@type": "Offer",
+            name: `${enterprise.name} plan`,
+            description: enterprise.for,
+            url: canonical,
+            priceCurrency: "USD",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              minPrice: enterprise.priceFrom,
+              priceCurrency: "USD",
+              unitText: "MONTH",
+            },
+            category: enterprise.features.join("; "),
+            availability: "https://schema.org/InStock",
+          },
+        ],
+      },
     ],
   };
 
@@ -152,7 +202,7 @@ export default function PricingPage() {
             </h2>
             <p className="mt-4 max-w-2xl text-[17px] leading-[1.7] text-warm-grey">
               Whether you&rsquo;re a single-location clinic or a multi-location group anywhere in the U.S., the same levers determine what a serious{" "}
-              <Link href="/services/med-spa-seo" className="text-teal underline underline-offset-2 hover:text-teal-dark">
+              <Link href="/services/med-spa-seo/" className="text-teal underline underline-offset-2 hover:text-teal-dark">
                 med spa SEO
               </Link>{" "}
               program costs.
@@ -174,11 +224,11 @@ export default function PricingPage() {
             </div>
             <p className="mt-8 max-w-2xl text-[16px] leading-[1.7] text-warm-grey">
               All plans include both{" "}
-              <Link href="/services/med-spa-seo" className="text-teal underline underline-offset-2 hover:text-teal-dark">
+              <Link href="/services/med-spa-seo/" className="text-teal underline underline-offset-2 hover:text-teal-dark">
                 med spa SEO
               </Link>{" "}
               and{" "}
-              <Link href="/services/generative-engine-optimization" className="text-teal underline underline-offset-2 hover:text-teal-dark">
+              <Link href="/services/generative-engine-optimization/" className="text-teal underline underline-offset-2 hover:text-teal-dark">
                 Generative Engine Optimization (GEO)
               </Link>
               . You don&rsquo;t pay separately for AI-search visibility — it&rsquo;s baked into every tier.

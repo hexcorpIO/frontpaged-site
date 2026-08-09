@@ -18,7 +18,7 @@ export default function JsonLd() {
       logo: `${site.url}/icon.svg`,
       image: `${site.url}/opengraph-image`,
       priceRange: site.priceRange,
-      sameAs: [site.linkedin],
+      sameAs: [site.linkedin, site.instagram],
       serviceType:
         "SEO & Generative Engine Optimization (GEO) content for medical spas",
       knowsAbout: [

@@ -7,7 +7,9 @@ export const dynamic = "force-static";
 
 // Trailing slashes match the site's canonical URLs (trailingSlash: true) so
 // crawlers don't hit a redirect for every entry.
-const STATIC_DATE = "2026-06-16";
+// Bump this whenever the static pages' content changes — `lastmod` should track
+// real edits, not build time, or crawlers learn to ignore it.
+const STATIC_DATE = "2026-08-09";
 
 const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${site.url}/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 1 },

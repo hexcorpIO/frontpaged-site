@@ -21,9 +21,58 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   const posts = getAllPosts();
+  const canonical = `${site.url}/blog/`;
+
+  // Blog + BreadcrumbList so crawlers and AI engines can read the index as a
+  // publication with a known post list, not just a page of links.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": `${canonical}#blog`,
+        url: canonical,
+        name: `${site.name} Blog`,
+        description:
+          "Practical guides on med spa SEO, Generative Engine Optimization (GEO), and getting your clinic recommended by Google and AI search.",
+        inLanguage: "en-US",
+        publisher: {
+          "@type": "Organization",
+          "@id": `${site.url}/#business`,
+          name: site.name,
+          url: site.url,
+          logo: { "@type": "ImageObject", url: `${site.url}/icon.svg` },
+        },
+        blogPost: posts.map((post) => ({
+          "@type": "BlogPosting",
+          "@id": `${site.url}/blog/${post.slug}/#article`,
+          url: `${site.url}/blog/${post.slug}/`,
+          headline: post.title,
+          description: post.description,
+          datePublished: post.date,
+          dateModified: post.date,
+          author: { "@type": "Organization", name: post.author, url: site.url },
+          keywords: post.tags.join(", "),
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${canonical}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` },
+          { "@type": "ListItem", position: 2, name: "Blog", item: canonical },
+        ],
+      },
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        // Schema is built from trusted local content, not user input.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="bg-gradient-to-b from-cream to-white py-16 sm:py-20">
         <Container>
           <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-teal-dark">
@@ -54,7 +103,7 @@ export default function BlogIndex() {
                   <span>{post.readingTime} min read</span>
                 </div>
                 <h2 className="font-serif text-[21px] font-semibold text-navy">
-                  <Link href={`/blog/${post.slug}`} className="hover:text-teal-dark">
+                  <Link href={`/blog/${post.slug}/`} className="hover:text-teal-dark">
                     {post.title}
                   </Link>
                 </h2>
@@ -70,7 +119,7 @@ export default function BlogIndex() {
                   ))}
                 </div>
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={`/blog/${post.slug}/`}
                   className="mt-5 text-[15px] font-semibold text-teal-dark hover:text-teal"
                 >
                   Read more →

@@ -19,14 +19,14 @@ const PATH = "/services/google-business-profile";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Google Business Profile Optimization for Med Spas | Frontpaged",
+  title: "Google Business Profile Optimization for Med Spas",
   description:
     "Google Business Profile optimization for med spas nationwide. Win the local map pack, get found before competitors, and turn nearby searches into booked consultations.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
-    title: "Google Business Profile Optimization for Med Spas | Frontpaged",
+    title: "Google Business Profile Optimization for Med Spas · Frontpaged",
     description:
       "Win the local map pack with expert Google Business Profile optimization for med spas. More visibility, more bookings.",
   },
@@ -193,7 +193,7 @@ export default function GoogleBusinessProfilePage() {
               <p>
                 See how GBP optimization connects with your broader{" "}
                 <Link
-                  href="/services/med-spa-seo"
+                  href="/services/med-spa-seo/"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   med spa SEO strategy
@@ -272,7 +272,7 @@ export default function GoogleBusinessProfilePage() {
               <p>
                 Combine strong GBP signals with the{" "}
                 <Link
-                  href="/services/med-spa-seo"
+                  href="/services/med-spa-seo/"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   local SEO and GEO content
@@ -283,7 +283,7 @@ export default function GoogleBusinessProfilePage() {
               <p>
                 We also publish{" "}
                 <Link
-                  href="/blog/google-business-profile-for-med-spas"
+                  href="/blog/google-business-profile-for-med-spas/"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   a detailed guide to GBP for med spas
@@ -340,7 +340,7 @@ export default function GoogleBusinessProfilePage() {
             <p className="mt-8 text-[16px] leading-[1.7] text-warm-grey">
               Ready to see exactly where your profile stands? Check our{" "}
               <Link
-                href="/pricing"
+                href="/pricing/"
                 className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
               >
                 pricing plans

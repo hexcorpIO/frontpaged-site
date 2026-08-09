@@ -13,14 +13,14 @@ const PATH = "/services/generative-engine-optimization";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Generative Engine Optimization (GEO) for Med Spas | Frontpaged",
+  title: "Generative Engine Optimization (GEO) for Med Spas",
   description:
     "Get your med spa cited by ChatGPT, Perplexity, and Google AI Overviews. Nationwide generative engine optimization built for medical spas.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
-    title: "Generative Engine Optimization (GEO) for Med Spas | Frontpaged",
+    title: "Generative Engine Optimization (GEO) for Med Spas · Frontpaged",
     description:
       "Get your med spa recommended by AI search — ChatGPT, Perplexity, and Google AI Overviews. Done-for-you GEO content, nationwide.",
   },
@@ -149,7 +149,7 @@ export default function GeoPage() {
               AI-powered search engines — ChatGPT, Perplexity, Google AI Overviews — cite your clinic by name.
               That means more high-intent patients discovering you before they ever open a browser tab —
               nationwide. GEO doesn&rsquo;t replace{" "}
-              <Link href="/services/med-spa-seo" className="text-teal underline">
+              <Link href="/services/med-spa-seo/" className="text-teal underline">
                 traditional SEO
               </Link>{" "}
               — it layers on top of it to capture the next wave of how patients search.
@@ -172,7 +172,7 @@ export default function GeoPage() {
                 Traditional SEO is about ranking: you get your med spa to position one on a Google
                 results page and let patients click through. It&rsquo;s still essential — and it&rsquo;s one of
                 the{" "}
-                <Link href="/services/med-spa-seo" className="text-teal underline">
+                <Link href="/services/med-spa-seo/" className="text-teal underline">
                   core things we do
                 </Link>
                 .
@@ -190,7 +190,7 @@ export default function GeoPage() {
                 picks your clinic when a patient searches in your area. We cover both disciplines because
                 you need both to win{" "}
                 <Link
-                  href="/blog/what-is-generative-engine-optimization"
+                  href="/blog/what-is-generative-engine-optimization/"
                   className="text-teal underline"
                 >
                   in today&rsquo;s search landscape
@@ -215,7 +215,7 @@ export default function GeoPage() {
               to name. These are the four that move the needle most for med spas — and the ones
               we build into everything we do. Read more in our guide to{" "}
               <Link
-                href="/blog/how-ai-search-recommends-med-spas"
+                href="/blog/how-ai-search-recommends-med-spas/"
                 className="text-teal underline"
               >
                 how AI search recommends med spas
@@ -269,7 +269,7 @@ export default function GeoPage() {
             </ul>
             <p className="mt-10 max-w-2xl text-[17px] leading-[1.7] text-warm-grey">
               Not sure which plan fits where you are now?{" "}
-              <Link href="/pricing" className="text-teal underline">
+              <Link href="/pricing/" className="text-teal underline">
                 Compare plans and pricing
               </Link>{" "}
               — or book a free audit below and we&rsquo;ll recommend one after looking at your current

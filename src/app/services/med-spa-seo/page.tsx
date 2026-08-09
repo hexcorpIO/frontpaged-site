@@ -21,14 +21,14 @@ const PATH = "/services/med-spa-seo";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Med Spa SEO Services | Frontpaged",
+  title: "Med Spa SEO Services",
   description:
     "Med spa SEO that gets your clinic found on Google nationwide. Treatment-intent keywords, service pages, GBP, and content — done for you, wherever your clinic is.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
-    title: "Med Spa SEO Services | Frontpaged",
+    title: "Med Spa SEO Services · Frontpaged",
     description:
       "Med spa SEO for clinics across the U.S. We handle keyword targeting, service pages, Google Business Profile, and monthly content so patients find you first.",
   },
@@ -232,7 +232,7 @@ export default function MedSpaSeoPage() {
                 fills — without spending more on ads. Want to go deeper? Read
                 our{" "}
                 <Link
-                  href="/blog/med-spa-seo-2026-guide"
+                  href="/blog/med-spa-seo-2026-guide/"
                   className="font-medium text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   med spa SEO 2026 guide
@@ -244,7 +244,7 @@ export default function MedSpaSeoPage() {
                 Overviews now answer &ldquo;what&rsquo;s the best med spa near me?&rdquo; before a patient
                 ever opens a map. Our{" "}
                 <Link
-                  href="/services/generative-engine-optimization"
+                  href="/services/generative-engine-optimization/"
                   className="font-medium text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   Generative Engine Optimization
@@ -285,14 +285,14 @@ export default function MedSpaSeoPage() {
               <p>
                 Want to see how it&rsquo;s structured across tiers?{" "}
                 <Link
-                  href="/pricing"
+                  href="/pricing/"
                   className="font-medium text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   View our pricing and plans
                 </Link>
                 . Or learn how we help your clinic show up in AI-generated answers with our{" "}
                 <Link
-                  href="/services/generative-engine-optimization"
+                  href="/services/generative-engine-optimization/"
                   className="font-medium text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   Generative Engine Optimization

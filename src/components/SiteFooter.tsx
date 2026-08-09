@@ -4,14 +4,14 @@ import Logo from "./Logo";
 import { site } from "@/lib/site";
 
 const services = [
-  { href: "/services/med-spa-seo", label: "Med Spa SEO" },
-  { href: "/services/generative-engine-optimization", label: "Generative Engine Optimization" },
-  { href: "/services/google-business-profile", label: "Google Business Profile" },
+  { href: "/services/med-spa-seo/", label: "Med Spa SEO" },
+  { href: "/services/generative-engine-optimization/", label: "Generative Engine Optimization" },
+  { href: "/services/google-business-profile/", label: "Google Business Profile" },
 ];
 
 const company = [
-  { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
+  { href: "/pricing/", label: "Pricing" },
+  { href: "/blog/", label: "Blog" },
   { href: "/#contact", label: "Book a call" },
 ];
 

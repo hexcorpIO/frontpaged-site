@@ -5,6 +5,14 @@
 # Serve Next.js's prerendered 404 page for missing routes.
 ErrorDocument 404 /404.html
 
+# Canonical host: www served the whole site at 200, duplicating every URL on a
+# second hostname. Redirect it to the apex, which is what the canonical tags say.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.frontpaged\.io$ [NC]
+  RewriteRule ^(.*)$ https://frontpaged.io/$1 [R=301,L]
+</IfModule>
+
 # Retired location pages (nationwide pivot) -> 301 to the med spa SEO service page.
 RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /services/med-spa-seo/
 
@@ -33,8 +41,16 @@ RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /services/me
 </IfModule>
 
 # Next.js hashes filenames under /_next/static, so they can never go stale.
+# FilesMatch tests the basename, not the path, so match on the request URI instead.
 <IfModule mod_headers.c>
-  <FilesMatch "^/_next/static/">
-    Header set Cache-Control "public, max-age=31536000, immutable"
-  </FilesMatch>
+  SetEnvIf Request_URI "^/_next/static/" IMMUTABLE_ASSET
+  Header set Cache-Control "public, max-age=31536000, immutable" env=IMMUTABLE_ASSET
+
+  # Baseline security headers. No third-party frames or MIME sniffing; send the
+  # full referrer same-origin and only the origin cross-site.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 </IfModule>

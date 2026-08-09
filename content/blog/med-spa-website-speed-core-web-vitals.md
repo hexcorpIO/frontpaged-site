@@ -115,4 +115,4 @@ Run your busiest three pages — homepage, top treatment page, main gallery — 
 
 If it is an image, you have found your afternoon's work and probably your biggest available win.
 
-If you want the full technical audit alongside the content side, [book a free visibility check](/#contact) and we will run it across your site.
+If you want the full technical audit alongside the content side, [book a free visibility check](/contact) and we will run it across your site.

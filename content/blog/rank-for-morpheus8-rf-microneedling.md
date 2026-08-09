@@ -137,4 +137,4 @@ Search your device name plus your city, in an incognito window. See who ranks an
 
 If the top result is a thin page with no cost information and no comparison content, that term is winnable this quarter.
 
-If you want a read on which of your devices have the clearest opening in your market, [book a free visibility check](/#contact) and we will map it out.
+If you want a read on which of your devices have the clearest opening in your market, [book a free visibility check](/contact) and we will map it out.

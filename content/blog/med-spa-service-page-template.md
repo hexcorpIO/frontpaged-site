@@ -174,4 +174,4 @@ Pick your most profitable treatment. Open its current page. Ask whether it answe
 
 If any answer is missing or buried, you have found your next piece of work.
 
-If you would rather see how your current service pages stack up against the practices outranking you, [book a free visibility check](/#contact) and we will walk through them with you.
+If you would rather see how your current service pages stack up against the practices outranking you, [book a free visibility check](/contact) and we will walk through them with you.

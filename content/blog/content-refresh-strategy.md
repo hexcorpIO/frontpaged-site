@@ -143,4 +143,4 @@ Read the three pages outranking it. List what they answer that you do not. Add t
 
 That is a single afternoon against your best available opportunity, and you can repeat it every month indefinitely.
 
-If you want a prioritized refresh list built from your own Search Console data, [book a free visibility check](/#contact) and we will put one together.
+If you want a prioritized refresh list built from your own Search Console data, [book a free visibility check](/contact) and we will put one together.

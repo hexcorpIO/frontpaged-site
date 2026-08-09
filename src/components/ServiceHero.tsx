@@ -35,7 +35,7 @@ export default function ServiceHero({
             <p className="mt-6 max-w-xl text-[18px] leading-[1.7] text-warm-grey">{lead}</p>
             <div className="mt-7 flex flex-wrap items-center gap-3.5">
               <Link
-                href="/#contact"
+                href="/contact/"
                 className="inline-flex items-center justify-center rounded-full bg-teal px-8 py-4 text-[17px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-teal-dark"
               >
                 Get a free visibility check

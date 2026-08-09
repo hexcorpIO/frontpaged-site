@@ -138,4 +138,4 @@ Then look at your own page for that question. Is there a heading matching it? Do
 
 Where the answer is no, you have found the work.
 
-If you would like to see which aesthetic queries in your market are generating overviews and who is being cited, [book a free visibility check](/#contact) and we will run the analysis for you.
+If you would like to see which aesthetic queries in your market are generating overviews and who is being cited, [book a free visibility check](/contact) and we will run the analysis for you.

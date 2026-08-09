@@ -141,4 +141,4 @@ Pick four competitors. Spend two hours: treatment page coverage, question covera
 
 You will finish with a short list of specific, closable gaps, which is the entire point of the exercise.
 
-If you would rather have this run properly across your market, [book a free visibility check](/#contact) and we will deliver the gap analysis for you.
+If you would rather have this run properly across your market, [book a free visibility check](/contact) and we will deliver the gap analysis for you.

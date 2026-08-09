@@ -125,4 +125,4 @@ Open Perplexity. Ask it the five questions you most want to be the answer to. Re
 
 If you are absent, open the pages that were cited and compare them to yours, section by section. The gap is usually not subtle, and it is usually structural rather than a matter of writing quality.
 
-If you want that analysis run properly across your whole market, [book a free visibility check](/#contact) and we will show you exactly where you stand.
+If you want that analysis run properly across your whole market, [book a free visibility check](/contact) and we will show you exactly where you stand.

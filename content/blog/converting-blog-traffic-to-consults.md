@@ -134,4 +134,4 @@ Open your five highest-traffic posts. For each, ask: what stage is this reader a
 
 If a post about lip filler cost ends with a generic "contact us," you have found a booking you are currently declining to ask for.
 
-If you want an outside read on where your content is losing readers, [book a free visibility check](/#contact) and we will walk through the path from post to booking with you.
+If you want an outside read on where your content is losing readers, [book a free visibility check](/contact) and we will walk through the path from post to booking with you.

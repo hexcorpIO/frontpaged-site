@@ -15,6 +15,7 @@ const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 const STATIC_ROUTES = new Set([
   "/",
   "/pricing",
+  "/contact",
   "/blog",
   "/services/med-spa-seo",
   "/services/generative-engine-optimization",

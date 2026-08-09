@@ -14,6 +14,7 @@ const STATIC_DATE = "2026-08-09";
 const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${site.url}/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 1 },
   { url: `${site.url}/pricing/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.9 },
+  { url: `${site.url}/contact/`, lastModified: STATIC_DATE, changeFrequency: "yearly", priority: 0.9 },
   // Service (hub-and-spoke) pages
   { url: `${site.url}/services/med-spa-seo/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
   { url: `${site.url}/services/generative-engine-optimization/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },

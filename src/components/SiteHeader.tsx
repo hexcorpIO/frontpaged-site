@@ -107,7 +107,7 @@ export default function SiteHeader() {
               <LinkedInIcon />
             </a>
             <Link
-              href="/#contact"
+              href="/contact/"
               className="rounded-full bg-teal px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-teal-dark"
             >
               Free visibility check
@@ -180,7 +180,7 @@ export default function SiteHeader() {
               </a>
             </div>
             <Link
-              href="/#contact"
+              href="/contact/"
               onClick={close}
               className="inline-flex w-full items-center justify-center rounded-full bg-teal px-5 py-3 text-[15px] font-semibold text-white transition hover:bg-teal-dark"
             >

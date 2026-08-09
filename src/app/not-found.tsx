@@ -66,7 +66,7 @@ export default function NotFound() {
               <Button href="/" size="lg">
                 Back to the homepage
               </Button>
-              <Button href="/#contact" size="lg" variant="ghost">
+              <Button href="/contact/" size="lg" variant="ghost">
                 Book a free visibility check
               </Button>
             </div>

@@ -116,4 +116,4 @@ This isn't a separate strategy — it's what good local SEO already looks like.
 
 Ranking for "Botox near me" in your local market comes down to three things done consistently: a GBP that clearly signals you do Botox, a website page that earns Google's trust, and reviews that mention the treatment by name. Most of your competitors are doing one of these adequately. Do all three well and you'll take the top spots.
 
-If you're not sure where your visibility gaps are, [book a free visibility check](/#contact) and we'll pull the data for your specific market.
+If you're not sure where your visibility gaps are, [book a free visibility check](/contact) and we'll pull the data for your specific market.

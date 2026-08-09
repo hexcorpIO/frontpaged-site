@@ -141,4 +141,4 @@ Open your location pages side by side and read them as a patient would. If you c
 
 Pick your weakest-performing location. Add the staff, the parking, the real hours, the services actually offered there. Then check its Google Business Profile points at that page.
 
-If you want a read on how your locations are performing individually, [book a free visibility check](/#contact) and we will break it out for you.
+If you want a read on how your locations are performing individually, [book a free visibility check](/contact) and we will break it out for you.

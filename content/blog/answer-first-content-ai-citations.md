@@ -129,4 +129,4 @@ Pick your top one or two service pages and rewrite the first sentence of each ma
 
 That's a meaningful amount of work — but it's targeted, and the impact on AI citations tends to show up faster than traditional SEO changes.
 
-If you want to know which of your pages are already getting cited (and which aren't), [book a free visibility check](/#contact). We'll show you exactly where you stand in AI search and which pages need the most attention first.
+If you want to know which of your pages are already getting cited (and which aren't), [book a free visibility check](/contact). We'll show you exactly where you stand in AI search and which pages need the most attention first.

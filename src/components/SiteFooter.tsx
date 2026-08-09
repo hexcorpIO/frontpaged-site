@@ -12,7 +12,7 @@ const services = [
 const company = [
   { href: "/pricing/", label: "Pricing" },
   { href: "/blog/", label: "Blog" },
-  { href: "/#contact", label: "Book a call" },
+  { href: "/contact/", label: "Contact" },
 ];
 
 function Column({

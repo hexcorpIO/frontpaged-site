@@ -108,6 +108,6 @@ None of this requires a complete website overhaul. Small, targeted changes to co
 
 GEO isn't a future concern — it's deciding who gets recommended right now. Every week your service pages go unanswered, a competitor's structured content is getting cited instead.
 
-If you want to see where your med spa stands today, [book a free visibility check](/#contact) and we'll show you exactly which AI tools are (and aren't) recommending you, and what it would take to change that. We also have structured GEO packages for med spas at [/#pricing](/#pricing) if you're ready to move.
+If you want to see where your med spa stands today, [book a free visibility check](/contact) and we'll show you exactly which AI tools are (and aren't) recommending you, and what it would take to change that. We also have structured GEO packages for med spas at [/#pricing](/#pricing) if you're ready to move.
 
 The patients are already searching by asking AI questions. The question is whether they're finding you.

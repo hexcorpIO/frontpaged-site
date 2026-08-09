@@ -131,4 +131,4 @@ Open your five most important pages and check each one:
 
 Anything failing question five is urgent. Everything else is a straightforward afternoon's work with a real return.
 
-If you want an outside read on how your content stacks up on trust signals, [book a free visibility check](/#contact) and we will go through it with you.
+If you want an outside read on how your content stacks up on trust signals, [book a free visibility check](/contact) and we will go through it with you.

@@ -127,4 +127,4 @@ Pick the comparison your staff answers most often in consultations. Write it as 
 
 Then check whether an AI assistant currently cites anyone for that question. If the cited source is a manufacturer page or a national chain, there is room for a local practice with real clinical experience.
 
-If you want help identifying which comparisons are winnable in your market, [book a free visibility check](/#contact) and we will map them out.
+If you want help identifying which comparisons are winnable in your market, [book a free visibility check](/contact) and we will map them out.

@@ -121,4 +121,4 @@ Write fifteen questions. Run them across the three surfaces. Record the results.
 
 It will take about an hour, and it is the only baseline you will ever get for free. Every month after is a comparison against it.
 
-If you would rather have this run and reported for you, [book a free visibility check](/#contact) and we will show you where you currently stand.
+If you would rather have this run and reported for you, [book a free visibility check](/contact) and we will show you where you currently stand.

@@ -119,4 +119,4 @@ Check our [pricing](/#pricing) if you want to understand what a full GEO engagem
 
 If you're serious about showing up when patients ask AI assistants for a med spa recommendation in your area, the time to act is now. The practices building this presence today will be the default recommendations six months from now.
 
-[Book a free visibility check](/#contact) and we'll show you exactly where ChatGPT, Perplexity, and Google AI Overviews stand on your practice right now, and what it would take to change that.
+[Book a free visibility check](/contact) and we'll show you exactly where ChatGPT, Perplexity, and Google AI Overviews stand on your practice right now, and what it would take to change that.

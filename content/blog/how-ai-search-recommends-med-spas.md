@@ -102,4 +102,4 @@ If you're hitting all six signals — diverse mentions, answer-ready content, re
 
 This is exactly what GEO work addresses: building the evidence base that AI tools need to confidently recommend you. It's not complicated, but it does require showing up consistently across a lot of fronts.
 
-Want to know where you stand right now? [Book a free visibility check](/#contact) and we'll show you exactly which signals you're missing and what to prioritize first.
+Want to know where you stand right now? [Book a free visibility check](/contact) and we'll show you exactly which signals you're missing and what to prioritize first.

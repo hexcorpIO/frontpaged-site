@@ -124,4 +124,4 @@ A well-optimized GBP isn't a one-time project. The practices that dominate their
 
 For the full picture on what drives rankings for aesthetic practices, the [med spa SEO guide](/blog/med-spa-seo-2026-guide) walks through on-site and off-site strategy alongside your GBP work.
 
-If you want a second set of eyes on where your profile stands right now, [book a free visibility check](/#contact) — we'll audit your GBP and show you exactly what's holding you back.
+If you want a second set of eyes on where your profile stands right now, [book a free visibility check](/contact) — we'll audit your GBP and show you exactly what's holding you back.

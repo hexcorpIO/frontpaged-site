@@ -170,7 +170,7 @@ export default function PricingPage() {
               <Button href="#pricing" size="lg">
                 See the plans
               </Button>
-              <Button href="/#contact" size="lg" variant="ghost">
+              <Button href="/contact/" size="lg" variant="ghost">
                 Book a free visibility check
               </Button>
             </div>
@@ -295,7 +295,7 @@ export default function PricingPage() {
             </p>
             <div className="mt-7 flex justify-center">
               <Link
-                href="/#contact"
+                href="/contact/"
                 className="inline-flex items-center justify-center rounded-full bg-teal px-9 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
               >
                 Book a free visibility check

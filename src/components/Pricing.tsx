@@ -49,7 +49,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <Button
-                href="#contact"
+                href="/contact/"
                 variant={t.featured ? "solid" : "ghost"}
                 className="w-full"
               >
@@ -73,7 +73,7 @@ export default function Pricing() {
             </p>
             <p className="mt-3 text-[15px] leading-[1.6] text-[#cdd6e2]">{enterprise.for}</p>
             <a
-              href="#contact"
+              href="/contact/"
               className="mt-6 inline-flex items-center justify-center rounded-full bg-teal px-7 py-3.5 font-semibold text-white transition hover:bg-white hover:text-navy"
             >
               {enterprise.cta}

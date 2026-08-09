@@ -125,4 +125,4 @@ If you are starting from FAQ markup only:
 
 Then set a calendar reminder to audit everything in six months, because the markup will drift as the business changes.
 
-If you would like a read on what your site currently emits and where the gaps are, [book a free visibility check](/#contact) and we will run the audit for you.
+If you would like a read on what your site currently emits and where the gaps are, [book a free visibility check](/contact) and we will run the audit for you.

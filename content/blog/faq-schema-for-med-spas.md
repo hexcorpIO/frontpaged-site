@@ -142,4 +142,4 @@ FAQ schema isn't a standalone fix. It's one layer of a technical and content fou
 
 For the full picture on what's working for med spas right now, the [med spa SEO guide](/blog/med-spa-seo-2026-guide) covers everything from local signals to content architecture.
 
-If you want to see how your current site handles structured data — and where the gaps are — [book a free visibility check](/#contact). We'll look at what you have, what's missing, and what would actually move the needle.
+If you want to see how your current site handles structured data — and where the gaps are — [book a free visibility check](/contact). We'll look at what you have, what's missing, and what would actually move the needle.

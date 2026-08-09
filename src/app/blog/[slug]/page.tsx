@@ -174,7 +174,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
               Book a 30-minute visibility check and we&rsquo;ll run the AI test on your med spa.
             </p>
             <Link
-              href="/#contact"
+              href="/contact/"
               className="mt-5 inline-flex items-center justify-center rounded-full bg-teal px-7 py-3.5 font-semibold text-white transition hover:bg-white hover:text-navy"
             >
               Book your free visibility check

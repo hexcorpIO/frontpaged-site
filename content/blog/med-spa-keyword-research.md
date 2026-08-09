@@ -111,4 +111,4 @@ For how this fits into a full program across the year, our [med spa SEO guide](/
 
 Open Google Search Console, sort last year's queries by impressions, and find the ten terms where you rank between positions five and twenty. Those are the pages worth improving first — you have already earned partial relevance and just need to finish the job.
 
-If you want a read on which terms are realistically winnable in your market, [book a free visibility check](/#contact) and we will go through them with you.
+If you want a read on which terms are realistically winnable in your market, [book a free visibility check](/contact) and we will go through them with you.

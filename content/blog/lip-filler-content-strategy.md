@@ -119,4 +119,4 @@ Open your lip filler page and check for three things: a cost range, a reversibil
 
 Most practices are missing at least two. Adding them is an afternoon's work against the most decision-ready traffic in aesthetics.
 
-If you want to see which lip filler terms are winnable in your market, [book a free visibility check](/#contact) and we will map them for you.
+If you want to see which lip filler terms are winnable in your market, [book a free visibility check](/contact) and we will map them for you.

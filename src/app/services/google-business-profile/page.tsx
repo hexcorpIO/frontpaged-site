@@ -347,7 +347,7 @@ export default function GoogleBusinessProfilePage() {
               </Link>{" "}
               or{" "}
               <Link
-                href="/#contact"
+                href="/contact/"
                 className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
               >
                 request a free audit

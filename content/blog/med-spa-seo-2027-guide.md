@@ -120,4 +120,4 @@ That was true before AI search and it is more true now, because generated answer
 
 Start with your Google Business Profile. Then your top treatment page. Then the next one.
 
-If you want to know where your practice currently stands across Google and AI search, [book a free visibility check](/#contact) and we will show you.
+If you want to know where your practice currently stands across Google and AI search, [book a free visibility check](/contact) and we will show you.

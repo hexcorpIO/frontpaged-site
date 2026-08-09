@@ -102,7 +102,7 @@ The pattern across all 12 of these: they match a specific question a specific pa
 
 Start with two or three posts from the cost and comparison sections — those capture the highest-intent traffic. Build toward the AI-question category over time.
 
-If you're not sure which topics are most valuable for your specific practice and service mix, [book a free visibility check](/#contact) and we'll show you exactly where your content has gaps.
+If you're not sure which topics are most valuable for your specific practice and service mix, [book a free visibility check](/contact) and we'll show you exactly where your content has gaps.
 
 ---
 

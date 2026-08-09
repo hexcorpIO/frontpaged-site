@@ -133,4 +133,4 @@ Open your gallery and check:
 
 Most practices fail at least four of these, and every one is fixable without a redesign.
 
-If you want an outside review of how your gallery pages perform on both fronts, [book a free visibility check](/#contact) and we will go through them with you.
+If you want an outside review of how your gallery pages perform on both fronts, [book a free visibility check](/contact) and we will go through them with you.

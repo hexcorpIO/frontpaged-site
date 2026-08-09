@@ -97,4 +97,4 @@ Build the system now. Make asking for reviews a standard part of your checkout p
 
 And when AI search tools start fielding questions like "What's the best med spa near me?" — your reputation will already be the answer they're looking for.
 
-Ready to see where your review profile stands? [Book a free visibility check](/#contact) and we'll show you exactly where you're leaving rankings on the table.
+Ready to see where your review profile stands? [Book a free visibility check](/contact) and we'll show you exactly where you're leaving rankings on the table.

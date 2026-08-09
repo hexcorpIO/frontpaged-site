@@ -166,4 +166,4 @@ Med spa SEO in 2026 isn't complicated — but it does require consistency. The p
 
 You can see [plans for getting started at /#pricing](/\#pricing) if you want a sense of what a complete SEO program looks like for your med spa.
 
-If you want to know exactly where your practice stands right now — rankings, GBP health, technical issues, review velocity — [book a free visibility check](/#contact). We'll show you what's working, what's not, and what to fix first.
+If you want to know exactly where your practice stands right now — rankings, GBP health, technical issues, review velocity — [book a free visibility check](/contact). We'll show you what's working, what's not, and what to fix first.

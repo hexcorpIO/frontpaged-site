@@ -140,7 +140,7 @@ export default function BlogIndex() {
             and AI search.
           </p>
           <Link
-            href="/#contact"
+            href="/contact/"
             className="mt-6 inline-flex items-center justify-center rounded-full bg-teal px-8 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
           >
             Book your free visibility check

@@ -112,4 +112,4 @@ Whatever you build this year, put a calendar reminder for the first week of Octo
 
 The same logic applies to the rest of your seasonal assets. Your gift card page, your timing posts, and your offers page all want annual updates rather than annual replacement. Treat the URLs as permanent infrastructure and the content inside them as the thing that changes.
 
-If you want help building a seasonal cluster that earns its ranking before the season starts, [book a free visibility check](/#contact) and we will map it out with you.
+If you want help building a seasonal cluster that earns its ranking before the season starts, [book a free visibility check](/contact) and we will map it out with you.

@@ -53,6 +53,24 @@ export const auditOffer = {
   cta: "Start with the audit",
 } as const;
 
+// Named authorship is the largest remaining E-E-A-T gap on this site. Content
+// attributed to a company reads weaker than content attributed to a person, and
+// AI engines weight author attribution heavily on health-adjacent topics — which
+// is precisely the argument our own E-E-A-T article makes.
+//
+// Fill `name` in and it flows automatically to the About page bio, the Person
+// node in the schema graph, and the blog bylines. Left blank, all three fall
+// back to organization-level attribution and nothing renders half-finished.
+export const founder = {
+  name: "",
+  role: "Founder",
+  /** Two or three sentences, first person. Background, why med spas, what you did before. */
+  bio: "",
+  /** e.g. ["10 years in search marketing", "Google Analytics certified"] */
+  credentials: [] as string[],
+  linkedin: "",
+} as const;
+
 export type Tier = {
   name: string;
   price: number; // USD per month

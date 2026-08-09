@@ -88,6 +88,9 @@ export default function SiteHeader() {
             <Link href="/blog/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Blog
             </Link>
+            <Link href="/faq/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
+              FAQ
+            </Link>
             <a
               href={site.instagram}
               target="_blank"
@@ -161,6 +164,12 @@ export default function SiteHeader() {
               </Link>
               <Link href="/blog/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 Blog
+              </Link>
+              <Link href="/faq/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+                FAQ
+              </Link>
+              <Link href="/about/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+                About
               </Link>
               <a
                 href={site.instagram}

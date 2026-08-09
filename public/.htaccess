@@ -22,6 +22,12 @@ RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /services/me
   ForceType image/png
 </Files>
 
+# Apache serves .xml as generic text/xml; feed readers and aggregators expect the
+# RSS media type.
+<Files "rss.xml">
+  ForceType application/rss+xml
+</Files>
+
 # Compress text assets.
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml

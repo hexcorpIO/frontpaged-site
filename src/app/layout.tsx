@@ -38,7 +38,12 @@ export const metadata: Metadata = {
     "med spa marketing agency",
   ],
   applicationName: site.name,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    // Advertises the feed in <head> sitewide so readers and aggregators can
+    // discover it without being told where to look.
+    types: { "application/rss+xml": `${site.url}/rss.xml` },
+  },
   openGraph: {
     type: "website",
     url: "/",

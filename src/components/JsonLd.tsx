@@ -21,13 +21,41 @@ export default function JsonLd() {
       sameAs: [site.linkedin, site.instagram],
       serviceType:
         "SEO & Generative Engine Optimization (GEO) content for medical spas",
+      // Entity-linked rather than plain strings. A bare "Search engine optimization"
+      // is a text label an engine has to resolve; a Thing with a Wikipedia sameAs
+      // is an unambiguous reference to a known entity in the knowledge graph, which
+      // is what lets a model connect this business to the topic with confidence.
       knowsAbout: [
-        "Search engine optimization",
-        "Generative engine optimization",
-        "Local SEO",
-        "Google Business Profile optimization",
-        "Medical spa marketing",
-        "AI search visibility",
+        {
+          "@type": "Thing",
+          name: "Search engine optimization",
+          sameAs: "https://en.wikipedia.org/wiki/Search_engine_optimization",
+        },
+        {
+          "@type": "Thing",
+          name: "Generative engine optimization",
+          sameAs: "https://en.wikipedia.org/wiki/Generative_engine_optimization",
+        },
+        {
+          "@type": "Thing",
+          name: "Local search",
+          sameAs: "https://en.wikipedia.org/wiki/Local_search_(Internet)",
+        },
+        {
+          "@type": "Thing",
+          name: "Medical spa",
+          sameAs: "https://en.wikipedia.org/wiki/Medical_spa",
+        },
+        {
+          "@type": "Thing",
+          name: "Content marketing",
+          sameAs: "https://en.wikipedia.org/wiki/Content_marketing",
+        },
+        {
+          "@type": "Thing",
+          name: "Large language model",
+          sameAs: "https://en.wikipedia.org/wiki/Large_language_model",
+        },
       ],
       // Remote, nationwide service-area business.
       areaServed: { "@type": "Country", name: "United States" },

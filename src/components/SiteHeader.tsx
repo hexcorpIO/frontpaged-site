@@ -1,15 +1,23 @@
 import SiteHeaderNav, { type NavLink } from "./SiteHeaderNav";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getIndustryBody } from "@/lib/industries";
+import { getPublishedAddOnServices } from "@/lib/services";
 
 // Server wrapper: resolving which verticals have a real hub page requires
 // getIndustryBody() (node:fs), which can only run in a Server Component. The
 // mobile menu's open/close state needs a Client Component, so the actual nav
 // markup lives in SiteHeaderNav ("use client") and this file just computes the
 // two registry-driven link lists and hands them down as props.
+// Core services first, then the registry-driven add-ons, then the index. Adding a
+// published add-on to src/lib/services.ts puts it in the nav automatically.
 const services: NavLink[] = [
   { href: "/services/generative-engine-optimization/", label: "Generative Engine Optimization" },
   { href: "/services/google-business-profile/", label: "Google Business Profile" },
+  ...getPublishedAddOnServices().map((s) => ({
+    href: `/services/${s.slug}/`,
+    label: s.name,
+  })),
+  { href: "/services/", label: "All services" },
 ];
 
 export default function SiteHeader() {

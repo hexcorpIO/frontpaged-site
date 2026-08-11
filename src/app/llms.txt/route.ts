@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/blog";
 import { glossary } from "@/lib/glossary";
 import { site, priceRange, auditOffer, founding, guarantee, usd } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
+import { getPublishedAddOnServices } from "@/lib/services";
 import { getIndustryBody } from "@/lib/industries";
 import { foundingPrice } from "@/lib/verticals/pricing";
 
@@ -67,8 +68,12 @@ ${plans}
 - [Home](${site.url}/): What ${site.name} does and who it is for
 - [Industries](${site.url}/industries/): Every industry ${site.name} serves
 ${linkableIndustries.map((v) => `- [${v.name}](${site.url}/industries/${v.slug}/): ${v.metaDescription}`).join("\n")}
+- [Services](${site.url}/services/): Everything Frontpaged does, core and add-on
 - [Generative Engine Optimization](${site.url}/services/generative-engine-optimization/): Getting cited by ChatGPT, Perplexity, and Google AI Overviews
 - [Google Business Profile](${site.url}/services/google-business-profile/): Local and map pack visibility
+${getPublishedAddOnServices()
+  .map((s) => `- [${s.name}](${site.url}/services/${s.slug}/): ${s.tagline}`)
+  .join("\n")}
 - [Pricing](${site.url}/pricing/): Plans, what drives cost, and current offers
 - [About](${site.url}/about/): Method, principles, and what we refuse to do
 - [FAQ](${site.url}/faq/): Answers on AI search, timelines, scope, and compliance

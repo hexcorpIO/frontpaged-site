@@ -103,7 +103,7 @@ You don't need to be a developer to fix the most common technical issues. You do
 
 ### The four things that matter most:
 
-1. **Page speed on mobile**: Over 65% of med spa searches happen on phones. Use Google PageSpeed Insights — if your mobile score is below 60, you have a problem. Large images and slow hosting are usually the cause.
+1. **Page speed on mobile**: Most people searching for a local clinic are doing it on a phone, often standing somewhere with poor signal. Use Google PageSpeed Insights — if your mobile score is below 60, you have a problem. Large images and slow hosting are usually the cause.
 2. **HTTPS**: Your site must have a valid SSL certificate. Non-HTTPS sites get flagged in browsers and deprioritized by Google.
 3. **Core Web Vitals**: Google measures how fast pages load (LCP), how stable they are (CLS), and how quickly they respond to taps (FID/INP). A developer can usually fix these in a few hours.
 4. **Local business schema**: Add LocalBusiness schema markup to your homepage and MedicalBusiness schema to your service pages. This structured data helps Google display your hours, location, and services directly in search results.

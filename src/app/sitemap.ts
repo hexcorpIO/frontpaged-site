@@ -3,6 +3,7 @@ import { site } from "@/lib/site";
 import { getAllPosts } from "@/lib/blog";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getIndustryBody } from "@/lib/industries";
+import { getPublishedAddOnServices } from "@/lib/services";
 
 // Required for output: export — emit as a static file at build time.
 export const dynamic = "force-static";
@@ -21,8 +22,9 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${site.url}/about/`, lastModified: STATIC_DATE, changeFrequency: "yearly", priority: 0.8 },
   { url: `${site.url}/faq/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
   { url: `${site.url}/glossary/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
-  // Service (hub-and-spoke) pages. /services/med-spa-seo/ deliberately omitted —
-  // superseded by /industries/med-spas/, and Task 9 redirects the old URL there.
+  { url: `${site.url}/services/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.9 },
+  // Core service pages. /services/med-spa-seo/ deliberately omitted — superseded by
+  // /industries/med-spas/, with the old URL 301'd there in public/.htaccess.
   { url: `${site.url}/services/generative-engine-optimization/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
   { url: `${site.url}/services/google-business-profile/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },
 ];
@@ -43,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: STATIC_DATE,
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    ...getPublishedAddOnServices().map((s) => ({
+      url: `${site.url}/services/${s.slug}/`,
+      lastModified: STATIC_DATE,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     })),
     {
       url: `${site.url}/blog/`,

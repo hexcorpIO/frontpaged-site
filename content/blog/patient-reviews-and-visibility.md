@@ -95,7 +95,7 @@ Your GBP is the hub where review volume, ratings, and responses all live togethe
 
 Reviews compound over time. A med spa with 400 reviews and a 4.9 rating is very hard to unseat — not because of the star count alone, but because that volume signals consistent patient satisfaction over years. Competitors can't fake their way to that.
 
-Build the system now. Make asking for reviews a standard part of your checkout process. Train your team. Send the follow-up texts. Respond to everything within 48 hours. Six months of consistency puts you ahead of 90% of your local competitors.
+Build the system now. Make asking for reviews a standard part of your checkout process. Train your team. Send the follow-up texts. Respond to everything within 48 hours. Six months of that consistency is more than most clinics in any given market sustain, and the gap compounds because reviews accumulate.
 
 And when AI search tools start fielding questions like "What's the best med spa near me?" — your reputation will already be the answer they're looking for.
 

@@ -36,7 +36,7 @@ Traditional SEO is a ranking game. You optimize pages, build links, and climb Go
 
 GEO is a citation game. AI engines — Google AI Overviews, ChatGPT, Perplexity — read thousands of sources, synthesize them into a direct answer, and pick a handful of businesses to mention. If your content is structured the way these models prefer, you get mentioned. If it's written like a brochure, you don't.
 
-The stakes are real. A 2025 study found that AI Overviews appear for roughly 47% of health and beauty searches. That's nearly half your potential patients seeing an AI-generated answer before a single link loads.
+The stakes are real. A [WebFX analysis of 130,070 U.S. healthcare search queries](https://www.webfx.com/blog/healthcare/ai-overviews-in-healthcare/), collected in July 2025, found AI Overviews appearing on 51% of them. Prevalence has been climbing since, so treat that as a floor rather than a current reading — but it already means a large share of your potential patients see an AI-generated answer before a single link loads.
 
 ### What AI Engines Actually Want
 

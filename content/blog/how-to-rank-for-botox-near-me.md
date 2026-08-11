@@ -33,7 +33,7 @@ When someone searches "Botox near me" in your city, they see:
 - **The local map pack** — three Google Business Profile listings, front and center
 - **Organic results** — website pages below the map, often from directories like RealSelf or Healthgrades, plus a few med spa sites
 
-You want to show up in both. The map pack drives most clicks for local intent searches (roughly 40–60% by most estimates), but organic results pick up people who scroll past or are doing more research. A strong showing in both also increases the chances that AI assistants recommend you when someone asks a voice assistant or ChatGPT for the best Botox near them.
+You want to show up in both. Published estimates of how clicks split between the map pack and organic results vary widely — they differ by industry, by whether ads are present, and by how each study was run — so treat any single figure with suspicion. What is not in dispute is that both surfaces capture meaningful traffic: the map pack takes people ready to call or drive, and organic picks up those who scroll past or are still researching. A strong showing in both also increases the chances that AI assistants recommend you when someone asks a voice assistant or ChatGPT for the best Botox near them.
 
 The strategy overlaps significantly. Nail these fundamentals and both improve together.
 

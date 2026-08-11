@@ -4,10 +4,16 @@ import Logo from "./Logo";
 import { site } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getIndustryBody } from "@/lib/industries";
+import { getPublishedAddOnServices } from "@/lib/services";
 
 const services = [
   { href: "/services/generative-engine-optimization/", label: "Generative Engine Optimization" },
   { href: "/services/google-business-profile/", label: "Google Business Profile" },
+  ...getPublishedAddOnServices().map((s) => ({
+    href: `/services/${s.slug}/`,
+    label: s.name,
+  })),
+  { href: "/services/", label: "All services" },
 ];
 
 // Registry-driven, same fallback as the header nav: link straight to a vertical's

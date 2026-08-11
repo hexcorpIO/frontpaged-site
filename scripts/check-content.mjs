@@ -26,8 +26,15 @@ const STATIC_ROUTES = new Set([
   "/industries/personal-injury-law",
   "/industries/estate-law",
   "/industries/real-estate-teams",
+  "/services",
   "/services/generative-engine-optimization",
   "/services/google-business-profile",
+  "/services/google-ads",
+  "/services/social-media-ads",
+  "/services/analytics-and-tracking",
+  "/services/website-hosting",
+  "/services/website-design-and-maintenance",
+  "/services/marketing-automation",
 ]);
 
 // Word-count bands. Too thin reads as low-value to search engines; too long and

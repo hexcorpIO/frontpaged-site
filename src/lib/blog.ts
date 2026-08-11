@@ -24,6 +24,13 @@ export type PostMeta = {
   date: string; // ISO yyyy-mm-dd
   author: string;
   tags: string[];
+  /**
+   * Slug of the industry vertical this post was written for. Required in
+   * frontmatter (scripts/check-content.mjs enforces it) and now read rather
+   * than merely validated: it is what lets an industry hub link to its own
+   * cluster without pulling a med-spa post onto a probate firm's page.
+   */
+  vertical: string;
   readingTime: number; // minutes
   quickAnswer: string;
   faqs: Faq[];
@@ -96,6 +103,7 @@ function parsePost(slug: string): Post {
     date: String(data.date ?? ""),
     author: String(data.author ?? "The Frontpaged Team"),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    vertical: String(data.vertical ?? ""),
     quickAnswer: String(data.quickAnswer ?? ""),
     faqs: Array.isArray(data.faqs)
       ? data.faqs.map((f: { q: string; a: string }) => ({ q: String(f.q), a: String(f.a) }))
@@ -121,6 +129,32 @@ export function getAllPosts(): Post[] {
  */
 export function getPostSlugs(): string[] {
   return getAllPosts().map((post) => post.slug);
+}
+
+/**
+ * Published posts to surface on an industry hub, most relevant first.
+ *
+ * Scoped to `post.vertical === slug` deliberately. Selecting on tag overlap
+ * alone would put "How to Rank Your Med Spa for 'Botox Near Me'" on the estate
+ * law hub — every vertical's `postTags` contains "SEO" and "GEO" — which is a
+ * worse internal-link signal than no link at all. `postTags` ranks within the
+ * vertical's own cluster instead, so the posts closest to what the hub sells
+ * lead. A vertical with no posts yet renders no section; the hub still links to
+ * /blog/ from its prose and footer.
+ */
+export function getPostsForVertical(slug: string, postTags: string[], limit = 6): PostMeta[] {
+  const wanted = new Set(postTags.map((t) => t.toLowerCase()));
+  return getAllPosts()
+    .filter((post) => post.vertical === slug)
+    .map((post) => ({
+      post,
+      score: post.tags.filter((t) => wanted.has(t.toLowerCase())).length,
+    }))
+    // Score first, then date — getAllPosts is already newest-first, so a stable
+    // sort keeps recency as the tiebreak within an equal-relevance group.
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(({ post }) => post);
 }
 
 export function getPostBySlug(slug: string): Post | null {

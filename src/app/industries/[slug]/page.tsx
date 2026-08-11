@@ -8,13 +8,16 @@ import ServiceHero from "@/components/ServiceHero";
 import CtaPanel from "@/components/CtaPanel";
 import PricingBand from "@/components/PricingBand";
 import ComplianceNote from "@/components/ComplianceNote";
+import CitationSources from "@/components/CitationSources";
+import RelatedPosts from "@/components/RelatedPosts";
 import { SparkleIcon, CheckIcon } from "@/components/Icons";
 import { notFound } from "next/navigation";
 import { getVertical, getPublishedSlugs } from "@/lib/verticals";
 import { foundingPrice } from "@/lib/verticals/pricing";
 import { getIndustryBody } from "@/lib/industries";
+import { getPostsForVertical } from "@/lib/blog";
 import { glossary } from "@/lib/glossary";
-import { site, ogImage } from "@/lib/site";
+import { site, ogImage, founding } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -62,6 +65,17 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
 
   const canonical = `${site.url}/industries/${v.slug}/`;
 
+  // The price a buyer actually pays today. Every other price surface on the site
+  // gates on `founding.enabled` (src/components/PricingBand.tsx, src/lib/site.ts);
+  // this one did not, so retiring the founding programme would have left the cards
+  // showing list prices while Service.offers still declared founding ones — exactly
+  // the cards-vs-schema drift src/lib/verticals/types.ts:3-5 names as the reason
+  // this architecture is data-driven at all.
+  const payable = (price: number) => (founding.enabled ? foundingPrice(price) : price);
+
+  // This vertical's own blog cluster, ranked by `postTags` (see getPostsForVertical).
+  const relatedPosts = getPostsForVertical(v.slug, v.postTags, 4);
+
   // The subset of the shared glossary (src/lib/glossary.ts) most relevant to
   // this vertical, selected by `v.glossaryTerms`. Filtering with a type guard
   // rather than `.find()!` means a slug typo silently drops a term instead of
@@ -85,16 +99,26 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
         provider: { "@id": `${site.url}/#org` },
         audience: { "@type": "BusinessAudience", name: v.name },
         areaServed: { "@type": "Country", name: "United States" },
+        // Entity linking, per-vertical. The homepage Organization node carries only
+        // category-neutral entities on purpose (src/components/JsonLd.tsx), which
+        // left the eight hubs — the pages that actually claim a topic — with none.
+        // A Thing with a Wikipedia sameAs is an unambiguous knowledge-graph
+        // reference; a bare string is a label an engine still has to resolve.
+        knowsAbout: v.knowsAbout.map((e) => ({
+          "@type": "Thing",
+          name: e.name,
+          sameAs: e.sameAs,
+        })),
         offers: v.pricing.tiers.map((t) => ({
           "@type": "Offer",
           name: `${t.name} plan`,
           description: t.for,
           url: canonical,
-          price: foundingPrice(t.price),
+          price: payable(t.price),
           priceCurrency: "USD",
           priceSpecification: {
             "@type": "UnitPriceSpecification",
-            price: foundingPrice(t.price),
+            price: payable(t.price),
             priceCurrency: "USD",
             unitText: "MONTH",
           },
@@ -295,6 +319,18 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
               </p>
             </section>
           )}
+
+          <CitationSources
+            sources={v.citationSources}
+            audienceNoun={v.audienceNoun}
+            clientNoun={v.clientNoun}
+          />
+
+          <RelatedPosts
+            posts={relatedPosts}
+            heading={`More on ${v.name.toLowerCase()} search`}
+            name={v.name.toLowerCase()}
+          />
 
           <ComplianceNote profile={v.compliance} />
         </Container>

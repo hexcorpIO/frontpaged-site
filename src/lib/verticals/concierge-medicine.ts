@@ -36,9 +36,11 @@ export const conciergeMedicine: Vertical = {
         features: [
           "8 GEO/SEO articles / month",
           "3 optimized membership pages",
+          "FAQ + schema markup",
           "Referring-physician & executive-health content",
           "10 Google Business posts",
           "3 old-page refreshes / month",
+          "Monthly visibility report",
           "30-min monthly strategy call",
         ],
         cta: "Choose Authority",
@@ -50,9 +52,11 @@ export const conciergeMedicine: Vertical = {
         features: [
           "12 GEO/SEO articles / month",
           "5 optimized membership pages",
+          "FAQ + schema markup",
           "Physician authority profiles",
           "14 Google Business posts",
           "5 old-page refreshes / month",
+          "Monthly visibility report",
           "60-min monthly strategy call",
         ],
         cta: "Choose Domination",
@@ -100,16 +104,20 @@ export const conciergeMedicine: Vertical = {
   compliance: {
     regime: "medical",
     summary:
-      "Concierge marketing sits under FTC truth-in-advertising rules, and any clinical claim about services offered is further constrained by cleared indications and your specialty's advertising norms. We write to those limits and route final copy through your medical director.",
+      "Concierge marketing sits under the FTC Act's prohibition on deceptive advertising, which reaches an advertised membership as squarely as it reaches a product. Any clinical claim about what membership includes is further limited to what FDA actually authorized for the product involved — cleared for a 510(k) device, approved for a PMA device, drug, or biologic — plus your specialty's advertising norms. We write to those limits and route final copy through your medical director.",
     weWillNot: [
       "Promise a specific health outcome from membership",
-      "Claim a device, drug, or diagnostic offered as a member benefit does something outside its cleared indications",
+      "Claim a device, drug, or diagnostic offered as a member benefit does something outside the indications FDA cleared or approved it for",
       "Publish a member photo or testimonial without documented consent",
       "Describe a physician as board-certified in a specialty they do not hold",
+      "Represent that Frontpaged certifies your compliance",
     ],
     requiredDisclaimers: ["Individual results vary. Content is not medical advice."],
     sources: [
+      { label: "15 U.S.C. § 45 — FTC Act, unfair or deceptive acts or practices", url: "https://www.law.cornell.edu/uscode/text/15/45" },
+      { label: "FTC — Advertising FAQ's: A Guide for Small Business", url: "https://www.ftc.gov/business-guidance/resources/advertising-faqs-guide-small-business" },
       { label: "FTC — Health Products Compliance Guidance", url: "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance" },
+      { label: "FDA — Is It Really \"FDA Approved\"?", url: "https://www.fda.gov/consumers/consumer-updates/it-really-fda-approved" },
     ],
   },
   foundingSlotsRemaining: 5,

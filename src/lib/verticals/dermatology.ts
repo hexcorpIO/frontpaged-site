@@ -39,6 +39,7 @@ export const dermatology: Vertical = {
           "FAQ + schema markup",
           "8 Google Business posts",
           "2 old-page refreshes / month",
+          "Monthly visibility report",
           "30-min monthly strategy call",
         ],
         cta: "Choose Authority",
@@ -50,9 +51,11 @@ export const dermatology: Vertical = {
         features: [
           "10 GEO/SEO articles / month",
           "4 optimized condition or service pages",
+          "FAQ + schema markup",
           "Insurance-vs-cosmetic content split & schema",
           "12 Google Business posts",
           "4 old-page refreshes / month",
+          "Monthly visibility report",
           "60-min monthly strategy call",
         ],
         cta: "Choose Domination",
@@ -93,6 +96,7 @@ export const dermatology: Vertical = {
   ],
   citationSources: [
     { label: "American Academy of Dermatology — Find a Dermatologist", url: "https://find-a-derm.aad.org/" },
+    { label: "American Board of Dermatology", url: "https://www.abderm.org/" },
     { label: "Healthgrades", url: "https://www.healthgrades.com/" },
   ],
   postTags: ["dermatology", "GEO", "SEO", "Local SEO", "Schema", "E-E-A-T"],
@@ -100,16 +104,21 @@ export const dermatology: Vertical = {
   compliance: {
     regime: "medical",
     summary:
-      "Dermatology marketing spans both YMYL medical content and FTC-governed cosmetic advertising, plus device and drug claims limited to their FDA-cleared indications. We write to those limits and route final copy through your medical director.",
+      "Dermatology marketing spans both YMYL medical content and cosmetic advertising governed by the FTC Act's prohibition on deception, which reaches an advertised service as squarely as it reaches a product. Device and drug claims are further limited to what FDA actually authorized — cleared or approved, depending on the product class, since 510(k) devices are cleared while PMA devices, drugs, and biologics are approved. We write to those limits and route final copy through your medical director.",
     weWillNot: [
       "State or imply a diagnosis from a description or photo of a skin condition",
-      "Claim a device or drug does something outside its cleared indications",
+      "Claim a device or drug does something outside the indications FDA cleared or approved it for, or blur which of the two a product actually holds",
       "Publish a patient photo or testimonial without your documented consent",
-      "Describe a provider as board-certified in a specialty they do not hold",
+      "Describe a provider as board-certified in a specialty they do not hold, or state AAD membership in a way that implies board certification the provider does not hold",
+      "Represent that Frontpaged certifies your compliance",
     ],
     requiredDisclaimers: ["Individual results vary. Content is not medical advice."],
     sources: [
+      { label: "15 U.S.C. § 45 — FTC Act, unfair or deceptive acts or practices", url: "https://www.law.cornell.edu/uscode/text/15/45" },
+      { label: "FTC — Advertising FAQ's: A Guide for Small Business", url: "https://www.ftc.gov/business-guidance/resources/advertising-faqs-guide-small-business" },
       { label: "FTC — Health Products Compliance Guidance", url: "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance" },
+      { label: "FDA — Is It Really \"FDA Approved\"?", url: "https://www.fda.gov/consumers/consumer-updates/it-really-fda-approved" },
+      { label: "AAD — What FAAD after a dermatologist's name means", url: "https://www.aad.org/public/fad/what-is-faad" },
     ],
   },
   foundingSlotsRemaining: 5,

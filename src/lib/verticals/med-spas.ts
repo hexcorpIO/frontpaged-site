@@ -39,6 +39,7 @@ export const medSpas: Vertical = {
           "FAQ + schema markup",
           "8 Google Business posts",
           "2 old-page refreshes / month",
+          "Monthly visibility report",
           "30-min monthly strategy call",
         ],
         cta: "Choose Authority",
@@ -50,9 +51,11 @@ export const medSpas: Vertical = {
         features: [
           "10 GEO/SEO articles / month",
           "3 optimized service pages",
+          "FAQ + schema markup",
           "Neighborhood-level targeting",
           "12 Google Business posts",
           "4 old-page refreshes / month",
+          "Monthly visibility report",
           "60-min monthly strategy call",
         ],
         cta: "Choose Domination",
@@ -101,16 +104,20 @@ export const medSpas: Vertical = {
   compliance: {
     regime: "medical",
     summary:
-      "Aesthetic marketing sits under FTC truth-in-advertising rules, and device and drug claims are further constrained by their FDA-cleared indications. We write to those limits and route final copy through your medical director.",
+      "Aesthetic marketing sits under the FTC Act's prohibition on deceptive advertising, which reaches an advertised service as squarely as it reaches a product. Device and drug claims are further limited to what FDA actually authorized, and the two are not the same thing: 510(k) devices are cleared, while PMA devices, drugs, and biologics — botulinum toxin among them — are approved. We write to those limits and route final copy through your medical director.",
     weWillNot: [
       "Promise a specific clinical outcome or a number of units",
-      "Claim a device or drug does something outside its cleared indications",
+      "Claim a device or drug does something outside the indications FDA cleared or approved it for, or blur which of the two a product actually holds",
       "Publish a patient photo or testimonial without your documented consent",
       "Describe a provider as board-certified in a specialty they do not hold",
+      "Represent that Frontpaged certifies your compliance",
     ],
     requiredDisclaimers: ["Individual results vary. Content is not medical advice."],
     sources: [
+      { label: "15 U.S.C. § 45 — FTC Act, unfair or deceptive acts or practices", url: "https://www.law.cornell.edu/uscode/text/15/45" },
+      { label: "FTC — Advertising FAQ's: A Guide for Small Business", url: "https://www.ftc.gov/business-guidance/resources/advertising-faqs-guide-small-business" },
       { label: "FTC — Health Products Compliance Guidance", url: "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance" },
+      { label: "FDA — Is It Really \"FDA Approved\"?", url: "https://www.fda.gov/consumers/consumer-updates/it-really-fda-approved" },
     ],
   },
   foundingSlotsRemaining: 5,

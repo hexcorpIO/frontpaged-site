@@ -58,6 +58,13 @@ export default function PricingBand({ vertical }: { vertical: Vertical }) {
               {usd(founding.enabled ? foundingPrice(t.price) : t.price)}
               <span className="font-sans text-base font-medium text-warm-grey">/mo</span>
             </p>
+            {/* Annual prepay is quoted ONLY when the founding rate is retired.
+                annualPrice() is ten months of the LIST price, so pairing it with a
+                founding monthly rate advertised a "saving" that costs more than
+                paying monthly: 12 x $2,060 = $24,720 against a $27,500 "2 months
+                free". The two discounts are separate offers and the site has never
+                priced their combination, so the honest fix is to show one at a time
+                rather than invent a stacked rate. */}
             {founding.enabled ? (
               <p className="text-[13.5px] font-medium text-teal-dark">
                 <s className="text-warm-grey">{usd(t.price)}</s> · founding rate, locked 12 months
@@ -81,11 +88,6 @@ export default function PricingBand({ vertical }: { vertical: Vertical }) {
             <Button href="/contact/" variant={t.featured ? "solid" : "ghost"} className="w-full">
               {t.cta}
             </Button>
-            {founding.enabled && (
-              <p className="mt-3 text-center text-[13px] text-warm-grey">
-                or {usd(annualPrice(t.price))}/yr prepaid — 2 months free
-              </p>
-            )}
           </article>
         ))}
       </div>

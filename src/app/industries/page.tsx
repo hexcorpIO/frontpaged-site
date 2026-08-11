@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
+import IndustryGrid from "@/components/IndustryGrid";
 import { getPublishedVerticals } from "@/lib/verticals";
-import { bandRange } from "@/lib/verticals/pricing";
 import { getIndustryBody } from "@/lib/industries";
 import { site } from "@/lib/site";
 
@@ -83,35 +82,7 @@ export default function IndustriesIndex() {
           </Container>
         </section>
 
-        <section aria-labelledby="industries-heading" className="border-t border-warm-line bg-cream py-16 sm:py-20">
-          <Container>
-            <h2 id="industries-heading" className="sr-only">
-              Industries we serve
-            </h2>
-            <div className="grid gap-[22px] sm:grid-cols-2 lg:grid-cols-3">
-              {industries.map((v) => {
-                const range = bandRange(v.pricing);
-                return (
-                  <Link
-                    key={v.slug}
-                    href={`/industries/${v.slug}/`}
-                    className="group flex flex-col rounded-2xl border border-warm-line bg-white p-7 shadow-[0_8px_30px_rgba(21,38,63,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-teal"
-                  >
-                    <h3 className="font-serif text-[21px] font-semibold text-navy group-hover:text-teal-dark">
-                      {v.name}
-                    </h3>
-                    <p className="mt-2.5 flex-1 text-[15px] leading-[1.65] text-warm-grey">
-                      {v.quickAnswer}
-                    </p>
-                    <p className="mt-4 text-[13.5px] font-semibold text-teal-dark">
-                      From ${range.min.toLocaleString("en-US")}/mo, founding rate
-                    </p>
-                  </Link>
-                );
-              })}
-            </div>
-          </Container>
-        </section>
+        <IndustryGrid />
 
         <CtaPanel />
       </main>

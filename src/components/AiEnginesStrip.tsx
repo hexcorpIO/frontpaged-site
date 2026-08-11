@@ -8,7 +8,7 @@ export default function AiEnginesStrip() {
     <div className="border-y border-warm-line bg-cream/70 py-8">
       <Container className="flex flex-col items-center gap-5 text-center">
         <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-warm-grey">
-          Built to get your clinic cited by
+          Built to get your business cited by
         </p>
         <div className="flex flex-wrap items-center justify-center gap-x-9 gap-y-3">
           {engines.map((e) => (

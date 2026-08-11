@@ -11,7 +11,7 @@ const steps = [
   {
     Icon: FileIcon,
     title: "Monthly content plan",
-    body: "You get a clear list of pieces targeting the treatments and questions your patients actually search.",
+    body: "You get a clear list of pieces targeting the services and questions your future clients actually search.",
   },
   {
     Icon: SparkleIcon,

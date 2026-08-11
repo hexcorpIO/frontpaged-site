@@ -6,17 +6,17 @@ const cards = [
   {
     Icon: SparkleIcon,
     title: "AI answers replace the scroll",
-    body: "ChatGPT, Perplexity, and Google's AI Overviews hand patients one curated recommendation instead of ten links. There's no page two.",
+    body: "ChatGPT, Perplexity, and Google's AI Overviews hand people one curated recommendation instead of ten links to compare. There's no page two.",
   },
   {
     Icon: PinIcon,
     title: '"Near me" is decided for them',
-    body: 'When AI names "the best Botox in your city," that\'s the shortlist patients trust — before they ever visit a website.',
+    body: 'When AI names "the best option near you," that\'s the shortlist people trust — before they ever visit a website.',
   },
   {
     Icon: TrendingUpIcon,
-    title: "One missed patient is expensive",
-    body: "A single new injectable patient is worth thousands over a year. Being left off the answer costs far more than the content that fixes it.",
+    title: "One missed lead is expensive",
+    body: "A single new client is worth thousands over the relationship. Being left off the answer costs far more than the content that fixes it.",
   },
 ];
 
@@ -28,7 +28,7 @@ export default function Problem() {
           id="problem-heading"
           kicker="Why this matters now"
           title="Search is changing faster than your marketing"
-          sub="80% of patients still find clinics on Google — but a fast-growing share now ask an AI assistant first. Both increasingly answer with a single short list. If you're not on it, you're invisible."
+          sub="People still start on Google — but a fast-growing share now ask an AI assistant first, and both increasingly answer with a single short list instead of a page of results. If you're not on that list, you're invisible before the comparison even starts."
         />
         <div className="mt-10 grid gap-[22px] md:grid-cols-3">
           {cards.map((c, i) => (

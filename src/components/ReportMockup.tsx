@@ -10,7 +10,7 @@ const appearances = [
   { label: "ChatGPT", status: "Cited", strong: true },
   { label: "Google AI Overviews", status: "Cited", strong: true },
   { label: "Perplexity", status: "Mentioned", strong: true },
-  { label: '"Botox near me" (Google)', status: "#2 ▲", strong: false },
+  { label: "Local search ranking (Google)", status: "#2 ▲", strong: false },
 ];
 
 export default function ReportMockup() {
@@ -27,9 +27,9 @@ export default function ReportMockup() {
               See exactly where you show up — every month.
             </h2>
             <p className="mt-4 max-w-md text-[17px] leading-[1.7] text-warm-grey">
-              No vanity metrics. Each month you get a plain-English report of where your clinic now
-              appears — in Google rankings and in the AI answers patients actually ask. You watch the
-              citations climb.
+              No vanity metrics. Each month you get a plain-English report of where your business now
+              appears — in Google rankings and in the AI answers your future clients actually ask. You
+              watch the citations climb.
             </p>
             <div className="mt-7">
               <Button href="#contact">See a sample report</Button>
@@ -41,7 +41,7 @@ export default function ReportMockup() {
             <div className="flex items-center justify-between border-b border-warm-line pb-4">
               <div>
                 <p className="font-serif text-lg font-semibold text-navy">Visibility report</p>
-                <p className="text-[13px] text-warm-grey">Your Med Spa · this month</p>
+                <p className="text-[13px] text-warm-grey">Your Business · this month</p>
               </div>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-soft px-3 py-1 text-[12px] font-semibold text-teal-dark">
                 <TrendingUpIcon className="h-4 w-4" /> Trending up

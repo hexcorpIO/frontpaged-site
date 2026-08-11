@@ -2,7 +2,7 @@ import Container from "./Container";
 
 const stats = [
   { value: "60–90", unit: "days", label: "Typical time to first movement in search and AI answers" },
-  { value: "4+", unit: "engines", label: "AI answer engines we optimize your clinic to be cited by" },
+  { value: "4+", unit: "engines", label: "AI answer engines we optimize your business to be cited by" },
   { value: "100%", unit: "", label: "Done-for-you — you approve a short plan, we produce it all" },
   { value: "$0", unit: "", label: "Ad spend required — pure organic search and AI visibility" },
 ];

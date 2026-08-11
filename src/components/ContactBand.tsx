@@ -14,7 +14,7 @@ export default function ContactBand() {
           Book your free visibility check
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-[18px] leading-[1.7] text-[#cdd6e2]">
-          Grab a 30-minute slot and we&rsquo;ll run the AI test on your clinic, then walk you
+          Grab a 30-minute slot and we&rsquo;ll run the AI test on your business, then walk you
           through your three fastest visibility wins. No pitch required.
         </p>
 

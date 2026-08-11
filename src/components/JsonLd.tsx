@@ -1,19 +1,33 @@
-import { site, priceRange, founding, auditOffer } from "@/lib/site";
-import { foundingPrice } from "@/lib/verticals/pricing";
-import type { Vertical } from "@/lib/verticals/types";
+import { site, priceRange, auditOffer } from "@/lib/site";
+import { getPublishedVerticals } from "@/lib/verticals";
+import { bandRange } from "@/lib/verticals/pricing";
+import type { Faq } from "@/lib/verticals/types";
 
 // Structured data for the home page: a ProfessionalService (a LocalBusiness subtype)
 // describing the agency, its nationwide service area, plans, and expertise — plus a WebSite
 // node and an FAQPage. Rendered server-side so Google and AI engines can parse the
 // business, where it operates, what it offers, and the Q&A directly.
 //
-// `vertical` supplies the tiers, enterprise floor, and FAQs shown on the homepage
-// today (med spas). This mirrors the per-industry hub pages, which build the same
-// Offer/FAQPage shape from `vertical.pricing` / `vertical.faqs` so the visible copy
-// and the schema can never disagree.
-export default function JsonLd({ vertical }: { vertical: Vertical }) {
-  const lastTier = vertical.pricing.tiers[vertical.pricing.tiers.length - 1];
+// The homepage is category-neutral (it links out to /industries/ and /pricing/ for
+// per-industry specifics), so this schema must be neutral too: `makesOffer` describes
+// the sitewide price range rather than one vertical's three tiers, `serviceType` names
+// no single industry, and `faqs` is the same neutral top-5 rendered by <Faq /> on this
+// page — not any vertical's FAQ set. Per-vertical Service/Offer/FAQPage schema lives on
+// each hub page instead (src/app/industries/[slug]/page.tsx), built from that vertical's
+// own `pricing`/`faqs`, so the two can never disagree with each other.
+//
+// Cheapest founding rate to dearest list price across every published vertical — the
+// same numbers `priceRange` (src/lib/site.ts) formats into "$1,125–$14,000/mo", kept
+// here as raw numbers for the AggregateOffer's lowPrice/highPrice. Every band has
+// exactly three tiers (enforced by tests/verticals.test.mjs), so offerCount is a
+// structural constant, not a price — safe to derive without a stored field.
+const publishedVerticals = getPublishedVerticals();
+const ranges = publishedVerticals.map((v) => bandRange(v.pricing));
+const lowPrice = Math.min(...ranges.map((r) => r.min));
+const highPrice = Math.max(...ranges.map((r) => r.max));
+const offerCount = publishedVerticals.length * 3;
 
+export default function JsonLd({ faqs }: { faqs: Faq[] }) {
   const graph = [
     {
       "@type": "ProfessionalService",
@@ -28,11 +42,14 @@ export default function JsonLd({ vertical }: { vertical: Vertical }) {
       image: `${site.url}/opengraph-image`,
       priceRange,
       sameAs: [site.linkedin, site.instagram],
-      serviceType: vertical.serviceType,
+      serviceType: "SEO & Generative Engine Optimization content for high-ticket local service businesses",
       // Entity-linked rather than plain strings. A bare "Search engine optimization"
       // is a text label an engine has to resolve; a Thing with a Wikipedia sameAs
       // is an unambiguous reference to a known entity in the knowledge graph, which
       // is what lets a model connect this business to the topic with confidence.
+      // Deliberately no single-vertical entity here (e.g. "Medical spa") — the
+      // business now serves eight industries, and knowsAbout on this node must not
+      // imply it specializes in only one of them.
       knowsAbout: [
         {
           "@type": "Thing",
@@ -51,11 +68,6 @@ export default function JsonLd({ vertical }: { vertical: Vertical }) {
         },
         {
           "@type": "Thing",
-          name: "Medical spa",
-          sameAs: "https://en.wikipedia.org/wiki/Medical_spa",
-        },
-        {
-          "@type": "Thing",
           name: "Content marketing",
           sameAs: "https://en.wikipedia.org/wiki/Content_marketing",
         },
@@ -68,26 +80,21 @@ export default function JsonLd({ vertical }: { vertical: Vertical }) {
       // Remote, nationwide service-area business.
       areaServed: { "@type": "Country", name: "United States" },
       makesOffer: [
-        // Schema must state the price a buyer actually pays today, so while the
-        // founding programme is live these carry the founding rate.
-        ...vertical.pricing.tiers.map((t) => {
-          const price = founding.enabled ? foundingPrice(t.price) : t.price;
-          return {
-            "@type": "Offer",
-            name: `${t.name} plan`,
-            description: founding.enabled ? `${t.for} Founding client rate.` : t.for,
-            price,
-            priceCurrency: "USD",
-            priceSpecification: {
-              "@type": "UnitPriceSpecification",
-              price,
-              priceCurrency: "USD",
-              unitText: "MONTH",
-            },
-            category: t.features.join("; "),
-            availability: "https://schema.org/InStock",
-          };
-        }),
+        // One aggregate offer spanning every published vertical's band, rather
+        // than one vertical's three Offer nodes — matches the visible homepage,
+        // which shows a range and a link to /pricing/, not a fixed tier list.
+        // lowPrice/highPrice already reflect founding rates the way bandRange()
+        // computes them, so this can't disagree with the visible priceRange text.
+        {
+          "@type": "AggregateOffer",
+          priceCurrency: "USD",
+          lowPrice,
+          highPrice,
+          offerCount,
+          url: `${site.url}/pricing/`,
+          description: `Monthly SEO & GEO retainers across ${publishedVerticals.length} industries — exact plans and pricing depend on your industry.`,
+          availability: "https://schema.org/InStock",
+        },
         {
           "@type": "Offer",
           name: auditOffer.name,
@@ -95,20 +102,6 @@ export default function JsonLd({ vertical }: { vertical: Vertical }) {
           price: auditOffer.price,
           priceCurrency: "USD",
           category: auditOffer.features.join("; "),
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          name: "Enterprise plan",
-          description: `Multi-location ${vertical.name.toLowerCase()}, groups, and organizations scaling across markets.`,
-          priceCurrency: "USD",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            minPrice: vertical.pricing.enterpriseFrom,
-            priceCurrency: "USD",
-            unitText: "MONTH",
-          },
-          category: `Everything in ${lastTier.name} — across every location`,
           availability: "https://schema.org/InStock",
         },
       ],
@@ -124,7 +117,7 @@ export default function JsonLd({ vertical }: { vertical: Vertical }) {
     {
       "@type": "FAQPage",
       "@id": `${site.url}/#faq`,
-      mainEntity: vertical.faqs.map((f) => ({
+      mainEntity: faqs.map((f) => ({
         "@type": "Question",
         name: f.q,
         acceptedAnswer: { "@type": "Answer", text: f.a },

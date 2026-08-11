@@ -2,7 +2,7 @@
 title: "Writing Treatment Comparison Content That AI Actually Cites"
 description: "Comparison searches like CoolSculpting vs Emsculpt are high-intent and under-served. Here's how to write comparisons that rank, convert, and get cited."
 date: "2026-12-02"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["Content", "Body Contouring", "GEO"]
 vertical: "med-spas"
 quickAnswer: "Comparison content works when it genuinely compares. A page explaining that CoolSculpting reduces fat while Emsculpt builds muscle, with honest guidance on which suits which patient, will outperform a page arguing that whichever treatment you sell is always better. AI assistants strongly favour balanced comparisons because they need a source that presents both options fairly."

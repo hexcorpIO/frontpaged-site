@@ -2,7 +2,7 @@
 title: "Getting Your Med Spa Into Google AI Overviews"
 description: "AI Overviews now sit above traditional results for many aesthetic searches. Here's what gets a med spa cited in them and how to qualify."
 date: "2026-07-01"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["AI Search", "Google", "GEO"]
 vertical: "med-spas"
 quickAnswer: "Google AI Overviews are generated summaries that appear above traditional results. Med spas get cited in them by publishing content that answers a specific question directly within the first few sentences of a clearly headed section, backed by consistent business information and credible authorship. Overviews draw heavily from pages that already rank well, so conventional SEO remains the entry requirement rather than a separate track."

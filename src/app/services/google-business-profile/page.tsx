@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
@@ -19,16 +20,16 @@ const PATH = "/services/google-business-profile";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Google Business Profile Optimization: Med Spas",
+  title: "Google Business Profile Optimization",
   description:
-    "Google Business Profile optimization for med spas nationwide. Win the local map pack and turn nearby searches into booked consultations.",
+    "Google Business Profile optimization for high-ticket local businesses nationwide. Win the local map pack and turn nearby searches into inquiries.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
-    title: "Google Business Profile Optimization for Med Spas · Frontpaged",
+    title: "Google Business Profile Optimization · Frontpaged",
     description:
-      "Win the local map pack with expert Google Business Profile optimization for med spas. More visibility, more bookings.",
+      "Win the local map pack with expert Google Business Profile optimization. More visibility, more inquiries.",
     images: [ogImage],
   },
 };
@@ -37,51 +38,51 @@ const optimizationItems = [
   {
     Icon: SlidersIcon,
     title: "Primary category & service attributes",
-    body: "Your primary category is the most important signal Google uses to decide which map pack you appear in. Most med spas pick the wrong one — or leave it at the default. We set the category that matches how patients actually search, then layer in every relevant secondary category and service attribute your clinic offers.",
+    body: "Your primary category is the most important signal Google uses to decide which map pack you appear in. Most businesses pick the wrong one — or leave it at the default. We set the category that matches how customers actually search, then layer in every relevant secondary category and service attribute your business offers.",
   },
   {
     Icon: ImageIcon,
     title: "Photos that convert and satisfy Google",
-    body: "Profiles with 100+ photos get dramatically more calls and direction requests than those with a handful of stock shots. We put together a photo strategy — treatment rooms, equipment, before-and-afters where appropriate, team — and keep it refreshed so your profile looks active and established.",
+    body: "Profiles with 100+ photos get dramatically more calls and direction requests than those with a handful of stock shots. We put together a photo strategy — your space, your work, your team — and keep it refreshed so your profile looks active and established.",
   },
   {
     Icon: ChatIcon,
     title: "Google Posts on a consistent schedule",
-    body: "Posts tell Google your profile is actively managed, and they give patients a reason to choose you over the clinic next door. We write and publish posts weekly — promotions, new treatments, educational content — so your profile is always current.",
+    body: "Posts tell Google your profile is actively managed, and they give customers a reason to choose you over the business next door. We write and publish posts weekly — updates, offerings, educational content — so your profile is always current.",
   },
   {
     Icon: ChatIcon,
     title: "Q&A seeded and managed",
-    body: "The Q&A section is one of the least-used features in GBP — and one of the most powerful. We seed it with the questions your patients actually ask, write clear answers, and monitor it so no misleading user-submitted questions go unanswered.",
+    body: "The Q&A section is one of the least-used features in GBP — and one of the most powerful. We seed it with the questions your customers actually ask, write clear answers, and monitor it so no misleading user-submitted questions go unanswered.",
   },
   {
     Icon: StarIcon,
     title: "Review strategy and response",
-    body: "Reviews are a confirmed ranking factor in the local map pack. We build a system that makes it easy for satisfied patients to leave reviews, and we help you respond consistently — because Google rewards engagement, and prospective patients read every reply.",
+    body: "Reviews are a confirmed ranking factor in the local map pack. We build a system that makes it easy for satisfied customers to leave reviews, and we help you respond consistently — because Google rewards engagement, and prospective customers read every reply.",
   },
   {
     Icon: CheckIcon,
     title: "NAP consistency across the web",
-    body: "Your name, address, and phone number need to match exactly everywhere they appear online — your website, Yelp, Healthgrades, RealSelf, directories. Inconsistencies confuse Google and dilute your authority. We audit and correct them so your signals are clean.",
+    body: "Your name, address, and phone number need to match exactly everywhere they appear online — your website, review platforms, industry directories. Inconsistencies confuse Google and dilute your authority. We audit and correct them so your signals are clean.",
   },
 ];
 
 const faqs = [
   {
-    q: "What primary category should a med spa use on Google Business Profile?",
-    a: "For most med spas, the right primary category is 'Medical Spa' — not 'Day Spa,' 'Skin Care Clinic,' or 'Beauty Salon.' The primary category is the single biggest factor in which searches trigger your map listing, so getting it right matters. We audit your current setup and correct it as part of onboarding.",
+    q: "What primary category should my business use on Google Business Profile?",
+    a: "The right primary category is the specific one that matches what you actually are — not the closest generic default. The primary category is the single biggest factor in which searches trigger your map listing, so getting it right matters. We audit your current setup and correct it as part of onboarding.",
   },
   {
-    q: "How many photos should my med spa's GBP have?",
+    q: "How many photos should my Google Business Profile have?",
     a: "Aim for at least 100 photos, and keep adding. Google's own data shows that profiles with more than 100 photos get significantly more calls, website clicks, and direction requests than profiles with fewer images. We build a photo plan and refresh it monthly so your profile never looks stale.",
   },
   {
     q: "How often should we post to Google Business Profile?",
-    a: "Weekly is the standard we hold ourselves to for clients. Posting frequency signals to Google that your profile is actively managed, which contributes to ranking. It also gives patients something fresh to see when they compare you to competitors. We handle all of this — you don't have to think about it.",
+    a: "Weekly is the standard we hold ourselves to for clients. Posting frequency signals to Google that your profile is actively managed, which contributes to ranking. It also gives customers something fresh to see when they compare you to competitors. We handle all of this — you don't have to think about it.",
   },
   {
     q: "How do we get more Google reviews without violating the rules?",
-    a: "The most effective approach is a simple, friction-free ask at the right moment — right after a treatment, via a follow-up text or email with a direct link to your review page. We build that system for you and make sure the language stays within Google's terms. We never buy reviews or use incentivized schemes.",
+    a: "The most effective approach is a simple, friction-free ask at the right moment — right after service, via a follow-up text or email with a direct link to your review page. We build that system for you and make sure the language stays within Google's terms. We never buy reviews or use incentivized schemes.",
   },
   {
     q: "Do you manage Google Business Profile on an ongoing basis?",
@@ -98,9 +99,9 @@ export default function GoogleBusinessProfilePage() {
         "@id": `${canonical}#service`,
         name: "Google Business Profile Optimization",
         serviceType:
-          "Google Business Profile optimization for medical spas",
+          "Google Business Profile optimization for high-ticket local businesses",
         description:
-          "Done-for-you Google Business Profile optimization helping med spas nationwide win the local map pack, attract high-intent patients, and stay ahead of competitors in local search.",
+          "Done-for-you Google Business Profile optimization helping businesses nationwide win the local map pack, attract high-intent customers, and stay ahead of competitors in local search.",
         provider: {
           "@type": "Organization",
           "@id": `${site.url}/#org`,
@@ -145,6 +146,7 @@ export default function GoogleBusinessProfilePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <TopBanner />
       <SiteHeader />
       <main>
         {/* Hero */}
@@ -156,8 +158,8 @@ export default function GoogleBusinessProfilePage() {
               <span className="italic text-teal">your neighborhood</span>
             </>
           }
-          lead="When a patient searches “med spa near me” or “Botox in [your city],” the map pack is what they see first — three listings, a star rating, and a click to call. We make sure one of those listings is yours."
-          quickAnswer="Google Business Profile (GBP) optimization is the process of making your clinic’s Google listing as complete, accurate, and active as possible so Google ranks it in the local map pack. For med spas, it’s the single highest-leverage local visibility action you can take — before paid ads, before social, before almost anything else. It’s the first thing patients see, and the first thing we fix."
+          lead="When a customer searches “[your service] near me” or “best [your business type] in [your city],” the map pack is what they see first — three listings, a star rating, and a click to call. We make sure one of those listings is yours."
+          quickAnswer="Google Business Profile (GBP) optimization is the process of making your business’s Google listing as complete, accurate, and active as possible so Google ranks it in the local map pack. For most local businesses, it’s the single highest-leverage local visibility action you can take — before paid ads, before social, before almost anything else. It’s the first thing customers see, and the first thing we fix."
           visual={<GbpMock />}
         />
 
@@ -168,36 +170,36 @@ export default function GoogleBusinessProfilePage() {
               Why it matters
             </p>
             <h2 className="max-w-2xl font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-navy sm:text-[40px]">
-              Google Business Profile is the #1 local visibility lever for med spas
+              Google Business Profile is the #1 local visibility lever for high-ticket businesses
             </h2>
             <div className="mt-6 max-w-3xl space-y-5 text-[17px] leading-[1.75] text-warm-grey">
               <p>
-                When someone searches &ldquo;lip filler near me&rdquo; or &ldquo;med spa in
-                [your city],&rdquo; Google serves a map pack at the very top of the
-                results — above the organic listings, often above ads. Those three
-                spots capture the majority of clicks from patients who are ready to
-                book. Everything below them fights for the scraps.
+                When someone searches &ldquo;[your service] near me&rdquo; or &ldquo;best [your
+                business type] in [your city],&rdquo; Google serves a map pack at the very top of
+                the results — above the organic listings, often above ads. Those three
+                spots capture the majority of clicks from customers who are ready to
+                act. Everything below them fights for the scraps.
               </p>
               <p>
                 Your website, your social channels, your paid ads — they all matter.
-                But none of them put you in front of a patient who is searching right
+                But none of them put you in front of a customer who is searching right
                 now, in your neighborhood, at the moment they&rsquo;re ready to spend.
                 That&rsquo;s what a well-optimized Google Business Profile does.
               </p>
               <p>
-                Med spa markets across the U.S. are increasingly competitive.
-                Clinics in your area already have strong profiles,
+                High-ticket local markets across the U.S. are increasingly competitive.
+                Businesses in your area already have strong profiles,
                 hundreds of reviews, and weekly posting cadences. If your profile is
-                incomplete or stale, you&rsquo;re already behind — and patients are
+                incomplete or stale, you&rsquo;re already behind — and customers are
                 choosing your competitors instead. We fix that.
               </p>
               <p>
                 See how GBP optimization connects with your broader{" "}
                 <Link
-                  href="/industries/med-spas/"
+                  href="/industries/"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
-                  med spa SEO strategy
+                  industry SEO strategy
                 </Link>{" "}
                 — the two reinforce each other, and we handle both.
               </p>
@@ -212,7 +214,7 @@ export default function GoogleBusinessProfilePage() {
               What we optimize
             </p>
             <h2 className="max-w-2xl font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-navy sm:text-[40px]">
-              Every lever Google uses to rank a med spa locally
+              Every lever Google uses to rank a business locally
             </h2>
             <p className="mt-4 max-w-2xl text-[17px] leading-[1.7] text-warm-grey">
               GBP ranking is driven by relevance, distance, and prominence. We
@@ -258,7 +260,7 @@ export default function GoogleBusinessProfilePage() {
               <p>
                 The local map pack is Google&rsquo;s three-listing display for
                 location-based searches. It&rsquo;s powered almost entirely by your
-                Google Business Profile — not your website. The clinics in those
+                Google Business Profile — not your website. The businesses in those
                 three spots didn&rsquo;t get there by accident. They&rsquo;re there
                 because their profiles are complete, active, and trusted.
               </p>
@@ -266,30 +268,19 @@ export default function GoogleBusinessProfilePage() {
                 But GBP optimization now reaches beyond traditional search. Google&rsquo;s
                 AI Overviews regularly pull from Business Profile data — your category,
                 your services, your reviews, your Q&A — when constructing local
-                recommendations in response to questions like &ldquo;where&rsquo;s the best
-                place to get Botox near me?&rdquo; A well-maintained profile gives you a
-                seat at that table.
+                recommendations in response to a customer&rsquo;s question. A well-maintained
+                profile gives you a seat at that table.
               </p>
               <p>
                 Combine strong GBP signals with the{" "}
                 <Link
-                  href="/industries/med-spas/"
+                  href="/industries/"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   local SEO and GEO content
                 </Link>{" "}
                 we build for your website, and you show up in the map pack, in
                 organic results, and in AI answers — three surfaces, one strategy.
-              </p>
-              <p>
-                We also publish{" "}
-                <Link
-                  href="/blog/google-business-profile-for-med-spas/"
-                  className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
-                >
-                  a detailed guide to GBP for med spas
-                </Link>{" "}
-                if you want to go deeper on how the algorithm works before we talk.
               </p>
             </div>
           </Container>
@@ -308,7 +299,7 @@ export default function GoogleBusinessProfilePage() {
               id="gbp-faq"
               className="font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-navy sm:text-[40px]"
             >
-              Google Business Profile for med spas — FAQ
+              Google Business Profile Optimization — FAQ
             </h2>
             <div className="mt-10 max-w-[760px]">
               {faqs.map((f, i) => (

@@ -3,7 +3,7 @@ title: "Answer-First Content: Writing Service Pages That AI Will Actually Cite"
 metaTitle: "Answer-First Content: Service Pages AI Will Cite"
 description: "How answer-first structure gets med spa service pages cited by ChatGPT, Perplexity, and Google AI Overviews — with before-and-after examples you can copy."
 date: "2026-03-03"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["GEO", "Content", "AI Search"]
 vertical: "med-spas"
 quickAnswer: "Answer-first content leads every section with a direct, specific answer before adding context or detail. AI engines cite these pages because they can extract a clean, trustworthy response to a user's question without wading through filler. For med spas, this means structuring service pages like a Q&A, not a sales pitch."

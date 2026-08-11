@@ -3,7 +3,7 @@ title: "Keyword Research for Med Spas: Finding Terms Patients Actually Book On"
 metaTitle: "Keyword Research for Med Spas: Terms Patients Book On"
 description: "How to find med spa keywords worth targeting: sorting by intent over volume, sizing local demand honestly, and prioritizing terms that book."
 date: "2026-05-20"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["SEO", "Keyword Research", "Strategy"]
 vertical: "med-spas"
 quickAnswer: "Med spa keyword research works best when you sort terms by intent rather than by search volume. High-volume informational queries like 'what is Botox' rarely produce bookings, while lower-volume terms like 'lip filler consultation near me' or 'how much is Morpheus8' come from people close to a decision. Prioritize the second group, then build supporting content around the first."

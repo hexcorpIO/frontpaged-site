@@ -1,27 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
 import { SearchIcon, SparkleIcon, CheckIcon, FileIcon } from "@/components/Icons";
-import { site, founder, guarantee, ogImage } from "@/lib/site";
+import { site, founder, guarantee, priceRange, ogImage } from "@/lib/site";
+import { getPublishedVerticals } from "@/lib/verticals";
 
 const PATH = "/about";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
   // No "Frontpaged" here — the layout template appends "· Frontpaged".
-  title: "About Us — SEO & AI Search for Medical Spas",
+  title: "About Us — SEO & AI Search for Local Business",
   description:
-    "Frontpaged is an SEO and Generative Engine Optimization agency working exclusively with medical spas across the US. How we work, and what we won't do.",
+    "Frontpaged is an SEO and Generative Engine Optimization agency working with high-ticket local businesses across the US. How we work, and what we won't do.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
     title: "About Frontpaged · Frontpaged",
     description:
-      "An SEO and GEO agency working only with medical spas. Our method, our principles, and the things we refuse to do.",
+      "An SEO and GEO agency for high-ticket local businesses nationwide. Our method, our principles, and the things we refuse to do.",
     images: [ogImage],
   },
 };
@@ -31,19 +33,19 @@ const method = [
     Icon: SearchIcon,
     step: "01",
     title: "We measure where you actually stand",
-    body: "Before anything else we run your clinic through ChatGPT, Perplexity, and Google with the questions your patients ask, and record who gets named instead of you. That baseline is what every later claim of progress gets measured against.",
+    body: "Before anything else we run your business through ChatGPT, Perplexity, and Google with the questions your customers ask, and record who gets named instead of you. That baseline is what every later claim of progress gets measured against.",
   },
   {
     Icon: FileIcon,
     step: "02",
-    title: "We rebuild the pages that decide bookings",
-    body: "One treatment per page, each answering cost, candidacy, process, downtime, and aftercare in a structure engines can extract from. Most practices are invisible for two-thirds of what they offer simply because the page doesn't exist.",
+    title: "We rebuild the pages that decide whether someone contacts you",
+    body: "One service per page, each answering cost, qualification, process, and what happens next in a structure engines can extract from. Most businesses are invisible for most of what they offer simply because the page doesn't exist.",
   },
   {
     Icon: SparkleIcon,
     step: "03",
     title: "We make your business machine-readable",
-    body: "Schema markup declaring what you are, where you operate, what you offer, and at what price — so an AI system reads facts about your practice rather than inferring them from marketing prose.",
+    body: "Schema markup declaring what you are, where you operate, what you offer, and at what price — so an AI system reads facts about your business rather than inferring them from marketing prose.",
   },
   {
     Icon: CheckIcon,
@@ -59,8 +61,8 @@ const principles = [
     body: "Google controls the algorithm; nobody can promise a position. We guarantee the one thing we control instead, and we put it in writing.",
   },
   {
-    title: "One practice per market",
-    body: "We won't take two clinics competing for the same searches. If your market is taken we'll say so on the first call, not after you've signed.",
+    title: "One client per market",
+    body: "We won't take two businesses competing for the same searches in the same market. If your market is taken we'll say so on the first call, not after you've signed.",
   },
   {
     title: "No fake reviews, ever",
@@ -68,11 +70,11 @@ const principles = [
   },
   {
     title: "No outcome promises in your content",
-    body: "We won't publish copy guaranteeing clinical results. It creates regulatory exposure for you and performs badly in a category Google treats as health content.",
+    body: "We won't publish copy promising a specific outcome — a verdict, a sale price, a clinical result. It creates regulatory exposure for you and performs badly in categories Google holds to a stricter standard.",
   },
   {
     title: "Every AI draft gets a human pass",
-    body: "We use AI to research and draft. Nothing reaches you unedited and unchecked, because unreviewed AI content in a medical category is a liability, not an efficiency.",
+    body: "We use AI to research and draft. Nothing reaches you unedited and unchecked, because unreviewed AI content in a regulated category is a liability, not an efficiency.",
   },
   {
     title: "Month to month, always",
@@ -82,6 +84,7 @@ const principles = [
 
 export default function AboutPage() {
   const hasFounder = founder.name.length > 0;
+  const industries = getPublishedVerticals();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -92,7 +95,7 @@ export default function AboutPage() {
         url: canonical,
         name: "About Frontpaged",
         description:
-          "Frontpaged is an SEO and Generative Engine Optimization agency working exclusively with medical spas across the United States.",
+          "Frontpaged is an SEO and Generative Engine Optimization agency working with high-ticket local businesses across the United States.",
         inLanguage: "en-US",
         mainEntity: { "@id": `${site.url}/#org` },
       },
@@ -114,7 +117,7 @@ export default function AboutPage() {
           "Generative engine optimization",
           "Search engine optimization",
           "Local search",
-          "Medical spa marketing",
+          "Multi-industry local business marketing",
         ],
         ...(hasFounder
           ? {
@@ -123,8 +126,8 @@ export default function AboutPage() {
                 "@id": `${canonical}#founder`,
                 name: founder.name,
                 jobTitle: founder.role,
-                description: founder.bio,
                 worksFor: { "@id": `${site.url}/#org` },
+                ...(founder.bio ? { description: founder.bio } : {}),
                 ...(founder.linkedin ? { sameAs: [founder.linkedin] } : {}),
               },
             }
@@ -148,6 +151,7 @@ export default function AboutPage() {
         // Built from trusted local constants, not user input.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <TopBanner />
       <SiteHeader />
       <main>
         <section className="bg-gradient-to-b from-cream to-white py-16 sm:py-20">
@@ -156,17 +160,17 @@ export default function AboutPage() {
               About
             </p>
             <h1 className="max-w-3xl font-serif text-[40px] font-semibold leading-[1.08] tracking-tight text-navy sm:text-[52px]">
-              We do one thing, for{" "}
-              <span className="italic text-teal">one industry</span>.
+              We do one thing, <span className="italic text-teal">exceptionally well</span>.
             </h1>
             <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              Frontpaged is an SEO and Generative Engine Optimization agency working exclusively with
-              medical spas across the United States. We get clinics found on Google and named by AI
-              assistants when patients ask for a recommendation.
+              Frontpaged is an SEO and Generative Engine Optimization agency working with high-ticket
+              local businesses — medical, legal, and premium service practices — across the United
+              States. We get you found on Google and named by AI assistants when your next customer
+              asks for a recommendation.
             </p>
             <p className="mt-4 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
               We don&rsquo;t run ads, build brands, or manage your Instagram. There are people who do
-              those things well. We do the thing almost nobody in aesthetics is doing yet.
+              those things well. We do the thing almost nobody in your industry is doing yet.
             </p>
           </Container>
         </section>
@@ -188,8 +192,8 @@ export default function AboutPage() {
                   FAQ hub built for extraction, and a blog publishing on a fixed schedule.
                 </p>
                 <p className="mt-4 max-w-xl text-[17px] leading-[1.75] text-[#cdd6e2]">
-                  Ask an AI assistant about med spa SEO and see what it says. That result — good or
-                  bad on any given day — is the most honest demonstration we can offer.
+                  Ask an AI assistant about SEO for your industry and see what it says. That result —
+                  good or bad on any given day — is the most honest demonstration we can offer.
                 </p>
               </div>
               <ul className="grid gap-3 sm:grid-cols-2">
@@ -223,7 +227,7 @@ export default function AboutPage() {
               How we work
             </h2>
             <p className="mt-3 max-w-2xl text-[17px] leading-[1.7] text-warm-grey">
-              The same four steps for every clinic, in the same order, because the order is what
+              The same four steps for every client, in the same order, because the order is what
               makes it work.
             </p>
             <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -303,7 +307,9 @@ export default function AboutPage() {
                   {founder.role}
                 </span>
               </h2>
-              <p className="mt-5 text-[17px] leading-[1.75] text-warm-grey">{founder.bio}</p>
+              {founder.bio && (
+                <p className="mt-5 text-[17px] leading-[1.75] text-warm-grey">{founder.bio}</p>
+              )}
               {founder.credentials.length > 0 && (
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {founder.credentials.map((c) => (
@@ -341,11 +347,14 @@ export default function AboutPage() {
             </h2>
             <dl className="mt-7 divide-y divide-warm-line">
               {[
-                ["What we do", "SEO and Generative Engine Optimization for medical spas"],
-                ["Who we work with", "Medical spas and aesthetic practices in the United States"],
-                ["How we work", "Fully remote, month to month, one practice per market"],
-                ["Plans", "$1,500–$4,000/mo, plus custom pricing for multi-location groups"],
-                ["Where we are", "Nashville, Tennessee — serving clinics nationwide"],
+                ["What we do", "SEO and Generative Engine Optimization for high-ticket local businesses"],
+                [
+                  "Who we work with",
+                  `${industries.length} industries — from ${industries[0]?.name.toLowerCase()} to ${industries[industries.length - 1]?.name.toLowerCase()} — across the United States`,
+                ],
+                ["How we work", "Fully remote, month to month, one client per market"],
+                ["Plans", `${priceRange}, plus custom pricing for multi-location groups`],
+                ["Where we are", "Nashville, Tennessee — serving clients nationwide"],
                 ["Contact", `${site.email} · ${site.phone}`],
               ].map(([k, v]) => (
                 <div key={k} className="grid gap-1 py-4 sm:grid-cols-[200px_1fr] sm:gap-6">

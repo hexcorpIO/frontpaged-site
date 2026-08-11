@@ -3,7 +3,6 @@ import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
-import TopBanner from "@/components/TopBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -82,7 +81,6 @@ export default function RootLayout({
           {/* Without JS the scroll-reveal observer never runs — keep content visible. */}
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
-        <TopBanner />
         {children}
       </body>
     </html>

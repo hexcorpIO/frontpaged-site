@@ -101,7 +101,7 @@ export const personalInjuryLaw: Vertical = {
     { label: "Martindale-Hubbell", url: "https://www.martindale.com/" },
   ],
   postTags: ["legal", "GEO", "SEO", "Local SEO"],
-  glossaryTerms: ["generative-engine-optimization", "ai-overviews", "map-pack", "entity-seo"],
+  glossaryTerms: ["generative-engine-optimization", "ai-overview", "map-pack", "entity"],
   compliance: {
     regime: "legal",
     summary:

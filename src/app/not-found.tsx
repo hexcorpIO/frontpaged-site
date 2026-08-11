@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import { getAllPosts } from "@/lib/blog";
-import { site } from "@/lib/site";
+import { site, usd } from "@/lib/site";
+import { getPublishedVerticals } from "@/lib/verticals";
+import { bandRange } from "@/lib/verticals/pricing";
 
 // Without this file Next serves its bare default error page — no nav, no
 // branding, and no route back into the site. The static export renders this
@@ -13,17 +16,24 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Page not found",
   description:
-    "That page doesn't exist. Find med spa SEO and Generative Engine Optimization services, pricing, and guides on Frontpaged.",
+    "That page doesn't exist. Find SEO and Generative Engine Optimization services, pricing, and guides on Frontpaged.",
   // Required: without it the root layout's `index, follow` is inherited here and
   // contradicts the noindex Next emits for the not-found route.
   robots: { index: false, follow: true },
 };
 
+// Cheapest founding rate across every published industry — the same figure
+// the pricing page computes for its own quick-answer copy — so this card can
+// never quote a stale number if a tier price ever changes.
+const overallMin = Math.min(
+  ...getPublishedVerticals().map((v) => bandRange(v.pricing).min),
+);
+
 const destinations = [
   {
-    href: "/industries/med-spas/",
-    label: "Med Spa SEO",
-    blurb: "Rank for the treatments patients actually search for.",
+    href: "/industries/",
+    label: "Industries We Serve",
+    blurb: "SEO built for the way each of our eight industries is actually searched.",
   },
   {
     href: "/services/generative-engine-optimization/",
@@ -38,7 +48,7 @@ const destinations = [
   {
     href: "/pricing/",
     label: "Pricing",
-    blurb: "Plans from $1,500/mo — no ad spend, no lock-in.",
+    blurb: `Plans from ${usd(overallMin)}/mo — no ad spend, no lock-in.`,
   },
 ];
 
@@ -47,6 +57,7 @@ export default function NotFound() {
 
   return (
     <>
+      <TopBanner />
       <SiteHeader />
       <main>
         <section className="bg-gradient-to-b from-cream to-white py-20 sm:py-24">

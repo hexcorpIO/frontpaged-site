@@ -5,8 +5,8 @@ import { CheckIcon } from "./Icons";
 // Reusable closing CTA: a navy panel with copy + a compact "cited #1" AI-answer
 // visual (mirrors the homepage hero) so inner pages match the home page's polish.
 export default function CtaPanel({
-  heading = "See where your clinic stands — free",
-  sub = "Book a 30-minute visibility check and we’ll run the AI test on your med spa, then show you your three fastest wins. No pitch required.",
+  heading = "See where your business stands — free",
+  sub = "Book a 30-minute visibility check and we’ll run the AI test on your business, then show you your three fastest wins. No pitch required.",
   cta = "Book your free visibility check",
 }: {
   heading?: string;
@@ -40,7 +40,7 @@ export default function CtaPanel({
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-teal text-white">
                   <CheckIcon className="h-3.5 w-3.5" />
                 </span>
-                1. Your Clinic
+                1. Your Business
               </li>
               <li className="pl-7 text-warm-grey">2. [Competitor A]</li>
               <li className="pl-7 text-warm-grey">3. [Competitor B]</li>

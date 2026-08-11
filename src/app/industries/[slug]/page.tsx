@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
+import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import ServiceHero from "@/components/ServiceHero";
@@ -11,6 +13,7 @@ import { notFound } from "next/navigation";
 import { getVertical, getPublishedSlugs } from "@/lib/verticals";
 import { foundingPrice } from "@/lib/verticals/pricing";
 import { getIndustryBody } from "@/lib/industries";
+import { glossary } from "@/lib/glossary";
 import { site, ogImage } from "@/lib/site";
 
 type Params = { slug: string };
@@ -59,9 +62,17 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
 
   const canonical = `${site.url}/industries/${v.slug}/`;
 
-  // Service + FAQPage + BreadcrumbList. `provider` is always Frontpaged and the
-  // vertical goes in `audience` — the schema must never imply we are a law firm
-  // or a medical practice.
+  // The subset of the shared glossary (src/lib/glossary.ts) most relevant to
+  // this vertical, selected by `v.glossaryTerms`. Filtering with a type guard
+  // rather than `.find()!` means a slug typo silently drops a term instead of
+  // crashing the static export.
+  const terms = v.glossaryTerms
+    .map((slug) => glossary.find((t) => t.slug === slug))
+    .filter((t): t is (typeof glossary)[number] => t !== undefined);
+
+  // Service + FAQPage + DefinedTermSet + BreadcrumbList. `provider` is always
+  // Frontpaged and the vertical goes in `audience` — the schema must never
+  // imply we are a law firm or a medical practice.
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -99,6 +110,29 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
           acceptedAnswer: { "@type": "Answer", text: f.a },
         })),
       },
+      ...(terms.length > 0
+        ? [
+            {
+              "@type": "DefinedTermSet",
+              "@id": `${canonical}#glossary`,
+              name: `${v.name} SEO & AI Search Terms`,
+              description: `Definitions of the SEO, GEO, and AI-search terms most relevant to ${v.name.toLowerCase()}.`,
+              url: `${canonical}#glossary`,
+              inLanguage: "en-US",
+              publisher: { "@id": `${site.url}/#org` },
+              // Same @id the glossary page (src/app/glossary/page.tsx) declares for
+              // each term, so a crawler correlating @ids across pages resolves
+              // this to the same entity rather than a second, competing one.
+              hasDefinedTerm: terms.map((t) => ({
+                "@type": "DefinedTerm",
+                "@id": `${site.url}/glossary#${t.slug}`,
+                name: t.term,
+                description: t.definition,
+                inDefinedTermSet: { "@id": `${site.url}/glossary#glossary` },
+              })),
+            },
+          ]
+        : []),
       {
         "@type": "BreadcrumbList",
         "@id": `${canonical}#breadcrumb`,
@@ -166,6 +200,12 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      {/* Gated by exclusion, not by an explicit allowlist: the TagEasy cross-promo
+          reads badly next to an attorney-advertising or Fair Housing hub, so it's
+          suppressed only on the two non-medical regimes rather than turned on
+          per-vertical — a new medical-adjacent vertical gets the banner by
+          default, the way every other page on the site already does. */}
+      {v.compliance.regime !== "legal" && v.compliance.regime !== "real-estate" && <TopBanner />}
       <SiteHeader />
       <main>
         <ServiceHero
@@ -185,7 +225,11 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
 
           <PricingBand vertical={v} />
 
-          <section aria-labelledby="faq-heading" className="border-t border-warm-line py-14 sm:py-16">
+          <section
+            id="faq"
+            aria-labelledby="faq-heading"
+            className="scroll-mt-20 border-t border-warm-line py-14 sm:py-16"
+          >
             <h2
               id="faq-heading"
               className="font-serif text-[28px] font-semibold leading-[1.15] tracking-tight text-navy sm:text-[34px]"
@@ -217,10 +261,48 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
             </div>
           </section>
 
+          {terms.length > 0 && (
+            <section
+              id="glossary"
+              aria-labelledby="glossary-heading"
+              className="scroll-mt-20 border-t border-warm-line py-14 sm:py-16"
+            >
+              <h2
+                id="glossary-heading"
+                className="font-serif text-[28px] font-semibold leading-[1.15] tracking-tight text-navy sm:text-[34px]"
+              >
+                Key terms
+              </h2>
+              <dl className="mt-8 grid gap-5 sm:grid-cols-2">
+                {terms.map((t) => (
+                  <div
+                    key={t.slug}
+                    className="rounded-xl border border-warm-line bg-cream p-5"
+                  >
+                    <dt className="font-serif text-[17px] font-semibold text-navy">{t.term}</dt>
+                    <dd className="mt-1.5 text-[14.5px] leading-[1.65] text-warm-grey">
+                      {t.definition}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-6 text-[15px] text-warm-grey">
+                See the{" "}
+                <Link href="/glossary/" className="font-semibold text-teal-dark hover:text-teal">
+                  full glossary
+                </Link>{" "}
+                for every SEO and AI-search term we use.
+              </p>
+            </section>
+          )}
+
           <ComplianceNote profile={v.compliance} />
         </Container>
 
-        <CtaPanel />
+        <CtaPanel
+          heading={`See where your ${v.clientNoun} stands — free`}
+          sub={`Book a 30-minute visibility check and we'll run the AI test on your ${v.clientNoun}, then show you your three fastest wins. No pitch required.`}
+        />
       </main>
       <SiteFooter />
     </>

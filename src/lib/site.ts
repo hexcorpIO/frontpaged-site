@@ -78,14 +78,20 @@ export const auditOffer = {
 // node in the schema graph, and the blog bylines. Left blank, all three fall
 // back to organization-level attribution and nothing renders half-finished.
 export const founder = {
-  name: "",
+  name: "Benton",
   role: "Founder",
-  /** Two or three sentences, first person. Background, why med spas, what you did before. */
+  /** Two or three sentences, first person. Background, why this business, what you did before. */
   bio: "",
   /** e.g. ["10 years in search marketing", "Google Analytics certified"] */
   credentials: [] as string[],
   linkedin: "",
 } as const;
+
+// Stable identifier for the founder's Person node in the schema graph. The About
+// page declares the node at this @id; anything elsewhere that needs to reference
+// the same person (blog bylines) points here rather than re-deriving the string,
+// so the two can't drift out of sync.
+export const founderId = `${site.url}/about#founder`;
 
 export const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 

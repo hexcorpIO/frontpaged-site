@@ -3,6 +3,12 @@
 // standalone definition it can lift and attribute. Each entry below is written to
 // be exactly that — a first sentence that fully answers the term, then context.
 //
+// Shared, industry-neutral vocabulary only — these terms and their `context`
+// apply to any of the eight verticals, not one. A vertical's own hub page
+// (src/app/industries/[slug]/page.tsx) selects the subset most relevant to it
+// via `glossaryTerms` in src/lib/verticals/*.ts and emits its own scoped
+// DefinedTermSet from that selection, so no page repeats another's schema.
+//
 // Consumed by the glossary page AND its DefinedTermSet schema, so the rendered
 // text and the structured data can never disagree.
 
@@ -12,7 +18,7 @@ export type Term = {
   also?: string[];
   /** One or two sentences that completely define the term with no preceding context. */
   definition: string;
-  /** Why it matters to a med spa specifically. */
+  /** Why it matters, in terms true across industries rather than tied to one. */
   context: string;
   category: "AI search" | "SEO fundamentals" | "Local SEO" | "Technical" | "Content" | "Measurement";
 };
@@ -25,7 +31,7 @@ export const glossary: Term[] = [
     definition:
       "Generative Engine Optimization is the practice of structuring content so AI systems like ChatGPT, Perplexity, and Google AI Overviews can extract, quote, and attribute it when answering a user's question. It sits on top of traditional SEO rather than replacing it.",
     context:
-      "For a med spa, GEO is what determines whether an AI assistant names your clinic when a patient asks for a Botox recommendation in your city.",
+      "GEO is what determines whether an AI assistant names your business when a customer asks for a recommendation in your city.",
     category: "AI search",
   },
   {
@@ -91,7 +97,7 @@ export const glossary: Term[] = [
     definition:
       "Schema markup is structured data added to a web page in a standard vocabulary that tells search engines and AI systems what the page's content means, rather than leaving them to infer it from the prose.",
     context:
-      "For a med spa, it declares outright that you are a medical business, at a specific address, offering specific treatments, at specific prices.",
+      "It declares outright what kind of business you are, at a specific address, offering specific services, at specific prices.",
     category: "Technical",
   },
   {
@@ -100,7 +106,7 @@ export const glossary: Term[] = [
     definition:
       "FAQ schema is structured data that marks a list of questions and their answers as machine-readable question-answer pairs. It makes the Q&A on a page explicitly extractable rather than something an engine has to detect from formatting.",
     context:
-      "It is usually the first schema type a med spa should implement after the core business markup.",
+      "It is usually the first schema type a business should implement after the core business markup.",
     category: "Technical",
   },
   {
@@ -109,7 +115,7 @@ export const glossary: Term[] = [
     definition:
       "E-E-A-T stands for experience, expertise, authoritativeness, and trustworthiness — the framework Google's human quality raters use to evaluate content. It is not a single ranking factor but a set of qualities that inform how search quality is measured.",
     context:
-      "Aesthetic content is held to a higher E-E-A-T standard than most categories because it affects health.",
+      "Content in regulated categories — medical, legal, financial — is held to a higher E-E-A-T standard than most, because getting it wrong can affect someone's health, money, or safety.",
     category: "SEO fundamentals",
   },
   {
@@ -119,7 +125,7 @@ export const glossary: Term[] = [
     definition:
       "YMYL describes topics that could significantly affect a person's health, safety, financial stability, or wellbeing. Google applies stricter quality and accuracy standards to YMYL content than to other categories.",
     context:
-      "Content about injectables, lasers, and medical-grade treatments is YMYL, which is why anonymous, unsourced med spa content struggles to rank.",
+      "Medical treatments, legal claims, and major financial decisions are all YMYL, which is why anonymous, unsourced content in those categories struggles to rank.",
     category: "SEO fundamentals",
   },
   {
@@ -147,7 +153,7 @@ export const glossary: Term[] = [
     definition:
       "The map pack is the block of three local business listings with a map that Google shows for searches with local intent. It typically appears above the organic results.",
     context:
-      "For queries like \"med spa near me\", the map pack captures the majority of clicks, which makes your Google Business Profile more valuable than your homepage for those searches.",
+      "For queries like \"[service] near me\", the map pack captures the majority of clicks, which makes your Google Business Profile more valuable than your homepage for those searches.",
     category: "Local SEO",
   },
   {
@@ -157,7 +163,7 @@ export const glossary: Term[] = [
     definition:
       "A Google Business Profile is the free listing that controls how a business appears in Google Maps and local search results, including its hours, services, photos, posts, and reviews.",
     context:
-      "It is the single highest-leverage asset in local aesthetics, and one of the most-cited sources when AI assistants answer local questions.",
+      "It is the single highest-leverage asset in local search for most high-ticket businesses, and one of the most-cited sources when AI assistants answer local questions.",
     category: "Local SEO",
   },
   {
@@ -175,7 +181,7 @@ export const glossary: Term[] = [
     definition:
       "A local citation is any online mention of a business's name, address, and phone number, whether or not it links to the website. Directories, industry listings, and press mentions all count.",
     context:
-      "Manufacturer provider-locator listings are among the most valuable and least-claimed citations available to a med spa.",
+      "Industry-specific directories and referral listings are often the most valuable and least-claimed citations available to a business.",
     category: "Local SEO",
   },
   {
@@ -194,7 +200,7 @@ export const glossary: Term[] = [
     definition:
       "Search intent is the underlying goal behind a query — whether the person wants to learn something, compare options, find a specific site, or make a purchase. It determines what kind of content can satisfy the search.",
     context:
-      "Sorting med spa keywords by intent rather than volume is what separates terms that produce bookings from terms that produce traffic.",
+      "Sorting keywords by intent rather than volume is what separates terms that produce leads from terms that produce traffic.",
     category: "SEO fundamentals",
   },
   {
@@ -203,7 +209,7 @@ export const glossary: Term[] = [
     definition:
       "A long-tail keyword is a longer, more specific search phrase with lower individual volume but usually clearer intent and less competition than a broad head term.",
     context:
-      "\"Morpheus8 for jawline cost\" is long-tail; \"med spa\" is not. In aesthetics the long tail is where a new practice can realistically win.",
+      "A specific service-plus-qualifier phrase is long-tail; a one- or two-word category term is not. For a new business the long tail is where it can realistically win first.",
     category: "SEO fundamentals",
   },
   {
@@ -212,7 +218,7 @@ export const glossary: Term[] = [
     definition:
       "Topical authority is the degree to which a site is recognized as a comprehensive, reliable source on a particular subject, built by covering that subject thoroughly rather than superficially.",
     context:
-      "A practice with fifteen interlinked pages on injectables has more topical authority than one with a single page mentioning everything.",
+      "A business with fifteen interlinked pages on one service area has more topical authority than one with a single page mentioning everything.",
     category: "Content",
   },
   {
@@ -240,7 +246,7 @@ export const glossary: Term[] = [
     definition:
       "Core Web Vitals are Google's three measures of user experience: loading speed, interaction responsiveness, and visual stability. They are assessed on real visits at the 75th percentile.",
     context:
-      "Med spa sites commonly fail them because of full-resolution before-and-after galleries and booking widgets loaded on every page.",
+      "High-ticket local sites commonly fail them because of full-resolution image galleries and booking widgets loaded on every page.",
     category: "Technical",
   },
   {
@@ -249,7 +255,7 @@ export const glossary: Term[] = [
     definition:
       "Crawl budget is the number of pages a search engine will fetch from a site within a given period. It becomes a practical constraint only on large sites, where wasted crawling on low-value URLs delays discovery of important ones.",
     context:
-      "Rarely a concern for a single-location med spa, but relevant for multi-location groups with hundreds of location-by-treatment pages.",
+      "Rarely a concern for a single-location business, but relevant for multi-location groups with hundreds of location-by-service pages.",
     category: "Technical",
   },
   {
@@ -304,7 +310,7 @@ export const glossary: Term[] = [
     definition:
       "Keyword cannibalization occurs when two or more pages on the same site compete for the same search term, splitting their signals so neither performs as well as a single consolidated page would.",
     context:
-      "Common on med spa sites that have published several overlapping posts about the same treatment over the years.",
+      "Common on sites that have published several overlapping posts about the same service over the years.",
     category: "Content",
   },
   {

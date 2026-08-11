@@ -2,7 +2,7 @@
 title: "How AI Search Decides Which Med Spas to Recommend"
 description: "Learn the exact signals AI assistants use to pick which med spas to name, and what to do now to show up in ChatGPT, Perplexity, and Google AI."
 date: "2025-11-12"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["AI Search", "GEO", "Strategy"]
 vertical: "med-spas"
 quickAnswer: "AI assistants recommend med spas that appear in multiple credible sources across the web, have answer-ready content that directly addresses common patient questions, maintain strong and recent reviews, and keep business information consistent everywhere online. The more of these signals you hit, the more likely ChatGPT or Perplexity names your practice when someone asks for a recommendation."

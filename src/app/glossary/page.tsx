@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
+import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
@@ -10,16 +11,16 @@ const PATH = "/glossary";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "SEO & AI Search Glossary for Med Spas",
+  title: "SEO & AI Search Glossary",
   description:
-    "Plain-English definitions of the SEO, GEO, and AI-search terms med spa owners actually run into — from answer-first content to E-E-A-T to the map pack.",
+    "Plain-English definitions of the SEO, GEO, and AI-search terms business owners actually run into — from answer-first content to E-E-A-T to the map pack.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
-    title: "SEO & AI Search Glossary for Med Spas · Frontpaged",
+    title: "SEO & AI Search Glossary · Frontpaged",
     description:
-      "Every SEO, GEO, and AI-search term a med spa owner needs, defined in one or two sentences.",
+      "Every SEO, GEO, and AI-search term a business owner needs, defined in one or two sentences.",
     images: [ogImage],
   },
 };
@@ -34,9 +35,9 @@ export default function GlossaryPage() {
       {
         "@type": "DefinedTermSet",
         "@id": `${canonical}#glossary`,
-        name: "Med Spa SEO & AI Search Glossary",
+        name: "SEO & AI Search Glossary",
         description:
-          "Definitions of the SEO, Generative Engine Optimization, and AI-search terms relevant to medical spa marketing.",
+          "Definitions of the SEO, Generative Engine Optimization, and AI-search terms relevant to high-ticket local business marketing.",
         url: canonical,
         inLanguage: "en-US",
         publisher: { "@id": `${site.url}/#org` },
@@ -68,6 +69,7 @@ export default function GlossaryPage() {
         // Built from trusted local constants, not user input.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <TopBanner />
       <SiteHeader />
       <main>
         <section className="bg-gradient-to-b from-cream to-white py-16 sm:py-20">
@@ -80,8 +82,9 @@ export default function GlossaryPage() {
               <span className="italic text-teal">one sentence</span>.
             </h1>
             <p className="mt-6 max-w-2xl text-[19px] leading-[1.7] text-warm-grey">
-              The SEO, GEO, and AI-search vocabulary med spa owners actually encounter — defined
+              The SEO, GEO, and AI-search vocabulary business owners actually encounter — defined
               plainly, without the agency jargon that usually surrounds it. {glossary.length} terms.
+              Each industry hub also highlights the handful most relevant to it.
             </p>
 
             <nav aria-label="Glossary categories" className="mt-8 flex flex-wrap gap-2">
@@ -142,7 +145,7 @@ export default function GlossaryPage() {
 
         <CtaPanel
           heading="Want to know how you score on all of this?"
-          sub="Book a free 30-minute visibility check and we'll run the AI test on your clinic — then show you the three terms above that are actually costing you patients."
+          sub="Book a free 30-minute visibility check and we'll run the AI test on your business — then show you the three terms above that are actually costing you customers."
         />
       </main>
       <SiteFooter />

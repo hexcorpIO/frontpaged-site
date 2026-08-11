@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { formatDate } from "@/lib/formatDate";
-import { site, ogImage } from "@/lib/site";
+import { site, ogImage, founder, founderId } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -73,7 +73,22 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
         dateModified: post.date,
         // Article rich results want an image and a publisher logo.
         image: `${site.url}/opengraph-image`,
-        author: { "@type": "Organization", name: post.author, url: site.url },
+        // Named authorship, not organizational — the same Person node the About
+        // page declares at founderId, so an engine correlating @ids across pages
+        // resolves every byline to one entity. Falls back to an Organization if
+        // the founder name is ever cleared, matching the About page's own gate.
+        author: founder.name
+          ? {
+              "@type": "Person",
+              "@id": founderId,
+              name: founder.name,
+              jobTitle: founder.role,
+              url: `${site.url}/about/`,
+              worksFor: { "@id": `${site.url}/#org` },
+              ...(founder.bio ? { description: founder.bio } : {}),
+              ...(founder.linkedin ? { sameAs: [founder.linkedin] } : {}),
+            }
+          : { "@type": "Organization", name: post.author, url: site.url },
         publisher: {
           "@type": "Organization",
           "@id": `${site.url}/#org`,

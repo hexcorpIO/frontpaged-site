@@ -2,7 +2,7 @@
 title: "The Med Spa Service Page Template That Ranks and Converts"
 description: "A section-by-section template for med spa service pages: what to include, in what order, and why each block matters for Google, AI search, and bookings."
 date: "2026-05-06"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["Content", "SEO", "Conversion"]
 vertical: "med-spas"
 quickAnswer: "A high-performing med spa service page answers the patient's question in the first fifty words, then works through what the treatment does, who it suits, what the appointment involves, what it costs, and what results look like. Each section maps to a real question patients type into Google or ask an AI assistant, which is what makes the page both rankable and citable."

@@ -50,7 +50,7 @@ export function SerpMock() {
   );
 }
 
-// GEO — an AI assistant answer that names the clinic first.
+// GEO — an AI assistant answer that names the business first.
 export function GeoAnswerMock() {
   return (
     <div className={cardShell}>
@@ -60,11 +60,11 @@ export function GeoAnswerMock() {
         </span>
         <p className="text-[13px] font-semibold text-navy">AI answer</p>
         <span className="ml-auto truncate text-[12px] text-warm-grey">
-          &ldquo;best med spa for Botox near me&rdquo;
+          &ldquo;best business near me&rdquo;
         </span>
       </div>
       <p className="mt-4 text-[15px] leading-relaxed text-ink">
-        A few clinics stand out for natural-looking results and strong reviews:
+        A few businesses stand out for quality and strong reviews:
       </p>
       <ul className="mt-3 space-y-2.5">
         <li className="flex items-start gap-2.5 rounded-xl border-2 border-teal bg-soft p-3">
@@ -72,8 +72,8 @@ export function GeoAnswerMock() {
             <CheckIcon className="h-3.5 w-3.5" />
           </span>
           <span className="text-[14.5px] text-navy">
-            <span className="font-semibold">Your Clinic</span> — known for subtle, natural injectables
-            and 5-star patient reviews.
+            <span className="font-semibold">Your Business</span> — known for consistent quality
+            and 5-star customer reviews.
           </span>
         </li>
         <li className="flex items-start gap-2.5 px-3 text-[14px] text-warm-grey">
@@ -107,17 +107,17 @@ export function GbpMock() {
         <div className="h-20 bg-gradient-to-br from-[#e7eef0] to-[#d7e3e6]" />
       </div>
       <div className="mt-4">
-        <p className="font-serif text-[20px] font-semibold text-navy">Your Med Spa</p>
+        <p className="font-serif text-[20px] font-semibold text-navy">Your Business</p>
         <p className="mt-1 flex flex-wrap items-center gap-1.5 text-[13px] text-warm-grey">
           <span className="font-semibold text-navy">4.9</span>
           <span className="text-gold">★★★★★</span>
           <span>(214)</span>
           <span aria-hidden="true">·</span>
-          <span>Medical spa</span>
+          <span>Local business</span>
         </p>
         <p className="mt-1 text-[13px]">
           <span className="font-semibold text-[#1a7f5a]">Open</span>{" "}
-          <span className="text-warm-grey">· Closes 6 PM · Botox, fillers, laser</span>
+          <span className="text-warm-grey">· Closes 6 PM · Full service list</span>
         </p>
       </div>
       <div className="mt-4 flex flex-wrap gap-2">

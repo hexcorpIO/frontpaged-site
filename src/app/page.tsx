@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
+import TopBanner from "@/components/TopBanner";
 import Hero from "@/components/Hero";
 import AiEnginesStrip from "@/components/AiEnginesStrip";
 import Problem from "@/components/Problem";
@@ -21,7 +22,7 @@ import type { Faq as FaqItem } from "@/lib/verticals/types";
 // set by nested route segments, not to page.tsx colocated with the layout that
 // defines it — so, like the root layout's own default title, the brand name has
 // to be written into this string directly rather than left for the template.
-const title = "Frontpaged — Be the First Name AI Recommends";
+const title = "Frontpaged — Be the first name AI recommends";
 const description =
   "Done-for-you SEO & Generative Engine Optimization content for 8 high-ticket local " +
   "industries, engineered to rank on Google and get cited by AI.";
@@ -84,6 +85,7 @@ export default function Home() {
   return (
     <>
       <JsonLd faqs={homeFaqs} />
+      <TopBanner />
       <SiteHeader />
       <main>
         <Hero />

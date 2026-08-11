@@ -3,7 +3,7 @@ title: "Med Spa Website Speed: Core Web Vitals That Cost You Bookings"
 metaTitle: "Med Spa Website Speed: Core Web Vitals That Cost Bookings"
 description: "Aesthetic websites are image-heavy and usually slow. Here's what Core Web Vitals measure, why med spa sites fail them, and what to fix first."
 date: "2026-08-26"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["Technical SEO", "Performance", "Conversion"]
 vertical: "med-spas"
 quickAnswer: "Core Web Vitals measure loading speed, interaction responsiveness, and visual stability. Med spa sites commonly fail them because of oversized gallery images, heavy page builders, and booking widgets loaded on every page. The highest-return fixes are compressing and correctly sizing images, deferring third-party scripts, and reserving space for elements that load late so the layout stops shifting."

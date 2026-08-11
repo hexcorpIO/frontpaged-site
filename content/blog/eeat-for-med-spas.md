@@ -2,7 +2,7 @@
 title: "E-E-A-T for Med Spas: Proving Expertise on Medical Content"
 description: "Aesthetic content is held to a higher standard by Google. Here's how med spas demonstrate experience, expertise, authority, and trust on every page."
 date: "2026-06-03"
-author: "The Frontpaged Team"
+author: "Benton"
 tags: ["SEO", "E-E-A-T", "Trust"]
 vertical: "med-spas"
 quickAnswer: "E-E-A-T stands for experience, expertise, authoritativeness, and trustworthiness. Because aesthetic treatments affect health, Google applies stricter quality standards to med spa content than to most other industries. Practices demonstrate E-E-A-T by attributing content to named credentialed providers, publishing real clinical detail, citing legitimate sources, and keeping business information accurate and consistent everywhere it appears."

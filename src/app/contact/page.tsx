@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
+import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CalendlyInline from "@/components/CalendlyInline";
@@ -14,14 +15,14 @@ export const metadata: Metadata = {
   // template, and repeating it both doubles the brand and pushes past ~60 chars.
   title: "Contact Us — Book a Free Visibility Check",
   description:
-    "Talk to Frontpaged about SEO and AI-search visibility for your med spa. Book a free 30-minute visibility check, or reach us by email or phone.",
+    "Talk to Frontpaged about SEO and AI-search visibility for your business. Book a free 30-minute visibility check, or reach us by email or phone.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
     url: PATH,
     title: "Contact Frontpaged · Frontpaged",
     description:
-      "Book a free 30-minute med spa visibility check, or reach us by email or phone. We work with medical spas nationwide.",
+      "Book a free 30-minute visibility check, or reach us by email or phone. We work with high-ticket local businesses nationwide.",
     images: [ogImage],
   },
 };
@@ -29,8 +30,8 @@ export const metadata: Metadata = {
 const agenda = [
   {
     Icon: SearchIcon,
-    title: "We run the AI test on your clinic, live",
-    body: "We ask ChatGPT, Perplexity, and Google the questions your patients ask, and show you exactly what comes back — whether you're named, and who is named instead.",
+    title: "We run the AI test on your business, live",
+    body: "We ask ChatGPT, Perplexity, and Google the questions your customers ask, and show you exactly what comes back — whether you're named, and who is named instead.",
   },
   {
     Icon: TrendingUpIcon,
@@ -51,11 +52,11 @@ const contactFaqs = [
   },
   {
     q: "Is the visibility check really free?",
-    a: "Yes. There is no cost and no obligation. We do it because the fastest way to show what we do is to show you where your clinic currently stands, and most practices have never seen that data before.",
+    a: "Yes. There is no cost and no obligation. We do it because the fastest way to show what we do is to show you where your business currently stands, and most businesses have never seen that data before.",
   },
   {
-    q: "Do you work with med spas outside your area?",
-    a: "We work with medical spas nationwide across the United States. Everything we do — content, schema, Google Business Profile management, AI visibility work — is done remotely, so your location makes no difference to how we work with you.",
+    q: "Do you work with businesses outside your area?",
+    a: "We work with businesses nationwide across the United States. Everything we do — content, schema, Google Business Profile management, AI visibility work — is done remotely, so your location makes no difference to how we work with you.",
   },
   {
     q: "How quickly will you get back to me?",
@@ -63,7 +64,7 @@ const contactFaqs = [
   },
   {
     q: "What should I have ready before the call?",
-    a: "Nothing. We do our own research beforehand. If you already know which treatments you most want to be booking, that is useful context, but it is not required and we can work it out together on the call.",
+    a: "Nothing. We do our own research beforehand. If you already know which services you most want to be generating inquiries for, that is useful context, but it is not required and we can work it out together on the call.",
   },
 ];
 
@@ -77,7 +78,7 @@ export default function ContactPage() {
         url: canonical,
         name: "Contact Frontpaged",
         description:
-          "Book a free med spa visibility check, or reach Frontpaged by email or phone.",
+          "Book a free visibility check, or reach Frontpaged by email or phone.",
         inLanguage: "en-US",
         about: { "@id": `${site.url}/#org` },
       },
@@ -128,6 +129,7 @@ export default function ContactPage() {
         // Schema is built from trusted local constants, not user input.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <TopBanner />
       <SiteHeader />
       <main>
         {/* Hero — answer-first: what this page is for and how to act on it */}
@@ -139,13 +141,13 @@ export default function ContactPage() {
                   Contact
                 </p>
                 <h1 className="max-w-2xl font-serif text-[40px] font-semibold leading-[1.08] tracking-tight text-navy sm:text-[52px]">
-                  Let&rsquo;s see where your clinic{" "}
+                  Let&rsquo;s see where your business{" "}
                   <span className="italic text-teal">actually stands</span>.
                 </h1>
                 <p className="mt-6 max-w-xl text-[19px] leading-[1.7] text-warm-grey">
-                  Book a free 30-minute visibility check and we&rsquo;ll run the AI test on your med
-                  spa live — then show you the three fastest things you could fix. Prefer to email
-                  or call? Both work, and a person answers.
+                  Book a free 30-minute visibility check and we&rsquo;ll run the AI test on your
+                  business live — then show you the three fastest things you could fix. Prefer to
+                  email or call? Both work, and a person answers.
                 </p>
 
                 {/* Direct contact — the answer-first block AI engines can lift */}
@@ -189,8 +191,8 @@ export default function ContactPage() {
                       Who we work with
                     </dt>
                     <dd className="mt-1 text-[17px] text-ink">
-                      Medical spas across the United States. Everything is done remotely, so your
-                      location doesn&rsquo;t change how we work together.
+                      High-ticket local businesses across the United States. Everything is done
+                      remotely, so your location doesn&rsquo;t change how we work together.
                     </dd>
                   </div>
                 </dl>

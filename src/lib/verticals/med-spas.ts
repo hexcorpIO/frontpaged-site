@@ -97,7 +97,7 @@ export const medSpas: Vertical = {
     { label: "Yelp", url: "https://www.yelp.com/" },
   ],
   postTags: ["med-spa", "GEO", "SEO", "Local SEO", "Schema", "E-E-A-T", "Trust"],
-  glossaryTerms: ["generative-engine-optimization", "ai-overviews", "map-pack", "schema-markup"],
+  glossaryTerms: ["generative-engine-optimization", "ai-overview", "map-pack", "schema-markup"],
   compliance: {
     regime: "medical",
     summary:

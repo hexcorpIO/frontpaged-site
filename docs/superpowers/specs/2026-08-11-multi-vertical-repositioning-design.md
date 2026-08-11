@@ -97,7 +97,8 @@ src/lib/verticals/
   estate-law.ts  real-estate-teams.ts
 
 content/industries/
-  <slug>.mdx          bespoke prose, unique structure per vertical
+  <slug>.md           bespoke prose, unique structure per vertical
+                      (gray-matter + marked, same pipeline as content/blog/)
 
 src/app/industries/
   page.tsx            index of all published verticals
@@ -200,8 +201,16 @@ other seven were set during design and approved by the owner on 2026-08-11.
 
 ### 6.2 Derived values
 
-- `foundingPrice = Math.round(price * 0.75)` — removes the three hand-maintained
-  `foundingPrice` fields in `site.ts` and makes that class of drift impossible.
+- `foundingPrice = Math.floor(price * 0.75 / 5) * 5` — removes the three
+  hand-maintained `foundingPrice` fields in `site.ts` and makes that class of
+  drift impossible.
+
+  The `/5` floor is load-bearing, not decoration. A plain `Math.round(p * 0.75)`
+  yields **2063** for the $2,750 Authority tier, but the published founding rate
+  is **2060** — someone rounded down to a cleaner number by hand. Flooring to the
+  nearest $5 reproduces all three published med-spa rates exactly
+  (1500→1125, 2750→2060, 4000→3000) and every other band divides cleanly.
+  Task 2 tests this against the published values before anything consumes it.
 - `annualPrice = price * 10` — ten months' fee for twelve months of work.
 - Sitewide `priceRange` = computed span at **founding** rates across published
   verticals → `$1,125–$14,000/mo`. Schema must state what a buyer actually pays.
@@ -418,7 +427,8 @@ Regression set:
 
 ```
 NEW       src/lib/verticals/{types,index}.ts + 8 records
-          content/industries/*.mdx  (8 bespoke bodies)
+          src/lib/industries.ts  (loader, mirrors src/lib/blog.ts)
+          content/industries/*.md  (8 bespoke bodies)
           src/app/industries/{page,[slug]/page,[slug]/opengraph-image}.tsx
           src/components/{IndustryGrid,ComplianceNote,PricingBand}.tsx
           public/.htaccess · public/favicon.ico

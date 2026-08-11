@@ -759,17 +759,23 @@ Compliance content by regime:
 
 - [ ] **Step 2: Register them**
 
-Rewrite `src/lib/verticals/index.ts`'s import block and array:
+Rewrite `src/lib/verticals/index.ts`'s import block and array.
+
+**Keep the `.ts` extensions.** Task 2 established them and they are load-bearing:
+`node --test` resolves these relative specifiers at runtime, and bare specifiers
+to `.ts` files fail with `ERR_MODULE_NOT_FOUND`. `tsconfig.json` carries
+`allowImportingTsExtensions: true` for exactly this reason. Dropping the
+extensions reverts the registry to a state where `pnpm test` cannot load it.
 
 ```ts
-import { medSpas } from "./med-spas";
-import { plasticSurgery } from "./plastic-surgery";
-import { dermatology } from "./dermatology";
-import { wellness } from "./wellness";
-import { conciergeMedicine } from "./concierge-medicine";
-import { personalInjuryLaw } from "./personal-injury-law";
-import { estateLaw } from "./estate-law";
-import { realEstateTeams } from "./real-estate-teams";
+import { medSpas } from "./med-spas.ts";
+import { plasticSurgery } from "./plastic-surgery.ts";
+import { dermatology } from "./dermatology.ts";
+import { wellness } from "./wellness.ts";
+import { conciergeMedicine } from "./concierge-medicine.ts";
+import { personalInjuryLaw } from "./personal-injury-law.ts";
+import { estateLaw } from "./estate-law.ts";
+import { realEstateTeams } from "./real-estate-teams.ts";
 
 export const verticals: Vertical[] = [
   medSpas,

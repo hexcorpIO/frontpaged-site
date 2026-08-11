@@ -27,7 +27,11 @@ Every task's requirements implicitly include this section.
 - **Compliance copy never promises regulatory compliance.** Pages say Frontpaged *writes to* a client's bar/fair-housing rules and routes final copy through the client's own review. Never "we guarantee compliance." No legal advice.
 - **Uncited statistics are removed, not softened**, unless the owner supplies a source (spec §13.2).
 - **Founding rate formula:** `Math.floor(price * 0.75 / 5) * 5`. Verified to reproduce the published med-spa rates 1125 / 2060 / 3000.
-- **Never change an existing blog post's URL or body.** Frontmatter additions only.
+- **Never change an existing blog post's URL, title, or prose.** Frontmatter
+  additions are allowed. One exception, resolved pre-flight: the single internal
+  link to `/services/med-spa-seo/` in
+  `content/blog/med-spa-service-page-template.md` is repointed at
+  `/industries/med-spas/` in Task 9, so no internal link fires a redirect.
 
 ---
 
@@ -948,8 +952,13 @@ import { site } from "@/lib/site";
 
 type Params = { slug: string };
 
+// Published AND has a body. A published vertical whose content/industries/<slug>.md
+// has not been written yet is skipped rather than prerendered into a notFound(),
+// which would fail the static export outright.
 export function generateStaticParams(): Params[] {
-  return getPublishedSlugs().map((slug) => ({ slug }));
+  return getPublishedSlugs()
+    .filter((slug) => getIndustryBody(slug) !== null)
+    .map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -1504,7 +1513,15 @@ Neutral positioning. If `founder.name` is still empty (spec §13.1), attribution
 
 - [ ] **Step 4: Decide the TagEasy banner**
 
-`TopBanner` currently renders sitewide. Per spec §13.3, default to restricting it to the medical verticals — it reads oddly on a page selling $8,500/mo to a law firm. Gate it on `compliance.regime === "medical"` unless the owner said otherwise.
+`TopBanner` currently renders sitewide from `layout.tsx`, which has no vertical
+context on the homepage, `/pricing/`, or a blog post. So gate it by *exclusion*
+rather than by regime: the banner renders everywhere **except** the legal and
+real-estate hubs, where a "need tagging & analytics?" cross-promo reads oddly
+next to an $8,500/mo engagement (spec §13.3).
+
+Implement by having the hub route set a flag the layout reads — or, simpler and
+preferred in a static export, render `TopBanner` from the pages that want it
+rather than from `layout.tsx`. Do not add client-side route detection.
 
 - [ ] **Step 5: Run the full verification**
 

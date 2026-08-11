@@ -1587,7 +1587,49 @@ Implement by having the hub route set a flag the layout reads — or, simpler an
 preferred in a static export, render `TopBanner` from the pages that want it
 rather than from `layout.tsx`. Do not add client-side route detection.
 
-- [ ] **Step 5: Run the full verification**
+- [ ] **Step 5: Fix the three defect classes Task 11's gates surfaced**
+
+`pnpm verify` currently fails `check:seo` with 65 errors. These are production-review
+findings #1 and #2 — the two highest-priority items on the whole engagement — and
+they must be fixed here, not deferred. Do not weaken the gate.
+
+**(a) `og:image` missing on 36 of 37 pages.** Per-page `openGraph` metadata objects
+override the root file-convention image, so only the homepage emits one. This
+affects the brand-new industry hubs too. Fix the metadata composition across the
+~12 affected page files so every page inherits or declares an OG image.
+
+**(b) 19 `<title>` tags over 60 chars.** Two separate causes:
+
+- The `· Frontpaged` suffix costs 12 chars on every page. Dropping it on blog
+  posts fixes 7 of the 19.
+- **12 post titles exceed 60 characters on their own.** The global constraint
+  forbids changing a post's title, and that stands — the visible `<h1>` must not
+  change. Instead **add an optional `metaTitle` frontmatter field** (a frontmatter
+  *addition*, which the constraint permits), have `src/lib/blog.ts` fall back to
+  `title` when absent, and author a ≤60-char `metaTitle` for each of these 12:
+
+```
+75  Google Business Profile Optimization for Med Spas: A Step-by-Step Checklist
+70  Answer-First Content: Writing Service Pages That AI Will Actually Cite
+70  Refreshing Old Content: The Highest-Return SEO Work Most Med Spas Skip
+70  Keyword Research for Med Spas: Finding Terms Patients Actually Book On
+69  What Is Generative Engine Optimization (GEO)? A Med Spa Owner's Guide
+68  Reviews, Reputation & Rankings: How Patient Reviews Drive Visibility
+66  Med Spa SEO in 2026: The Complete Guide to Getting Found on Google
+65  Lip Filler Content That Ranks: Answering What Patients Really Ask
+64  Why Your Med Spa Isn't Showing Up in ChatGPT (and How to Fix It)
+61  How to Run a Med Spa Competitor Analysis That Finds Real Gaps
+61  Med Spa Website Speed: Core Web Vitals That Cost You Bookings
+61  How to Measure Whether AI Search Is Recommending Your Med Spa
+```
+
+  A title tag and an H1 do not need to match — this is standard practice, and it
+  keeps the on-page headline and every URL untouched.
+
+**(c) 14 meta descriptions outside 70–155 chars.** `description` is frontmatter and
+is not among the protected fields (URL, title, prose), so rewrite these in place.
+
+- [ ] **Step 6: Run the full verification**
 
 ```bash
 pnpm verify

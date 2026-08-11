@@ -10,7 +10,11 @@
     "package": "next build && cd out && zip -r -X ../frontpaged-site.zip . && cd ..",
     "lint": "eslint",
     "check:content": "node scripts/check-content.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "check:seo": "node scripts/check-seo.mjs",
+    "check:duplication": "node scripts/check-duplication.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "pnpm test && pnpm check:content && pnpm check:duplication && pnpm build && pnpm check:seo && pnpm check:links"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

@@ -48,8 +48,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build static export
-        run: pnpm build
+      # Runs the full gate (unit tests, content checks, the anti-doorway
+      # duplication check, the build itself, then SEO and link checks against
+      # the built out/) before anything is published. The next step force-
+      # pushes out/ straight to the deploy branch Hostinger serves, so an
+      # unverified build ships live — this is what stands between a broken
+      # build and production.
+      - name: Verify
+        run: pnpm verify
 
       - name: Publish out/ to deploy branch
         uses: peaceiris/actions-gh-pages@v4

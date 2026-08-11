@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const destinations = [
   {
-    href: "/services/med-spa-seo/",
+    href: "/industries/med-spas/",
     label: "Med Spa SEO",
     blurb: "Rank for the treatments patients actually search for.",
   },

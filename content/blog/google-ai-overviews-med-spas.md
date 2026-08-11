@@ -4,6 +4,7 @@ description: "AI Overviews now sit above traditional results for many aesthetic 
 date: "2026-07-01"
 author: "The Frontpaged Team"
 tags: ["AI Search", "Google", "GEO"]
+vertical: "med-spas"
 quickAnswer: "Google AI Overviews are generated summaries that appear above traditional results. Med spas get cited in them by publishing content that answers a specific question directly within the first few sentences of a clearly headed section, backed by consistent business information and credible authorship. Overviews draw heavily from pages that already rank well, so conventional SEO remains the entry requirement rather than a separate track."
 faqs:
   - q: "What is the difference between an AI Overview and a featured snippet?"

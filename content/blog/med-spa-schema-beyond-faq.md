@@ -4,6 +4,7 @@ description: "FAQ schema is the starting point. Here's the rest of the structure
 date: "2026-07-29"
 author: "The Frontpaged Team"
 tags: ["Technical SEO", "Schema", "GEO"]
+vertical: "med-spas"
 quickAnswer: "Beyond FAQ markup, a med spa should implement MedicalBusiness or LocalBusiness schema describing the practice, Service schema for each treatment page, BreadcrumbList for navigation, and Article schema on blog content. Together these tell search engines and AI models what your business is, where it operates, what it offers, and who wrote your content, rather than leaving them to infer it from prose."
 faqs:
   - q: "Is MedicalBusiness or LocalBusiness the right type for a med spa?"

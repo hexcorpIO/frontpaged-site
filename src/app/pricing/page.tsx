@@ -283,7 +283,7 @@ export default function PricingPage() {
             </div>
             <p className="mt-8 max-w-2xl text-[16px] leading-[1.7] text-warm-grey">
               All plans include both{" "}
-              <Link href="/services/med-spa-seo/" className="text-teal underline underline-offset-2 hover:text-teal-dark">
+              <Link href="/industries/med-spas/" className="text-teal underline underline-offset-2 hover:text-teal-dark">
                 SEO
               </Link>{" "}
               and{" "}

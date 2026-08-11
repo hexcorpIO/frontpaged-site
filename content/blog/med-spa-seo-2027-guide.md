@@ -4,6 +4,7 @@ description: "The complete med spa SEO and AI visibility playbook for 2027 — w
 date: "2026-12-30"
 author: "The Frontpaged Team"
 tags: ["SEO", "GEO", "Guide"]
+vertical: "med-spas"
 quickAnswer: "Med spa SEO in 2027 rests on the same foundation as before — a technically sound site, thorough treatment pages, and a well-maintained Google Business Profile — with one significant addition. A growing share of patients now receive a single AI-generated recommendation instead of a page of links, so content must be structured for extraction and citation, not just for ranking."
 faqs:
   - q: "Is traditional SEO still worth investing in?"

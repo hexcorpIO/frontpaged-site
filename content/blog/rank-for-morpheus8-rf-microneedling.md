@@ -4,6 +4,7 @@ description: "Morpheus8 searches are high-intent and winnable. Here's how to bui
 date: "2026-06-17"
 author: "The Frontpaged Team"
 tags: ["Local SEO", "Morpheus8", "Content"]
+vertical: "med-spas"
 quickAnswer: "Ranking for Morpheus8 requires a dedicated page that covers cost, downtime, session count, and how the device differs from standard microneedling. Because Morpheus8 is a branded device, searches carry unusually strong intent: people using the name have already researched it. Pair the main treatment page with comparison content, and make sure the treatment is listed explicitly on your Google Business Profile."
 faqs:
   - q: "Is it worth targeting a branded device name like Morpheus8?"

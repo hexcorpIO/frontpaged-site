@@ -17,7 +17,15 @@ const STATIC_ROUTES = new Set([
   "/pricing",
   "/contact",
   "/blog",
-  "/services/med-spa-seo",
+  "/industries",
+  "/industries/med-spas",
+  "/industries/plastic-surgery",
+  "/industries/dermatology",
+  "/industries/wellness",
+  "/industries/concierge-medicine",
+  "/industries/personal-injury-law",
+  "/industries/estate-law",
+  "/industries/real-estate-teams",
   "/services/generative-engine-optimization",
   "/services/google-business-profile",
 ]);
@@ -50,7 +58,7 @@ for (const post of posts) {
   const where = `${slug}.md`;
 
   // --- frontmatter ---
-  for (const field of ["title", "description", "date", "author", "tags", "quickAnswer", "faqs"]) {
+  for (const field of ["title", "description", "date", "author", "tags", "vertical", "quickAnswer", "faqs"]) {
     if (!data[field]) errors.push(`${where}: missing frontmatter field "${field}"`);
   }
   if (data.date && !/^\d{4}-\d{2}-\d{2}$/.test(String(data.date))) {

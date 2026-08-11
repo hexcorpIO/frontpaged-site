@@ -4,6 +4,7 @@ description: "The practical med spa SEO playbook for 2026 — local rankings, Go
 date: "2026-01-19"
 author: "The Frontpaged Team"
 tags: ["SEO", "Local SEO", "Guide"]
+vertical: "med-spas"
 quickAnswer: "Med spa SEO is the process of optimizing your website and online presence so patients find you when searching for treatments like Botox, fillers, or laser services near them. In 2026, the biggest needle-movers are a fully optimized Google Business Profile, treatment-specific service pages, a strong review cadence, and showing up in AI-generated answers — not just the traditional blue links."
 faqs:
   - q: "How long does med spa SEO take to work?"

@@ -4,6 +4,7 @@ description: "A section-by-section template for med spa service pages: what to i
 date: "2026-05-06"
 author: "The Frontpaged Team"
 tags: ["Content", "SEO", "Conversion"]
+vertical: "med-spas"
 quickAnswer: "A high-performing med spa service page answers the patient's question in the first fifty words, then works through what the treatment does, who it suits, what the appointment involves, what it costs, and what results look like. Each section maps to a real question patients type into Google or ask an AI assistant, which is what makes the page both rankable and citable."
 faqs:
   - q: "How long should a med spa service page be?"
@@ -124,7 +125,7 @@ The content structure carries most of the weight, but a few technical elements d
 
 **Service schema.** Mark the page up so engines can read the treatment, the provider, and the area served as structured data rather than inferring it from prose. This is separate from the FAQ schema on the same page, and the two work together.
 
-**Internal links between related treatments.** Link your Botox page to your filler page, and both to any comparison content you have. This helps patients who are still deciding between options, and it tells search engines these pages form a coherent group rather than sitting in isolation. Our [med spa SEO services](/services/med-spa-seo) page covers how this hub-and-spoke structure is built out across a full treatment list.
+**Internal links between related treatments.** Link your Botox page to your filler page, and both to any comparison content you have. This helps patients who are still deciding between options, and it tells search engines these pages form a coherent group rather than sitting in isolation. Our [med spa SEO services](/industries/med-spas/) page covers how this hub-and-spoke structure is built out across a full treatment list.
 
 **Image alt text.** Describe what the image shows, including the treatment name. "Before and after three weeks of Botox treatment for forehead lines" is useful to a screen reader, a search engine, and an AI model. "IMG_4471" is useful to nobody.
 

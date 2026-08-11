@@ -4,6 +4,7 @@ description: "Updating an existing post usually beats writing a new one. Here's 
 date: "2026-12-16"
 author: "The Frontpaged Team"
 tags: ["SEO", "Content", "Strategy"]
+vertical: "med-spas"
 quickAnswer: "Refreshing existing content typically produces faster results than publishing new posts, because the page already has ranking history and accumulated authority. The best refresh candidates are pages ranking in positions five to twenty, pages with high impressions and low click-through, and any page containing outdated pricing, retired devices, or superseded clinical guidance."
 faqs:
   - q: "How often should med spa content be refreshed?"

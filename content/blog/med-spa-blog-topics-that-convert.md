@@ -4,6 +4,7 @@ description: "The right blog topics turn browsers into booked consultations. Her
 date: "2025-03-19"
 author: "The Frontpaged Team"
 tags: ["Content", "Content Marketing", "Ideas"]
+vertical: "med-spas"
 quickAnswer: "The blog topics that actually book consultations are the ones that answer the exact questions people ask right before they decide to buy — cost, comparisons, what to expect, and recovery timelines. For any med spa, that means posts like 'How much does Botox cost near me?' and 'Botox vs Dysport: which lasts longer?' Those questions have clear buyer intent, and content that answers them directly earns both search rankings and AI citations."
 faqs:
   - q: "What kinds of blog posts work best for med spa bookings?"

@@ -4,6 +4,7 @@ description: "How answer-first structure gets med spa service pages cited by Cha
 date: "2026-03-03"
 author: "The Frontpaged Team"
 tags: ["GEO", "Content", "AI Search"]
+vertical: "med-spas"
 quickAnswer: "Answer-first content leads every section with a direct, specific answer before adding context or detail. AI engines cite these pages because they can extract a clean, trustworthy response to a user's question without wading through filler. For med spas, this means structuring service pages like a Q&A, not a sales pitch."
 faqs:
   - q: "What is answer-first content?"

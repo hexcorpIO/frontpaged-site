@@ -4,6 +4,7 @@ description: "Q4 is the busiest season in aesthetics. Here's how to build holida
 date: "2026-11-18"
 author: "The Frontpaged Team"
 tags: ["Seasonal", "Content", "Local SEO"]
+vertical: "med-spas"
 quickAnswer: "Holiday promotion pages fail when they are built in December and deleted in January. Publish a permanent seasonal page early enough to rank — ideally by early October — update it each year rather than replacing it, and pair it with content targeting the searches that actually spike in Q4: gift cards, event-timing questions, and treatment lead times before a specific date."
 faqs:
   - q: "When should I publish holiday promotion content?"

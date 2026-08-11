@@ -4,6 +4,7 @@ description: "Generative engine optimization (GEO) helps your med spa get cited 
 date: "2025-09-30"
 author: "The Frontpaged Team"
 tags: ["GEO", "AI Search", "Fundamentals"]
+vertical: "med-spas"
 quickAnswer: "Generative engine optimization (GEO) is the practice of structuring your website content so AI tools like ChatGPT, Perplexity, and Google AI Overviews cite your business when someone asks a question. Unlike SEO, which competes for ranked links, GEO competes for the answer itself. For med spas, that means showing up when someone types 'best Botox clinic near me' into an AI chatbot."
 faqs:
   - q: "What is the difference between SEO and GEO?"

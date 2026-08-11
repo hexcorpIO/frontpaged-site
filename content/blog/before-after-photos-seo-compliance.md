@@ -4,6 +4,7 @@ description: "Before-and-after galleries convert better than any other page type
 date: "2026-07-15"
 author: "The Frontpaged Team"
 tags: ["Content", "Compliance", "Conversion"]
+vertical: "med-spas"
 quickAnswer: "Before-and-after galleries are usually a med spa's highest-converting pages, but they carry both SEO and regulatory requirements. Photos need descriptive alt text, fast-loading modern formats, and surrounding text explaining the treatment and timeline. On the compliance side, you need documented written consent for each image, consistent shooting conditions, and no implication that results shown are typical unless they genuinely are."
 faqs:
   - q: "Do before-and-after photos actually help SEO?"

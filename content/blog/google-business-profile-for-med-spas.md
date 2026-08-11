@@ -4,6 +4,7 @@ description: "Google Business Profile is your med spa's most powerful local SEO 
 date: "2025-05-08"
 author: "The Frontpaged Team"
 tags: ["Local SEO", "Google Business Profile", "Checklist"]
+vertical: "med-spas"
 quickAnswer: "The highest-impact GBP optimizations for a med spa are: setting your primary category to 'Medical spa,' adding every service with detailed descriptions, uploading 20+ high-quality photos, and responding to every review within 24 hours. Get those four right and you'll outrank most competitors in your area before touching anything else."
 faqs:
   - q: "What should the primary category be for a med spa on Google Business Profile?"

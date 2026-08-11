@@ -4,6 +4,7 @@ description: "Aesthetic websites are image-heavy and usually slow. Here's what C
 date: "2026-08-26"
 author: "The Frontpaged Team"
 tags: ["Technical SEO", "Performance", "Conversion"]
+vertical: "med-spas"
 quickAnswer: "Core Web Vitals measure loading speed, interaction responsiveness, and visual stability. Med spa sites commonly fail them because of oversized gallery images, heavy page builders, and booking widgets loaded on every page. The highest-return fixes are compressing and correctly sizing images, deferring third-party scripts, and reserving space for elements that load late so the layout stops shifting."
 faqs:
   - q: "What are the current Core Web Vitals thresholds?"

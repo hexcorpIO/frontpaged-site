@@ -4,6 +4,7 @@ description: "Comparison searches like CoolSculpting vs Emsculpt are high-intent
 date: "2026-12-02"
 author: "The Frontpaged Team"
 tags: ["Content", "Body Contouring", "GEO"]
+vertical: "med-spas"
 quickAnswer: "Comparison content works when it genuinely compares. A page explaining that CoolSculpting reduces fat while Emsculpt builds muscle, with honest guidance on which suits which patient, will outperform a page arguing that whichever treatment you sell is always better. AI assistants strongly favour balanced comparisons because they need a source that presents both options fairly."
 faqs:
   - q: "What is the actual difference between CoolSculpting and Emsculpt?"

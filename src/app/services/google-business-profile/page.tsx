@@ -193,7 +193,7 @@ export default function GoogleBusinessProfilePage() {
               <p>
                 See how GBP optimization connects with your broader{" "}
                 <Link
-                  href="/services/med-spa-seo/"
+                  href="/industries/med-spas/"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   med spa SEO strategy
@@ -272,7 +272,7 @@ export default function GoogleBusinessProfilePage() {
               <p>
                 Combine strong GBP signals with the{" "}
                 <Link
-                  href="/services/med-spa-seo/"
+                  href="/industries/med-spas/"
                   className="font-semibold text-teal underline underline-offset-2 hover:text-teal-dark"
                 >
                   local SEO and GEO content

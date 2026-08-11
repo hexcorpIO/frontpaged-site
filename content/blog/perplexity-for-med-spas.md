@@ -4,6 +4,7 @@ description: "Perplexity cites its sources on every answer, which makes it the m
 date: "2026-08-12"
 author: "The Frontpaged Team"
 tags: ["AI Search", "Perplexity", "GEO"]
+vertical: "med-spas"
 quickAnswer: "Perplexity runs live web searches and cites every source inline, so getting cited depends on ranking for the underlying query and publishing content that answers it in a directly quotable form. Because citations are visible on every answer, Perplexity is the easiest AI engine to measure: search your target questions, see who is cited, and compare their content structure against yours."
 faqs:
   - q: "How is Perplexity different from ChatGPT for local search?"

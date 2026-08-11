@@ -4,6 +4,7 @@ description: "AI visibility doesn't show up in Google Analytics. Here's a practi
 date: "2026-09-23"
 author: "The Frontpaged Team"
 tags: ["AI Search", "Measurement", "GEO"]
+vertical: "med-spas"
 quickAnswer: "There is no analytics report for AI citations yet, so measurement is a manual audit: fix a list of the questions patients ask, run them across ChatGPT, Perplexity, and Google monthly, and record whether your practice is named and which competitors are. Combine that with referral traffic from AI domains and branded search volume to see whether visibility is translating into demand."
 faqs:
   - q: "Does Google Analytics show traffic from ChatGPT?"

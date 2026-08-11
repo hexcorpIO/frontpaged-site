@@ -4,6 +4,7 @@ description: "A practical competitor audit for med spas: what to look at, what t
 date: "2026-10-21"
 author: "The Frontpaged Team"
 tags: ["Strategy", "SEO", "Competitive Analysis"]
+vertical: "med-spas"
 quickAnswer: "A useful med spa competitor analysis looks at four things: which treatment pages your competitors have that you do not, which questions their content answers that yours ignores, how their Google Business Profile and review profile compare, and which of them AI assistants cite. The output should be a short prioritized list of gaps, not a large document nobody acts on."
 faqs:
   - q: "Who counts as a competitor for a med spa?"

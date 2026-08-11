@@ -13,8 +13,15 @@ ErrorDocument 404 /404.html
   RewriteRule ^(.*)$ https://frontpaged.io/$1 [R=301,L]
 </IfModule>
 
-# Retired location pages (nationwide pivot) -> 301 to the med spa SEO service page.
-RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /services/med-spa-seo/
+# Retired location pages (nationwide pivot) -> 301 straight to the med spa
+# industry hub (not the old service page, so this doesn't chain redirects).
+RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /industries/med-spas/
+
+# Consolidated into the med-spa industry hub. /services/* now describes what we
+# do; /industries/* describes who we do it for. Keeping both would have had two
+# of our own pages competing for "med spa SEO".
+Redirect 301 /services/med-spa-seo/ /industries/med-spas/
+Redirect 301 /services/med-spa-seo /industries/med-spas/
 
 # The generated Open Graph image is emitted without a file extension, so force
 # its MIME type — otherwise social scrapers reject it as application/octet-stream.

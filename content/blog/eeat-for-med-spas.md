@@ -4,6 +4,7 @@ description: "Aesthetic content is held to a higher standard by Google. Here's h
 date: "2026-06-03"
 author: "The Frontpaged Team"
 tags: ["SEO", "E-E-A-T", "Trust"]
+vertical: "med-spas"
 quickAnswer: "E-E-A-T stands for experience, expertise, authoritativeness, and trustworthiness. Because aesthetic treatments affect health, Google applies stricter quality standards to med spa content than to most other industries. Practices demonstrate E-E-A-T by attributing content to named credentialed providers, publishing real clinical detail, citing legitimate sources, and keeping business information accurate and consistent everywhere it appears."
 faqs:
   - q: "Is E-E-A-T an actual ranking factor?"

@@ -4,6 +4,7 @@ description: "Traffic that never books is a cost, not an asset. Here's how med s
 date: "2026-11-04"
 author: "The Frontpaged Team"
 tags: ["Conversion", "Content", "Strategy"]
+vertical: "med-spas"
 quickAnswer: "Blog traffic converts when each post has one obvious, relevant next step matched to where the reader is in their decision. Informational posts should lead to the related service page rather than straight to a booking form, while decision-stage posts on cost, comparisons, and aftercare should offer booking directly. Most med spa blogs fail because every post ends with the same generic call to action."
 faqs:
   - q: "What conversion rate should a med spa blog achieve?"

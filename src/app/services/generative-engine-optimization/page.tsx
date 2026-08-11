@@ -149,7 +149,7 @@ export default function GeoPage() {
               AI-powered search engines — ChatGPT, Perplexity, Google AI Overviews — cite your clinic by name.
               That means more high-intent patients discovering you before they ever open a browser tab —
               nationwide. GEO doesn&rsquo;t replace{" "}
-              <Link href="/services/med-spa-seo/" className="text-teal underline">
+              <Link href="/industries/med-spas/" className="text-teal underline">
                 traditional SEO
               </Link>{" "}
               — it layers on top of it to capture the next wave of how patients search.
@@ -172,7 +172,7 @@ export default function GeoPage() {
                 Traditional SEO is about ranking: you get your med spa to position one on a Google
                 results page and let patients click through. It&rsquo;s still essential — and it&rsquo;s one of
                 the{" "}
-                <Link href="/services/med-spa-seo/" className="text-teal underline">
+                <Link href="/industries/med-spas/" className="text-teal underline">
                   core things we do
                 </Link>
                 .

@@ -4,7 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CalendlyInline from "@/components/CalendlyInline";
 import { CheckIcon, ChatIcon, SearchIcon, TrendingUpIcon } from "@/components/Icons";
-import { site } from "@/lib/site";
+import { site, priceRange } from "@/lib/site";
 
 const PATH = "/contact";
 const canonical = `${site.url}${PATH}`;
@@ -88,7 +88,7 @@ export default function ContactPage() {
         email: site.email,
         telephone: "+1-615-905-1857",
         description: site.description,
-        priceRange: site.priceRange,
+        priceRange,
         sameAs: [site.linkedin, site.instagram],
         areaServed: { "@type": "Country", name: "United States" },
         contactPoint: {

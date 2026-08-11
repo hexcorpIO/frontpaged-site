@@ -11,11 +11,21 @@ import ContactBand from "@/components/ContactBand";
 import SiteFooter from "@/components/SiteFooter";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
+import { getVertical, getPublishedVerticals } from "@/lib/verticals";
+
+// The homepage still shows a single vertical's pricing/FAQ/schema (med spas — the
+// original, deepest-content vertical). Task 7 replaces this section with a
+// range summary across all verticals; until then this keeps Pricing/Faq/JsonLd
+// (which now require a `vertical` prop, since `site.ts` no longer holds a
+// sitewide `tiers`/`faqs`) compiling with the same content they rendered before
+// this refactor. The `getPublishedVerticals()[0]` fallback only matters if
+// "med-spas" is ever unpublished — it keeps this from throwing.
+const homepageVertical = getVertical("med-spas") ?? getPublishedVerticals()[0];
 
 export default function Home() {
   return (
     <>
-      <JsonLd />
+      <JsonLd vertical={homepageVertical} />
       <SiteHeader />
       <main>
         <Hero />
@@ -31,10 +41,10 @@ export default function Home() {
           <ReportMockup />
         </Reveal>
         <Reveal>
-          <Pricing />
+          <Pricing vertical={homepageVertical} />
         </Reveal>
         <Reveal>
-          <Faq />
+          <Faq vertical={homepageVertical} />
         </Reveal>
         <ContactBand />
       </main>

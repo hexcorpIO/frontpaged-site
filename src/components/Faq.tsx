@@ -1,14 +1,17 @@
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
-import { faqs } from "@/lib/site";
+import type { Vertical } from "@/lib/verticals/types";
 
-export default function Faq() {
+// Vertical-specific FAQs (formerly a sitewide `faqs` constant in site.ts, now
+// consistent with the fact that FAQ content lives per-industry in
+// src/lib/verticals/*.ts, same as the FAQPage schema JsonLd builds).
+export default function Faq({ vertical }: { vertical: Vertical }) {
   return (
     <section id="faq" className="border-t border-warm-line bg-white py-20 sm:py-28" aria-labelledby="faq-heading">
       <Container>
         <SectionHeading id="faq-heading" kicker="Questions" title="Frequently asked" />
         <div className="mt-10 max-w-[760px]">
-          {faqs.map((f, i) => (
+          {vertical.faqs.map((f, i) => (
             <details
               key={f.q}
               open={i === 0}

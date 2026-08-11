@@ -1,10 +1,19 @@
-import { site, tiers, enterprise, faqs, founding, auditOffer } from "@/lib/site";
+import { site, priceRange, founding, auditOffer } from "@/lib/site";
+import { foundingPrice } from "@/lib/verticals/pricing";
+import type { Vertical } from "@/lib/verticals/types";
 
 // Structured data for the home page: a ProfessionalService (a LocalBusiness subtype)
 // describing the agency, its nationwide service area, plans, and expertise — plus a WebSite
 // node and an FAQPage. Rendered server-side so Google and AI engines can parse the
 // business, where it operates, what it offers, and the Q&A directly.
-export default function JsonLd() {
+//
+// `vertical` supplies the tiers, enterprise floor, and FAQs shown on the homepage
+// today (med spas). This mirrors the per-industry hub pages, which build the same
+// Offer/FAQPage shape from `vertical.pricing` / `vertical.faqs` so the visible copy
+// and the schema can never disagree.
+export default function JsonLd({ vertical }: { vertical: Vertical }) {
+  const lastTier = vertical.pricing.tiers[vertical.pricing.tiers.length - 1];
+
   const graph = [
     {
       "@type": "ProfessionalService",
@@ -17,10 +26,9 @@ export default function JsonLd() {
       description: site.description,
       logo: `${site.url}/icon.svg`,
       image: `${site.url}/opengraph-image`,
-      priceRange: site.priceRange,
+      priceRange,
       sameAs: [site.linkedin, site.instagram],
-      serviceType:
-        "SEO & Generative Engine Optimization (GEO) content for medical spas",
+      serviceType: vertical.serviceType,
       // Entity-linked rather than plain strings. A bare "Search engine optimization"
       // is a text label an engine has to resolve; a Thing with a Wikipedia sameAs
       // is an unambiguous reference to a known entity in the knowledge graph, which
@@ -62,8 +70,8 @@ export default function JsonLd() {
       makesOffer: [
         // Schema must state the price a buyer actually pays today, so while the
         // founding programme is live these carry the founding rate.
-        ...tiers.map((t) => {
-          const price = founding.enabled ? t.foundingPrice : t.price;
+        ...vertical.pricing.tiers.map((t) => {
+          const price = founding.enabled ? foundingPrice(t.price) : t.price;
           return {
             "@type": "Offer",
             name: `${t.name} plan`,
@@ -91,16 +99,16 @@ export default function JsonLd() {
         },
         {
           "@type": "Offer",
-          name: `${enterprise.name} plan`,
-          description: enterprise.for,
+          name: "Enterprise plan",
+          description: `Multi-location ${vertical.name.toLowerCase()}, groups, and organizations scaling across markets.`,
           priceCurrency: "USD",
           priceSpecification: {
             "@type": "UnitPriceSpecification",
-            minPrice: enterprise.priceFrom,
+            minPrice: vertical.pricing.enterpriseFrom,
             priceCurrency: "USD",
             unitText: "MONTH",
           },
-          category: enterprise.features.join("; "),
+          category: `Everything in ${lastTier.name} — across every location`,
           availability: "https://schema.org/InStock",
         },
       ],
@@ -116,7 +124,7 @@ export default function JsonLd() {
     {
       "@type": "FAQPage",
       "@id": `${site.url}/#faq`,
-      mainEntity: faqs.map((f) => ({
+      mainEntity: vertical.faqs.map((f) => ({
         "@type": "Question",
         name: f.q,
         acceptedAnswer: { "@type": "Answer", text: f.a },

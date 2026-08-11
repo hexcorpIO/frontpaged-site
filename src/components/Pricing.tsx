@@ -1,9 +1,27 @@
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Button from "./Button";
-import { tiers, enterprise, founding, guarantee, auditOffer, usd } from "@/lib/site";
+import { founding, guarantee, auditOffer, usd } from "@/lib/site";
+import { foundingPrice, annualPrice } from "@/lib/verticals/pricing";
+import type { Vertical } from "@/lib/verticals/types";
 
-export default function Pricing() {
+// Sitewide pricing block (cards + guarantee + audit offer + enterprise band) for a
+// single vertical. Reads tiers from `vertical.pricing` rather than a global `tiers`
+// constant so the cards and any Offer schema built from the same vertical can never
+// disagree. Used on the homepage today; the /pricing/ page instead renders a
+// by-industry table (src/app/pricing/page.tsx) since it needs to show all verticals
+// at once.
+export default function Pricing({ vertical }: { vertical: Vertical }) {
+  const tiers = vertical.pricing.tiers;
+  const lastTier = tiers[tiers.length - 1];
+  const enterpriseFeatures = [
+    `Everything in ${lastTier.name} — across every location`,
+    "Per-location service pages & neighborhood targeting",
+    "A dedicated strategist + quarterly growth roadmap",
+    "Consolidated, per-location reporting",
+    "Priority content turnaround",
+  ];
+
   return (
     <section
       id="pricing"
@@ -15,14 +33,14 @@ export default function Pricing() {
           id="pricing-heading"
           kicker="Plans"
           title="Straightforward monthly retainers"
-          sub="Month-to-month — no contract, no lock-in, cancel any time. Most clinics start with the Authority plan."
+          sub="Month-to-month — no contract, no lock-in, cancel any time. Most clients start with the Authority plan."
         />
 
         {/* Founding-client banner. Retires everywhere by flipping `founding.enabled`. */}
         {founding.enabled && (
           <div className="mt-6 flex flex-col gap-2 rounded-2xl border-2 border-teal bg-soft p-6 sm:flex-row sm:items-center sm:gap-6">
             <span className="shrink-0 rounded-full bg-teal px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-              {founding.slots} spots
+              {vertical.foundingSlotsRemaining} spots
             </span>
             <div>
               <p className="font-serif text-[19px] font-semibold text-navy">{founding.headline}</p>
@@ -48,7 +66,7 @@ export default function Pricing() {
               )}
               <h3 className="font-serif text-[22px] font-semibold text-navy">{t.name}</h3>
               <p className="mb-0.5 mt-2 font-serif text-[40px] font-semibold text-navy">
-                {usd(founding.enabled ? t.foundingPrice : t.price)}
+                {usd(founding.enabled ? foundingPrice(t.price) : t.price)}
                 <span className="font-sans text-base font-medium text-warm-grey">/mo</span>
               </p>
               {founding.enabled ? (
@@ -57,7 +75,7 @@ export default function Pricing() {
                 </p>
               ) : (
                 <p className="text-[13.5px] font-medium text-warm-grey">
-                  {usd(t.annualPrice)}/yr if prepaid — 2 months free
+                  {usd(annualPrice(t.price))}/yr if prepaid — 2 months free
                 </p>
               )}
               <p className="mb-4 mt-2 min-h-10 text-[14px] text-warm-grey">{t.for}</p>
@@ -80,7 +98,7 @@ export default function Pricing() {
               </Button>
               {founding.enabled && (
                 <p className="mt-3 text-center text-[13px] text-warm-grey">
-                  or {usd(t.annualPrice)}/yr prepaid — 2 months free
+                  or {usd(annualPrice(t.price))}/yr prepaid — 2 months free
                 </p>
               )}
             </article>
@@ -126,24 +144,27 @@ export default function Pricing() {
         <div className="mt-[22px] flex flex-col gap-6 rounded-2xl bg-navy p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
           <div className="lg:max-w-md">
             <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-[#7fd0d0]">
-              {enterprise.name}
+              Enterprise
             </span>
             <p className="mt-2 font-serif text-[34px] font-semibold leading-none">
               Custom
               <span className="ml-2 align-middle font-sans text-base font-medium text-[#9fb6cc]">
-                from {usd(enterprise.priceFrom)}/mo
+                from {usd(vertical.pricing.enterpriseFrom)}/mo
               </span>
             </p>
-            <p className="mt-3 text-[15px] leading-[1.6] text-[#cdd6e2]">{enterprise.for}</p>
+            <p className="mt-3 text-[15px] leading-[1.6] text-[#cdd6e2]">
+              Multi-location {vertical.name.toLowerCase()}, groups, and organizations scaling
+              across markets.
+            </p>
             <a
               href="/contact/"
               className="mt-6 inline-flex items-center justify-center rounded-full bg-teal px-7 py-3.5 font-semibold text-white transition hover:bg-white hover:text-navy"
             >
-              {enterprise.cta}
+              Book a strategy call
             </a>
           </div>
           <ul className="grid gap-2.5 sm:grid-cols-2 lg:max-w-md">
-            {enterprise.features.map((f) => (
+            {enterpriseFeatures.map((f) => (
               <li
                 key={f}
                 className="relative pl-6 text-[14.5px] leading-[1.5] text-[#e6edf5] before:absolute before:left-0 before:font-bold before:text-teal before:content-['✓']"

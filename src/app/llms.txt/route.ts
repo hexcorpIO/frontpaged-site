@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/blog";
 import { glossary } from "@/lib/glossary";
-import { site, tiers, auditOffer, founding, guarantee } from "@/lib/site";
+import { site, priceRange, auditOffer, founding, guarantee } from "@/lib/site";
+import { getPublishedVerticals } from "@/lib/verticals";
 
 // Rendered to a static /llms.txt at build time.
 export const dynamic = "force-static";
@@ -12,23 +13,24 @@ export const dynamic = "force-static";
 // selling AI visibility, not having one would be conspicuous.
 export function GET() {
   const posts = getAllPosts();
+  const industries = getPublishedVerticals();
 
   const body = `# ${site.name}
 
 > ${site.description}
 
 ${site.name} (${site.domain}) is an SEO and Generative Engine Optimization (GEO)
-agency working exclusively with medical spas and aesthetic practices across the
-United States. Fully remote. One practice per market.
+agency working with high-ticket local businesses across ${industries.length} industries
+in the United States. Fully remote. One client per market per industry.
 
 ## Key facts
 
 - Services: SEO, Generative Engine Optimization (GEO), Google Business Profile optimization
-- Industry served: medical spas / aesthetic practices
+- Industries served: ${industries.map((v) => v.name).join(", ")}
 - Area served: United States (nationwide, remote)
-- Plans: ${tiers.map((t) => `${t.name} $${t.price.toLocaleString("en-US")}/mo`).join(", ")}; Enterprise custom from $8,000/mo
+- Plans: ${priceRange} depending on industry and market competition — see /pricing/ for by-industry rates; Enterprise custom, sales-led
 - Entry product: ${auditOffer.name}, $${auditOffer.price} one-time, credited toward month one
-- Terms: month to month, no contract${founding.enabled ? `\n- Current offer: founding-client rate, 25% off for the first ${founding.slots} clinics, locked 12 months` : ""}
+- Terms: month to month, no contract${founding.enabled ? `\n- Current offer: founding-client rate, 25% off for the first ${founding.slotsPerVertical} clients per industry, locked 12 months` : ""}
 - Guarantee: ${guarantee}
 - Contact: ${site.email} / ${site.phone}
 

@@ -1214,7 +1214,15 @@ records the Offer schema reads."
 
 **Files:**
 - Create: `src/components/IndustryGrid.tsx`
-- Modify: `src/app/page.tsx`, `src/components/Problem.tsx`, `src/components/StatsBand.tsx`, `src/components/SiteHeader.tsx`, `src/components/SiteFooter.tsx`
+- Modify: `src/app/page.tsx`, `src/components/Problem.tsx`, `src/components/StatsBand.tsx`, `src/components/SiteHeader.tsx`, `src/components/SiteFooter.tsx`, `src/components/JsonLd.tsx`
+- Replace: the inline card grid Task 5 put in `src/app/industries/page.tsx` (a bridge, since `IndustryGrid` did not exist yet)
+
+**`JsonLd.tsx` is on this list deliberately.** Task 6 gave it a required `vertical`
+prop and the homepage currently passes `med-spas`, so the homepage schema
+describes med-spa tiers and med-spa FAQs. The moment this task makes the visible
+homepage industry-neutral, the schema and the page disagree — the same class of
+defect Task 6 existed to fix. The homepage's `makesOffer`, `serviceType`, and
+`FAQPage` must go neutral in the same commit as the visible copy.
 
 **Interfaces:**
 - Consumes: `getPublishedVerticals()`.
@@ -1262,7 +1270,19 @@ rather than softening them — this site sells E-E-A-T."
 ## Task 8: Schema, llms.txt, and sitemap
 
 **Files:**
-- Modify: `src/components/JsonLd.tsx`, `src/app/llms.txt/route.ts`, `src/app/sitemap.ts`
+- Modify: `src/components/JsonLd.tsx`, `src/app/llms.txt/route.ts`, `src/app/sitemap.ts`, `src/app/opengraph-image.tsx`, `src/app/layout.tsx`
+
+**`opengraph-image.tsx` and `layout.tsx` still bake in the old med-spa tagline**
+(OG image pixels and its alt text), surfaced by Task 7. They must carry the
+master tagline "Be the first name AI recommends." instead.
+
+**The `#business` → `#org` migration is this task's job, and it spans more than
+`JsonLd.tsx`.** Task 5's hub route already references `provider: {"@id": ".../#org"}`,
+and Task 7 deliberately left the rename alone because changing it from `JsonLd.tsx`
+in isolation would declare the same `@id` with two different `@type`s across the
+other pages that redeclare it. Rename the node and update **every** page that
+declares or references it in one commit — grep for both `#business` and `#org`
+before and after, and confirm the counts match.
 
 **Interfaces:**
 - Consumes: `getPublishedVerticals()`, `priceRange`, `foundingPrice`.
@@ -1499,7 +1519,14 @@ force-pushes to the deploy branch, so an unverified build ships live."
 ## Task 12: Remaining page rewrites and production diff
 
 **Files:**
-- Modify: `src/app/about/page.tsx`, `src/app/contact/page.tsx`, `src/app/faq/page.tsx`, `src/app/glossary/page.tsx`, `src/app/services/generative-engine-optimization/page.tsx`, `src/app/services/google-business-profile/page.tsx`, `src/lib/glossary.ts`, `src/lib/faqHub.ts`
+- Modify: `src/app/about/page.tsx`, `src/app/contact/page.tsx`, `src/app/faq/page.tsx`, `src/app/glossary/page.tsx`, `src/app/services/generative-engine-optimization/page.tsx`, `src/app/services/google-business-profile/page.tsx`, `src/lib/glossary.ts`, `src/lib/faqHub.ts`, `src/app/not-found.tsx`
+
+**Hardcoded prices to remove.** Task 6's review found price literals surviving in
+`src/app/not-found.tsx:41` and `src/app/about/page.tsx:346`, both violating the
+"never hardcode a price" constraint. They predate this branch but must not
+outlive it — replace them with values derived from the vertical records, or
+reword so no number is needed. (A third, in `src/app/services/med-spa-seo/page.tsx`,
+disappears when Task 9 deletes that file.)
 
 **Interfaces:**
 - Consumes: `getPublishedVerticals()`.
@@ -1513,9 +1540,40 @@ Remove med-spa-specific framing. These describe the mechanism and now serve all 
 
 `faqHub.ts` gains per-vertical sets; `/faq/` becomes an index routing to them, each emitting its own `FAQPage`. `glossary.ts` splits into shared-neutral terms plus per-vertical terms, each vertical emitting its own `DefinedTermSet`.
 
-- [ ] **Step 3: Rewrite about and contact**
+- [ ] **Step 3: Rewrite about and contact, and set the founder name**
 
-Neutral positioning. If `founder.name` is still empty (spec §13.1), attribution stays organization-level and nothing renders half-finished — the existing fallback already handles this.
+Neutral positioning.
+
+**The owner supplied `founder.name` on 2026-08-11: `"Benton"`. Bio and credentials
+are still to come.** Set it in `src/lib/site.ts`, leaving `bio`, `credentials`,
+and `linkedin` empty.
+
+That combination breaks the current rendering, so fix the gate at the same time:
+`src/app/about/page.tsx:83` enables the whole founder section on
+`founder.name.length > 0`, then renders `<p>{founder.bio}</p>` unconditionally at
+`:305`. With a name and no bio, the page emits a founder block containing an empty
+paragraph, and the `Person` node carries `description: ""`.
+
+Required behaviour:
+
+- Section renders when `name` is set.
+- The bio paragraph renders **only** when `bio` is non-empty.
+- `Person.description` is **omitted** from the schema when `bio` is empty — the
+  same conditional-spread pattern already used for `sameAs` at `:127`.
+- Credentials list already guards on `.length > 0`; leave it.
+
+**Blog bylines are separate and must change too.** Posts carry
+`author: "The Frontpaged Team"` in frontmatter, and `BlogPosting.author` is an
+`Organization`. Named authorship was the largest remaining E-E-A-T gap in the
+production review, and it weighs heaviest in exactly the YMYL verticals this
+rewrite enters. Change the frontmatter `author` on all 28 posts to `"Benton"` and
+make `BlogPosting.author` a `Person` referencing the same `#founder` node the
+About page declares. This is a frontmatter change, not a prose change — the
+global constraint permits it.
+
+Flag for the owner rather than inventing: a single first name is a weaker
+authorship signal than a full name, and `Person` nodes without a surname or a
+`sameAs` profile link carry little entity weight. Do not invent a surname.
 
 - [ ] **Step 4: Decide the TagEasy banner**
 

@@ -1,0 +1,31 @@
+A plastic surgery practice is competing for two different readers at once: someone who has already decided on a procedure and is now vetting who performs it, and an AI assistant that has been asked to name a qualified surgeon. Both readers are looking for the same underlying signal, and it isn't price or a slick before-and-after gallery. It's proof of credential.
+
+## The board-certification signal
+
+Ask ChatGPT, Perplexity, or Google's AI Overviews "who's a good plastic surgeon for [procedure] in [city]," and the answer tends to lean hardest on one fact above all others: whether the surgeon holds certification from the [American Board of Plastic Surgery](https://www.abplasticsurgery.org/). That distinction matters because "board-certified" alone is a weaker claim than it sounds — a physician can be board-certified in an unrelated specialty and still use the phrase truthfully, which is precisely the ambiguity patients are trying to resolve when they search. A practice's own site is the one place that can remove the ambiguity outright: name the board, link the credential, and repeat it on every procedure page rather than burying it once on an About page. AI systems synthesizing an answer from scattered sources reward the site that states its own credential plainly over the one that assumes the reader already knows.
+
+The [American Society of Plastic Surgeons](https://www.plasticsurgery.org/) reinforces the same signal from the other direction — its own directory and public patient-safety guidance both point toward ABPS certification as the baseline qualification question a prospective patient should ask. A practice's content that echoes that standard, in its own words and tied to its own surgeons, is aligning with the exact framework a careful reader — human or AI — is already using to evaluate it.
+
+## What RealSelf tells AI engines about you
+
+[RealSelf](https://www.realself.com/) occupies a role in this category that a general review platform can't replicate: treatment-tagged patient reviews, "Worth It" percentages scoped to a specific procedure, and a public Q&A format where surgeons answer real patient questions under their own name. That structure means a surgeon's RealSelf presence functions less like a review page and more like a procedure-level credibility record — an AI system asked about rhinoplasty results can pull a "Worth It" rating scoped to rhinoplasty specifically, not to the practice as an undifferentiated whole. A surgeon with strong reviews for breast augmentation but a thin or absent record for the procedure a patient is actually researching doesn't get the credit a single aggregate star rating would imply.
+
+That granularity cuts the other way too. A practice that never claims its RealSelf profile, never answers a patient question there, and never links to it from its own procedure pages is leaving the single most procedure-specific trust signal in the category entirely unmanaged — and ceding it to whichever competitor did claim theirs.
+
+## Procedure pages that survive a second opinion
+
+Patients researching an elective surgical procedure rarely book off the first page they read. They read several, compare surgeons, often bring one printed page to a consultation, and frequently seek a second opinion before committing. A procedure page written for that pattern has to hold up under a slower, more skeptical read than a med spa treatment page does: what the procedure actually involves, realistic recovery timeline, who is and isn't a good candidate, and the risks discussed in plain language rather than buried in a disclaimer. A page that reads like a sales script collapses the moment it's the second or third one a patient opens that day.
+
+This is also where reconstructive and cosmetic content have to diverge. A reconstructive patient is usually researching insurance coverage, medical necessity, and a longer recovery arc; a cosmetic patient is researching aesthetics, cost, and scheduling. Folding both into one generic "breast procedures" page serves neither reader well and gives an AI system nothing specific enough to cite for either intent.
+
+## Consultation-stage content
+
+The gap between "researching a procedure" and "booking a consultation" is where most practice websites go quiet, and it's costing them the highest-intent visitor on the site. A patient who has read the procedure page and is still on the fence is usually stuck on a small number of concrete questions: what the consultation itself involves, what to bring, whether financing is discussed, and how soon after consultation a surgery date can be scheduled. Content built specifically for that stage — distinct from the procedure page above it — closes a gap that a generic "Contact Us" page can't.
+
+Before-and-after content belongs here too, handled with more care than in most medical categories. Every image runs under documented, practice-provided consent, and the surrounding text describes the specific technique and timeline shown rather than promising a comparable outcome to the next reader — anatomy, technique, and healing vary enough between patients that a flat outcome claim is both inaccurate and, under FTC truth-in-advertising standards for health marketing, a liability.
+
+## What a month looks like
+
+A typical month splits attention between procedure pages, credential content, and the consultation-stage gap above. New or refreshed procedure pages target the specific operations driving the most consult requests. Credential and surgeon-authority content — board certification, training, before-and-after context — gets built out in parallel rather than left as a one-time About-page project, since it's the content AI engines lean on most heavily in this category. GEO-structured articles answer the comparison and candidacy questions patients ask before they book a consultation, and Google Business Profile activity keeps the practice's local presence current between review cycles.
+
+Pages don't sit untouched once published. A procedure page written against last year's search patterns, with a surgeon's credentials described in outdated language, is a small but compounding loss — which is why refreshes are a scheduled part of the plan rather than something revisited only when a competitor's page starts outranking it.

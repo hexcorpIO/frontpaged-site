@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Container from "@/components/Container";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { formatDate } from "@/lib/formatDate";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -23,21 +23,29 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = `/blog/${post.slug}`;
+  // `metaTitle` falls back to the H1 title (see PostMeta in src/lib/blog.ts) —
+  // the two are allowed to differ, since a title tag and an H1 don't have to
+  // match. `title.absolute` opts out of the root layout's "%s · Frontpaged"
+  // template: the suffix costs 12 chars every article can't spare, and a post
+  // page doesn't need the brand repeated in the tab title the way a top-level
+  // site page does.
+  const metaTitle = post.metaTitle ?? post.title;
   return {
-    title: post.title,
+    title: { absolute: metaTitle },
     description: post.description,
     alternates: { canonical: url },
     openGraph: {
       type: "article",
       url,
-      title: post.title,
+      title: metaTitle,
       description: post.description,
       publishedTime: post.date,
       authors: [post.author],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: metaTitle,
       description: post.description,
     },
   };

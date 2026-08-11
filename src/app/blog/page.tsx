@@ -3,10 +3,10 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import { getAllPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/formatDate";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Blog — SEO & AI-search visibility for medical spas",
+  title: "Blog — Med Spa SEO & AI-Search Visibility",
   description:
     "Practical guides on med spa SEO, Generative Engine Optimization (GEO), and getting your clinic recommended by Google and AI search.",
   alternates: { canonical: "/blog" },
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: "Frontpaged Blog — SEO & AI-search visibility for medical spas",
     description:
       "Practical guides on med spa SEO, GEO, and getting cited by Google and AI search.",
+    images: [ogImage],
   },
 };
 

@@ -1,5 +1,6 @@
 ---
 title: "Med Spa SEO in 2026: The Complete Guide to Getting Found on Google"
+metaTitle: "Med Spa SEO in 2026: The Complete Guide"
 description: "The practical med spa SEO playbook for 2026 — local rankings, Google Business Profile, AI search, and more. Built for med spas nationwide."
 date: "2026-01-19"
 author: "The Frontpaged Team"

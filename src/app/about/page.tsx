@@ -5,7 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
 import { SearchIcon, SparkleIcon, CheckIcon, FileIcon } from "@/components/Icons";
-import { site, founder, guarantee } from "@/lib/site";
+import { site, founder, guarantee, ogImage } from "@/lib/site";
 
 const PATH = "/about";
 const canonical = `${site.url}${PATH}`;
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   // No "Frontpaged" here — the layout template appends "· Frontpaged".
   title: "About Us — SEO & AI Search for Medical Spas",
   description:
-    "Frontpaged is an SEO and Generative Engine Optimization agency working exclusively with medical spas across the US. Here's how we work and what we won't do.",
+    "Frontpaged is an SEO and Generative Engine Optimization agency working exclusively with medical spas across the US. How we work, and what we won't do.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title: "About Frontpaged · Frontpaged",
     description:
       "An SEO and GEO agency working only with medical spas. Our method, our principles, and the things we refuse to do.",
+    images: [ogImage],
   },
 };
 

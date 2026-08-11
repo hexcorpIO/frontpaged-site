@@ -4,7 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
 import { glossary, glossaryCategories } from "@/lib/glossary";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 const PATH = "/glossary";
 const canonical = `${site.url}${PATH}`;
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     title: "SEO & AI Search Glossary for Med Spas · Frontpaged",
     description:
       "Every SEO, GEO, and AI-search term a med spa owner needs, defined in one or two sentences.",
+    images: [ogImage],
   },
 };
 

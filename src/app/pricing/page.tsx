@@ -4,7 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
-import { site, priceRange, founding, auditOffer, guarantee, usd } from "@/lib/site";
+import { site, priceRange, founding, auditOffer, guarantee, usd, ogImage } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { foundingPrice, bandRange } from "@/lib/verticals/pricing";
 import { getIndustryBody } from "@/lib/industries";
@@ -26,7 +26,7 @@ const ranges = industries.map((v) => bandRange(v.pricing));
 const overallMin = Math.min(...ranges.map((r) => r.min));
 
 export const metadata: Metadata = {
-  title: "SEO & GEO Pricing by Industry — What It Costs in 2026",
+  title: "SEO & GEO Pricing by Industry",
   description: founding.enabled
     ? `SEO & GEO pricing runs ${priceRange} depending on industry and market competition. Compare founding-client rates across all ${industries.length} industries we serve.`
     : `SEO & GEO pricing runs ${priceRange} depending on industry and market competition. Compare plans by industry and start with a $${auditOffer.price} audit credited toward month one.`,
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     description: founding.enabled
       ? `SEO & GEO plans range ${priceRange}, with founding-client rates from ${usd(overallMin)}/mo for our first ${founding.slotsPerVertical} clients per industry. No contract.`
       : `SEO & GEO plans range ${priceRange}, plus custom enterprise pricing for multi-location groups. No contract.`,
+    images: [ogImage],
   },
 };
 

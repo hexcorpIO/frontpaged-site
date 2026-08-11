@@ -1,5 +1,6 @@
 ---
 title: "Google Business Profile Optimization for Med Spas: A Step-by-Step Checklist"
+metaTitle: "Google Business Profile Optimization for Med Spas"
 description: "Google Business Profile is your med spa's most powerful local SEO asset. Follow this step-by-step checklist to rank higher and book more appointments."
 date: "2025-05-08"
 author: "The Frontpaged Team"

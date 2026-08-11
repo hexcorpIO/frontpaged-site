@@ -4,7 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CalendlyInline from "@/components/CalendlyInline";
 import { CheckIcon, ChatIcon, SearchIcon, TrendingUpIcon } from "@/components/Icons";
-import { site, priceRange } from "@/lib/site";
+import { site, priceRange, ogImage } from "@/lib/site";
 
 const PATH = "/contact";
 const canonical = `${site.url}${PATH}`;
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title: "Contact Frontpaged · Frontpaged",
     description:
       "Book a free 30-minute med spa visibility check, or reach us by email or phone. We work with medical spas nationwide.",
+    images: [ogImage],
   },
 };
 

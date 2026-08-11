@@ -1,6 +1,7 @@
 ---
 title: "How to Measure Whether AI Search Is Recommending Your Med Spa"
-description: "AI visibility doesn't show up in Google Analytics. Here's a practical way to measure whether ChatGPT, Perplexity, and AI Overviews are recommending your practice."
+metaTitle: "How to Measure Whether AI Search Recommends Your Med Spa"
+description: "AI visibility doesn't show up in Google Analytics. Here's a practical way to measure whether ChatGPT, Perplexity, and AI Overviews recommend you."
 date: "2026-09-23"
 author: "The Frontpaged Team"
 tags: ["AI Search", "Measurement", "GEO"]

@@ -6,7 +6,7 @@ import CtaPanel from "@/components/CtaPanel";
 import IndustryGrid from "@/components/IndustryGrid";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getIndustryBody } from "@/lib/industries";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 const PATH = "/industries";
 const canonical = `${site.url}${PATH}`;
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title: "Industries We Serve · Frontpaged",
     description:
       "SEO and Generative Engine Optimization content built for the way each industry is actually searched — see pricing and FAQs by industry.",
+    images: [ogImage],
   },
 };
 

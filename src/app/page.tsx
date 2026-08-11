@@ -13,7 +13,7 @@ import ContactBand from "@/components/ContactBand";
 import SiteFooter from "@/components/SiteFooter";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
-import { priceRange, founding, auditOffer, usd } from "@/lib/site";
+import { priceRange, founding, auditOffer, usd, ogImage } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
 import type { Faq as FaqItem } from "@/lib/verticals/types";
 
@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     url: "/",
     title,
     description,
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",

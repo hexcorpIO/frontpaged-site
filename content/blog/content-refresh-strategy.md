@@ -1,5 +1,6 @@
 ---
 title: "Refreshing Old Content: The Highest-Return SEO Work Most Med Spas Skip"
+metaTitle: "Refreshing Old Content: The Highest-Return SEO Work"
 description: "Updating an existing post usually beats writing a new one. Here's how to find which pages to refresh, what to change, and how to measure whether it worked."
 date: "2026-12-16"
 author: "The Frontpaged Team"

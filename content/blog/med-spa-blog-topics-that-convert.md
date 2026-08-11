@@ -1,6 +1,6 @@
 ---
 title: "12 Med Spa Blog Topics That Actually Book Consultations"
-description: "The right blog topics turn browsers into booked consultations. Here are 12 content ideas for med spas nationwide that capture buyer intent and drive real revenue."
+description: "The right blog topics turn browsers into booked consultations. Here are 12 content ideas for med spas that capture buyer intent and drive revenue."
 date: "2025-03-19"
 author: "The Frontpaged Team"
 tags: ["Content", "Content Marketing", "Ideas"]

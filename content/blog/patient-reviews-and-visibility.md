@@ -1,6 +1,7 @@
 ---
 title: "Reviews, Reputation & Rankings: How Patient Reviews Drive Visibility"
-description: "Patient reviews aren't just social proof — they directly shape your med spa's Google rankings and your odds of being recommended by AI search tools. Here's how."
+metaTitle: "Patient Reviews: How They Drive Med Spa Visibility"
+description: "Patient reviews aren't just social proof — they shape your med spa's Google rankings and your odds of being recommended by AI search tools."
 date: "2025-02-04"
 author: "The Frontpaged Team"
 tags: ["Reviews", "Local SEO", "Reputation"]

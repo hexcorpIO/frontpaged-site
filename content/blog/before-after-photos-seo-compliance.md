@@ -1,6 +1,6 @@
 ---
 title: "Before-and-After Photos: SEO Value Without Compliance Risk"
-description: "Before-and-after galleries convert better than any other page type. Here's how to publish them so they help your search visibility and stay inside the rules."
+description: "Before-and-after galleries convert better than any other page type. Here's how to publish them so they boost visibility and stay compliant."
 date: "2026-07-15"
 author: "The Frontpaged Team"
 tags: ["Content", "Compliance", "Conversion"]

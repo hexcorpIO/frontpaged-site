@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 import { getVertical, getPublishedSlugs } from "@/lib/verticals";
 import { foundingPrice } from "@/lib/verticals/pricing";
 import { getIndustryBody } from "@/lib/industries";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -43,6 +43,7 @@ export async function generateMetadata({
       url,
       title: v.metaTitle,
       description: v.metaDescription,
+      images: [ogImage],
     },
     twitter: { card: "summary_large_image", title: v.metaTitle, description: v.metaDescription },
   };

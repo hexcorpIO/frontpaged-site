@@ -1,5 +1,6 @@
 ---
 title: "Why Your Med Spa Isn't Showing Up in ChatGPT (and How to Fix It)"
+metaTitle: "Why Your Med Spa Isn't Showing Up in ChatGPT"
 description: "If ChatGPT skips your med spa when recommending Botox or fillers near you, here's exactly why it happens and what to do about it."
 date: "2026-04-22"
 author: "The Frontpaged Team"

@@ -1,6 +1,7 @@
 ---
 title: "Keyword Research for Med Spas: Finding Terms Patients Actually Book On"
-description: "How to find med spa keywords worth targeting: sorting by intent rather than volume, sizing local demand honestly, and prioritizing terms that lead to bookings."
+metaTitle: "Keyword Research for Med Spas: Terms Patients Book On"
+description: "How to find med spa keywords worth targeting: sorting by intent over volume, sizing local demand honestly, and prioritizing terms that book."
 date: "2026-05-20"
 author: "The Frontpaged Team"
 tags: ["SEO", "Keyword Research", "Strategy"]

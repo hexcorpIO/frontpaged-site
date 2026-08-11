@@ -1,5 +1,6 @@
 ---
 title: "Med Spa Website Speed: Core Web Vitals That Cost You Bookings"
+metaTitle: "Med Spa Website Speed: Core Web Vitals That Cost Bookings"
 description: "Aesthetic websites are image-heavy and usually slow. Here's what Core Web Vitals measure, why med spa sites fail them, and what to fix first."
 date: "2026-08-26"
 author: "The Frontpaged Team"

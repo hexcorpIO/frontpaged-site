@@ -1,6 +1,6 @@
 ---
 title: "How AI Search Decides Which Med Spas to Recommend"
-description: "Learn the exact signals AI assistants use to pick which med spas to name — and what you can do right now to show up in ChatGPT, Perplexity, and Google AI Overviews."
+description: "Learn the exact signals AI assistants use to pick which med spas to name, and what to do now to show up in ChatGPT, Perplexity, and Google AI."
 date: "2025-11-12"
 author: "The Frontpaged Team"
 tags: ["AI Search", "GEO", "Strategy"]

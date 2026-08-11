@@ -5,15 +5,15 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
 import { faqHub, allHubFaqs } from "@/lib/faqHub";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 const PATH = "/faq";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Med Spa SEO & AI Search — Frequently Asked Questions",
+  title: "Med Spa SEO & AI Search FAQ",
   description:
-    "Straight answers on med spa SEO and AI-search visibility: how AI assistants pick clinics, realistic timelines, what's included, and how the work actually runs.",
+    "Straight answers on med spa SEO and AI-search visibility: how AI assistants pick clinics, realistic timelines, and how the work actually runs.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     title: "Med Spa SEO & AI Search FAQ · Frontpaged",
     description:
       "How AI assistants choose which med spas to recommend, what results look like, and how the work runs — answered plainly.",
+    images: [ogImage],
   },
 };
 

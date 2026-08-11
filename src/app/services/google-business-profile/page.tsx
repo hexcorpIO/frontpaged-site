@@ -13,15 +13,15 @@ import {
   StarIcon,
   CheckIcon,
 } from "@/components/Icons";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 const PATH = "/services/google-business-profile";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Google Business Profile Optimization for Med Spas",
+  title: "Google Business Profile Optimization: Med Spas",
   description:
-    "Google Business Profile optimization for med spas nationwide. Win the local map pack, get found before competitors, and turn nearby searches into booked consultations.",
+    "Google Business Profile optimization for med spas nationwide. Win the local map pack and turn nearby searches into booked consultations.",
   alternates: { canonical: PATH },
   openGraph: {
     type: "website",
@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     title: "Google Business Profile Optimization for Med Spas · Frontpaged",
     description:
       "Win the local map pack with expert Google Business Profile optimization for med spas. More visibility, more bookings.",
+    images: [ogImage],
   },
 };
 

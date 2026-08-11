@@ -1,6 +1,6 @@
 ---
 title: "Turning Blog Traffic Into Booked Consultations"
-description: "Traffic that never books is a cost, not an asset. Here's how med spas convert blog readers into consultations without turning every post into a sales pitch."
+description: "Traffic that never books is a cost, not an asset. Here's how med spas convert blog readers into consultations without a hard sales pitch."
 date: "2026-11-04"
 author: "The Frontpaged Team"
 tags: ["Conversion", "Content", "Strategy"]

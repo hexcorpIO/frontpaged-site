@@ -1,6 +1,6 @@
 ---
 title: "Getting Your Med Spa Into Google AI Overviews"
-description: "AI Overviews now sit above traditional results for many aesthetic searches. Here's what gets a med spa cited in them, and how to structure content to qualify."
+description: "AI Overviews now sit above traditional results for many aesthetic searches. Here's what gets a med spa cited in them and how to qualify."
 date: "2026-07-01"
 author: "The Frontpaged Team"
 tags: ["AI Search", "Google", "GEO"]

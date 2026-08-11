@@ -88,3 +88,24 @@ export const founder = {
 } as const;
 
 export const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
+
+// Shared Open Graph image, single source of truth for every page's openGraph.images.
+//
+// Why every page needs this explicitly: Next.js only auto-attaches a route
+// segment's file-convention opengraph-image (src/app/opengraph-image.tsx) when
+// that segment's own `metadata` export does NOT declare its own `openGraph` key.
+// Metadata is merged shallowly per segment (see the Next.js docs on metadata
+// merging) — a page.tsx that sets `openGraph` for its own title/description
+// wholesale replaces the parent's resolved openGraph object, images included.
+// The homepage only gets the auto image "for free" because page.tsx and
+// opengraph-image.tsx are literally colocated in the same app/ segment; every
+// other route loses it the moment it sets its own openGraph object. Pointing
+// every page's openGraph.images at this one constant (rather than 12 separate,
+// possibly-drifting references) fixes that systematically. Twitter cards
+// inherit the same image automatically when a page doesn't set twitter.images.
+export const ogImage = {
+  url: `${site.url}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: "Frontpaged — Be the first name AI recommends",
+} as const;

@@ -13,6 +13,13 @@ export type Faq = { q: string; a: string };
 export type PostMeta = {
   slug: string;
   title: string;
+  /**
+   * Optional `<title>`-tag override. The H1 always renders `title` — this only
+   * changes what search engines and social shares show, for posts whose
+   * headline reads well as an H1 but runs past the ~60-char SERP title limit.
+   * Falls back to `title` when absent, so existing posts are unaffected.
+   */
+  metaTitle?: string;
   description: string;
   date: string; // ISO yyyy-mm-dd
   author: string;
@@ -84,6 +91,7 @@ function parsePost(slug: string): Post {
   return {
     slug,
     title: String(data.title ?? ""),
+    metaTitle: data.metaTitle ? String(data.metaTitle) : undefined,
     description: String(data.description ?? ""),
     date: String(data.date ?? ""),
     author: String(data.author ?? "The Frontpaged Team"),

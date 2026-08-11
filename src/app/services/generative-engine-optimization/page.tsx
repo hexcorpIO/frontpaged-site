@@ -7,13 +7,13 @@ import CtaPanel from "@/components/CtaPanel";
 import ServiceHero from "@/components/ServiceHero";
 import { GeoAnswerMock } from "@/components/ServiceVisuals";
 import { FileIcon, CodeIcon, ChatIcon, SlidersIcon } from "@/components/Icons";
-import { site } from "@/lib/site";
+import { site, ogImage } from "@/lib/site";
 
 const PATH = "/services/generative-engine-optimization";
 const canonical = `${site.url}${PATH}`;
 
 export const metadata: Metadata = {
-  title: "Generative Engine Optimization (GEO) for Med Spas",
+  title: "Generative Engine Optimization (GEO): Med Spas",
   description:
     "Get your med spa cited by ChatGPT, Perplexity, and Google AI Overviews. Nationwide generative engine optimization built for medical spas.",
   alternates: { canonical: PATH },
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Generative Engine Optimization (GEO) for Med Spas · Frontpaged",
     description:
       "Get your med spa recommended by AI search — ChatGPT, Perplexity, and Google AI Overviews. Done-for-you GEO content, nationwide.",
+    images: [ogImage],
   },
 };
 

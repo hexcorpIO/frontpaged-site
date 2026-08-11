@@ -1,6 +1,6 @@
 ---
 title: "FAQ Schema for Med Spas: Get Your Answers Into Google and AI"
-description: "FAQ schema helps med spas win rich results and AI citations. Learn which questions to mark up, how to implement FAQPage structured data, and common pitfalls."
+description: "FAQ schema helps med spas win rich results and AI citations. Learn which questions to mark up and how to implement FAQPage structured data."
 date: "2025-08-14"
 author: "The Frontpaged Team"
 tags: ["Technical SEO", "Schema", "GEO"]

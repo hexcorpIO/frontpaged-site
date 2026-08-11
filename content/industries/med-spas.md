@@ -18,7 +18,7 @@ This is the part that differs most by category, and it's where generic SEO advic
 
 Review signals here aren't a soft nice-to-have. In its 2026 Local Consumer Review Survey, [BrightLocal](https://www.brightlocal.com/research/local-consumer-review-survey/) found that 97% of consumers read reviews for local businesses, and that 31% will now only use a business rated 4.5 stars or higher — up from 17% the year before. For a purchase as personal as an aesthetic procedure, that bar is likely higher, not lower.
 
-For content itself, [Google's own documentation on AI features](https://developers.google.com/search/docs/appearance/ai-features) is candid that there's no separate optimization track: a page has to be indexed and eligible to appear in regular Search results with a snippet before it can be surfacely cited in an AI-generated answer. There's no shortcut around ordinary crawlability, structured data, and page quality — GEO for a med spa is SEO done thoroughly, aimed at the sources this category specifically trusts.
+For content itself, [Google's own documentation on AI features](https://developers.google.com/search/docs/appearance/ai-features) is candid that there's no separate optimization track: a page has to be indexed and eligible to appear in regular Search results with a snippet before it can be cited in an AI-generated answer. There's no shortcut around ordinary crawlability, structured data, and page quality — GEO for a med spa is SEO done thoroughly, aimed at the sources this category specifically trusts.
 
 ## Why treatment pages beat blog posts for booking
 

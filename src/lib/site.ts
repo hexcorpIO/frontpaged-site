@@ -19,6 +19,16 @@ export const site = {
   linkedin: "https://www.linkedin.com/company/frontpaged-io/",
   instagram: "https://www.instagram.com/frontpaged_io/",
   calendly: "https://calendly.com/benton-frontpaged/30min",
+  // Third-party form endpoint. A static export has no server, so the browser POSTs
+  // straight to the provider and they email us the submission — no JavaScript and
+  // no backend involved.
+  //
+  // TO ACTIVATE: create a form at formspree.io (or basin/splitforms — the markup is
+  // identical) and paste its endpoint URL here. Until this is filled in, the form
+  // renders as a mailto fallback rather than a broken POST, so it is safe to deploy
+  // empty. Configure the provider to redirect to https://frontpaged.io/contact/thank-you/
+  // on success so the visitor stays on our site and the conversion is trackable.
+  formEndpoint: "",
   areaServed: "the United States",
   description:
     "Frontpaged gets high-ticket local businesses found on Google and cited by " +

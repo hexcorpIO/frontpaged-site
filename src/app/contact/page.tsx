@@ -4,6 +4,7 @@ import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CalendlyInline from "@/components/CalendlyInline";
+import ContactForm from "@/components/ContactForm";
 import { CheckIcon, ChatIcon, SearchIcon, TrendingUpIcon } from "@/components/Icons";
 import { site, priceRange, ogImage } from "@/lib/site";
 
@@ -221,6 +222,33 @@ export default function ContactPage() {
                   Free, 30 minutes, no obligation.
                 </p>
               </div>
+            </div>
+          </Container>
+        </section>
+
+        {/* Message form. Sits above the scheduler deliberately: booking a call is a
+            bigger commitment than sending a note, and asking for the bigger one first
+            loses everyone who isn't ready for it. */}
+        <section
+          id="message"
+          className="border-t border-warm-line py-16 sm:py-20"
+          aria-labelledby="message-heading"
+        >
+          <Container className="!max-w-3xl">
+            <div className="text-center">
+              <h2
+                id="message-heading"
+                className="font-serif text-[32px] font-semibold tracking-tight text-navy sm:text-[38px]"
+              >
+                Or just send a message
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-[17px] leading-[1.7] text-warm-grey">
+                No call required. Tell us what you&rsquo;re working on and we&rsquo;ll
+                reply within one business day.
+              </p>
+            </div>
+            <div className="mt-9">
+              <ContactForm />
             </div>
           </Container>
         </section>

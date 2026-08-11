@@ -329,9 +329,13 @@ export default function PricingPage() {
               </div>
             )}
 
-            <div className="mt-8 overflow-x-auto rounded-2xl border border-warm-line bg-white shadow-[0_8px_30px_rgba(21,38,63,0.05)]">
-              <table className="w-full min-w-[720px] border-collapse text-left">
-                <caption className="sr-only">Monthly SEO &amp; GEO pricing by industry and plan tier</caption>
+            <p className="mt-4 max-w-2xl text-[14px] leading-[1.6] text-warm-grey sm:hidden">
+              Scroll right to compare all plans and industries →
+            </p>
+
+            <div className="mt-4 overflow-x-auto rounded-2xl border border-warm-line bg-white shadow-[0_8px_30px_rgba(21,38,63,0.05)] sm:mt-8">
+              <table className="w-full min-w-[900px] border-collapse text-left">
+                <caption className="sr-only">Monthly SEO &amp; GEO pricing and included features by industry and plan tier</caption>
                 <thead>
                   <tr className="border-b border-warm-line bg-cream">
                     <th scope="col" className="px-5 py-4 text-[12px] font-semibold uppercase tracking-[0.1em] text-navy">
@@ -354,6 +358,9 @@ export default function PricingPage() {
                     <th scope="col" className="px-5 py-4 text-[12px] font-semibold uppercase tracking-[0.1em] text-navy">
                       Enterprise
                     </th>
+                    <th scope="col" className="px-5 py-4 text-[12px] font-semibold uppercase tracking-[0.1em] text-navy">
+                      <span className="sr-only">Action</span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -373,7 +380,7 @@ export default function PricingPage() {
                             <>
                               {v.name}
                               <span className="mt-0.5 block text-[12px] font-normal normal-case text-warm-grey">
-                                Industry page coming soon
+                                Detailed page coming soon
                               </span>
                             </>
                           )}
@@ -394,10 +401,48 @@ export default function PricingPage() {
                                 <span className="font-normal text-warm-grey">/mo</span>
                               </span>
                             )}
+                            {/* Per-tier feature detail — each vertical's Tier.features differ
+                                meaningfully (Task 3), so the table states the price but the
+                                disclosure is what a prospect actually buys. Native <details>,
+                                same pattern as the FAQ sections — no client component needed. */}
+                            <details className="mt-2">
+                              <summary className="cursor-pointer text-[12px] font-medium text-teal-dark underline-offset-2 hover:underline">
+                                What&rsquo;s included
+                              </summary>
+                              <ul className="mt-1.5 space-y-1">
+                                {t.features.map((f) => (
+                                  <li
+                                    key={f}
+                                    className="relative pl-3 text-[12.5px] leading-[1.5] text-warm-grey before:absolute before:left-0 before:content-['•']"
+                                  >
+                                    {f}
+                                  </li>
+                                ))}
+                              </ul>
+                            </details>
                           </td>
                         ))}
                         <td className="px-5 py-4 align-top text-[15px] text-warm-grey">
                           from {usd(v.pricing.enterpriseFrom)}/mo
+                        </td>
+                        <td className="px-5 py-4 align-top">
+                          {/* Every row is actionable: link to the hub if it exists, otherwise
+                              straight to contact — a row a visitor can't act on is a lost lead. */}
+                          {hasHub ? (
+                            <Link
+                              href={`/industries/${v.slug}/`}
+                              className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-teal px-4 py-2 text-[12.5px] font-semibold text-white transition hover:bg-teal-dark"
+                            >
+                              See {v.name} plans
+                            </Link>
+                          ) : (
+                            <Link
+                              href="/contact/"
+                              className="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-warm-line px-4 py-2 text-[12.5px] font-semibold text-navy transition hover:border-teal hover:bg-soft"
+                            >
+                              Talk to us about {v.nameSingular}
+                            </Link>
+                          )}
                         </td>
                       </tr>
                     );

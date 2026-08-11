@@ -69,7 +69,7 @@ export const wellness: Vertical = {
   faqs: [
     {
       q: "Do you write about hormone and IV therapies accurately?",
-      a: "Yes, and conservatively. Claims are limited to what's supported by the protocol's cleared indications or published clinical evidence, with the gaps stated plainly rather than implied away.",
+      a: "Yes, and conservatively. Claims are limited to what FDA cleared or approved the specific product for, or published clinical evidence where no such authorization exists, with the gaps stated plainly rather than implied away.",
     },
     {
       q: "How do you handle claims about longevity outcomes?",

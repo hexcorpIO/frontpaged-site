@@ -21,7 +21,7 @@ export const wellness: Vertical = {
         for: "Newer or single-location clinics getting found.",
         features: [
           "4 GEO/SEO articles / month",
-          "1 optimized protocol page",
+          "1 optimized protocol page (hormone, IV, or longevity)",
           "FAQ + schema markup",
           "4 Google Business posts",
           "Monthly visibility report",
@@ -36,7 +36,7 @@ export const wellness: Vertical = {
         features: [
           "6 GEO/SEO articles / month",
           "2 optimized protocol pages",
-          "FAQ + schema markup",
+          "Evidence-sourced claim review for hormone, IV & longevity content",
           "8 Google Business posts",
           "2 old-page refreshes / month",
           "30-min monthly strategy call",
@@ -50,6 +50,7 @@ export const wellness: Vertical = {
         features: [
           "10 GEO/SEO articles / month",
           "3 optimized protocol pages",
+          "Consult-funnel content across every protocol line",
           "Practitioner authority profiles",
           "12 Google Business posts",
           "4 old-page refreshes / month",

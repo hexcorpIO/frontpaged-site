@@ -93,7 +93,7 @@ export const conciergeMedicine: Vertical = {
   ],
   citationSources: [
     { label: "Castle Connolly", url: "https://www.castleconnolly.com/" },
-    { label: "MDVIP — physician referral network", url: "https://www.mdvip.com/" },
+    { label: "MDVIP — concierge medicine network", url: "https://www.mdvip.com/" },
   ],
   postTags: ["concierge-medicine", "GEO", "SEO", "E-E-A-T", "Trust"],
   glossaryTerms: ["generative-engine-optimization", "e-e-a-t", "entity", "ai-citation"],

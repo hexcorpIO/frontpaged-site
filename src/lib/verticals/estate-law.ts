@@ -103,7 +103,7 @@ export const estateLaw: Vertical = {
   compliance: {
     regime: "legal",
     summary:
-      "Attorney advertising is governed by your state bar, built on the ABA Model Rules 7.1–7.3 prohibition on false or misleading communications. We write to your jurisdiction's requirements and route every page through your firm for approval before it publishes.",
+      "Attorney advertising is governed by your state bar, built on the ABA Model Rules 7.1–7.3 prohibition on false or misleading communications — a standard that carries particular weight in probate and elder law, where families are often approached at a vulnerable moment. We write to your jurisdiction's requirements and route every page through your firm for approval before it publishes.",
     weWillNot: [
       "Predict or imply the outcome of a probate, guardianship, or Medicaid-planning matter",
       "Suggest that a specific estate plan avoids estate tax or eliminates probate without stating that outcomes depend on the family's individual facts",

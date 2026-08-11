@@ -21,7 +21,8 @@ export const realEstateTeams: Vertical = {
         for: "Newer or single-market teams getting found locally.",
         features: [
           "4 GEO/SEO articles / month",
-          "1 optimized neighborhood or listing page",
+          "1 neighborhood-guide or listing page",
+          "Fair-housing review on every page",
           "FAQ + schema markup",
           "4 Google Business posts",
           "Monthly visibility report",
@@ -35,8 +36,8 @@ export const realEstateTeams: Vertical = {
         for: "Established teams ready to own their market.",
         features: [
           "6 GEO/SEO articles / month",
-          "2 optimized neighborhood or listing pages",
-          "Fair-housing review on every page",
+          "2 neighborhood-guide or listing pages",
+          "Listing-cycle content for active inventory",
           "8 Google Business posts",
           "2 old-page refreshes / month",
           "30-min monthly strategy call",
@@ -49,7 +50,8 @@ export const realEstateTeams: Vertical = {
         for: "Multi-agent teams covering several submarkets.",
         features: [
           "10 GEO/SEO articles / month",
-          "3 optimized neighborhood or listing pages",
+          "3 neighborhood-guide or listing pages",
+          "Portal-syndication strategy across Zillow, Realtor.com & your MLS feed",
           "Agent authority profiles",
           "12 Google Business posts",
           "4 old-page refreshes / month",
@@ -67,7 +69,7 @@ export const realEstateTeams: Vertical = {
     },
     {
       q: "Can you write about school districts?",
-      a: "We link to a neutral, independent, attributed source for school data rather than characterizing schools ourselves. HUD guidance treats subjective school or safety framing as a steering risk, so we don't write it, even when a client asks for it.",
+      a: "We can include objective, sourced facts — test-score data or ratings from a named, attributed source — but as a matter of our own editorial policy we don't write subjective characterizations like 'top-rated schools' or 'safe area.' What the Fair Housing Act does or doesn't require here has shifted with successive HUD guidance, so we hold a conservative line rather than chase the current interpretation.",
     },
     {
       q: "Do you write listing pages or only evergreen content?",
@@ -101,17 +103,17 @@ export const realEstateTeams: Vertical = {
   compliance: {
     regime: "real-estate",
     summary:
-      "Real estate advertising is governed by the Fair Housing Act, which prohibits discriminatory statements and steering regardless of intent. We write to HUD's advertising guidance and route final copy through your team for approval before it publishes.",
+      "Real estate advertising is governed by the Fair Housing Act. Under 42 U.S.C. § 3604(c), a discriminatory statement or advertisement is unlawful regardless of intent, judged by whether it would signal a preference or limitation to an ordinary reader. Racial steering is a separate violation under the Act and requires unequal treatment tied to a protected class, not merely a broker's own choice of what to discuss. HUD's own guidance on where that second line falls has shifted across administrations, so beyond what the statute itself requires, we hold ourselves to additional editorial restraints as a matter of Frontpaged policy — not because a specific HUD document mandates them — and we route final copy through your team for approval before it publishes.",
     weWillNot: [
-      "Describe a neighborhood in terms that signal a protected class (race, color, religion, sex, national origin, familial status, or disability)",
-      "Use language that steers buyers or sellers toward or away from a particular area",
-      "Publish claims about schools or \"safety\" that function as proxies for a protected characteristic",
+      "Describe a neighborhood in terms that signal a protected class (race, color, religion, sex, national origin, familial status, or disability), which 42 U.S.C. § 3604(c) and 24 C.F.R. § 100.75 prohibit outright",
+      "As our own editorial policy, use language that steers buyers or sellers toward or away from a particular area based on anything but the client's stated criteria",
+      "As our own editorial policy, publish subjective claims about schools or \"safety\" — we'll cite objective, attributed data, but we don't characterize a school or neighborhood as good, bad, or safe",
       "Use stock photography or model selection intended to signal who a listing or neighborhood is 'for'",
     ],
     requiredDisclaimers: ["Equal Housing Opportunity."],
     sources: [
-      { label: "HUD FHEO — Guidance on Application of the Fair Housing Act to the Advertising of Housing, Credit, and Other Real Estate-Related Transactions through Digital Platforms", url: "https://archives.hud.gov/news/2024/FHEO_Guidance_on_Advertising_through_Digital_Platforms.pdf" },
-      { label: "HUD — Dear Colleague Letter on Neighborhood Crime Data and School Quality", url: "https://www.hud.gov/sites/default/files/hudclips/documents/AS-Trainor's-DCL-on-Neighborhood-Crime-Data-and-School-Quality.pdf" },
+      { label: "42 U.S.C. § 3604(c) — Fair Housing Act, discriminatory notices and advertisements", url: "https://www.law.cornell.edu/uscode/text/42/3604" },
+      { label: "24 C.F.R. § 100.75 — Discriminatory advertisements, notices, and statements", url: "https://www.law.cornell.edu/cfr/text/24/100.75" },
     ],
   },
   foundingSlotsRemaining: 5,

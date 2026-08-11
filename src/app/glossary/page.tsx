@@ -38,7 +38,7 @@ export default function GlossaryPage() {
           "Definitions of the SEO, Generative Engine Optimization, and AI-search terms relevant to medical spa marketing.",
         url: canonical,
         inLanguage: "en-US",
-        publisher: { "@id": `${site.url}/#business` },
+        publisher: { "@id": `${site.url}/#org` },
         hasDefinedTerm: glossary.map((t) => ({
           "@type": "DefinedTerm",
           "@id": `${canonical}#${t.slug}`,

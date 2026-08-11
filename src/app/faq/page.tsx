@@ -34,7 +34,7 @@ export default function FaqPage() {
         url: canonical,
         name: "Med Spa SEO & AI Search — Frequently Asked Questions",
         inLanguage: "en-US",
-        publisher: { "@id": `${site.url}/#business` },
+        publisher: { "@id": `${site.url}/#org` },
         mainEntity: allHubFaqs.map((f) => ({
           "@type": "Question",
           name: f.q,

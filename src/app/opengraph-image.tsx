@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
-export const alt = "Frontpaged — Be the first answer patients see";
+export const alt = "Frontpaged — Be the first name AI recommends";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -68,11 +68,11 @@ export default function OpengraphImage() {
             }}
           >
             <span>Be the</span>
-            <span style={{ color: TEAL }}>first answer</span>
-            <span>patients see.</span>
+            <span style={{ color: TEAL }}>first name</span>
+            <span>AI recommends.</span>
           </div>
           <div style={{ fontSize: 30, color: "#bccbdd", maxWidth: 860 }}>
-            {`SEO + Generative Engine Optimization content for medical spas in ${site.areaServed}.`}
+            {`SEO + Generative Engine Optimization content for high-ticket local businesses in ${site.areaServed}.`}
           </div>
         </div>
       </div>

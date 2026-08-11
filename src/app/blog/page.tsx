@@ -38,10 +38,10 @@ export default function BlogIndex() {
         inLanguage: "en-US",
         publisher: {
           "@type": "Organization",
-          "@id": `${site.url}/#business`,
+          "@id": `${site.url}/#org`,
           name: site.name,
           url: site.url,
-          logo: { "@type": "ImageObject", url: `${site.url}/icon.svg` },
+          logo: { "@type": "ImageObject", url: `${site.url}/logo-512.png` },
         },
         blogPost: posts.map((post) => ({
           "@type": "BlogPosting",

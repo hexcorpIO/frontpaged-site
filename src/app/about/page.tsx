@@ -93,20 +93,20 @@ export default function AboutPage() {
         description:
           "Frontpaged is an SEO and Generative Engine Optimization agency working exclusively with medical spas across the United States.",
         inLanguage: "en-US",
-        mainEntity: { "@id": `${site.url}/#business` },
+        mainEntity: { "@id": `${site.url}/#org` },
       },
       {
         // Must match the type used for this @id on the homepage — the same entity
         // declared as two different types across pages is a contradiction.
-        "@type": "ProfessionalService",
-        "@id": `${site.url}/#business`,
+        "@type": "Organization",
+        "@id": `${site.url}/#org`,
         name: site.name,
         url: site.url,
         email: site.email,
         telephone: "+1-615-905-1857",
         slogan: site.tagline,
         description: site.description,
-        logo: { "@type": "ImageObject", url: `${site.url}/icon.svg` },
+        logo: { "@type": "ImageObject", url: `${site.url}/logo-512.png` },
         sameAs: [site.linkedin, site.instagram],
         areaServed: { "@type": "Country", name: "United States" },
         knowsAbout: [
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 name: founder.name,
                 jobTitle: founder.role,
                 description: founder.bio,
-                worksFor: { "@id": `${site.url}/#business` },
+                worksFor: { "@id": `${site.url}/#org` },
                 ...(founder.linkedin ? { sameAs: [founder.linkedin] } : {}),
               },
             }

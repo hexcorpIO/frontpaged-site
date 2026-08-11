@@ -114,8 +114,8 @@ export default function MedSpaSeoPage() {
         description:
           "Done-for-you SEO for medical spas: treatment-intent keyword targeting, optimized service pages, Google Business Profile, local citations, review strategy, technical SEO, and monthly content — all built to get your clinic found and booked.",
         provider: {
-          "@type": "ProfessionalService",
-          "@id": `${site.url}/#business`,
+          "@type": "Organization",
+          "@id": `${site.url}/#org`,
           name: site.name,
           url: site.url,
         },

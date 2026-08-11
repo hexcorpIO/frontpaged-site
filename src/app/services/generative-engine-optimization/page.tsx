@@ -94,8 +94,8 @@ export default function GeoPage() {
         description:
           "Done-for-you GEO content and schema strategy that gets med spas across the U.S. cited by ChatGPT, Perplexity, and Google AI Overviews.",
         provider: {
-          "@type": "ProfessionalService",
-          "@id": `${site.url}/#business`,
+          "@type": "Organization",
+          "@id": `${site.url}/#org`,
           name: site.name,
           url: site.url,
         },

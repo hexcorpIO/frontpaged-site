@@ -26,7 +26,7 @@ export const site = {
     "content for medical, legal, and premium service practices nationwide.",
 } as const;
 
-// Sitewide priceRange for the Organization/ProfessionalService schema, spanning the
+// Sitewide priceRange for the Organization schema, spanning the
 // cheapest founding rate to the dearest list price across every published vertical.
 // Computed rather than hand-copied so it can never drift from the per-vertical Offer
 // schema the way the old hardcoded "$1,500–$4,000/mo" string did (that string quoted

@@ -137,8 +137,8 @@ export default function PricingPage() {
           "articles, optimized service pages, schema markup, and Google Business Profile management.",
         serviceType: "SEO & Generative Engine Optimization (GEO) content for high-ticket local businesses",
         provider: {
-          "@type": "ProfessionalService",
-          "@id": `${site.url}/#business`,
+          "@type": "Organization",
+          "@id": `${site.url}/#org`,
           name: site.name,
           url: site.url,
         },

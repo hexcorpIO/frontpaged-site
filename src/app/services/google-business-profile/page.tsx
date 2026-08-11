@@ -101,8 +101,8 @@ export default function GoogleBusinessProfilePage() {
         description:
           "Done-for-you Google Business Profile optimization helping med spas nationwide win the local map pack, attract high-intent patients, and stay ahead of competitors in local search.",
         provider: {
-          "@type": "ProfessionalService",
-          "@id": `${site.url}/#business`,
+          "@type": "Organization",
+          "@id": `${site.url}/#org`,
           name: site.name,
           url: site.url,
         },

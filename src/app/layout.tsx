@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { getPublishedVerticals } from "@/lib/verticals";
 import TopBanner from "@/components/TopBanner";
 
 const geistSans = Geist({
@@ -17,7 +18,23 @@ const fraunces = Fraunces({
   style: ["normal", "italic"],
 });
 
-const title = "Frontpaged — Be the first answer patients see";
+const title = "Frontpaged — Be the first name AI recommends";
+
+// Google has ignored the keywords meta tag since 2009, and no other major
+// engine weights it either — but it costs nothing to keep accurate, and it is
+// generated from the same vertical registry as everything else on this
+// industry-neutral homepage rather than hand-listed, so it can't go stale the
+// way the old med-spa-only list did once the site started serving eight
+// industries.
+const keywords = [
+  "SEO agency",
+  "Generative Engine Optimization",
+  "GEO content",
+  "AI search visibility",
+  "ChatGPT SEO",
+  "Google AI Overviews",
+  ...getPublishedVerticals().map((v) => `${v.nameSingular} SEO`),
+];
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -26,17 +43,7 @@ export const metadata: Metadata = {
     template: "%s · Frontpaged",
   },
   description: site.description,
-  keywords: [
-    "med spa SEO",
-    "medical spa marketing",
-    "med spa SEO agency",
-    "Generative Engine Optimization",
-    "GEO content",
-    "AI search visibility",
-    "ChatGPT SEO",
-    "Google AI Overviews",
-    "med spa marketing agency",
-  ],
+  keywords,
   applicationName: site.name,
   alternates: {
     canonical: "/",

@@ -78,11 +78,11 @@ export default function ContactPage() {
         description:
           "Book a free med spa visibility check, or reach Frontpaged by email or phone.",
         inLanguage: "en-US",
-        about: { "@id": `${site.url}/#business` },
+        about: { "@id": `${site.url}/#org` },
       },
       {
-        "@type": "ProfessionalService",
-        "@id": `${site.url}/#business`,
+        "@type": "Organization",
+        "@id": `${site.url}/#org`,
         name: site.name,
         url: site.url,
         email: site.email,

@@ -68,9 +68,10 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
         author: { "@type": "Organization", name: post.author, url: site.url },
         publisher: {
           "@type": "Organization",
+          "@id": `${site.url}/#org`,
           name: site.name,
           url: site.url,
-          logo: { "@type": "ImageObject", url: `${site.url}/icon.svg` },
+          logo: { "@type": "ImageObject", url: `${site.url}/logo-512.png` },
         },
         mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
         keywords: post.tags.join(", "),

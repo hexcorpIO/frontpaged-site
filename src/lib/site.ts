@@ -102,11 +102,19 @@ export const founder = {
   name: "Benton Purvis",
   role: "Founder",
   /** Two or three sentences, first person. Background, why this business, what you did before. */
+  // Breadth then depth, in that order and deliberately.
+  //
+  // The site sells specialization — one client per market, industry-specific
+  // everything — so a bio that only listed five industries would read as
+  // generalist and undercut the product. Leading with the disciplines, naming the
+  // sectors as range, then landing on 67 healthcare practices makes the breadth
+  // support the depth instead of competing with it.
   bio:
     "I've spent most of my career in digital marketing — analytics and tag " +
-    "management, paid acquisition, marketing automation, and search. Before " +
+    "management, paid acquisition, marketing automation, and search — across " +
+    "fintech, banking, professional sports, ecommerce, and healthcare. Before " +
     "Frontpaged I directed SEO and AEO, ran paid media, and built the marketing " +
-    "technology behind 67 healthcare practices — which is where I kept seeing the " +
+    "technology behind 67 healthcare practices, which is where I kept seeing the " +
     "same pattern: businesses paying for content that read well and never got " +
     "found, with the measurement underneath it too broken to prove it either way. " +
     "I started this to do the version where the content is built to be cited and " +

@@ -91,7 +91,14 @@ export const founder = {
   name: "Benton Purvis",
   role: "Founder",
   /** Two or three sentences, first person. Background, why this business, what you did before. */
-  bio: "",
+  bio:
+    "I've spent most of my career in digital marketing — analytics and tag " +
+    "management, paid acquisition, marketing automation, and search. Frontpaged " +
+    "came out of a pattern I kept seeing: high-ticket local businesses paying for " +
+    "content that read well and never got found, with the measurement underneath " +
+    "it too broken to prove it either way. I started this to do the version where " +
+    "the content is built to be cited and the tracking actually tells you what " +
+    "worked.",
   /** e.g. ["10 years in search marketing", "Google Analytics certified"] */
   credentials: [] as string[],
   // Personal profile, not the company page. This is the Person node's `sameAs`,

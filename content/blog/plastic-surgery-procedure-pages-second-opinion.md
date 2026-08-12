@@ -3,7 +3,7 @@ title: "Procedure Pages That Survive a Second Opinion"
 metaTitle: "Procedure Pages That Survive a Second Opinion"
 description: "Plastic surgery patients consult two or three surgeons. Your procedure page has to hold up after they've heard someone else explain the same operation."
 date: "2026-10-22"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Plastic Surgery", "Content", "SEO"]
 vertical: "plastic-surgery"
 quickAnswer: "Elective surgical patients typically consult more than one surgeon, which means a procedure page is read before the first consultation and again after another surgeon has explained the same operation differently. Pages written as marketing collapse under that comparison. Pages that describe candidacy honestly, including who is not a good candidate, survive it."

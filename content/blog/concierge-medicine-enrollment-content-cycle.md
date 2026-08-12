@@ -3,7 +3,7 @@ title: "Concierge Enrollment Runs on an Annual Cycle. Content Should Too."
 metaTitle: "Concierge Enrollment Runs on an Annual Cycle"
 description: "Membership decisions cluster around insurance changes, birthdays, and health scares. Content published on a flat cadence misses all three."
 date: "2026-12-17"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Concierge", "SEO", "Content"]
 vertical: "concierge-medicine"
 quickAnswer: "Concierge membership decisions cluster around predictable moments: open enrollment, a birthday that prompts reflection, a health scare, a retirement, or frustration after a bad experience with conventional care. Content published on a flat monthly cadence ignores that rhythm, while content timed to those moments reaches people when the decision is actually live."

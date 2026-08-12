@@ -2,7 +2,7 @@
 title: "FAQ Schema for Med Spas: Get Your Answers Into Google and AI"
 description: "FAQ schema helps med spas win rich results and AI citations. Learn which questions to mark up and how to implement FAQPage structured data."
 date: "2025-08-14"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Technical SEO", "Schema", "GEO"]
 vertical: "med-spas"
 quickAnswer: "FAQ schema (FAQPage structured data) tells Google and AI engines exactly which questions your page answers and what those answers say. For a med spa, it can earn expandable Q&A snippets in search results and increases the chance AI tools like ChatGPT or Perplexity pull your answers verbatim. Add it to pages covering pricing, downtime, pain level, and results timelines."

@@ -3,7 +3,7 @@ title: "IV Therapy and LASIK: Two Elective Searches, Two Strategies"
 metaTitle: "IV Therapy and LASIK: Two Elective Strategies"
 description: "One is an impulse purchase, the other a years-long decision. Treating both as generic elective demand is why wellness clinics underperform on both."
 date: "2026-11-26"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Wellness", "SEO", "Local SEO"]
 vertical: "wellness"
 quickAnswer: "IV therapy and LASIK sit in the same clinic category and behave nothing alike. IV demand is immediate, local, and frequently impulsive, rewarding proximity and availability. LASIK demand builds over years and turns on trust and irreversibility. Content built for one converts poorly for the other, and most multi-service clinics use a single approach for both."

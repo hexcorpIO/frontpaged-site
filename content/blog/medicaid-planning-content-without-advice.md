@@ -3,7 +3,7 @@ title: "Writing Medicaid Planning Content Without Giving Advice"
 metaTitle: "Medicaid Planning Content Without Giving Advice"
 description: "Medicaid planning is the highest-intent elder law topic and the easiest to over-step on. Here's how to publish it usefully and stay on the right side."
 date: "2026-09-30"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Legal", "Content", "Trust"]
 vertical: "estate-law"
 quickAnswer: "Medicaid planning content is valuable because families search it under real pressure, and risky because eligibility rules are state-specific, change regularly, and invite individualized questions. The workable boundary is to explain what the planning process involves and what the concepts mean, while never indicating whether a particular reader would qualify or what they should do."

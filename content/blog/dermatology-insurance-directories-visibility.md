@@ -3,7 +3,7 @@ title: "Insurance Directories Are a Dermatology Discovery Channel"
 metaTitle: "Insurance Directories as a Derm Discovery Channel"
 description: "Many dermatology patients never use a search engine to find you — they start in their insurer's directory. Most practices treat it as paperwork."
 date: "2026-10-15"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Dermatology", "Local SEO", "Trust"]
 vertical: "dermatology"
 quickAnswer: "A large share of medical dermatology patients begin at their insurer's provider directory rather than a search engine, because coverage is their first filter. Practices treat directory listings as administrative paperwork, which means the entry patients actually see is often outdated, inconsistent, or missing the information that would make them choose one practice over another."

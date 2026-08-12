@@ -2,7 +2,7 @@
 title: "Med Spa SEO in 2027: What Changed and What to Do About It"
 description: "The complete med spa SEO and AI visibility playbook for 2027 — what shifted over the past year, what still works, and the order to build it in."
 date: "2026-12-30"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["SEO", "GEO", "Guide"]
 vertical: "med-spas"
 quickAnswer: "Med spa SEO in 2027 rests on the same foundation as before — a technically sound site, thorough treatment pages, and a well-maintained Google Business Profile — with one significant addition. A growing share of patients now receive a single AI-generated recommendation instead of a page of links, so content must be structured for extraction and citation, not just for ranking."

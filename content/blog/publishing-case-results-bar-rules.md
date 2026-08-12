@@ -3,7 +3,7 @@ title: "Publishing Case Results Without Tripping Your Bar's Rules"
 metaTitle: "Publishing Case Results Within Bar Rules"
 description: "Case results are the most persuasive content a firm owns and the most regulated. Here's how to publish them so they convert and stay defensible."
 date: "2026-09-02"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Legal", "Trust", "SEO"]
 vertical: "personal-injury-law"
 quickAnswer: "Case results are permitted in most jurisdictions when they are accurate, carry the disclaimer that jurisdiction requires, and are not presented so as to imply a comparable outcome for a future client. The recurring failures are omitting the disclaimer, publishing a curated set that implies a success rate, and describing results in language that functions as a prediction rather than a record."

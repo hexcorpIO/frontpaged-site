@@ -3,7 +3,7 @@ title: "Why Real Estate Teams Lose to Portals on Their Own Listings"
 metaTitle: "Why Teams Lose to Portals on Their Own Listings"
 description: "You syndicate a listing and Zillow outranks you for your own address. Here's why, and what a team can actually own instead."
 date: "2026-08-18"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Real Estate", "SEO", "Local SEO"]
 vertical: "real-estate-teams"
 quickAnswer: "Portals outrank agents for their own listings because syndication sends the same content to sites with vastly greater authority, and the portal version wins. Competing on listing pages is a losing position. The ground a team can own is everything the portals cannot personalize: local market judgment, process guidance, and neighborhood knowledge that comes from working there."

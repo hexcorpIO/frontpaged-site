@@ -3,7 +3,7 @@ title: "Why Estate Firms Lose to Legal-Forms Sites, and Where They Win"
 metaTitle: "Estate Firms vs Legal-Forms Sites: Where You Win"
 description: "Online will services dominate the informational searches estate firms want. Here's the ground they can't defend, and how a local firm takes it."
 date: "2026-09-16"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Legal", "SEO", "Content"]
 vertical: "estate-law"
 quickAnswer: "Legal-forms companies win high-volume definitional searches because they operate content at a scale no single firm can match. They cannot win state-specific procedure, genuine complexity, or anything requiring judgment about a family's circumstances. A local firm's content strategy should concede the first category deliberately and take the second three."

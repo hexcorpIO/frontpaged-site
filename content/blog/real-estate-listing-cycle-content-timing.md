@@ -3,7 +3,7 @@ title: "Publishing on the Listing Cycle, Not the Content Calendar"
 metaTitle: "Publishing on the Listing Cycle, Not the Calendar"
 description: "Real estate demand moves on a seasonal cycle that a flat monthly publishing schedule ignores. Timing the library to it changes what it returns."
 date: "2026-12-24"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Real Estate", "SEO", "Content"]
 vertical: "real-estate-teams"
 quickAnswer: "Residential real estate runs on a pronounced seasonal cycle, and sellers begin researching months before they list. Content published on a flat monthly cadence reaches people at arbitrary points in that cycle. Publishing seller-preparation material well ahead of the listing season, and buyer material during it, reaches each audience while the decision is live."

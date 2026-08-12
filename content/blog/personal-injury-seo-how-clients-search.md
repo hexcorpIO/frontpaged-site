@@ -3,7 +3,7 @@ title: "Personal Injury SEO: How Injured Clients Actually Search"
 metaTitle: "Personal Injury SEO: How Clients Actually Search"
 description: "Injured people don't search the way firms write. Here's the search behavior behind personal injury intake, and how to structure content around it."
 date: "2026-08-11"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Legal", "SEO", "GEO"]
 vertical: "personal-injury-law"
 quickAnswer: "Injured people rarely search for a practice area by name. They search for what happened to them, what they are worried about, and what something is worth — usually within days of the incident, often from a phone, and frequently before they have decided to hire anyone. Personal injury SEO works when a firm's pages answer those situational questions directly instead of describing the firm."

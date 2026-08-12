@@ -3,7 +3,7 @@ title: "Neighborhood Guides, Written With Discipline"
 metaTitle: "Neighborhood Guides, Written With Discipline"
 description: "Neighborhood content is the most valuable thing a real estate team can publish and the easiest to get wrong. Here's the editorial line we hold."
 date: "2026-12-10"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Real Estate", "Content", "Trust"]
 vertical: "real-estate-teams"
 quickAnswer: "Neighborhood guides attract exactly the buyers a team wants and sit closest to fair-housing exposure. The discipline that resolves both is writing about places rather than people: physical description, housing stock, amenities, and transport, with no characterization of who lives somewhere and no coded proxies standing in for it."

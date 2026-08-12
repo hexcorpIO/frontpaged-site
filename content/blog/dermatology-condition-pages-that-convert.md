@@ -3,7 +3,7 @@ title: "Dermatology Condition Pages That Actually Book Appointments"
 metaTitle: "Derm Condition Pages That Book Appointments"
 description: "Most dermatology condition pages read like textbook entries and convert like them. Here's the structure that answers what patients are really asking."
 date: "2026-10-01"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Dermatology", "Content", "SEO"]
 vertical: "dermatology"
 quickAnswer: "Patients searching a skin condition are asking two questions the typical condition page never answers: is this serious, and do I need to be seen. A page that opens with causes and pathophysiology answers neither. Condition pages convert when they lead with a direct assessment of urgency, then explain what an appointment would involve."

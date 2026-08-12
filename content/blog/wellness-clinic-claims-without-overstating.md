@@ -3,7 +3,7 @@ title: "Wellness Clinic Content That Converts Without Overstating"
 metaTitle: "Wellness Clinic Content Without Overstating"
 description: "IV, hormone, and longevity clinics operate where evidence is thinner and claims are riskier. Here's how to market them credibly and defensibly."
 date: "2026-08-16"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Wellness", "Trust", "SEO"]
 vertical: "wellness"
 quickAnswer: "Wellness clinics market services where the regulatory footing varies enormously by offering: some involve FDA-approved drugs, some cleared devices, and some supplements that receive no premarket FDA authorization at all. Content that treats these as one category inevitably overstates something. Precision about what each service actually is turns the constraint into a credibility advantage."

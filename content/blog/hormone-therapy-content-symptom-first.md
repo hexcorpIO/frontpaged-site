@@ -3,7 +3,7 @@ title: "Hormone Therapy Content Should Start With the Symptom"
 metaTitle: "Hormone Therapy Content Starts With the Symptom"
 description: "Patients don't search for hormone therapy. They search for exhaustion, weight that won't move, and sleep that stopped working. Meet them there."
 date: "2026-11-12"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Wellness", "Content", "SEO"]
 vertical: "wellness"
 quickAnswer: "People experiencing hormonal symptoms search their symptoms, not the treatment. They describe exhaustion, disrupted sleep, weight changes, and mood shifts long before they consider that a clinic might help. Content organized around treatments misses that entire window, which is where the least contested and most persuadable demand sits."

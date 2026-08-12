@@ -3,7 +3,7 @@ title: "Estate Planning SEO: Reaching Families Before the Crisis"
 metaTitle: "Estate Planning SEO: Reaching Families Early"
 description: "Most estate planning searches happen during an emergency. The firms that win are the ones already answering the questions families ask months earlier."
 date: "2026-08-13"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Legal", "SEO", "GEO"]
 vertical: "estate-law"
 quickAnswer: "Estate planning demand splits into two very different searches: calm planning questions asked months or years ahead, and urgent questions asked during a health crisis or after a death. Most firms publish only for the second, which is the more contested and the less profitable of the two. The firms that grow steadily are the ones answering the calm questions first."

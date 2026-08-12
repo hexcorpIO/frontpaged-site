@@ -3,7 +3,7 @@ title: "Dermatology SEO: The Cosmetic and Medical Split"
 metaTitle: "Dermatology SEO: The Cosmetic/Medical Split"
 description: "A dermatology practice runs two businesses with two search audiences. Treating them as one is why most derm websites underperform on both."
 date: "2026-08-14"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Dermatology", "SEO", "GEO"]
 vertical: "dermatology"
 quickAnswer: "A dermatology practice serves two audiences whose search behavior barely overlaps: patients with a medical concern who need to be seen, and patients considering an elective cosmetic procedure. They search differently, decide on different timelines, and are converted by different content. Most practice websites blend them into one navigation and underperform for both."

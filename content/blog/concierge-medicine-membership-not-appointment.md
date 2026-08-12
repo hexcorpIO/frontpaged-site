@@ -3,7 +3,7 @@ title: "Concierge Medicine Sells a Membership, Not an Appointment"
 metaTitle: "Concierge Medicine Sells Membership, Not Visits"
 description: "Concierge practices market like clinics and wonder why enrollment stalls. The product is an ongoing relationship, and the content has to sell that."
 date: "2026-08-17"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Concierge", "Content", "SEO"]
 vertical: "concierge-medicine"
 quickAnswer: "A concierge practice does not sell visits — it sells an ongoing relationship with a physician, paid for annually and chosen deliberately. Content built around services and appointments misses what a prospective member is actually evaluating: whether this specific doctor is worth a recurring commitment, and what daily life with the practice would feel like."

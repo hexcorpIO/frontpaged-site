@@ -3,7 +3,7 @@ title: "Board Certification Is the Signal Patients Can't Verify Alone"
 metaTitle: "Board Certification: The Signal Patients Can't Verify"
 description: "\"Board-certified\" means less than patients assume, and plastic surgeons who explain the difference precisely win the comparison it creates."
 date: "2026-08-15"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Plastic Surgery", "Trust", "SEO"]
 vertical: "plastic-surgery"
 quickAnswer: "Patients treat board certification as a single binary credential, but many boards exist and they are not equivalent. A plastic surgeon whose content explains what the credential actually means, which board issued it, and how a patient can verify it turns a claim every competitor makes into a differentiator only some can survive."

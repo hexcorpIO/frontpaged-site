@@ -3,7 +3,7 @@ title: "The Referral Page Concierge Practices Never Write"
 metaTitle: "The Referral Page Concierge Practices Skip"
 description: "Most concierge enrollment starts with a physician referral. Almost no practice writes anything aimed at the doctors doing the referring."
 date: "2026-12-03"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Concierge", "Trust", "Content"]
 vertical: "concierge-medicine"
 quickAnswer: "Concierge practices depend on physician referrals and write exclusively for prospective members. The referring physician has entirely different questions: how communication works, whether they get clinical information back, and what their patient's experience will be. A page answering those reaches the highest-value referrer in the category."

@@ -3,7 +3,7 @@ title: "Venue Pages for Personal Injury Firms, Without the Doorway Risk"
 metaTitle: "PI Venue Pages Without the Doorway-Page Risk"
 description: "County-level pages are the backbone of personal injury search — and the fastest way to earn a manual action. Here's the line between useful and spam."
 date: "2026-08-19"
-author: "Benton"
+author: "Benton Purvis"
 tags: ["Legal", "Local SEO", "SEO"]
 vertical: "personal-injury-law"
 quickAnswer: "Venue pages work in personal injury because the court a case is filed in genuinely changes how it proceeds, so a page about a specific county can carry real information. They fail when they are one template with place names substituted, which Google's spam policies classify as doorway pages. The dividing line is whether the page could have been written by someone unfamiliar with that venue."

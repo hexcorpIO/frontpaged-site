@@ -88,7 +88,7 @@ export const auditOffer = {
 // node in the schema graph, and the blog bylines. Left blank, all three fall
 // back to organization-level attribution and nothing renders half-finished.
 export const founder = {
-  name: "Benton",
+  name: "Benton Purvis",
   role: "Founder",
   /** Two or three sentences, first person. Background, why this business, what you did before. */
   bio: "",

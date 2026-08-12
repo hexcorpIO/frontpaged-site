@@ -4,6 +4,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getIndustryBody } from "@/lib/industries";
 import { getPublishedAddOnServices } from "@/lib/services";
+import { founder } from "@/lib/site";
 
 // Required for output: export — emit as a static file at build time.
 export const dynamic = "force-static";
@@ -52,6 +53,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    // Per-industry blog archives — real crawlable routes, only for verticals
+    // that actually have posts (same filter as the pages themselves).
+    ...getPublishedVerticals()
+      .filter((v) => posts.some((p) => p.vertical === v.slug))
+      .map((v) => ({
+        url: `${site.url}/blog/industry/${v.slug}/`,
+        lastModified: latestPost,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      })),
+    ...(founder.name
+      ? [
+          {
+            url: `${site.url}/author/benton-purvis/`,
+            lastModified: latestPost,
+            changeFrequency: "weekly" as const,
+            priority: 0.6,
+          },
+        ]
+      : []),
     {
       url: `${site.url}/blog/`,
       lastModified: latestPost,

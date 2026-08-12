@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Container from "@/components/Container";
-import { getPostBySlug, getPostSlugs } from "@/lib/blog";
+import { getPostBySlug, getPostSlugs, getRelatedPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/formatDate";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import TableOfContents from "@/components/TableOfContents";
+import { getVertical } from "@/lib/verticals";
 import { site, ogImage, founder, founderId } from "@/lib/site";
 
 type Params = { slug: string };
@@ -40,8 +43,20 @@ export async function generateMetadata({
       title: metaTitle,
       description: post.description,
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       authors: [post.author],
-      images: [ogImage],
+      // This post's own generated card, not the site-wide one. See
+      // opengraph-image.tsx in this segment — the explicit `images` here is
+      // required because setting `openGraph` at all replaces the parent's
+      // resolved object, file-convention image included.
+      images: [
+        {
+          url: `${site.url}/blog/${post.slug}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -55,6 +70,9 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
+
+  const related = getRelatedPosts(post.slug, 3);
+  const vertical = getVertical(post.vertical);
 
   // Trailing slash so the schema @ids match the canonical URLs exactly.
   const canonical = `${site.url}/blog/${post.slug}/`;
@@ -70,7 +88,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
         headline: post.title,
         description: post.description,
         datePublished: post.date,
-        dateModified: post.date,
+        dateModified: post.updated ?? post.date,
         // Article rich results want an image and a publisher logo.
         image: `${site.url}/opengraph-image`,
         // Named authorship, not organizational — the same Person node the About
@@ -102,10 +120,29 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
       {
         "@type": "BreadcrumbList",
         "@id": `${canonical}#breadcrumb`,
+        // Mirrors the visible <Breadcrumbs> exactly, including the industry crumb.
+        // Google's guidance is that breadcrumb markup should describe breadcrumbs
+        // a visitor can actually see; these two are built from the same shape so
+        // they cannot drift apart.
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` },
           { "@type": "ListItem", position: 2, name: "Blog", item: `${site.url}/blog/` },
-          { "@type": "ListItem", position: 3, name: post.title, item: canonical },
+          ...(vertical
+            ? [
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: vertical.name,
+                  item: `${site.url}/blog/industry/${vertical.slug}/`,
+                },
+              ]
+            : []),
+          {
+            "@type": "ListItem",
+            position: vertical ? 4 : 3,
+            name: post.title,
+            item: canonical,
+          },
         ],
       },
       ...(post.faqs.length
@@ -131,6 +168,18 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <Breadcrumbs
+        className="border-b border-warm-line"
+        crumbs={[
+          { label: "Home", href: "/" },
+          { label: "Blog", href: "/blog/" },
+          ...(vertical
+            ? [{ label: vertical.name, href: `/blog/industry/${vertical.slug}/` }]
+            : []),
+          { label: post.title },
+        ]}
+      />
+
       <article className="py-14 sm:py-16">
         <Container className="!max-w-3xl">
           <Link href="/blog/" className="text-sm font-semibold text-teal-dark hover:text-teal">
@@ -142,7 +191,19 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
             <span aria-hidden="true">·</span>
             <span>{post.readingTime} min read</span>
             <span aria-hidden="true">·</span>
-            <span>{post.author}</span>
+            {/* Author links to their own page rather than sitting as plain text —
+                the Person entity that 49 posts reference should be reachable. */}
+            <Link href="/author/benton-purvis/" className="hover:text-teal hover:underline underline-offset-2">
+              {post.author}
+            </Link>
+            {post.updated && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span className="text-teal-dark">
+                  Reviewed <time dateTime={post.updated}>{formatDate(post.updated)}</time>
+                </span>
+              </>
+            )}
           </div>
 
           <h1 className="mt-3 font-serif text-[40px] font-semibold leading-[1.12] tracking-tight text-navy">
@@ -158,8 +219,10 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
             </div>
           )}
 
+          <TableOfContents headings={post.headings} />
+
           <div
-            className="prose prose-lg mt-8 max-w-none prose-headings:font-serif prose-headings:text-navy prose-headings:font-semibold prose-a:text-teal-dark prose-a:no-underline hover:prose-a:underline prose-strong:text-navy prose-li:marker:text-teal prose-p:text-warm-grey prose-p:leading-[1.8]"
+            className="prose prose-lg mt-8 max-w-none prose-headings:font-serif prose-headings:text-navy prose-headings:font-semibold prose-a:text-teal-dark prose-a:no-underline hover:prose-a:underline prose-strong:text-navy prose-li:marker:text-teal prose-p:text-warm-grey prose-p:leading-[1.8] prose-h2:scroll-mt-24"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
 
@@ -190,12 +253,41 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
             </section>
           )}
 
+          {/* Related posts. Before this, every one of 49 posts was a dead end:
+              a reader who finished had nowhere to go and crawlers got no lateral
+              path through the library. Selection is vertical-first — see
+              getRelatedPosts — so a probate article never recommends Botox. */}
+          {related.length > 0 && (
+            <section className="mt-14 border-t border-warm-line pt-10" aria-labelledby="read-next">
+              <h2
+                id="read-next"
+                className="text-[11px] font-semibold uppercase tracking-[0.14em] text-teal"
+              >
+                Read next
+              </h2>
+              <ul className="mt-5 space-y-4">
+                {related.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/blog/${r.slug}/`} className="group block">
+                      <p className="font-serif text-[19px] leading-snug text-navy group-hover:text-teal">
+                        {r.title}
+                      </p>
+                      <p className="mt-1.5 text-[15px] leading-[1.6] text-warm-grey">
+                        {r.description}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
           <div className="mt-12 rounded-2xl bg-navy p-8 text-center text-white">
             <h2 className="font-serif text-2xl font-semibold tracking-tight">
-              See where your clinic stands — free
+              See where your business stands — free
             </h2>
             <p className="mx-auto mt-2 max-w-md text-[#bbccdd]">
-              Book a 30-minute visibility check and we&rsquo;ll run the AI test on your med spa.
+              Book a 30-minute visibility check and we&rsquo;ll run the AI test on your business.
             </p>
             <Link
               href="/contact/"

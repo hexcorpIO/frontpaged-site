@@ -1,26 +1,42 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Container from "@/components/Container";
+import { getPublishedVerticals } from "@/lib/verticals";
 import { getAllPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/formatDate";
-import { site, ogImage } from "@/lib/site";
+import { site, ogImage, founder, founderId } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Blog — Med Spa SEO & AI-Search Visibility",
+  title: "Blog — SEO & AI-Search Visibility",
   description:
-    "Practical guides on med spa SEO, Generative Engine Optimization (GEO), and getting your clinic recommended by Google and AI search.",
+    "Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across eight industries.",
   alternates: { canonical: "/blog" },
   openGraph: {
     type: "website",
     url: "/blog",
-    title: "Frontpaged Blog — SEO & AI-search visibility for medical spas",
+    title: "Frontpaged Blog — SEO & AI-search visibility",
     description:
-      "Practical guides on med spa SEO, GEO, and getting cited by Google and AI search.",
+      "Practical guides on SEO, GEO, and getting cited by Google and AI search.",
     images: [ogImage],
   },
 };
 
+// Verticals that actually have published posts, with their counts. Empty
+// archives get no chip and no route — a filter that leads to an empty page is
+// worse than no filter.
+function industryArchives() {
+  const posts = getAllPosts();
+  return getPublishedVerticals()
+    .map((vertical) => ({
+      vertical,
+      count: posts.filter((p) => p.vertical === vertical.slug).length,
+    }))
+    .filter((a) => a.count > 0)
+    .sort((a, b) => b.count - a.count);
+}
+
 export default function BlogIndex() {
+  const archives = industryArchives();
   const posts = getAllPosts();
   const canonical = `${site.url}/blog/`;
 
@@ -35,7 +51,7 @@ export default function BlogIndex() {
         url: canonical,
         name: `${site.name} Blog`,
         description:
-          "Practical guides on med spa SEO, Generative Engine Optimization (GEO), and getting your clinic recommended by Google and AI search.",
+          "Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across eight industries.",
         inLanguage: "en-US",
         publisher: {
           "@type": "Organization",
@@ -52,7 +68,11 @@ export default function BlogIndex() {
           description: post.description,
           datePublished: post.date,
           dateModified: post.date,
-          author: { "@type": "Organization", name: post.author, url: site.url },
+          // Same Person node the posts and the About page declare, so the
+          // index does not describe a different author than the articles do.
+          author: founder.name
+            ? { "@type": "Person", "@id": founderId, name: founder.name }
+            : { "@type": "Organization", name: post.author, url: site.url },
           keywords: post.tags.join(", "),
         })),
       },
@@ -80,13 +100,40 @@ export default function BlogIndex() {
             The Frontpaged blog
           </p>
           <h1 className="max-w-3xl font-serif text-[40px] font-semibold tracking-tight text-navy sm:text-5xl">
-            Get your med spa found — on Google and in AI search.
+            Get found — on Google and in AI search.
           </h1>
           <p className="mt-5 max-w-2xl text-[18px] leading-[1.7] text-warm-grey">
             Plain-English guides on SEO, Generative Engine Optimization (GEO), and the content
-            that gets your clinic recommended when patients ask Google, ChatGPT, and Perplexity
-            for the best med spa near them.
+            that gets a business recommended when its future customers ask Google, ChatGPT, and
+            Perplexity who to use.
           </p>
+
+          {/* Industry archives as real routes, not a client-side filter. With 49
+              posts across eight verticals, an estate attorney should not have to
+              scroll past 33 med-spa articles — and each archive is crawlable and
+              can rank on its own, which a JS filter never could. */}
+          {archives.length > 0 && (
+            <nav aria-label="Filter articles by industry" className="mt-8">
+              <ul className="flex flex-wrap gap-2.5">
+                <li>
+                  <span className="rounded-full bg-navy px-4 py-1.5 text-[13.5px] font-medium text-white">
+                    All industries
+                  </span>
+                </li>
+                {archives.map(({ vertical, count }) => (
+                  <li key={vertical.slug}>
+                    <Link
+                      href={`/blog/industry/${vertical.slug}/`}
+                      className="rounded-full border border-line bg-white px-4 py-1.5 text-[13.5px] font-medium text-navy transition hover:border-teal hover:text-teal"
+                    >
+                      {vertical.name}{" "}
+                      <span className="text-warm-grey/70">{count}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
         </Container>
       </section>
 
@@ -134,7 +181,7 @@ export default function BlogIndex() {
       <section className="border-t border-warm-line bg-navy py-16 text-center text-white">
         <Container>
           <h2 className="font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
-            Want this done for your clinic?
+            Want this done for your business?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[#bbccdd]">
             Book a free visibility check and we&rsquo;ll show you exactly where you stand on Google

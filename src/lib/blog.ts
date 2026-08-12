@@ -31,15 +31,45 @@ export type PostMeta = {
    * cluster without pulling a med-spa post onto a probate firm's page.
    */
   vertical: string;
+  /**
+   * Optional yyyy-mm-dd review date. Distinct from `date`, which is when the post
+   * first published and must never change. Search engines read `dateModified`,
+   * and on a site writing about a field that shifts monthly a visible review date
+   * is a trust signal as much as a freshness one. Absent on most posts.
+   */
+  updated?: string;
   readingTime: number; // minutes
   quickAnswer: string;
   faqs: Faq[];
 };
 
+/** One `##` heading, for the in-post table of contents. */
+export type Heading = { id: string; text: string };
+
 export type Post = PostMeta & {
-  /** Rendered HTML of the Markdown body. */
+  /** Rendered HTML of the Markdown body, with `id` attributes on every h2. */
   html: string;
+  /** The h2s in document order, matching the ids injected into `html`. */
+  headings: Heading[];
 };
+
+/**
+ * Stable, readable anchor for a heading.
+ *
+ * Deliberately not a hash: these ids are public URLs the moment someone shares a
+ * jump link, and they are what Google surfaces as "jump to" links in a result. A
+ * slug survives a rebuild; a content hash would change every time the heading is
+ * edited and silently break every link anyone had saved.
+ */
+export function slugifyHeading(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/<[^>]+>/g, "")
+    .replace(/&[a-z#0-9]+;/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
 
 function readSlugs(): string[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
@@ -108,9 +138,64 @@ function parsePost(slug: string): Post {
     faqs: Array.isArray(data.faqs)
       ? data.faqs.map((f: { q: string; a: string }) => ({ q: String(f.q), a: String(f.a) }))
       : [],
+    updated: data.updated ? String(data.updated) : undefined,
     readingTime: estimateReadingTime(content),
-    html: withTrailingSlashes(marked.parse(content, { async: false }) as string),
+    ...renderBody(content),
   };
+}
+
+/**
+ * Render the Markdown body and collect its h2s, injecting a matching `id` on each.
+ *
+ * Both halves come from one pass so the table of contents cannot reference an
+ * anchor the body does not contain — the failure mode where a TOC link scrolls
+ * nowhere, which is worse than having no TOC.
+ *
+ * Duplicate headings get a numeric suffix rather than colliding, because two
+ * anchors sharing an id means one of them is unreachable.
+ */
+function renderBody(content: string): { html: string; headings: Heading[] } {
+  const headings: Heading[] = [];
+  const seen = new Map<string, number>();
+
+  const html = withTrailingSlashes(marked.parse(content, { async: false }) as string).replace(
+    /<h2(?![^>]*\bid=)([^>]*)>([\s\S]*?)<\/h2>/g,
+    (_match, attrs: string, inner: string) => {
+      const text = inner.replace(/<[^>]+>/g, "").trim();
+      const base = slugifyHeading(text);
+      const n = (seen.get(base) ?? 0) + 1;
+      seen.set(base, n);
+      const id = n === 1 ? base : `${base}-${n}`;
+      headings.push({ id, text });
+      return `<h2 id="${id}"${attrs}>${inner}</h2>`;
+    }
+  );
+
+  return { html, headings };
+}
+
+/**
+ * Other published posts worth reading after this one.
+ *
+ * Same vertical first — a reader finishing a probate article wants more probate,
+ * not Botox — then shared tags, then recency. Falls back to filling the remainder
+ * from other verticals only if the post's own cluster is too small, since a
+ * related-posts block with one entry looks broken and a dead end is what this
+ * exists to fix.
+ */
+export function getRelatedPosts(slug: string, limit = 3): PostMeta[] {
+  const all = getAllPosts();
+  const current = all.find((p) => p.slug === slug);
+  if (!current) return [];
+
+  const tags = new Set(current.tags.map((t) => t.toLowerCase()));
+  const others = all.filter((p) => p.slug !== slug);
+
+  const score = (p: PostMeta) =>
+    (p.vertical === current.vertical ? 100 : 0) +
+    p.tags.filter((t) => tags.has(t.toLowerCase())).length;
+
+  return [...others].sort((a, b) => score(b) - score(a)).slice(0, limit);
 }
 
 /** All published posts, newest first. Anything dated in the future is excluded. */

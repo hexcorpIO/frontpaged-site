@@ -6,6 +6,7 @@ import AiEnginesStrip from "@/components/AiEnginesStrip";
 import Problem from "@/components/Problem";
 import IndustryGrid from "@/components/IndustryGrid";
 import StatsBand from "@/components/StatsBand";
+import HowAiDecides from "@/components/HowAiDecides";
 import HowItWorks from "@/components/HowItWorks";
 import ReportMockup from "@/components/ReportMockup";
 import PricingSummary from "@/components/PricingSummary";
@@ -97,6 +98,9 @@ export default function Home() {
           <IndustryGrid />
         </Reveal>
         <StatsBand />
+        <Reveal>
+          <HowAiDecides />
+        </Reveal>
         <Reveal>
           <HowItWorks />
         </Reveal>

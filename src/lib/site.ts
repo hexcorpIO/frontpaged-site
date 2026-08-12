@@ -60,8 +60,19 @@ export const founding = {
 
 // Deliberately not a rankings promise — no honest agency can make one. This is
 // scoped to something we control and can verify.
+// A vague guarantee reads as an escape hatch, which is worse than no guarantee.
+// "Target question" is therefore defined rather than left to interpretation: the
+// list is agreed in writing in month one, capped at ten, and fixed for the term.
+// Both sides can check the outcome, which is the only kind of promise worth making.
 export const guarantee =
-  "If you're not cited by at least one AI engine for a target question within 90 days, month four is free.";
+  "We agree up to ten target questions with you in writing in month one — the actual " +
+  "questions your buyers ask. If none of them returns a Frontpaged-produced page or a " +
+  "mention of your business in ChatGPT, Perplexity, or Google AI Overviews within 90 " +
+  "days of the first publish, month four is free.";
+
+/** One-line form for cards and schema, where the full clause doesn't fit. */
+export const guaranteeShort =
+  "Cited for one of your ten agreed target questions within 90 days, or month four is free.";
 
 // Paid entry product. The full fee is credited toward the first month, so starting
 // a plan makes the audit free in hindsight.

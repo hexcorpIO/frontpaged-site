@@ -38,7 +38,7 @@ export default function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3.5">
               <Button href="#contact" size="lg">
-                Get a free AI-visibility check
+                Get your free visibility check
               </Button>
               <Button href="/pricing/" size="lg" variant="ghost">
                 See plans

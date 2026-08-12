@@ -11,7 +11,7 @@ export default function ContactBand() {
     >
       <Container>
         <h2 id="contact-heading" className="font-serif text-[34px] font-semibold tracking-tight sm:text-[40px]">
-          Book your free visibility check
+          Get your free visibility check
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-[18px] leading-[1.7] text-[#cdd6e2]">
           Grab a 30-minute slot and we&rsquo;ll run the AI test on your business, then walk you

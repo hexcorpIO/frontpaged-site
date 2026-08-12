@@ -7,7 +7,7 @@ import { CheckIcon } from "./Icons";
 export default function CtaPanel({
   heading = "See where your business stands — free",
   sub = "Book a 30-minute visibility check and we’ll run the AI test on your business, then show you your three fastest wins. No pitch required.",
-  cta = "Book your free visibility check",
+  cta = "Get your free visibility check",
 }: {
   heading?: string;
   sub?: string;

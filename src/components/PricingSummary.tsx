@@ -1,7 +1,10 @@
+import Link from "next/link";
 import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 import Button from "./Button";
-import { priceRange, founding, guarantee, auditOffer, usd } from "@/lib/site";
+import { founding, guaranteeShort, auditOffer, usd } from "@/lib/site";
+import { getPublishedVerticals } from "@/lib/verticals";
+import { foundingPrice } from "@/lib/verticals/pricing";
 
 // Replaces the old single-vertical pricing cards on the homepage. Real tier
 // cards need a vertical (three tiers, one price each) — the homepage no
@@ -9,7 +12,20 @@ import { priceRange, founding, guarantee, auditOffer, usd } from "@/lib/site";
 // conversion paths (guarantee, audit) and sends anyone who wants real numbers
 // to /industries/ or /pricing/, where a vertical (or the full by-industry
 // table) is actually in view.
+// The cheapest entry price across published industries, at whatever rate is
+// currently being advertised. Derived rather than written down so it can't drift
+// from the bands, and so it follows `founding.enabled` like every other price.
+function startingPrice(): string {
+  const lows = getPublishedVerticals().map((v) => {
+    const list = Math.min(...v.pricing.tiers.map((t) => t.price));
+    return founding.enabled ? foundingPrice(list) : list;
+  });
+  return usd(Math.min(...lows));
+}
+
 export default function PricingSummary() {
+  const startingAt = startingPrice();
+
   return (
     <section
       id="pricing"
@@ -17,11 +33,15 @@ export default function PricingSummary() {
       aria-labelledby="pricing-heading"
     >
       <Container>
+        {/* Leads with the floor, not the span. The full range is honest but it is
+            read as a threat: a real estate team seeing "$1,125-$14,000" assumes it
+            is the $14,000 one. The ladder is one click away on /industries/, where
+            the visitor has already self-identified and the number is theirs. */}
         <SectionHeading
           id="pricing-heading"
           kicker="Plans"
-          title={`${priceRange}, depending on your industry`}
-          sub="A personal injury case is worth a different number than a single med spa visit, so a law firm's plan and a med spa's plan aren't priced the same. Every plan is month-to-month — no contract, no lock-in."
+          title={`Plans start at ${startingAt} for your industry`}
+          sub="A personal injury case is worth a different number than a single med spa visit, so a law firm's plan and a med spa's plan aren't priced the same. Pick your industry to see its actual ladder. Every plan is month-to-month — no contract, no lock-in."
         />
 
         {founding.enabled && (
@@ -42,13 +62,23 @@ export default function PricingSummary() {
               Our guarantee
             </p>
             <p className="mt-2 font-serif text-[19px] font-semibold leading-[1.45] text-navy">
-              {guarantee}
+              {guaranteeShort}
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            {/* One button, not two. The second was a near-synonym of the first and
+                split the click for no gain. Comparing all plans is still reachable
+                as a text link. */}
+            <div className="mt-6">
               <Button href="/industries/">See pricing for your industry</Button>
-              <Button href="/pricing/" variant="ghost">
-                Compare all plans
-              </Button>
+              <p className="mt-4 text-[14.5px] text-warm-grey">
+                Or{" "}
+                <Link
+                  href="/pricing/"
+                  className="text-teal underline underline-offset-2"
+                >
+                  compare every industry side by side
+                </Link>
+                .
+              </p>
             </div>
           </div>
 

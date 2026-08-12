@@ -31,8 +31,11 @@ export default function ReportMockup() {
               appears — in Google rankings and in the AI answers your future clients actually ask. You
               watch the citations climb.
             </p>
+            {/* Was "See a sample report" pointing at #contact — a button that
+                promises an artifact and delivers a form. Unified to the single
+                primary action instead. */}
             <div className="mt-7">
-              <Button href="#contact">See a sample report</Button>
+              <Button href="#contact">Get your free visibility check</Button>
             </div>
           </div>
 

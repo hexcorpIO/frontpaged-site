@@ -112,7 +112,8 @@ export const founder = {
   bio:
     "I've spent most of my career in digital marketing — analytics and tag " +
     "management, paid acquisition, marketing automation, and search — across " +
-    "fintech, banking, professional sports, ecommerce, and healthcare. Before " +
+    "fintech, banking, professional sports, ecommerce, real estate, and " +
+    "healthcare. Before " +
     "Frontpaged I directed SEO and AEO, ran paid media, and built the marketing " +
     "technology behind 67 healthcare practices, which is where I kept seeing the " +
     "same pattern: businesses paying for content that read well and never got " +

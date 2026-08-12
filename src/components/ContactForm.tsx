@@ -56,12 +56,15 @@ export default function ContactForm() {
         we&rsquo;ll reply within one business day.
       </p>
 
-      {/* Where the provider sends the visitor after a successful submission.
-          Keeping them on our own thank-you page means the conversion is trackable
-          and they don't land on a stranger's branded confirmation screen. */}
+      {/* Where Formspree sends the visitor after a successful submission. Keeping
+          them on our own thank-you page means the conversion is trackable and they
+          don't land on a stranger's branded confirmation screen.
+          Formspree's field for this is `_next` — `_redirect` is Basin's name for the
+          same thing and is silently ignored here, which sends people to Formspree's
+          own thank-you page instead. */}
       <input
         type="hidden"
-        name="_redirect"
+        name="_next"
         value={`${site.url}/contact/thank-you/`}
       />
       <input type="hidden" name="_subject" value="New inquiry from frontpaged.io" />

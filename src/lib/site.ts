@@ -28,7 +28,7 @@ export const site = {
   // renders as a mailto fallback rather than a broken POST, so it is safe to deploy
   // empty. Configure the provider to redirect to https://frontpaged.io/contact/thank-you/
   // on success so the visitor stays on our site and the conversion is trackable.
-  formEndpoint: "",
+  formEndpoint: "https://formspree.io/f/mppadnvo",
   areaServed: "the United States",
   description:
     "Frontpaged gets high-ticket local businesses found on Google and cited by " +

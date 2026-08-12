@@ -127,6 +127,23 @@ export default function AboutPage() {
                 name: founder.name,
                 jobTitle: founder.role,
                 worksFor: { "@id": `${site.url}/#org` },
+                // Credentials as structured claims rather than only as visible
+                // text. This is the Person node that anchors authorship on every
+                // post, so a machine-readable credential is worth more here than
+                // anywhere else on the site.
+                ...(founder.credentials.length > 0
+                  ? {
+                      hasCredential: founder.credentials.map((c) => ({
+                        "@type": "EducationalOccupationalCredential",
+                        name: c,
+                        credentialCategory: "certificate",
+                        recognizedBy: {
+                          "@type": "Organization",
+                          name: founder.credentialIssuer,
+                        },
+                      })),
+                    }
+                  : {}),
                 ...(founder.bio ? { description: founder.bio } : {}),
                 ...(founder.linkedin ? { sameAs: [founder.linkedin] } : {}),
               },

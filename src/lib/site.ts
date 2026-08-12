@@ -99,8 +99,18 @@ export const founder = {
     "it too broken to prove it either way. I started this to do the version where " +
     "the content is built to be cited and the tracking actually tells you what " +
     "worked.",
-  /** e.g. ["10 years in search marketing", "Google Analytics certified"] */
-  credentials: [] as string[],
+  /**
+   * Real, verifiable certifications only — never skills restated as credentials.
+   * These render visibly on the About page AND as `hasCredential` on the Person
+   * node, so anything listed here is a machine-readable claim.
+   *
+   * Both are Google Skillshop certifications and require annual renewal. A lapsed
+   * certification left published is a live inaccuracy on the entity that anchors
+   * authorship across every post — diarise the renewal.
+   */
+  credentials: ["Google Analytics Certified", "Google Ads Certified"] as string[],
+  /** Issuer for the `hasCredential` nodes. Both credentials above come from Google. */
+  credentialIssuer: "Google",
   // Personal profile, not the company page. This is the Person node's `sameAs`,
   // which is what lets a search engine or an AI assistant tie the byline on 49
   // posts to a real, verifiable individual rather than to a name string. The

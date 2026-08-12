@@ -104,12 +104,12 @@ export const founder = {
   /** Two or three sentences, first person. Background, why this business, what you did before. */
   bio:
     "I've spent most of my career in digital marketing — analytics and tag " +
-    "management, paid acquisition, marketing automation, and search. Frontpaged " +
-    "came out of a pattern I kept seeing: high-ticket local businesses paying for " +
-    "content that read well and never got found, with the measurement underneath " +
-    "it too broken to prove it either way. I started this to do the version where " +
-    "the content is built to be cited and the tracking actually tells you what " +
-    "worked.",
+    "management, paid acquisition, marketing automation, and search. Before " +
+    "Frontpaged I ran paid media for 67 healthcare practices, which is where I " +
+    "kept seeing the same pattern: businesses paying for content that read well " +
+    "and never got found, with the measurement underneath it too broken to prove " +
+    "it either way. I started this to do the version where the content is built " +
+    "to be cited and the tracking actually tells you what worked.",
   /**
    * Real, verifiable certifications only — never skills restated as credentials.
    * These render visibly on the About page AND as `hasCredential` on the Person

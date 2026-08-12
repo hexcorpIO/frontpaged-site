@@ -94,7 +94,12 @@ export const founder = {
   bio: "",
   /** e.g. ["10 years in search marketing", "Google Analytics certified"] */
   credentials: [] as string[],
-  linkedin: "",
+  // Personal profile, not the company page. This is the Person node's `sameAs`,
+  // which is what lets a search engine or an AI assistant tie the byline on 49
+  // posts to a real, verifiable individual rather than to a name string. The
+  // company page lives on `site.linkedin` and feeds the Organization node — the
+  // two are separate entities and both should be declared.
+  linkedin: "https://www.linkedin.com/in/benton-purvis/",
 } as const;
 
 // Stable identifier for the founder's Person node in the schema graph. The About

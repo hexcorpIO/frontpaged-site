@@ -201,6 +201,27 @@ add_filter('wp_sitemaps_taxonomies', static function (array $taxonomies): array 
  * what the business does and lists the canonical pages, so a model crawling it
  * gets the entity right without having to infer it from marketing copy.
  */
+/**
+ * /favicon.ico.
+ *
+ * Browsers request this path unprompted regardless of what link tags say, and a
+ * 404 there is a console error on every page view. Mapped to the theme's copy
+ * rather than left as a loose file at the web root, so it deploys with the code.
+ */
+add_action('template_redirect', static function (): void {
+    if (($_SERVER['REQUEST_URI'] ?? '') !== '/favicon.ico') {
+        return;
+    }
+    $file = get_theme_file_path('assets/icons/favicon.ico');
+    if (!is_readable($file)) {
+        return;
+    }
+    header('Content-Type: image/x-icon');
+    header('Cache-Control: public, max-age=31536000, immutable');
+    readfile($file);
+    exit;
+}, 0);
+
 add_action('init', static function (): void {
     add_rewrite_rule('^llms\.txt$', 'index.php?fpc_llms=1', 'top');
     add_rewrite_tag('%fpc_llms%', '1');

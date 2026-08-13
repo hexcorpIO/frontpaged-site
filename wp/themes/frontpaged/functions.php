@@ -64,6 +64,26 @@ add_action('wp_enqueue_scripts', static function (): void {
 }, 5);
 
 /**
+ * Site icons.
+ *
+ * Served from the theme rather than as loose files in public_html, so they are
+ * version-controlled and deploy with everything else. The static export kept
+ * them at the web root; removing that root left /favicon.ico returning 404,
+ * which browsers request unprompted — it logged a console error on every page
+ * and cost a Lighthouse best-practices point.
+ *
+ * The .ico is still declared at its conventional path via the rewrite below,
+ * because browsers and crawlers ask for /favicon.ico whether or not a link tag
+ * points elsewhere.
+ */
+add_action('wp_head', static function (): void {
+    $icons = get_theme_file_uri('assets/icons');
+    printf('<link rel="icon" href="%s/icon.svg" sizes="any" type="image/svg+xml">' . "\n", esc_url($icons));
+    printf('<link rel="icon" href="%s/favicon.ico" sizes="32x32">' . "\n", esc_url($icons));
+    printf('<link rel="apple-touch-icon" href="%s/logo-512.png">' . "\n", esc_url($icons));
+}, 2);
+
+/**
  * Strip the front-end block CSS we do not use.
  *
  * WordPress ships ~90KB of global styles and block library CSS on every page.

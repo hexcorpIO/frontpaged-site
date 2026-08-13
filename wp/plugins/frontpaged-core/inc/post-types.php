@@ -167,3 +167,40 @@ add_filter('author_rewrite_rules', static function (array $rules): array {
 add_filter('author_link', static function (string $link): string {
     return str_replace('/blog/author/', '/author/', $link);
 });
+
+/**
+ * Tags label cards; they do not get archive pages.
+ *
+ * Thirty-odd tag archives each listing three posts is exactly the thin,
+ * near-duplicate page pattern this site's own content gate rejects — and every
+ * one of them would compete with the industry archives that are meant to rank.
+ */
+add_action('init', static function (): void {
+    global $wp_taxonomies;
+    if (isset($wp_taxonomies['post_tag'])) {
+        $wp_taxonomies['post_tag']->publicly_queryable = false;
+        $wp_taxonomies['post_tag']->public = false;
+        $wp_taxonomies['post_tag']->show_in_rest = true;   // still editable in Gutenberg
+        $wp_taxonomies['post_tag']->show_ui = true;
+    }
+}, 20);
+
+/**
+ * Show every published article on the blog index.
+ *
+ * WordPress paginates at ten. The static site listed all of them, so paginating
+ * would both change the page and invent /blog/page/2/ — a URL that has never
+ * existed, has no inbound links, and would start collecting crawl budget for a
+ * page that is only a slice of one that already ranks.
+ *
+ * Scheduled posts appear as they publish, so this grows one article at a time
+ * rather than jumping.
+ */
+add_action('pre_get_posts', static function (WP_Query $query): void {
+    if (is_admin() || !$query->is_main_query()) {
+        return;
+    }
+    if ($query->is_home() || $query->is_tax('post_industry')) {
+        $query->set('posts_per_page', -1);
+    }
+});

@@ -190,6 +190,9 @@ write(
         meta_description: data.description ?? "",
         quick_answer: data.quickAnswer ?? "",
         industry: data.vertical ?? data.industry ?? "",
+        // Rendered as pills on every blog card. Dropped from the first export,
+        // which is why the card grid could not be rebuilt from the data.
+        tags: data.tags ?? [],
         faqs: (data.faqs ?? []).map((f) => ({ question: f.q ?? f.question, answer: f.a ?? f.answer })),
         blocks: markdownToBlocks(content),
       };

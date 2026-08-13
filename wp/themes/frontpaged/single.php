@@ -38,8 +38,32 @@ while (have_posts()) : the_post();
 
   <section class="py-10 sm:py-12">
     <div class="<?php echo esc_attr(fp_container()); ?>">
-      <div class="prose prose-lg max-w-3xl prose-headings:font-serif prose-headings:text-navy prose-a:text-teal prose-a:underline-offset-2 prose-p:text-warm-grey prose-li:text-warm-grey">
-        <?php the_content(); ?>
+      <div class="max-w-3xl">
+        <?php
+        // Collected from the raw content BEFORE rendering, because the table of
+        // contents prints above the body it describes. The ids it links to are
+        // injected by the same rule on `the_content`, so the two cannot
+        // disagree about what a heading's anchor is.
+        $fp_headings = fpc_collect_headings(get_the_content());
+        if (count($fp_headings) > 2) : ?>
+          <nav aria-labelledby="toc-heading" class="my-9 rounded-2xl border border-line bg-cream p-6 sm:p-7">
+            <h2 id="toc-heading" class="text-[11px] font-semibold uppercase tracking-[0.14em] text-teal">On this page</h2>
+            <ol class="mt-4 space-y-2.5">
+              <?php foreach ($fp_headings as $fp_i => $fp_h) : ?>
+                <li class="flex gap-3 text-[15.5px] leading-[1.5]">
+                  <span aria-hidden="true" class="tabular-nums text-warm-grey/60"><?php echo esc_html(str_pad((string) ($fp_i + 1), 2, '0', STR_PAD_LEFT)); ?></span>
+                  <a href="#<?php echo esc_attr($fp_h['id']); ?>"
+                     data-track-id="<?php echo esc_attr('toc-' . $fp_h['id']); ?>" data-track-type="toc"
+                     class="text-ink hover:text-teal hover:underline underline-offset-2"><?php echo esc_html($fp_h['text']); ?></a>
+                </li>
+              <?php endforeach; ?>
+            </ol>
+          </nav>
+        <?php endif; ?>
+
+        <div class="prose prose-lg mt-8 max-w-none prose-headings:font-serif prose-headings:text-navy prose-a:text-teal prose-a:underline-offset-2 prose-p:text-warm-grey prose-li:text-warm-grey">
+          <?php the_content(); ?>
+        </div>
       </div>
     </div>
   </section>

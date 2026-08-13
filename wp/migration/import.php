@@ -346,6 +346,13 @@ foreach ($posts as $row) {
     if ($row['industry']) {
         wp_set_object_terms($id, [$row['industry']], 'post_industry');
     }
+
+    // Tags are display-only — they label the cards on the blog index. They are
+    // NOT given archive pages: 30-odd thin tag archives listing three posts
+    // each is the doorway pattern the content gate exists to prevent.
+    if (!empty($row['tags'])) {
+        wp_set_object_terms($id, array_map('strval', $row['tags']), 'post_tag');
+    }
 }
 WP_CLI::log(sprintf('Posts: %d (%d scheduled).', $imported, count(array_filter($posts, static fn($p) => strtotime((string) $p['date']) > time()))));
 

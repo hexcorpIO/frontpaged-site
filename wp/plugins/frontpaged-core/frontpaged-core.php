@@ -37,6 +37,7 @@ require_once FPC_DIR . 'inc/schema.php';
 require_once FPC_DIR . 'inc/meta.php';
 require_once FPC_DIR . 'inc/tracking.php';
 require_once FPC_DIR . 'inc/scorecard.php';
+require_once FPC_DIR . 'inc/content.php';
 
 /**
  * Rewrite rules are stored in the database, so a newly registered post type is

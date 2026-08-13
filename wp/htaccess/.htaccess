@@ -1,0 +1,101 @@
+# .htaccess for the WordPress install at frontpaged.io.
+#
+# Goes in public_html, replacing the one the static export currently deploys.
+#
+# WordPress will happily rewrite the block between the BEGIN/END WordPress
+# markers whenever permalinks are saved, and it leaves everything outside those
+# markers alone. So the redirects and headers live ABOVE the block, where an
+# admin action cannot delete them.
+#
+# Everything here except the WordPress block is carried over verbatim from
+# public/.htaccess. Those 301s are live SEO assets — the retired location pages
+# still receive traffic, and dropping them would turn earned links into 404s.
+
+# ── Canonical host ───────────────────────────────────────────────────────
+# www served the whole site at 200, duplicating every URL on a second hostname.
+# Redirect it to the apex, which is what the canonical tags say.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.frontpaged\.io$ [NC]
+  RewriteRule ^(.*)$ https://frontpaged.io/$1 [R=301,L]
+</IfModule>
+
+# ── Retired URLs ─────────────────────────────────────────────────────────
+# Location pages from before the nationwide pivot, straight to the med spa hub
+# rather than via the old service page, so this doesn't chain redirects.
+RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /industries/med-spas/
+
+# /services/* now describes what we do and /industries/* who we do it for.
+# Keeping both would have had two of our own pages competing for "med spa SEO".
+Redirect 301 /services/med-spa-seo/ /industries/med-spas/
+Redirect 301 /services/med-spa-seo /industries/med-spas/
+
+# ── Compression ──────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# ── Caching ──────────────────────────────────────────────────────────────
+# HTML stays fresh; static assets are cached hard. WordPress does not
+# fingerprint filenames the way Next.js did, so the theme appends ?ver= from
+# filemtime() — which busts the cache on deploy without needing hashed names.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Self-hosted fonts never change without a filename change.
+  SetEnvIf Request_URI "\.woff2$" IMMUTABLE_ASSET
+  Header set Cache-Control "public, max-age=31536000, immutable" env=IMMUTABLE_ASSET
+
+  # Baseline security headers, unchanged from the static site.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+</IfModule>
+
+# ── WordPress hardening ──────────────────────────────────────────────────
+# xmlrpc.php is the endpoint brute-force and pingback-amplification attacks use,
+# and nothing here needs it — the site has no Jetpack and no remote publishing.
+<Files "xmlrpc.php">
+  Require all denied
+</Files>
+
+# wp-config.php holds the database credentials. Apache normally serves .php by
+# executing it, but a misconfiguration that disables PHP would serve it as text.
+<Files "wp-config.php">
+  Require all denied
+</Files>
+
+# Block direct execution of PHP inside uploads. An upload that lands as .php and
+# is then requested is the standard path from "file upload" to "remote code".
+<Directory "wp-content/uploads">
+  <FilesMatch "\.php$">
+    Require all denied
+  </FilesMatch>
+</Directory>
+
+# ── WordPress ────────────────────────────────────────────────────────────
+# WordPress rewrites the block below whenever permalinks are saved. Do not put
+# anything you care about inside it.
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress

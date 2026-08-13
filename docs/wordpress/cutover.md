@@ -43,10 +43,78 @@ teal. Timestamp text also moved from `text-warm-grey/80` (3.64:1) to the full
 Revert either in `wp/themes/frontpaged/assets/css/input.css` to restore the
 previous appearance and the previous failure.
 
+## Deploying from GitHub
+
+The static workflow force-pushes the whole of `out/` over `public_html`,
+because the repository produces every byte the server serves. **WordPress
+cannot be deployed that way.** The repo produces two directories of code;
+WordPress core, `wp-config.php`, `wp-content/uploads` and the database live on
+the server and are not in git. Mirroring the repo over `public_html` would
+delete the uploads folder, the database credentials and every admin-installed
+plugin.
+
+`.github/workflows/deploy-wordpress.yml` syncs exactly two directories and
+touches nothing else:
+
+```
+wp/themes/frontpaged/        ->  wp-content/themes/frontpaged/
+wp/plugins/frontpaged-core/  ->  wp-content/plugins/frontpaged-core/
+```
+
+It builds the Tailwind CSS, runs `php -l` over every PHP file, checks the theme
+has its required files, deploys, then smoke-tests four live URLs and fails if
+any is not a 200.
+
+**Disconnect the existing Hostinger Git deployment first.** It currently owns
+`public_html` and checks out the `deploy` branch there. Left connected, it will
+fight the WordPress install — at best reverting files, at worst wiping it.
+
+### Secrets to add (Settings → Secrets and variables → Actions)
+
+SSH (Business plans and above, faster):
+
+| Secret | Example |
+|---|---|
+| `HOSTINGER_SSH_HOST` | `123.45.67.89` |
+| `HOSTINGER_SSH_USER` | `u123456789` |
+| `HOSTINGER_SSH_PORT` | `65002` |
+| `HOSTINGER_SSH_KEY` | contents of a private key whose public half is in hPanel → SSH Access |
+| `HOSTINGER_WP_CONTENT` | `/home/u123456789/domains/frontpaged.io/public_html/wp-content` |
+
+Then add a repository **variable** `HOSTINGER_TRANSPORT` = `ssh`.
+
+FTP (any plan) — leave `HOSTINGER_TRANSPORT` unset and add:
+
+| Secret | Example |
+|---|---|
+| `HOSTINGER_FTP_HOST` | `ftp.frontpaged.io` |
+| `HOSTINGER_FTP_USER` | from hPanel → Files → FTP Accounts |
+| `HOSTINGER_FTP_PASSWORD` | |
+| `HOSTINGER_WP_CONTENT` | `/public_html/wp-content` (FTP paths are relative to the FTP root) |
+
+### What still is not deployed by git
+
+Content. The theme and plugin are code; the 56 posts and 8 industries live in
+the database. Run the importer once after the first deploy, and again only when
+`src/lib/*` or `content/blog/*` changes:
+
+```
+pnpm wp:export
+wp eval-file wp-content/migration/import.php
+```
+
 ## Before you switch DNS
 
-1. **Provision PHP 8.1+ and MySQL on Hostinger.** The account currently serves
-   static files from the `deploy` branch.
+1. **There is no PHP to "fix".** Hostinger runs LiteSpeed with PHP already —
+   the site simply never invokes it, because it is serving `.html` files. What
+   is missing is a database and a WordPress install. In hPanel:
+   - **Advanced → PHP Configuration**: set PHP to **8.1 or newer** (the plugin
+     declares `Requires PHP: 8.1` and uses `match` and enums).
+     Raise `memory_limit` to 256M while you are there.
+   - **Databases → MySQL**: create a database and a user, and note both.
+   - **Website → Auto Installer**: install WordPress into `public_html`.
+   - **Disconnect the Git deployment** under Advanced → GIT first, or it will
+     overwrite the install.
 2. **Install WordPress**, then copy `wp/themes/frontpaged` and
    `wp/plugins/frontpaged-core` into `wp-content/`.
 3. **Install ACF Pro** and activate the licence against `frontpaged.io`. It

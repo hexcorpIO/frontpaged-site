@@ -1,0 +1,145 @@
+name: Deploy WordPress theme & plugin
+
+# ─────────────────────────────────────────────────────────────────────────────
+# This deploys DIFFERENTLY from deploy.yml, and the difference matters.
+#
+# The static workflow builds the entire site and force-pushes it over
+# public_html, because the repository produces every byte the server serves.
+#
+# WordPress does not work that way. The repository produces two directories of
+# code; WordPress core, wp-config.php, wp-content/uploads and the database live
+# on the server and are NOT in git. A deploy that mirrors the repo over
+# public_html would delete the uploads folder, the database credentials, and
+# every plugin installed through the admin.
+#
+# So this syncs exactly two directories and touches nothing else. The --delete
+# behaviour is scoped inside them, so a file removed from the repo is removed
+# from the server, while everything alongside them is left alone.
+# ─────────────────────────────────────────────────────────────────────────────
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "wp/themes/**"
+      - "wp/plugins/**"
+      - ".github/workflows/deploy-wordpress.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-wp
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 9
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # main.css IS committed, so the theme directory can be zipped and uploaded
+      # through the WordPress admin without a build step. It is rebuilt here
+      # anyway, so a commit that changed a template but forgot to recompile
+      # cannot ship stale CSS — the committed copy is a convenience, not the
+      # source of truth.
+      - name: Build theme CSS
+        run: pnpm wp:css
+
+      # Catches a fatal before it reaches a live server. `php -l` is cheap and it
+      # is the difference between a syntax slip being a failed workflow and being
+      # a white screen on production.
+      - name: Lint PHP
+        run: |
+          sudo apt-get -qq update && sudo apt-get -qq install -y php8.3-cli >/dev/null
+          fail=0
+          while read -r f; do
+            php -l "$f" >/dev/null || { echo "SYNTAX ERROR: $f"; fail=1; }
+          done < <(find wp/themes wp/plugins -name '*.php')
+          echo "checked $(find wp/themes wp/plugins -name '*.php' | wc -l) PHP files"
+          exit $fail
+
+      - name: Verify the theme has its required files
+        run: |
+          for f in wp/themes/frontpaged/style.css \
+                   wp/themes/frontpaged/index.php \
+                   wp/themes/frontpaged/functions.php \
+                   wp/themes/frontpaged/assets/css/main.css \
+                   wp/plugins/frontpaged-core/frontpaged-core.php; do
+            [ -s "$f" ] || { echo "MISSING OR EMPTY: $f"; exit 1; }
+          done
+          echo "theme and plugin structure OK"
+
+      # SSH is only on Hostinger Business plans and above. On a lower plan,
+      # delete this step and use the FTP one below instead.
+      - name: Deploy over SSH (rsync)
+        if: vars.HOSTINGER_TRANSPORT == 'ssh'
+        env:
+          KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          TARGET: ${{ secrets.HOSTINGER_WP_CONTENT }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          # Trailing slashes matter: "src/" copies the CONTENTS of src into dest.
+          # Without them rsync would nest the directory one level deeper on every
+          # run. --delete is safe because each call targets one leaf directory.
+          rsync -az --delete -e "ssh -p ${PORT:-22} -i ~/.ssh/id_ed25519" \
+            wp/themes/frontpaged/ "$USER@$HOST:$TARGET/themes/frontpaged/"
+
+          rsync -az --delete -e "ssh -p ${PORT:-22} -i ~/.ssh/id_ed25519" \
+            wp/plugins/frontpaged-core/ "$USER@$HOST:$TARGET/plugins/frontpaged-core/"
+
+      # Works on every Hostinger plan. Slower, and it compares file-by-file
+      # rather than syncing a delta.
+      - name: Deploy over FTP
+        if: vars.HOSTINGER_TRANSPORT != 'ssh'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_HOST }}
+          username: ${{ secrets.HOSTINGER_FTP_USER }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./wp/themes/frontpaged/
+          server-dir: ${{ secrets.HOSTINGER_WP_CONTENT }}/themes/frontpaged/
+          # Never let a deploy reach outside the directory it owns.
+          dangerous-clean-slate: false
+
+      - name: Deploy plugin over FTP
+        if: vars.HOSTINGER_TRANSPORT != 'ssh'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_HOST }}
+          username: ${{ secrets.HOSTINGER_FTP_USER }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./wp/plugins/frontpaged-core/
+          server-dir: ${{ secrets.HOSTINGER_WP_CONTENT }}/plugins/frontpaged-core/
+          dangerous-clean-slate: false
+
+      # A deploy that silently 500s is worse than one that fails loudly.
+      - name: Smoke test the live site
+        run: |
+          for path in / /industries/med-spas/ /blog/ /pricing/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://frontpaged.io$path")
+            printf '  %-28s %s\n' "$path" "$code"
+            [ "$code" = "200" ] || { echo "FAILED: $path returned $code"; exit 1; }
+          done

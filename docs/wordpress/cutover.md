@@ -85,7 +85,24 @@ wp/secrets/hostinger_deploy.pub
 Note the **host, username and port** shown on that page — Hostinger uses port
 `65002`, not 22.
 
-**2. Add the GitHub secrets.** Settings → Secrets and variables → Actions:
+**2. Add the GitHub secrets.** `HOSTINGER_SSH_KEY` and `HOSTINGER_SSH_PORT` are
+already set. For the rest, run:
+
+```
+./wp/setup-deploy.sh <ssh-host> <ssh-user>
+```
+
+It connects, reports the server's PHP version and whether WP-CLI is present,
+locates `wp-content` by testing the real candidate paths rather than assuming
+one, checks `themes/` is writable, and only then writes the secrets. Nothing is
+stored that has not been proven.
+
+That order matters: rsync creates missing directories without complaining, so a
+wrong `wp-content` path produces a deploy that reports success and puts the
+theme somewhere WordPress never looks — a failure invisible until someone asks
+why the site looks unchanged.
+
+To set them by hand instead — Settings → Secrets and variables → Actions:
 
 | Secret | Where to find it | Example |
 |---|---|---|

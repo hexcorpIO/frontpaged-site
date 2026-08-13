@@ -199,9 +199,9 @@ function fp_faqs(?int $post_id = null, string $heading = 'Questions people actua
         return;
     }
     ?>
-    <section class="border-t border-warm-line py-14 sm:py-16" aria-labelledby="faq-heading">
+    <section class="border-t border-warm-line py-14 sm:py-16" aria-labelledby="post-faq">
         <div class="<?php echo esc_attr(fp_container()); ?>">
-            <h2 id="faq-heading" class="font-serif text-[28px] leading-tight text-navy sm:text-[34px]">
+            <h2 id="post-faq" class="font-serif text-[28px] leading-tight text-navy sm:text-[34px]">
                 <?php echo esc_html($heading); ?>
             </h2>
             <div class="mt-8 divide-y divide-line border-y border-line">

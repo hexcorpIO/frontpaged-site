@@ -77,9 +77,9 @@ $related = get_posts([
     'tax_query' => $industry ? [['taxonomy' => 'post_industry', 'field' => 'slug', 'terms' => $industry->slug]] : [],
 ]);
 if ($related !== []) : ?>
-<section class="border-t border-warm-line py-14" aria-labelledby="related-heading">
+<section class="border-t border-warm-line py-14" aria-labelledby="read-next">
   <div class="<?php echo esc_attr(fp_container()); ?>">
-    <h2 id="related-heading" class="font-serif text-[26px] text-navy">Read next</h2>
+    <h2 id="read-next" class="font-serif text-[26px] text-navy">Read next</h2>
     <ul class="mt-8 grid gap-5 sm:grid-cols-2">
       <?php foreach ($related as $post) : ?>
         <li><a href="<?php echo esc_url(get_permalink($post)); ?>" data-track-id="<?php echo esc_attr('related-post-' . $post->post_name); ?>" data-track-type="card"

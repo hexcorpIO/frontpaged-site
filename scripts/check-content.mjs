@@ -26,6 +26,7 @@ const STATIC_ROUTES = new Set([
   "/industries/personal-injury-law",
   "/industries/estate-law",
   "/industries/real-estate-teams",
+  "/ai-readiness-check",
   "/author/benton-purvis",
   "/blog/industry/med-spas",
   "/blog/industry/personal-injury-law",

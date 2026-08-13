@@ -19,6 +19,7 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${site.url}/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 1 },
   { url: `${site.url}/industries/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.9 },
   { url: `${site.url}/pricing/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.9 },
+  { url: `${site.url}/ai-readiness-check/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.9 },
   { url: `${site.url}/contact/`, lastModified: STATIC_DATE, changeFrequency: "yearly", priority: 0.9 },
   { url: `${site.url}/about/`, lastModified: STATIC_DATE, changeFrequency: "yearly", priority: 0.8 },
   { url: `${site.url}/faq/`, lastModified: STATIC_DATE, changeFrequency: "monthly", priority: 0.8 },

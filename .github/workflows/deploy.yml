@@ -5,9 +5,19 @@ name: Build & publish static site
 # serves the `deploy` branch (which contains the baked site at its root),
 # instead of the raw source — fixing the 403 from deploying un-built source.
 
+# DISABLED on WordPress cutover (2026-08-13).
+#
+# This workflow force-pushes the static export to the `deploy` branch, which
+# Hostinger checks out into public_html. With WordPress serving that directory,
+# every run would lay .html files back over the top — and because WordPress only
+# routes a request to index.php when no matching FILE exists, a single
+# index.html re-appearing silently takes that URL back off WordPress.
+#
+# Re-enable only to roll back to the static site, and remove the WordPress
+# .htaccess at the same time.
 on:
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
   # Daily rebuild so date-scheduled blog posts publish themselves. Posts dated in
   # the future are excluded from the build (see src/lib/blog.ts); this run is what
   # picks them up once their date arrives. On every other day the output is

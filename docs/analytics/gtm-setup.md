@@ -242,8 +242,8 @@ metric in GA4 without anything visibly breaking.
 `pnpm verify`, fails the build on: malformed or empty ids, ids containing
 `undefined`, the same id twice on one page, a missing sitewide or
 route-required id, duplicated `<main>`/`<header>`/`<footer>` landmarks, and a
-Consent Mode default that is missing from `<head>` or ordered after the
-container, and a missing or mis-ordered `fpConsentGrant`.
+page context script that is missing from `<head>` or ordered after the
+container.
 
 That last rule exists because `/blog/industry/<slug>/` shipped with two of each
 — the page rendered its own shell inside a layout that already supplied one.

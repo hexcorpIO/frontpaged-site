@@ -30,6 +30,19 @@ RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /industries/
 Redirect 301 /services/med-spa-seo/ /industries/med-spas/
 Redirect 301 /services/med-spa-seo /industries/med-spas/
 
+# ── Favicon ──────────────────────────────────────────────────────────────
+# Browsers request /favicon.ico unprompted whatever the link tags say, and the
+# icons live in the theme so they deploy with the code. A PHP handler was tried
+# first and never ran: LiteSpeed answers a missing .ico with the host's own
+# error page before the request reaches WordPress. A rewrite is also simply
+# better here — it is served as a static file with no PHP involved.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^favicon\.ico$ /wp-content/themes/frontpaged/assets/icons/favicon.ico [L]
+  RewriteRule ^icon\.svg$ /wp-content/themes/frontpaged/assets/icons/icon.svg [L]
+  RewriteRule ^apple-touch-icon(-precomposed)?\.png$ /wp-content/themes/frontpaged/assets/icons/logo-512.png [L]
+</IfModule>
+
 # ── Compression ──────────────────────────────────────────────────────────
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml

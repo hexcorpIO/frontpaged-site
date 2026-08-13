@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     q: "Where do the answers go?",
-    a: "Nowhere, unless you ask us to send you the plan at the end. The scoring itself runs entirely in your browser and nothing is transmitted while you answer. There is no email gate on the result — you see the full breakdown whether or not you give us anything.",
+    a: "Nowhere, unless you ask us to send you the plan at the end. The scoring runs entirely in your browser and your answers are not transmitted while you work through the questions. There is no email gate on the result — you see the full breakdown whether or not you give us anything. Like most sites, this page loads analytics that records the visit itself; it cannot see what you selected.",
   },
   {
     q: "What are the five factors based on?",
@@ -127,8 +127,8 @@ export default function AiReadinessCheck() {
             {/* Said up front, not in the small print. */}
             <p className="mt-6 rounded-2xl border-l-4 border-teal bg-soft p-5 text-[15.5px] leading-[1.7] text-ink">
               <strong className="text-navy">What this is and isn&rsquo;t.</strong> This
-              scores what you tell it, in your browser. Nothing is sent unless you choose to
-              email yourself the plan at the end. It
+              scores what you tell it, in your browser. Your answers stay there unless you
+              choose to email yourself the plan at the end. It
               does <em>not</em> query ChatGPT or Perplexity about you — that&rsquo;s the{" "}
               <Link href="/contact/" className="text-teal underline underline-offset-2">
                 free visibility check

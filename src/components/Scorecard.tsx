@@ -338,8 +338,8 @@ function EmailResults({ result }: { result: ReturnType<typeof score> }) {
       )}
 
       <p className="mt-4 text-[13.5px] leading-[1.6] text-warm-grey">
-        Your answers are only sent if you submit this. Nothing left your browser
-        while you were filling the scorecard in.
+        Your answers are only sent if you submit this. They did not leave your
+        browser while you were filling the scorecard in.
       </p>
     </form>
   );

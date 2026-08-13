@@ -29,6 +29,14 @@ export const site = {
   // empty. Configure the provider to redirect to https://frontpaged.io/contact/thank-you/
   // on success so the visitor stays on our site and the conversion is trackable.
   formEndpoint: "https://formspree.io/f/mppadnvo",
+  // Google Tag Manager container. Everything measurement-related is configured
+  // inside GTM rather than in this repo, so adding GA4, a conversion pixel or a
+  // call-tracking snippet later is a change in the GTM UI, not a redeploy.
+  //
+  // Set to "" to remove the container sitewide. Loading is additionally
+  // suppressed outside production builds (see GoogleTagManager) so `pnpm dev`
+  // never writes to the container.
+  gtmId: "GTM-NBL9BS2M",
   areaServed: "the United States",
   description:
     "Frontpaged gets high-ticket local businesses found on Google and cited by " +

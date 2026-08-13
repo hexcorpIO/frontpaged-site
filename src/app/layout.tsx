@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
+import GoogleTagManager, {
+  GoogleTagManagerNoScript,
+} from "@/components/GoogleTagManager";
 import { site } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
 
@@ -77,11 +80,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
+        <GoogleTagManagerNoScript />
         <noscript>
           {/* Without JS the scroll-reveal observer never runs — keep content visible. */}
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         {children}
+        <GoogleTagManager />
       </body>
     </html>
   );

@@ -324,6 +324,35 @@ function fpc_print_schema(): void
         $crumbs[] = ['name' => 'Services'];
     }
 
+    // The glossary is a DefinedTermSet rather than 32 thin pages. Each term is
+    // a node inside it, so an engine can quote one definition and attribute it,
+    // without the site publishing a page per term — which is the doorway
+    // pattern its own content gate exists to prevent.
+    if (is_page('glossary')) {
+        $terms = get_posts([
+            'post_type' => 'glossary_term', 'posts_per_page' => -1,
+            'orderby' => 'title', 'order' => 'ASC',
+        ]);
+        if ($terms !== []) {
+            $graph[] = [
+                '@type'       => 'DefinedTermSet',
+                '@id'         => $permalink . '#glossary',
+                'name'        => 'Frontpaged Glossary',
+                'url'         => $permalink,
+                'hasDefinedTerm' => array_map(
+                    static fn(WP_Post $t): array => [
+                        '@type'       => 'DefinedTerm',
+                        '@id'         => $permalink . '#' . $t->post_name,
+                        'name'        => get_the_title($t),
+                        'description' => (string) fpc_field('definition', $t->ID),
+                        'inDefinedTermSet' => ['@id' => $permalink . '#glossary'],
+                    ],
+                    $terms
+                ),
+            ];
+        }
+    }
+
     if (is_singular()) {
         $faq = fpc_faq_node(get_the_ID(), $permalink);
         if ($faq !== null) {

@@ -178,6 +178,10 @@ foreach ($settings as $key => $value) {
         update_option("_options_{$key}", $field_key);
     }
 }
+// The scorecard's questions, factors and copy are content, not configuration —
+// they change when the methodology changes. Stored whole so the plugin has one
+// place to read and the theme never hardcodes a question.
+update_option('fpc_scorecard', wp_json_encode(fpc_read('scorecard')), false);
 WP_CLI::log('Settings written.');
 
 /* ── Industries ───────────────────────────────────────────────────────── */

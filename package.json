@@ -15,7 +15,11 @@
     "check:links": "node scripts/check-links.mjs",
     "check:tracking": "node scripts/check-tracking.mjs",
     "test": "node --test tests/*.test.mjs",
-    "verify": "pnpm test && pnpm check:content && pnpm check:duplication && pnpm build && pnpm check:seo && pnpm check:links && pnpm check:tracking"
+    "verify": "pnpm test && pnpm check:content && pnpm check:duplication && pnpm build && pnpm check:seo && pnpm check:links && pnpm check:tracking",
+    "wp:css": "tailwindcss -i wp/themes/frontpaged/assets/css/input.css -o wp/themes/frontpaged/assets/css/main.css --minify",
+    "wp:css:watch": "tailwindcss -i wp/themes/frontpaged/assets/css/input.css -o wp/themes/frontpaged/assets/css/main.css --watch",
+    "wp:export": "node --import ./wp/migration/dir-resolve-register.mjs wp/migration/export.mjs",
+    "wp:urls": "node wp/migration/check-urls.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -25,6 +29,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^20",

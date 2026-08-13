@@ -1,0 +1,10 @@
+/*
+Theme Name:  Frontpaged
+Description: Classic theme for frontpaged.io. Templates output exact markup so the semantic HTML and JSON-LD stay under our control; Gutenberg edits the prose. The content model lives in the Frontpaged Core plugin, not here — switching theme must never take the content with it.
+Version:     1.0.0
+Requires PHP: 8.1
+Text Domain: frontpaged
+*/
+
+/* Compiled styles are in assets/css/main.css. This file exists to declare the
+   theme to WordPress and is not enqueued. */

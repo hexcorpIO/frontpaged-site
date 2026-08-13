@@ -42,8 +42,21 @@ function fpc_meta_title(?WP_Post $post = null): string
         return single_term_title('', false) . ' — SEO & AI Search Articles';
     }
 
-    $title = $post ? get_the_title($post) : wp_get_document_title();
-    return sprintf('%s · %s', $title, fpc_option('brand_name'));
+    // Every remaining case is resolved from the query directly. Calling
+    // wp_get_document_title() here would be catastrophic: this function is the
+    // pre_get_document_title filter, so it would re-enter itself and recurse
+    // until PHP ran out of memory — which is exactly what happened, taking out
+    // /blog/, the author archive and every 404 with a 500.
+    $title = match (true) {
+        is_home()   => 'Blog',
+        is_author() => (string) get_the_author_meta('display_name', (int) get_query_var('author')),
+        is_search() => sprintf('Search: %s', get_search_query()),
+        is_404()    => 'Page not found',
+        is_archive()=> (string) get_the_archive_title(),
+        default     => $post ? get_the_title($post) : (string) get_bloginfo('name'),
+    };
+
+    return sprintf('%s · %s', wp_strip_all_tags($title), fpc_option('brand_name'));
 }
 
 /**

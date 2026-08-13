@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Tailwind v4 scans these for class names. PHP templates are the whole front
+   end here, so they are the source — and the plugin is included because it
+   renders tracking attributes and schema-adjacent markup of its own. */
+@source "../../**/*.php";
+@source "../../../../plugins/frontpaged-core/**/*.php";
+
+@import "./fonts.css";
+
+/* Palette ported verbatim from src/app/globals.css. These hex values are the
+   brand; changing one here changes it everywhere, which is the point. */
+@theme {
+  --color-navy: #15263f;
+  --color-teal: #2e8b8b;
+  --color-teal-dark: #246e6e;
+  --color-ink: #1d2733;
+  --color-grey: #5b6672;
+  --color-soft: #eef5f5;
+  --color-line: #e3e9ee;
+  --color-amber: #fff4e6;
+  --color-coral: #e8794b;
+  --color-cream: #faf7f1;
+  --color-sand: #f1ebe1;
+  --color-warm-line: #e7ded1;
+  --color-warm-grey: #6b6256;
+  --color-gold: #c08a3e;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+}
+
+/* WordPress core block styles we rely on rather than restyle. */
+.wp-block-heading {
+  font-family: var(--font-serif);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

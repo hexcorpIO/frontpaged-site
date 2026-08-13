@@ -36,7 +36,7 @@ $terms = get_posts([
           $also = fpc_field('also_known_as', $term->ID);
           $also = is_array($also) ? implode(', ', array_filter(array_map('strval', $also))) : (string) $also;
           if ($also !== '') : ?>
-            <p class="mt-1 text-[13px] text-warm-grey/80">Also: <?php echo esc_html($also); ?></p>
+            <p class="mt-1 text-[13px] text-warm-grey">Also: <?php echo esc_html($also); ?></p>
           <?php endif; ?>
           <dd class="mt-3 text-[15.5px] leading-[1.7] text-warm-grey"><?php echo esc_html((string) fpc_field('definition', $term->ID)); ?></dd>
         </div>

@@ -25,7 +25,7 @@ fp_breadcrumbs([['name' => 'Home', 'url' => home_url('/')], ['name' => $author->
       <?php while (have_posts()) : the_post(); ?>
         <li class="py-5"><a href="<?php the_permalink(); ?>" data-track-id="<?php echo esc_attr('author-post-' . get_post_field('post_name')); ?>" data-track-type="card" class="group block">
           <p class="font-serif text-[19px] text-navy group-hover:text-teal"><?php the_title(); ?></p>
-          <p class="mt-1.5 text-[13.5px] text-warm-grey/80"><?php echo esc_html(get_the_date('j F Y')); ?></p>
+          <p class="mt-1.5 text-[13.5px] text-warm-grey"><?php echo esc_html(get_the_date('j F Y')); ?></p>
         </a></li>
       <?php endwhile; ?>
     </ul>

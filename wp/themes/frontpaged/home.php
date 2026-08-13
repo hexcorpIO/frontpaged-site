@@ -29,7 +29,7 @@ fp_breadcrumbs([['name' => 'Home', 'url' => home_url('/')], ['name' => 'Blog']])
           <a href="<?php the_permalink(); ?>" data-track-id="<?php echo esc_attr('blog-card-' . get_post_field('post_name')); ?>" data-track-type="card" class="group block">
             <p class="font-serif text-[21px] leading-snug text-navy group-hover:text-teal"><?php the_title(); ?></p>
             <p class="mt-2 text-[15.5px] leading-[1.65] text-warm-grey"><?php echo esc_html(get_the_excerpt()); ?></p>
-            <p class="mt-2.5 text-[13.5px] text-warm-grey/80"><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date('j F Y')); ?></time></p>
+            <p class="mt-2.5 text-[13.5px] text-warm-grey"><time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date('j F Y')); ?></time></p>
           </a>
         </li>
       <?php endwhile; ?>

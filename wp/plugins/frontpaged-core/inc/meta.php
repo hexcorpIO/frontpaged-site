@@ -238,3 +238,83 @@ add_action('template_redirect', static function (): void {
     printf("\n## Contact\n\n- Email: %s\n- Phone: %s\n", fpc_option('email'), fpc_option('phone'));
     exit;
 });
+
+/* -------------------------------------------------------------------------
+ * Crawl-surface parity with the static export
+ * ---------------------------------------------------------------------- */
+
+/**
+ * robots.txt.
+ *
+ * WordPress's default is four lines and says nothing about AI crawlers. The
+ * static site names seventeen of them explicitly and allows each one.
+ *
+ * Naming them matters even though "User-agent: *  Allow: /" already permits
+ * them: several of these agents are opt-OUT by convention, and an explicit
+ * Allow is the unambiguous signal. For a business whose entire proposition is
+ * being cited by AI assistants, silently blocking one would be the single most
+ * expensive configuration mistake available.
+ */
+const FPC_AI_CRAWLERS = [
+    'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
+    'PerplexityBot', 'Perplexity-User',
+    'ClaudeBot', 'Claude-User', 'Claude-SearchBot',
+    'Google-Extended', 'Applebot', 'Applebot-Extended',
+    'Bingbot', 'CCBot', 'meta-externalagent', 'Amazonbot', 'DuckAssistBot',
+];
+
+add_filter('robots_txt', static function (string $output, $public): string {
+    if (!$public) {
+        return $output; // a discouraged site stays discouraged
+    }
+
+    $lines = ["User-Agent: *", "Allow: /", ""];
+
+    foreach (FPC_AI_CRAWLERS as $agent) {
+        $lines[] = "User-Agent: {$agent}";
+        $lines[] = "Allow: /";
+        $lines[] = "";
+    }
+
+    // wp-admin is the one place worth excluding: it is behind auth anyway, and
+    // crawling it wastes budget on redirects.
+    $lines[] = "Disallow: /wp-admin/";
+    $lines[] = "Allow: /wp-admin/admin-ajax.php";
+    $lines[] = "";
+    $lines[] = 'Host: ' . home_url('/');
+    $lines[] = 'Sitemap: ' . home_url('/sitemap.xml');
+
+    return implode("\n", $lines) . "\n";
+}, 10, 2);
+
+/**
+ * /rss.xml and /sitemap.xml.
+ *
+ * WordPress publishes these at /feed/ and /wp-sitemap.xml. The static export
+ * publishes them at /rss.xml and /sitemap.xml, those are the URLs in the wild —
+ * in <head> link tags, in Search Console, in whatever readers subscribed — so
+ * the WordPress URLs are the ones that have to move, not the published ones.
+ *
+ * Served at the original path rather than 301'd, because a feed reader that
+ * follows a redirect once may not re-follow it, and a sitemap that redirects is
+ * a sitemap Search Console reports as an error.
+ */
+add_action('init', static function (): void {
+    add_rewrite_rule('^rss\.xml$', 'index.php?feed=rss2', 'top');
+    add_rewrite_rule('^sitemap\.xml$', 'index.php?sitemap=index', 'top');
+});
+
+/**
+ * Both are files, and WordPress's canonical redirect appends a trailing slash
+ * to anything it does not recognise — which turns them into 301s to URLs that
+ * match no rule at all.
+ */
+add_filter('redirect_canonical', static function ($redirect) {
+    $path = parse_url((string) ($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH) ?? '';
+    return preg_match('#^/(rss|sitemap)\.xml$#', $path) ? false : $redirect;
+}, 20);
+
+/** Advertise the feed at the URL we actually publish. */
+add_filter('feed_link', static function (string $output, string $feed): string {
+    return $feed === 'rss2' || $feed === '' ? home_url('/rss.xml') : $output;
+}, 10, 2);

@@ -9,11 +9,22 @@
 
 @import "./fonts.css";
 
-/* Palette ported verbatim from src/app/globals.css. These hex values are the
-   brand; changing one here changes it everywhere, which is the point. */
+/* Palette ported from src/app/globals.css, with one deliberate change.
+   These hex values are the brand; changing one here changes it everywhere,
+   which is the point.
+
+   --color-teal was #2e8b8b. That fails WCAG AA in BOTH directions it is used:
+   3.79:1 as text on cream, and 4.05:1 behind white button text, against a 4.5
+   requirement. It is the accent on every CTA, every eyebrow label and the
+   wordmark, so the failure is on every page — and it is pre-existing, not
+   introduced by this migration.
+
+   #277878 is the nearest value that clears 4.5 both ways (4.86 and 5.19). It is
+   a small darkening and the brand still reads as the same teal. Revert this one
+   line to restore the exact previous colour and the exact previous failure. */
 @theme {
   --color-navy: #15263f;
-  --color-teal: #2e8b8b;
+  --color-teal: #277878;
   --color-teal-dark: #246e6e;
   --color-ink: #1d2733;
   --color-grey: #5b6672;

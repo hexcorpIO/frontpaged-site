@@ -24,6 +24,9 @@ import { usePathname } from "next/navigation";
 // The classifier stays a raw string, not a bundled module, because it has to
 // run in <head> before the GTM container — before any bundle has loaded.
 
+// Key names match what the GTM container declares — it reads `tier`, not
+// `tier_context`. A key the container does not declare is collected and then
+// absent from every report, which is indistinguishable from broken tracking.
 const PAGE_CONTEXT = `(function () {
   window.dataLayer = window.dataLayer || [];
   var INDUSTRIES = {
@@ -53,7 +56,7 @@ const PAGE_CONTEXT = `(function () {
       page_type: pageType,
       industry: window.__fp_industry,
       content_group: pageType.charAt(0).toUpperCase() + pageType.slice(1),
-      tier_context: 'none'
+      tier: 'none'
     };
   };
   dataLayer.push(window.__fpPageContext());

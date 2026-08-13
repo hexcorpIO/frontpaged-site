@@ -137,8 +137,13 @@ export default function Scorecard() {
           onClick={() => {
             pushToDataLayer({
               event: "check_complete",
+              // score_bucket sits at the top level and questions_answered stays
+              // nested because that is how the GTM container declares them —
+              // a flat "score_bucket" variable beside a dotted
+              // "check.questions_answered". Matching the consumer exactly beats
+              // a tidier shape that resolves to undefined in every report.
+              score_bucket: result.band.bucket,
               check: {
-                score_bucket: result.band.bucket,
                 questions_answered: answered,
                 ...checkContext(),
               },
@@ -260,7 +265,7 @@ function Results({
             onClick={() =>
               pushToDataLayer({
                 event: "result_cta_click",
-                check: { score_bucket: result.band.bucket },
+                score_bucket: result.band.bucket,
                 cta_location: "results",
               })
             }
@@ -345,8 +350,8 @@ function EmailResults({
         // Conversions it gets hashed server-side in sGTM.
         pushToDataLayer({
           event: "check_email_share",
+          score_bucket: result.band.bucket,
           check: {
-            score_bucket: result.band.bucket,
             questions_answered: answered,
             ...checkContext(),
           },

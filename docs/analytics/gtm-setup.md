@@ -195,31 +195,69 @@ this site still does not have.
 Not implemented. The site uses Calendly in two places and Cal.com nowhere, so
 the 7B variant would have been dead code.
 
-## What to build in GTM
+## Container audit — 2026-08-13
 
-**1. Variables.** One Data Layer Variable per key above — Variables → New →
-Data Layer Variable, name it exactly as the key. Fifteen of them. Version 2,
-leave the default value empty.
+Read from the published container (`gtm.js?id=GTM-NBL9BS2M`), not from memory.
+GA4 **G-YJ0ZJZ6SNT** is configured.
 
-**2. Triggers.** Custom Event triggers matching each event name: `click`,
-`generate_lead`, `scorecard_answer`, `scorecard_complete`, `form_error`,
-`page_context_change`, `check_start`, `check_progress`,
-`check_complete`, `check_email_share`, `result_cta_click`, `consultation_booked`.
+### Already wired
 
-Do **not** use GTM's built-in "All Elements" click trigger with CSS selector
-conditions. Those break on a Tailwind class change; `data-track-id` cannot.
+Triggers exist for `click`, `generate_lead`, `check_start`, `check_complete`,
+`consultation_booked`. Variables declared and resolving: `page_type`,
+`industry`, `content_group`, `scheduler`, `cta_location`,
+`check.questions_answered`, `fp_click` (1st-party cookie).
 
-**3. Tags.** A GA4 Configuration tag with your Measurement ID, then GA4 Event
-tags per trigger, passing the matching variables as event parameters.
+### Fixed in code, no GTM change needed
 
-**4. Register custom dimensions in GA4.** Admin → Custom definitions. Parameters
-not registered there are collected and then not shown in any report, which looks
-exactly like the tracking being broken. Register at minimum `click_id`,
-`click_type`, `page_type`, `industry`, `page_slug`, `lead_source`, `score_bucket`.
-`content_group` is native to GA4 and needs no registration.
+| Was | Now | Why |
+|---|---|---|
+| `check.score_bucket` | `score_bucket` at top level | The container declares a flat `score_bucket` DLV, so the nested key never resolved. |
+| `tier_context` | `tier` | The container declares `tier`. |
 
-**5. Mark `generate_lead` and `consultation_booked` as key events** in GA4
-Admin → Events.
+Note the container reads `check.questions_answered` dotted and `score_bucket`
+flat. That asymmetry is now matched exactly rather than tidied — matching the
+consumer beats a neater shape that reports undefined.
+
+### Still needed in GTM
+
+**1. Seven Data Layer Variables, so `click` carries any detail.** The trigger
+fires today and the container declares none of these, so all 293 click ids are
+sent and discarded — you get a count of clicks with no way to tell which button.
+
+```
+click_id          click_type        click_text        click_url
+click_section     click_region      click_destination
+```
+
+Plus `page_slug` and `lead_source`.
+
+**2. Five Custom Event triggers**, with GA4 Event tags behind them:
+
+| Event | Carries |
+|---|---|
+| `page_context_change` | `page_type`, `industry`, `content_group`, `tier` |
+| `check_progress` | `check.questions_answered`, `industry` |
+| `check_email_share` | `score_bucket`, `check.questions_answered` |
+| `result_cta_click` | `score_bucket`, `cta_location` |
+| `form_error` | `form_name` (needs a DLV too) |
+
+`page_context_change` is the important one. It is the SPA navigation signal —
+without it only the entry page of a session produces a page_view, and every
+click-through to another page is invisible. Fire the GA4 page_view on it as
+well as on container load.
+
+**3. Declared but never sent:** `channel`, `form_id`. Nothing in the site pushes
+either. Either remove them or tell me what should populate them.
+
+**4. `fp_click` reads a cookie that is never written**, because
+`RESPECT_CONSENT` gates it — see the consent gate section above.
+
+**5. Register the custom dimensions in GA4.** Admin → Custom definitions.
+A parameter not registered there is collected and then absent from every report,
+which looks exactly like broken tracking. At minimum: `click_id`, `click_type`,
+`page_type`, `industry`, `page_slug`, `score_bucket`, `lead_source`.
+
+**6. Mark `generate_lead` and `consultation_booked` as key events.**
 
 ## Adding a new link later
 

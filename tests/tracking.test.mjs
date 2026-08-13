@@ -220,7 +220,7 @@ test("page context pushes once for the entry page", () => {
   const { pushed } = loadPageContext();
   assert.equal(pushed.length, 1);
   assert.equal(pushed[0].page_type, "home");
-  assert.equal(pushed[0].tier_context, "none");
+  assert.equal(pushed[0].tier, "none", "the container declares `tier`, not `tier_context`");
 });
 
 // ── Score buckets ────────────────────────────────────────────────────────

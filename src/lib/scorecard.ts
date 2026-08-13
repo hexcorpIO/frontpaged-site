@@ -151,36 +151,53 @@ export type FactorResult = {
   weak: boolean;
 };
 
+/**
+ * Coarse grouping of a result, for analytics only.
+ *
+ * The brief that asked for this proposed cutoffs at 70 and 40 and then said to
+ * make them match how the five factors are actually graded — which is four
+ * bands at 80/55/30, not three at 70/40. So the bucket is a property OF each
+ * band rather than a second set of thresholds sitting beside them: the two
+ * cannot disagree, because there is only one table. The bottom two bands share
+ * a bucket, since "significant gaps" and "not yet legible" are the same sales
+ * conversation.
+ */
+export type ScoreBucket = "strong" | "some-gaps" | "at-risk";
+
 export type Result = {
   score: number;
   max: number;
   percent: number;
-  band: { label: string; summary: string };
+  band: { label: string; summary: string; bucket: ScoreBucket };
   factors: FactorResult[];
   /** Weakest first — the order someone should actually work in. */
   priorities: FactorResult[];
 };
 
-function band(percent: number): { label: string; summary: string } {
+function band(percent: number): { label: string; summary: string; bucket: ScoreBucket } {
   if (percent >= 80)
     return {
+      bucket: "strong",
       label: "Well positioned",
       summary:
         "The foundations are in place. At this level the gap between you and a citation is usually depth and consistency over time rather than anything structural — which is a much better problem to have than the alternative.",
     };
   if (percent >= 55)
     return {
+      bucket: "some-gaps",
       label: "Partly ready",
       summary:
         "Some of the machinery is there and some of it is missing, which typically shows up as being findable for your own name and invisible for everything else. The weakest factors below are where the return is.",
     };
   if (percent >= 30)
     return {
+      bucket: "at-risk",
       label: "Significant gaps",
       summary:
         "Enough is missing that AI assistants likely have no confident basis for naming you, even where you deserve to be named. None of it is exotic to fix — it is mostly work nobody has been assigned.",
     };
   return {
+    bucket: "at-risk",
     label: "Not yet legible",
     summary:
       "As things stand there is little for an assistant to read, corroborate or quote. That sounds worse than it is: almost everything on this list is fixable, and starting from here means the early gains are the largest.",

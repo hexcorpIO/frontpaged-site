@@ -222,3 +222,97 @@ test("page context pushes once for the entry page", () => {
   assert.equal(pushed[0].page_type, "home");
   assert.equal(pushed[0].tier_context, "none");
 });
+
+// ── Score buckets ────────────────────────────────────────────────────────
+//
+// The analytics bucket and the label shown on screen come from one table, so a
+// report can never describe a different grade than the visitor was given. These
+// pin that, and pin the mapping to the site's real 80/55/30 grading rather than
+// the 70/40 the brief suggested before saying to match the actual grading.
+
+test("score buckets follow the published band thresholds", async () => {
+  const { score, questions, MAX_SCORE } = await import("../src/lib/scorecard.ts");
+
+  // Build answers producing an exact target percentage.
+  const atPercent = (pct) => {
+    const points = Math.round((pct / 100) * MAX_SCORE);
+    const answers = {};
+    let left = points;
+    for (const q of questions) {
+      if (left >= 2) { answers[q.id] = "yes"; left -= 2; }
+      else if (left === 1) { answers[q.id] = "partly"; left -= 1; }
+    }
+    return score(answers);
+  };
+
+  for (const [pct, bucket, label] of [
+    [100, "strong", "Well positioned"],
+    [80, "strong", "Well positioned"],
+    [75, "some-gaps", "Partly ready"],
+    [55, "some-gaps", "Partly ready"],
+    [50, "at-risk", "Significant gaps"],
+    [30, "at-risk", "Significant gaps"],
+    [25, "at-risk", "Not yet legible"],
+    [0, "at-risk", "Not yet legible"],
+  ]) {
+    const r = atPercent(pct);
+    assert.equal(r.band.bucket, bucket, `${pct}% -> bucket (got ${r.percent}%)`);
+    assert.equal(r.band.label, label, `${pct}% -> label`);
+  }
+});
+
+// The bucket is only meaningful if it cannot contradict the label. There is one
+// table, so this holds by construction — asserted anyway, because a future edit
+// adding a fifth band could quietly give it the wrong bucket.
+test("every band maps to exactly one bucket, across the whole range", async () => {
+  const { score, questions, MAX_SCORE } = await import("../src/lib/scorecard.ts");
+  const seen = new Map();
+  for (let points = 0; points <= MAX_SCORE; points++) {
+    const answers = {};
+    let left = points;
+    for (const q of questions) {
+      if (left >= 2) { answers[q.id] = "yes"; left -= 2; }
+      else if (left === 1) { answers[q.id] = "partly"; left -= 1; }
+    }
+    const { band } = score(answers);
+    if (seen.has(band.label)) {
+      assert.equal(seen.get(band.label), band.bucket, `band "${band.label}" has two buckets`);
+    } else {
+      seen.set(band.label, band.bucket);
+    }
+    assert.ok(
+      ["strong", "some-gaps", "at-risk"].includes(band.bucket),
+      `unknown bucket "${band.bucket}"`,
+    );
+  }
+  assert.equal(seen.size, 4, "expected four bands");
+  assert.equal(new Set(seen.values()).size, 3, "expected three buckets");
+});
+
+// check_start must fire once, on the first answer — not on the first CLICK.
+// Questions are answerable in any order and an answer can be changed, so a
+// naive "question index + 1" counter would re-fire check_start whenever someone
+// revised question one, and miss the halfway mark entirely for anyone who
+// answered out of order.
+test("answer counting fires check_start once and halfway once, in any order", () => {
+  const total = 10;
+  const halfway = Math.ceil(total / 2);
+  const events = [];
+  const answers = {};
+
+  const answer = (id) => {
+    const wasAnswered = Boolean(answers[id]);
+    const answered = Object.keys(answers).length;
+    const next = wasAnswered ? answered : answered + 1;
+    answers[id] = "yes";
+    if (next === 1 && !wasAnswered) events.push("check_start");
+    else if (next === halfway && !wasAnswered) events.push("check_progress");
+  };
+
+  // Deliberately out of order, with revisions interleaved.
+  for (const id of ["q7", "q3", "q7", "q1", "q3", "q9", "q2", "q7"]) answer(id);
+
+  assert.deepEqual(events, ["check_start", "check_progress"]);
+  assert.equal(events.filter((e) => e === "check_start").length, 1);
+  assert.equal(events.filter((e) => e === "check_progress").length, 1);
+});

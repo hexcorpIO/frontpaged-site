@@ -22,6 +22,19 @@ const OPTIONS: { value: Answer; label: string }[] = [
   { value: "no", label: "No / not sure" },
 ];
 
+// Analytics for the quiz is deliberately categorical. What gets recorded is the
+// score BUCKET and the number of questions answered — never which weaknesses a
+// business admitted to. Per-answer data tied to an email address is a different
+// and much less defensible thing to collect, on a page that makes explicit
+// privacy claims a few paragraphs further up.
+//
+// The bucket comes from result.band.bucket, which is a property of the same
+// table that produces the on-screen label, so the number in a report can never
+// describe a different grade than the one the visitor was shown.
+const checkContext = () => ({ industry: window.__fp_industry || "none" });
+
+const HALFWAY = Math.ceil(questions.length / 2);
+
 export default function Scorecard() {
   const [answers, setAnswers] = useState<Record<string, Answer | undefined>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -31,7 +44,13 @@ export default function Scorecard() {
   const result = score(answers);
 
   if (submitted) {
-    return <Results result={result} onRevise={() => setSubmitted(false)} />;
+    return (
+      <Results
+        result={result}
+        answered={answered}
+        onRevise={() => setSubmitted(false)}
+      />
+    );
   }
 
   return (
@@ -78,16 +97,25 @@ export default function Scorecard() {
                         value={o.value}
                         checked={active}
                         onChange={() => {
+                          // Count what this answer brings the total TO, which is
+                          // not i + 1: questions can be answered in any order,
+                          // and changing an existing answer must not re-fire
+                          // check_start or double-count the halfway mark.
+                          const wasAnswered = Boolean(answers[q.id]);
+                          const next = wasAnswered ? answered : answered + 1;
                           setAnswers((a) => ({ ...a, [q.id]: o.value }));
-                          // Question number, not the answer given: where people
-                          // abandon is the actionable fact, and recording which
-                          // weaknesses a named business admitted to would be a
-                          // different and much less defensible thing to collect.
-                          pushToDataLayer({
-                            event: "scorecard_answer",
-                            scorecard_question: i + 1,
-                            scorecard_total_questions: questions.length,
-                          });
+
+                          if (next === 1 && !wasAnswered) {
+                            pushToDataLayer({
+                              event: "check_start",
+                              check: checkContext(),
+                            });
+                          } else if (next === HALFWAY && !wasAnswered) {
+                            pushToDataLayer({
+                              event: "check_progress",
+                              check: { questions_answered: next, ...checkContext() },
+                            });
+                          }
                         }}
                         className="sr-only"
                       />
@@ -108,12 +136,12 @@ export default function Scorecard() {
           data-track-type="cta"
           onClick={() => {
             pushToDataLayer({
-              event: "scorecard_complete",
-              scorecard_score: result.score,
-              scorecard_max: MAX_SCORE,
-              scorecard_band: result.band.label,
-              scorecard_answered: answered,
-              scorecard_partial: !complete,
+              event: "check_complete",
+              check: {
+                score_bucket: result.band.bucket,
+                questions_answered: answered,
+                ...checkContext(),
+              },
             });
             setSubmitted(true);
           }}
@@ -135,9 +163,11 @@ export default function Scorecard() {
 
 function Results({
   result,
+  answered,
   onRevise,
 }: {
   result: ReturnType<typeof score>;
+  answered: number;
   onRevise: () => void;
 }) {
   return (
@@ -204,7 +234,7 @@ function Results({
         </div>
       )}
 
-      <EmailResults result={result} />
+      <EmailResults result={result} answered={answered} />
 
       {/* The honest handoff. This tool scored self-reported answers; it did not
           query any AI engine. The real check is the thing a human does. */}
@@ -223,6 +253,17 @@ function Results({
             href="/contact/"
             data-track-id="scorecard-results-visibility-check"
             data-track-type="cta"
+            // The delegated listener already reports this as a `click`. The
+            // explicit push exists to carry the score bucket, which a generic
+            // click event has no way to know — "who books after scoring at-risk"
+            // is the question this page exists to answer.
+            onClick={() =>
+              pushToDataLayer({
+                event: "result_cta_click",
+                check: { score_bucket: result.band.bucket },
+                cta_location: "results",
+              })
+            }
             className="inline-flex items-center rounded-lg bg-teal px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-teal/90"
           >
             Get your free visibility check
@@ -261,7 +302,13 @@ function Results({
  * Submits by fetch rather than a form POST so the visitor keeps their results on
  * screen instead of being navigated to a confirmation page.
  */
-function EmailResults({ result }: { result: ReturnType<typeof score> }) {
+function EmailResults({
+  result,
+  answered,
+}: {
+  result: ReturnType<typeof score>;
+  answered: number;
+}) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   if (!site.formEndpoint) return null;
@@ -288,18 +335,28 @@ function EmailResults({ result }: { result: ReturnType<typeof score> }) {
       });
       setStatus(res.ok ? "sent" : "error");
       if (res.ok) {
+        // A soft lead, and deliberately NOT generate_lead — that stays the
+        // contact form, where someone describes their problem and asks for a
+        // reply. Sharing an email to receive a plan is a weaker signal, and
+        // marking both as the same key event would inflate the number the
+        // business is actually managed on.
+        //
+        // The email itself is never pushed. If it is ever needed for Enhanced
+        // Conversions it gets hashed server-side in sGTM.
         pushToDataLayer({
-          event: "generate_lead",
-          lead_source: "scorecard_plan_request",
-          scorecard_score: result.score,
-          scorecard_band: result.band.label,
+          event: "check_email_share",
+          check: {
+            score_bucket: result.band.bucket,
+            questions_answered: answered,
+            ...checkContext(),
+          },
         });
       } else {
-        pushToDataLayer({ event: "form_error", form_name: "scorecard_plan_request" });
+        pushToDataLayer({ event: "form_error", form_name: "check_email_share" });
       }
     } catch {
       setStatus("error");
-      pushToDataLayer({ event: "form_error", form_name: "scorecard_plan_request" });
+      pushToDataLayer({ event: "form_error", form_name: "check_email_share" });
     }
   }
 

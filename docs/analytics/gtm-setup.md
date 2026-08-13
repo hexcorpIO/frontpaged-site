@@ -108,28 +108,64 @@ have no JSX to attach a handler to.
 
 ### `generate_lead` — a real inquiry
 
-Fired twice over, from two different places, because the two forms succeed
-differently:
+Fired from one place only:
 
 - **Contact form.** Fired on `/contact/thank-you/`, not on the button. Formspree
   only redirects there on success, so this counts submissions that landed rather
   than attempts — which would include validation failures and honeypot catches.
   Params: `lead_source: "contact_form"`.
-- **Scorecard plan request.** Fired on a successful `fetch`, with
-  `lead_source: "scorecard_plan_request"`, `scorecard_score`, `scorecard_band`.
+The scorecard's email share is **not** a `generate_lead` — see below.
 
-### Scorecard events
+### AI readiness check (the quiz)
 
-| Event | Params | Why |
+All categorical. **No individual Yes/Partly/No answer is ever pushed**, and the
+email address is never pushed — if it is ever needed for Enhanced Conversions it
+gets hashed server-side in sGTM.
+
+| Event | `check.*` params | Fires |
 |---|---|---|
-| `scorecard_answer` | `scorecard_question` (1–10), `scorecard_total_questions` | The drop-off curve. Question number only — **not** the answer given. |
-| `scorecard_complete` | `scorecard_score`, `scorecard_max`, `scorecard_band`, `scorecard_answered`, `scorecard_partial` | Score distribution, and how many bail before finishing. |
-| `form_error` | `form_name` | A failing endpoint otherwise looks identical to nobody trying. |
+| `check_start` | `industry` | On the first answer selected, once. |
+| `check_progress` | `questions_answered`, `industry` | On reaching question 5 of 10, once. |
+| `check_complete` | `score_bucket`, `questions_answered`, `industry` | On "See my results". |
+| `check_email_share` | `score_bucket`, `questions_answered`, `industry` | On a successful plan-request submit. |
+| `result_cta_click` | `check.score_bucket`, `cta_location: "results"` | On the results-block CTA. |
+| `form_error` | `form_name` | A failing endpoint otherwise looks like nobody trying. |
 
-We deliberately don't record which weaknesses a business admitted to. Question
-number tells us where the tool loses people, which is the actionable fact;
-per-answer data attached to an email address would be a different and much less
-defensible thing to collect.
+`check` is a nested object. In GTM use dot notation on the Data Layer Variable —
+`check.score_bucket` — because GA4 cannot take a nested object as an event
+parameter.
+
+#### Score buckets
+
+The brief proposed 70/40 and then said to match the real grading. The real
+grading is four bands at **80/55/30**, so the buckets are:
+
+| Percent | Band shown on screen | `score_bucket` |
+|---|---|---|
+| ≥ 80 | Well positioned | `strong` |
+| ≥ 55 | Partly ready | `some-gaps` |
+| ≥ 30 | Significant gaps | `at-risk` |
+| < 30 | Not yet legible | `at-risk` |
+
+The bottom two bands share a bucket — "significant gaps" and "not yet legible"
+are the same sales conversation. The bucket is a **property of each band** in
+`src/lib/scorecard.ts`, not a second set of thresholds beside them, so a report
+can never describe a different grade than the visitor was shown. Tests assert
+that across the entire score range.
+
+#### `check_start` counts answers, not clicks
+
+Questions are answerable in any order and answers can be changed. Counting from
+the question index would re-fire `check_start` every time someone revised
+question one, and miss the halfway mark for anyone who answered out of order.
+Both fire on the transition into a count, once each.
+
+#### `check_email_share` is not `generate_lead`
+
+Sharing an email to receive a plan is a softer signal than the contact form,
+where someone describes their problem and asks for a reply. Marking both as the
+same key event would inflate the number the business is managed on. `generate_lead`
+stays the contact form only.
 
 ## What to build in GTM
 
@@ -139,7 +175,8 @@ leave the default value empty.
 
 **2. Triggers.** Custom Event triggers matching each event name: `click`,
 `generate_lead`, `scorecard_answer`, `scorecard_complete`, `form_error`,
-`page_context_change`, `fp_consent_granted`.
+`page_context_change`, `fp_consent_granted`, `check_start`, `check_progress`,
+`check_complete`, `check_email_share`, `result_cta_click`.
 
 Do **not** use GTM's built-in "All Elements" click trigger with CSS selector
 conditions. Those break on a Tailwind class change; `data-track-id` cannot.
@@ -150,7 +187,7 @@ tags per trigger, passing the matching variables as event parameters.
 **4. Register custom dimensions in GA4.** Admin → Custom definitions. Parameters
 not registered there are collected and then not shown in any report, which looks
 exactly like the tracking being broken. Register at minimum `click_id`,
-`click_type`, `page_type`, `industry`, `page_slug`, `lead_source`, `scorecard_band`.
+`click_type`, `page_type`, `industry`, `page_slug`, `lead_source`, `score_bucket`.
 `content_group` is native to GA4 and needs no registration.
 
 **5. Mark `generate_lead` as a key event** in GA4 Admin → Events.

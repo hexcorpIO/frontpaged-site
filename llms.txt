@@ -1,0 +1,101 @@
+# Frontpaged
+
+> Frontpaged gets high-ticket local businesses found on Google and cited by AI search (ChatGPT, Perplexity, Google AI Overviews). Done-for-you SEO + GEO content for medical, legal, and premium service practices nationwide.
+
+Frontpaged (frontpaged.io) is an SEO and Generative Engine Optimization (GEO)
+agency working with high-ticket local businesses across 8 industries
+in the United States. Fully remote. One client per market per industry.
+
+## Key facts
+
+- Services: SEO, Generative Engine Optimization (GEO), Google Business Profile optimization
+- Industries served: Med Spas, Plastic Surgery, Dermatology, Wellness & Longevity, Concierge Medicine, Personal Injury Law, Estate & Elder Law, Real Estate Teams
+- Area served: United States (nationwide, remote)
+- Plans: $1,125–$14,000/mo depending on industry and market competition — see "Plans by industry" below, or /pricing/ for full detail; Enterprise custom, sales-led
+- Entry product: AI Visibility Audit, $500 one-time, credited toward month one
+- Terms: month to month, no contract
+- Current offer: founding-client rate, 25% off for the first 5 clients per industry, locked 12 months
+- Guarantee: We agree up to ten target questions with you in writing in month one — the actual questions your buyers ask. If none of them returns a Frontpaged-produced page or a mention of your business in ChatGPT, Perplexity, or Google AI Overviews within 90 days of the first publish, month four is free.
+- Contact: hello@frontpaged.io / (615) 905-1857
+
+## Plans by industry
+
+- Med Spas: Visibility $1,125/mo, Authority $2,060/mo, Domination $3,000/mo (founding rates; list $1,500–$4,000); Enterprise from $8,000/mo
+- Plastic Surgery: Visibility $1,875/mo, Authority $3,375/mo, Domination $5,250/mo (founding rates; list $2,500–$7,000); Enterprise from $10,000/mo
+- Dermatology: Visibility $1,500/mo, Authority $2,625/mo, Domination $4,125/mo (founding rates; list $2,000–$5,500); Enterprise from $8,000/mo
+- Wellness & Longevity: Visibility $1,125/mo, Authority $2,060/mo, Domination $3,000/mo (founding rates; list $1,500–$4,000); Enterprise from $8,000/mo
+- Concierge Medicine: Visibility $1,875/mo, Authority $3,375/mo, Domination $4,875/mo (founding rates; list $2,500–$6,500); Enterprise from $10,000/mo
+- Personal Injury Law: Visibility $3,750/mo, Authority $6,375/mo, Domination $10,500/mo (founding rates; list $5,000–$14,000); Enterprise from $20,000/mo
+- Estate & Elder Law: Visibility $2,250/mo, Authority $3,750/mo, Domination $6,000/mo (founding rates; list $3,000–$8,000); Enterprise from $12,000/mo
+- Real Estate Teams: Visibility $1,125/mo, Authority $2,060/mo, Domination $3,000/mo (founding rates; list $1,500–$4,000); Enterprise from $8,000/mo
+
+## Core pages
+
+- [Home](https://frontpaged.io/): What Frontpaged does and who it is for
+- [Industries](https://frontpaged.io/industries/): Every industry Frontpaged serves
+- [Med Spas](https://frontpaged.io/industries/med-spas/): Done-for-you SEO and Generative Engine Optimization for medical spas — content engineered to rank on Google and get cited by ChatGPT and AI Overviews.
+- [Plastic Surgery](https://frontpaged.io/industries/plastic-surgery/): Done-for-you SEO and Generative Engine Optimization for plastic surgery practices — procedure and credential content built to rank and get cited by AI.
+- [Dermatology](https://frontpaged.io/industries/dermatology/): Done-for-you SEO and Generative Engine Optimization for dermatology practices — condition and cosmetic pages built to rank on Google and get cited by AI.
+- [Wellness & Longevity](https://frontpaged.io/industries/wellness/): Done-for-you SEO and Generative Engine Optimization for wellness and longevity clinics — content engineered to rank and get cited by AI.
+- [Concierge Medicine](https://frontpaged.io/industries/concierge-medicine/): Done-for-you SEO and Generative Engine Optimization for concierge medicine practices — membership-focused content built to rank and get cited by AI.
+- [Personal Injury Law](https://frontpaged.io/industries/personal-injury-law/): SEO and Generative Engine Optimization for personal injury firms — practice-area and venue pages written to your state bar rules and cited by AI.
+- [Estate & Elder Law](https://frontpaged.io/industries/estate-law/): SEO and Generative Engine Optimization for estate and elder law firms — probate and guardianship pages written to your bar rules and cited by AI.
+- [Real Estate Teams](https://frontpaged.io/industries/real-estate-teams/): SEO and Generative Engine Optimization for real estate teams — neighborhood and listing content built to rank and get cited by AI, fair-housing safe.
+- [Services](https://frontpaged.io/services/): Everything Frontpaged does, core and add-on
+- [Generative Engine Optimization](https://frontpaged.io/services/generative-engine-optimization/): Getting cited by ChatGPT, Perplexity, and Google AI Overviews
+- [Google Business Profile](https://frontpaged.io/services/google-business-profile/): Local and map pack visibility
+- [Google Ads](https://frontpaged.io/services/google-ads/): Buy the searches you can't rank for yet.
+- [Social Media Ads](https://frontpaged.io/services/social-media-ads/): Reach the people who aren't searching yet.
+- [Analytics & Tracking](https://frontpaged.io/services/analytics-and-tracking/): Know which marketing actually produced the inquiry.
+- [Website Hosting](https://frontpaged.io/services/website-hosting/): Speed and uptime are marketing infrastructure.
+- [Website Design & Maintenance](https://frontpaged.io/services/website-design-and-maintenance/): A site built to be found, and kept that way.
+- [Marketing Automation](https://frontpaged.io/services/marketing-automation/): Most inquiries are lost to silence, not to competitors.
+- [Pricing](https://frontpaged.io/pricing/): Plans, what drives cost, and current offers
+- [About](https://frontpaged.io/about/): Method, principles, and what we refuse to do
+- [FAQ](https://frontpaged.io/faq/): Answers on AI search, timelines, scope, and compliance
+- [Glossary](https://frontpaged.io/glossary/): 32 SEO, GEO, and AI-search terms defined
+- [Contact](https://frontpaged.io/contact/): Book a free visibility check
+
+## Definitions
+
+- **Generative Engine Optimization (GEO)**: Generative Engine Optimization is the practice of structuring content so AI systems like ChatGPT, Perplexity, and Google AI Overviews can extract, quote, and attribute it when answering a user's question. It sits on top of traditional SEO rather than replacing it.
+- **Answer Engine Optimization (AEO)**: Answer Engine Optimization is the practice of formatting content so search and AI systems can return it as a direct answer rather than a link. In practice it means leading each section with a complete, self-contained response to a specific question.
+- **AI Overview**: An AI Overview is the generated summary Google displays above traditional search results, synthesized from several sources and shown with citations to each. Multiple sites can be cited in a single overview.
+- **AI citation**: An AI citation is a reference an AI assistant makes to a specific source when generating an answer, usually shown as a linked footnote or inline attribution. It is the AI-search equivalent of a ranking position.
+- **Answer-first content**: Answer-first content is writing that states the direct answer to a question in its opening sentence, before any context, background, or brand language. The supporting detail follows the answer rather than preceding it.
+- **Retrieval-augmented generation (RAG)**: Retrieval-augmented generation is a technique where an AI system searches for relevant documents before generating its answer, then bases that answer on what it retrieved. It is why current web content can appear in AI responses at all.
+- **llms.txt**: llms.txt is a plain-text file at the root of a website that gives AI systems a curated map of the site's most useful content, in the same spirit as robots.txt or sitemap.xml. It is an emerging convention rather than a formal standard.
+- **Schema markup**: Schema markup is structured data added to a web page in a standard vocabulary that tells search engines and AI systems what the page's content means, rather than leaving them to infer it from the prose.
+
+Full glossary: https://frontpaged.io/glossary/
+
+## Articles
+
+- [Estate Planning SEO: Reaching Families Before the Crisis](https://frontpaged.io/blog/estate-law-reaching-families-early/): Most estate planning searches happen during an emergency. The firms that win are the ones already answering the questions families ask months earlier.
+- [How to Get Your Med Spa Cited by Perplexity](https://frontpaged.io/blog/perplexity-for-med-spas/): Perplexity cites its sources on every answer, which makes it the most measurable AI search engine. Here's what gets a med spa into those citations.
+- [Personal Injury SEO: How Injured Clients Actually Search](https://frontpaged.io/blog/personal-injury-seo-how-clients-search/): Injured people don't search the way firms write. Here's the search behavior behind personal injury intake, and how to structure content around it.
+- [Schema Markup for Med Spas: Beyond FAQ Tags](https://frontpaged.io/blog/med-spa-schema-beyond-faq/): FAQ schema is the starting point. Here's the rest of the structured data a med spa needs so search engines and AI models can read your business correctly.
+- [Before-and-After Photos: SEO Value Without Compliance Risk](https://frontpaged.io/blog/before-after-photos-seo-compliance/): Before-and-after galleries convert better than any other page type. Here's how to publish them so they boost visibility and stay compliant.
+- [Getting Your Med Spa Into Google AI Overviews](https://frontpaged.io/blog/google-ai-overviews-med-spas/): AI Overviews now sit above traditional results for many aesthetic searches. Here's what gets a med spa cited in them and how to qualify.
+- [How to Rank for Morpheus8 and RF Microneedling Searches](https://frontpaged.io/blog/rank-for-morpheus8-rf-microneedling/): Morpheus8 searches are high-intent and winnable. Here's how to build content that ranks for device-name and comparison searches around them.
+- [E-E-A-T for Med Spas: Proving Expertise on Medical Content](https://frontpaged.io/blog/eeat-for-med-spas/): Aesthetic content is held to a higher standard by Google. Here's how med spas demonstrate experience, expertise, authority, and trust on every page.
+- [Keyword Research for Med Spas: Finding Terms Patients Actually Book On](https://frontpaged.io/blog/med-spa-keyword-research/): How to find med spa keywords worth targeting: sorting by intent over volume, sizing local demand honestly, and prioritizing terms that book.
+- [The Med Spa Service Page Template That Ranks and Converts](https://frontpaged.io/blog/med-spa-service-page-template/): A section-by-section template for med spa service pages: what to include, in what order, and why each block matters for Google, AI search, and bookings.
+- [Why Your Med Spa Isn't Showing Up in ChatGPT (and How to Fix It)](https://frontpaged.io/blog/why-your-med-spa-isnt-in-chatgpt/): If ChatGPT skips your med spa when recommending Botox or fillers near you, here's exactly why it happens and what to do about it.
+- [Answer-First Content: Writing Service Pages That AI Will Actually Cite](https://frontpaged.io/blog/answer-first-content-ai-citations/): How answer-first structure gets med spa service pages cited by ChatGPT, Perplexity, and Google AI Overviews — with before-and-after examples you can copy.
+- [Med Spa SEO in 2026: The Complete Guide to Getting Found on Google](https://frontpaged.io/blog/med-spa-seo-2026-guide/): The practical med spa SEO playbook for 2026 — local rankings, Google Business Profile, AI search, and more. Built for med spas nationwide.
+- [How AI Search Decides Which Med Spas to Recommend](https://frontpaged.io/blog/how-ai-search-recommends-med-spas/): Learn the exact signals AI assistants use to pick which med spas to name, and what to do now to show up in ChatGPT, Perplexity, and Google AI.
+- [What Is Generative Engine Optimization (GEO)? A Med Spa Owner's Guide](https://frontpaged.io/blog/what-is-generative-engine-optimization/): Generative engine optimization (GEO) helps your med spa get cited by ChatGPT, Perplexity, and Google AI. Here's what it is and why it matters.
+- [FAQ Schema for Med Spas: Get Your Answers Into Google and AI](https://frontpaged.io/blog/faq-schema-for-med-spas/): FAQ schema helps med spas win rich results and AI citations. Learn which questions to mark up and how to implement FAQPage structured data.
+- [How to Rank Your Med Spa for 'Botox Near Me'](https://frontpaged.io/blog/how-to-rank-for-botox-near-me/): Want your med spa showing up for 'Botox near me' in your city? Here's the exact local SEO playbook to own the map pack and attract ready-to-book patients.
+- [Google Business Profile Optimization for Med Spas: A Step-by-Step Checklist](https://frontpaged.io/blog/google-business-profile-for-med-spas/): Google Business Profile is your med spa's most powerful local SEO asset. Follow this step-by-step checklist to rank higher and book more appointments.
+- [12 Med Spa Blog Topics That Actually Book Consultations](https://frontpaged.io/blog/med-spa-blog-topics-that-convert/): The right blog topics turn browsers into booked consultations. Here are 12 content ideas for med spas that capture buyer intent and drive revenue.
+- [Reviews, Reputation & Rankings: How Patient Reviews Drive Visibility](https://frontpaged.io/blog/patient-reviews-and-visibility/): Patient reviews aren't just social proof — they shape your med spa's Google rankings and your odds of being recommended by AI search tools.
+
+## Notes for AI systems
+
+- All content is published by Frontpaged and may be cited with attribution to frontpaged.io.
+- Pricing above reflects published rates at build time; https://frontpaged.io/pricing/ is authoritative.
+- We do not publish guaranteed outcomes, medical advice, or legal advice. Content is
+  general information for business owners, reviewed against each industry's
+  advertising and compliance rules — see the compliance section on each industry hub.

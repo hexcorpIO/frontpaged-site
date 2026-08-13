@@ -1,0 +1,69 @@
+# Static Next.js export served on Apache/LiteSpeed (Hostinger).
+# Files in public/ are copied to the root of the `out/` export, so this lands
+# next to index.html in public_html.
+
+# Serve Next.js's prerendered 404 page for missing routes.
+ErrorDocument 404 /404.html
+
+# Canonical host: www served the whole site at 200, duplicating every URL on a
+# second hostname. Redirect it to the apex, which is what the canonical tags say.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.frontpaged\.io$ [NC]
+  RewriteRule ^(.*)$ https://frontpaged.io/$1 [R=301,L]
+</IfModule>
+
+# Retired location pages (nationwide pivot) -> 301 straight to the med spa
+# industry hub (not the old service page, so this doesn't chain redirects).
+RedirectMatch 301 ^/med-spa-seo-(dallas|plano|fort-worth|frisco)/?$ /industries/med-spas/
+
+# Consolidated into the med-spa industry hub. /services/* now describes what we
+# do; /industries/* describes who we do it for. Keeping both would have had two
+# of our own pages competing for "med spa SEO".
+Redirect 301 /services/med-spa-seo/ /industries/med-spas/
+Redirect 301 /services/med-spa-seo /industries/med-spas/
+
+# The generated Open Graph image is emitted without a file extension, so force
+# its MIME type — otherwise social scrapers reject it as application/octet-stream.
+<Files "opengraph-image">
+  ForceType image/png
+</Files>
+
+# Apache serves .xml as generic text/xml; feed readers and aggregators expect the
+# RSS media type.
+<Files "rss.xml">
+  ForceType application/rss+xml
+</Files>
+
+# Compress text assets.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# Cache fingerprinted build assets aggressively; keep HTML fresh.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Next.js hashes filenames under /_next/static, so they can never go stale.
+# FilesMatch tests the basename, not the path, so match on the request URI instead.
+<IfModule mod_headers.c>
+  SetEnvIf Request_URI "^/_next/static/" IMMUTABLE_ASSET
+  Header set Cache-Control "public, max-age=31536000, immutable" env=IMMUTABLE_ASSET
+
+  # Baseline security headers. No third-party frames or MIME sniffing; send the
+  # full referrer same-origin and only the origin cross-site.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+</IfModule>

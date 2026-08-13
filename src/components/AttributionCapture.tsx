@@ -14,26 +14,25 @@ import {
 // Writes the fp_click cookie the scheduler reads.
 //
 // ─────────────────────────────────────────────────────────────────────────────
-// CONSENT
+// CONSENT — READ THIS BEFORE WONDERING WHY THE COOKIE IS EMPTY
 //
-// This is the one genuinely contested thing in the attribution work, so it is a
-// single constant rather than a decision buried in a branch.
+// The site no longer declares any Consent Mode state: the default and grant
+// scripts were removed. Nothing pushes a 'consent' command, so the walk below
+// finds none and storage stays disallowed.
 //
-// The site sets Consent Mode defaults of ad_storage: 'denied' and
-// analytics_storage: 'denied', and has no banner, so nothing is ever granted.
-// Storing a gclid in a first-party cookie is advertising storage by any
-// reasonable reading — it is precisely what Google's own tags are prevented
-// from doing while ad_storage is denied. Writing our own cookie to achieve what
-// the consent signal forbids would work around a control the site just adopted.
+// The effect is that **no fp_click cookie is ever written**, and therefore no
+// gclid, wbraid, gbraid or utm_* reaches the Calendly booking record. The
+// industry still does, because utm_term is derived at render time rather than
+// read from storage.
 //
-// So the default respects it, and the cost is explicit: **until a consent
-// banner exists, no ad click id is ever stored, and gclid never reaches the
-// booking record.** utm_source/medium/campaign are treated the same way, since
-// analytics_storage is denied too.
+// This is left switched off deliberately rather than flipped as a side effect
+// of removing the consent scripts. Starting to store advertising identifiers is
+// an expansion of what the site collects, and it should be a decision someone
+// makes on purpose — ideally alongside a privacy policy, which this site still
+// does not have.
 //
-// Set this to false to capture regardless of consent. That is a legitimate
-// business decision — it is not a technical mistake — but it should be made
-// deliberately and with a privacy policy in place, not inherited by accident.
+// To capture: set RESPECT_CONSENT to false. One line, and attribution starts
+// working on the next deploy.
 const RESPECT_CONSENT = true;
 
 /**

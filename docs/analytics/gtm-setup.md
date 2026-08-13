@@ -8,54 +8,17 @@ rebuilt and redeployed for any code change, and measurement changes far more
 often than the site does — so the code emits data and GTM decides what to do
 with it.
 
-## Consent Mode v2
+## Consent Mode
 
-A synchronous inline script in `<head>` sets the default state before the
-container loads ([`src/components/ConsentDefaults.tsx`](../../src/components/ConsentDefaults.tsx)):
+Not implemented. The default and grant scripts were removed, so the site
+declares no consent state and GTM operates unrestricted, as it does on any site
+with no consent framework.
 
-| Signal | Default |
-|---|---|
-| `ad_storage`, `ad_user_data`, `ad_personalization`, `analytics_storage` | `denied` |
-| `functionality_storage`, `security_storage` | `granted` |
-| `wait_for_update` | `500` ms |
-
-`next/script` with `strategy="beforeInteractive"` is **not** used here. For an
-inline script it emits a `self.__next_s.push(...)` queue entry rather than a real
-script tag, so execution depends on Next draining that queue. A synchronous head
-script cannot lose the race to the container at all.
-
-**Denied does not mean off.** GA4 switches to cookieless pings: no client
-identifier is stored, so sessions are modelled rather than stitched and a
-returning visitor reads as new. Reports populate with estimates rather than
-counts.
-
-### The grant half
-
-`fpConsentGrant()` is defined in `<head>` after the defaults. Calling it moves
-the four denied signals to `granted` and pushes `fp_consent_granted`.
-
-```html
-<button onclick="fpConsentGrant()">Accept</button>
-```
-
-**Nothing calls it yet.** There is no Accept control on the site, so every
-visitor stays denied and GA4 stays cookieless. The function is the hook a banner
-will use, not a banner.
-
-**It also does not persist the choice.** Consent Mode state lives in memory for
-the life of the page. A visitor who accepts is denied again on their next
-navigation, so acceptance achieves nothing beyond the current page. A working
-banner needs three things, and the site currently has one:
-
-1. ✅ A grant function.
-2. ❌ Storage of the decision — a cookie or `localStorage` entry written on accept.
-3. ❌ A read of that store on every page load that re-issues the update **before
-   the container**, in the same head script as the defaults. Without this, step 2
-   is decoration.
-
-In GTM, tick **"Enable consent overview"** under Admin → Container Settings so
-tags declare which signals they require — otherwise a tag can ignore the signal
-entirely.
+One consequence, because it is easy to miss: `RESPECT_CONSENT` in
+`AttributionCapture.tsx` is still `true` and reads consent from the dataLayer.
+With no consent command ever pushed, it never permits storage — so **no
+`fp_click` cookie is written and no `gclid` or `utm_*` reaches the booking
+record.** See "Consent gate" below.
 
 ## Page-scoped context
 
@@ -212,19 +175,20 @@ silently, because an empty object is also what a legitimate direct visit
 produces. `src/lib/attribution.ts` and `AttributionCapture.tsx` are the missing
 half.
 
-### Consent gate
+### Consent gate — attribution is currently inert
 
-`RESPECT_CONSENT` in `AttributionCapture.tsx` is `true`. The cookie is only
-written once `ad_storage` is granted.
+`RESPECT_CONSENT` in `AttributionCapture.tsx` is `true`, and it permits storage
+only after a `consent` command grants `ad_storage`. Since the consent scripts
+were removed, no such command is ever pushed, so **the cookie is never written**
+and `gclid` / `utm_*` never reach Calendly. `utm_term=<industry>` still arrives,
+because it is derived at render time rather than read from storage.
 
-**Today nothing is ever granted**, because there is no banner — so no ad click
-id is stored and `gclid` does not reach the booking record. `utm_term=<industry>`
-still does, since it is derived at render time rather than read from storage.
+It was left off rather than flipped as a side effect of removing the consent
+scripts: storing advertising identifiers expands what the site collects, and
+that should be chosen on purpose — ideally alongside a privacy policy, which
+this site still does not have.
 
-This is deliberate. Writing our own cookie to store what Google's tags are
-forbidden from storing would work around the consent control rather than honour
-it. Flip the constant to capture regardless; better, ship a banner and the gate
-opens by itself.
+**To turn attribution on: set `RESPECT_CONSENT` to `false`.** One line.
 
 ### Cal.com
 
@@ -239,7 +203,7 @@ leave the default value empty.
 
 **2. Triggers.** Custom Event triggers matching each event name: `click`,
 `generate_lead`, `scorecard_answer`, `scorecard_complete`, `form_error`,
-`page_context_change`, `fp_consent_granted`, `check_start`, `check_progress`,
+`page_context_change`, `check_start`, `check_progress`,
 `check_complete`, `check_email_share`, `result_cta_click`, `consultation_booked`.
 
 Do **not** use GTM's built-in "All Elements" click trigger with CSS selector
@@ -293,6 +257,4 @@ unnoticed until the tracking work counted the ids.
 - Verify in GTM Preview mode. The pure logic has unit tests and the emitted HTML
   is gated, but the listener's behaviour in a real browser has not been observed.
 - Search Console verification, which is where query data comes from.
-- A consent banner. It now gates two things: consent granting, and whether
-  `gclid` is ever captured for ads attribution.
 - A privacy policy. The site now has GTM, a form, and no `/privacy/` page.

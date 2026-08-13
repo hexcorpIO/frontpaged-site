@@ -68,33 +68,19 @@ for (const file of files) {
   const raw = fs.readFileSync(file, "utf8");
   const html = stripScripts(raw);
 
-  // 0. Consent Mode ordering. The default consent state has to be set before the
-  //    GTM container runs, otherwise tags can fire once in an unknown state —
-  //    the precise failure Consent Mode exists to prevent. This is asserted on
-  //    the raw HTML because the check is about script placement, and it is
-  //    asserted at all because the ordering is invisible: get it wrong and the
-  //    page looks and behaves identically while the consent signal is lost.
+  // 0. Head script ordering. Invisible when wrong — the page looks and behaves
+  //    identically while the data is quietly missing from the first hit.
   // Next serialises the React tree into inline flight data at the foot of the
   // page, so every one of these strings ALSO appears there. Presence is checked
   // against the head slice only — searching the whole document would find the
   // flight copy and report a deleted head script as merely misplaced.
   const headEnd = raw.indexOf("</head>");
   const head = headEnd === -1 ? "" : raw.slice(0, headEnd);
-  const consentInHead = head.indexOf("gtag('consent', 'default'");
-  const grantInHead = head.indexOf("function fpConsentGrant");
   const containerAt = raw.indexOf("gtm.start");
 
   if (headEnd === -1) {
     errors.push(`${route}: no </head> found`);
   } else {
-    if (consentInHead === -1) {
-      errors.push(`${route}: Consent Mode default is missing from <head>`);
-    } else if (containerAt !== -1 && consentInHead > containerAt) {
-      errors.push(`${route}: Consent Mode default runs AFTER the GTM container`);
-    }
-
-    // The grant helper is a no-op until a banner calls it, but it has to exist
-    // and be defined after the defaults so gtag() is declared in source order.
     // Page context must be in <head> and run before the container, or the first
     // page_view lands with no page_type or industry on it.
     const pageCtxInHead = head.indexOf("__fpPageContext");
@@ -102,12 +88,6 @@ for (const file of files) {
       errors.push(`${route}: page context script is missing from <head>`);
     } else if (containerAt !== -1 && pageCtxInHead > containerAt) {
       errors.push(`${route}: page context runs AFTER the GTM container`);
-    }
-
-    if (grantInHead === -1) {
-      errors.push(`${route}: consent grant helper fpConsentGrant is missing from <head>`);
-    } else if (consentInHead !== -1 && grantInHead < consentInHead) {
-      errors.push(`${route}: fpConsentGrant is defined before the consent defaults`);
     }
   }
 

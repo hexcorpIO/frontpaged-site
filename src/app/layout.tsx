@@ -4,7 +4,6 @@ import "./globals.css";
 import AttributionCapture from "@/components/AttributionCapture";
 import ClickTracking from "@/components/ClickTracking";
 import PageContextUpdates, { PageContextScript } from "@/components/PageContext";
-import ConsentDefaults, { ConsentGrant } from "@/components/ConsentDefaults";
 import GoogleTagManager, {
   GoogleTagManagerNoScript,
 } from "@/components/GoogleTagManager";
@@ -83,19 +82,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}>
-      {/* Consent Mode defaults must be set before the GTM container runs. A
-          synchronous head script is the only placement that guarantees it —
-          check-tracking.mjs asserts both the presence and the ordering against
-          the built HTML so a refactor cannot quietly invert them. */}
+      {/* Runs before the GTM container so the first page_view already carries
+          page_type and industry. PageContextUpdates re-pushes on client-side
+          navigation, which this script cannot see. Ordering is asserted against
+          the built HTML by check-tracking.mjs. */}
       <head>
-        <ConsentDefaults />
-        {/* Defined after the defaults so gtag() is already declared when this is
-            read. Nothing calls it yet — there is no Accept control on the site,
-            so consent remains denied until a banner exists to invoke it. */}
-        <ConsentGrant />
-        {/* After consent, before the container: the first page_view then carries
-            page_type and industry. PageContextUpdates re-pushes on client-side
-            navigation, which this script cannot see. */}
         <PageContextScript />
       </head>
       <body className="flex min-h-full flex-col font-sans">

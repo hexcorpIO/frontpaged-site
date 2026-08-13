@@ -180,6 +180,8 @@ function Results({
         </div>
       )}
 
+      <EmailResults result={result} />
+
       {/* The honest handoff. This tool scored self-reported answers; it did not
           query any AI engine. The real check is the thing a human does. */}
       <div className="mt-10 rounded-2xl bg-navy p-8 text-white">
@@ -208,7 +210,6 @@ function Results({
           </button>
         </div>
         <p className="mt-5 text-[14px] text-[#9fb6cc]">
-          Nothing you entered was sent anywhere — the scoring ran in your browser.
           Questions in the meantime:{" "}
           <a href={`mailto:${site.email}`} className="underline underline-offset-2">
             {site.email}
@@ -216,5 +217,130 @@ function Results({
         </p>
       </div>
     </div>
+  );
+}
+
+/**
+ * Post-reveal capture.
+ *
+ * Deliberately after the full result, not in front of it. The results above are
+ * already complete and stay complete whether or not this is used — the trade
+ * offered here is a written plan, not access to something already earned.
+ *
+ * Submits by fetch rather than a form POST so the visitor keeps their results on
+ * screen instead of being navigated to a confirmation page.
+ */
+function EmailResults({ result }: { result: ReturnType<typeof score> }) {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  if (!site.formEndpoint) return null;
+
+  const summary = [
+    `Score: ${result.score}/${result.max} (${result.percent}%) — ${result.band.label}`,
+    "",
+    ...result.factors.map((f) => `${f.factor.name}: ${f.score}/${f.max}${f.weak ? "  ← weak" : ""}`),
+    "",
+    result.priorities.length
+      ? `Priority: ${result.priorities[0].factor.name}`
+      : "No weak factors.",
+  ].join("\n");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    try {
+      const res = await fetch(site.formEndpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      setStatus(res.ok ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="mt-10 rounded-2xl border border-teal bg-soft p-7">
+        <h2 className="font-serif text-[20px] leading-snug text-navy">On its way.</h2>
+        <p className="mt-3 text-[16px] leading-[1.7] text-warm-grey">
+          We&rsquo;ll send the breakdown with a prioritised plan within one business
+          day. Your results are still on this page — nothing has changed above.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="mt-10 rounded-2xl border border-line bg-white p-7">
+      <h2 className="font-serif text-[20px] leading-snug text-navy">
+        Want this as a plan you can act on?
+      </h2>
+      <p className="mt-3 text-[16px] leading-[1.7] text-warm-grey">
+        We&rsquo;ll send your breakdown with the fixes ordered by what would move
+        first in your industry. Your results above stay visible either way — this
+        is optional.
+      </p>
+
+      <input type="hidden" name="_subject" value="AI readiness scorecard completed" />
+      <input type="hidden" name="scorecard_result" value={summary} />
+      <div aria-hidden="true" className="absolute left-[-9999px]">
+        <label htmlFor="sc-company">Do not fill this in</label>
+        <input id="sc-company" type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      <div className="mt-5 grid gap-4 sm:grid-cols-[1.2fr_1fr]">
+        <div>
+          <label htmlFor="sc-email" className="block text-[14px] font-medium text-navy">
+            Email <span className="text-teal">*</span>
+          </label>
+          <input
+            id="sc-email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            className="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"
+          />
+        </div>
+        <div>
+          <label htmlFor="sc-business" className="block text-[14px] font-medium text-navy">
+            Business name
+          </label>
+          <input
+            id="sc-business"
+            name="business"
+            type="text"
+            autoComplete="organization"
+            className="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"
+          />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="mt-5 rounded-lg bg-teal px-7 py-3 text-[16px] font-semibold text-white transition hover:bg-teal/90 disabled:opacity-50"
+      >
+        {status === "sending" ? "Sending…" : "Send me the plan"}
+      </button>
+
+      {status === "error" && (
+        <p className="mt-4 text-[15px] text-teal-dark">
+          That didn&rsquo;t go through. Email{" "}
+          <a href={`mailto:${site.email}`} className="underline underline-offset-2">
+            {site.email}
+          </a>{" "}
+          and we&rsquo;ll pick it up from there.
+        </p>
+      )}
+
+      <p className="mt-4 text-[13.5px] leading-[1.6] text-warm-grey">
+        Your answers are only sent if you submit this. Nothing left your browser
+        while you were filling the scorecard in.
+      </p>
+    </form>
   );
 }

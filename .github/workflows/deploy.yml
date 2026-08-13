@@ -25,8 +25,13 @@ on:
   #
   # GitHub cron is UTC-only with no DST handling, so 11:00 UTC is 06:00 Central in
   # summer and 05:00 in winter. Irrelevant at one-day granularity.
-  schedule:
-    - cron: "0 11 * * *"
+  # schedule:
+  #   - cron: "0 11 * * *"
+  #
+  # Also disabled. WordPress publishes scheduled posts itself via wp-cron, so
+  # the daily rebuild that existed to pick up future-dated articles has no job
+  # to do — and left enabled it would redeploy the static site over WordPress
+  # once a day, silently.
   workflow_dispatch: # allows manual runs from the Actions tab
 
 permissions:

@@ -3,3 +3,8 @@
 # duplicated post bodies would put every article in the repo twice — where the
 # two copies would immediately start drifting.
 migration/data/
+
+# Secrets. This repository is public — the ACF Pro licence key must never be
+# committed. It lives here and is read at install time only.
+.env
+*.zip

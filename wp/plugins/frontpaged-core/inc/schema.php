@@ -382,9 +382,11 @@ function fpc_option_rows(string $name): array
         }
     }
 
-    if ($out === [] && $name === 'credentials') {
-        return ['Google Analytics Certified', 'Google Ads Certified'];
-    }
-
+    // No hardcoded fallback here, deliberately. There was one, returning the two
+    // Google certificates when the option was empty — and it hid a real bug: the
+    // credentials repeater was importing as zero rows for want of a field-key
+    // reference, while the schema went on emitting two credentials as though
+    // everything worked. A default that makes a broken import look successful is
+    // worse than an empty node.
     return $out;
 }

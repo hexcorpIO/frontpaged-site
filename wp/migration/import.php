@@ -119,18 +119,64 @@ function fpc_upsert(string $post_type, string $slug, string $title, string $cont
 
 /* ── Settings ─────────────────────────────────────────────────────────── */
 
+/**
+ * ACF resolves an options value by looking up a `_options_<name>` row holding
+ * the FIELD KEY, then reading `options_<name>`. A scalar still reads back
+ * without the reference because ACF falls through to the raw option — but a
+ * repeater does not: with no key it cannot find the sub-field definitions, and
+ * get_field() returns nothing while the rows sit in wp_options untouched.
+ * The credentials repeater imported as zero rows before this was added.
+ */
+$option_keys = [
+    'brand_name'        => 'field_opt_brand_name',
+    'tagline'           => 'field_opt_tagline',
+    'description'       => 'field_opt_description',
+    'email'             => 'field_opt_email',
+    'phone'             => 'field_opt_phone',
+    'phone_href'        => 'field_opt_phone_href',
+    'linkedin'          => 'field_opt_linkedin',
+    'instagram'         => 'field_opt_instagram',
+    'calendly'          => 'field_opt_calendly',
+    'form_endpoint'     => 'field_opt_form',
+    'gtm_id'            => 'field_opt_gtm',
+    'founding_enabled'  => 'field_opt_founding_enabled',
+    'founding_slots'    => 'field_opt_founding_slots',
+    'founding_headline' => 'field_opt_founding_headline',
+    'founding_terms'    => 'field_opt_founding_terms',
+    'guarantee'         => 'field_opt_guarantee',
+    'founder_name'      => 'field_opt_founder_name',
+    'founder_role'      => 'field_opt_founder_role',
+    'founder_bio'       => 'field_opt_founder_bio',
+    'founder_linkedin'  => 'field_opt_founder_linkedin',
+    'credentials'       => 'field_opt_credentials',
+    'credential_issuer' => 'field_opt_credential_issuer',
+];
+
 $settings = fpc_read('settings');
 foreach ($settings as $key => $value) {
+    $field_key = $option_keys[$key] ?? null;
+
     if (is_array($value)) {
-        if (array_is_list($value)) {
-            update_option("options_{$key}", count($value));
-            foreach ($value as $i => $v) {
-                update_option("options_{$key}_{$i}_value", $v);
+        if (!array_is_list($value)) {
+            continue; // nested objects (audit_offer) have no field group yet
+        }
+        update_option("options_{$key}", count($value));
+        if ($field_key) {
+            update_option("_options_{$key}", $field_key);
+        }
+        foreach ($value as $i => $v) {
+            update_option("options_{$key}_{$i}_value", $v);
+            if ($key === 'credentials') {
+                update_option("_options_{$key}_{$i}_value", 'field_opt_credential');
             }
         }
         continue;
     }
+
     update_option("options_{$key}", $value);
+    if ($field_key) {
+        update_option("_options_{$key}", $field_key);
+    }
 }
 WP_CLI::log('Settings written.');
 

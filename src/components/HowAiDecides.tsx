@@ -86,6 +86,28 @@ export default function HowAiDecides() {
           ))}
         </ol>
 
+        {/* The scorecard scores against exactly these five factors, in this
+            order. Placing it here rather than in the hero means the offer lands
+            on someone who has just read what is being measured — and it keeps the
+            page's single primary CTA intact. */}
+        <div className="mt-12 flex flex-col gap-5 rounded-2xl border-2 border-teal bg-soft p-7 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-serif text-[21px] leading-snug text-navy">
+              Score yourself against these five, free
+            </p>
+            <p className="mt-2 max-w-xl text-[15.5px] leading-[1.65] text-warm-grey">
+              Ten questions, about two minutes, results on screen immediately. No
+              email required to see them.
+            </p>
+          </div>
+          <Link
+            href="/ai-readiness-check/"
+            className="inline-flex shrink-0 items-center justify-center rounded-lg bg-teal px-7 py-3.5 text-[16px] font-semibold text-white transition hover:bg-teal/90"
+          >
+            Take the check
+          </Link>
+        </div>
+
         <p className="mt-10 max-w-3xl text-[16px] leading-[1.75] text-warm-grey">
           None of this is a trick, and none of it is fast. It is the unglamorous
           work of making a business legible to a machine that is deciding, right

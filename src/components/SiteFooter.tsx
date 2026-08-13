@@ -25,6 +25,7 @@ const industries = getPublishedVerticals().map((v) => ({
 }));
 
 const company = [
+  { href: "/ai-readiness-check/", label: "Free AI readiness check" },
   { href: "/about/", label: "About" },
   { href: "/pricing/", label: "Pricing" },
   { href: "/blog/", label: "Blog" },

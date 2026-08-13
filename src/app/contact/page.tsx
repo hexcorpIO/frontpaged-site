@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
@@ -244,7 +245,12 @@ export default function ContactPage() {
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[17px] leading-[1.7] text-warm-grey">
                 No call required. Tell us what you&rsquo;re working on and we&rsquo;ll
-                reply within one business day.
+                reply within one business day. Or, if you&rsquo;d rather not talk to
+                anyone yet, take the{" "}
+                <Link href="/ai-readiness-check/" className="text-teal underline underline-offset-2">
+                  free AI readiness check
+                </Link>{" "}
+                — ten questions, instant results, no email needed.
               </p>
             </div>
             <div className="mt-9">

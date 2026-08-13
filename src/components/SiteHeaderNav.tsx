@@ -83,6 +83,12 @@ export default function SiteHeaderNav({
           <div className="hidden items-center gap-7 lg:flex">
             <Dropdown label="Industries" items={industries} />
             <Dropdown label="Services" items={services} />
+            <Link
+              href="/ai-readiness-check/"
+              className="text-[15px] font-medium text-teal-dark hover:text-teal"
+            >
+              Free check
+            </Link>
             <Link href="/pricing/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Pricing
             </Link>
@@ -174,6 +180,9 @@ export default function SiteHeaderNav({
               </ul>
             </div>
             <div className="flex flex-col gap-1.5">
+              <Link href="/ai-readiness-check/" onClick={close} className="text-[15px] font-medium text-teal-dark hover:text-teal">
+                Free check
+              </Link>
               <Link href="/pricing/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 Pricing
               </Link>

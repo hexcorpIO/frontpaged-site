@@ -3,18 +3,16 @@ name: Deploy WordPress theme & plugin
 # ─────────────────────────────────────────────────────────────────────────────
 # This deploys DIFFERENTLY from deploy.yml, and the difference matters.
 #
-# The static workflow builds the entire site and force-pushes it over
-# public_html, because the repository produces every byte the server serves.
+# The static workflow force-pushes the whole of out/ over public_html, because
+# the repository produces every byte the server serves.
 #
 # WordPress does not work that way. The repository produces two directories of
 # code; WordPress core, wp-config.php, wp-content/uploads and the database live
-# on the server and are NOT in git. A deploy that mirrors the repo over
+# on the server and are NOT in git. A deploy that mirrored the repo over
 # public_html would delete the uploads folder, the database credentials, and
 # every plugin installed through the admin.
 #
-# So this syncs exactly two directories and touches nothing else. The --delete
-# behaviour is scoped inside them, so a file removed from the repo is removed
-# from the server, while everything alongside them is left alone.
+# So this syncs exactly two leaf directories and touches nothing else.
 # ─────────────────────────────────────────────────────────────────────────────
 
 on:
@@ -25,6 +23,11 @@ on:
       - "wp/plugins/**"
       - ".github/workflows/deploy-wordpress.yml"
   workflow_dispatch:
+    inputs:
+      run_import:
+        description: "Also re-import content (only needed when src/lib or content/blog changed)"
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy-wp
@@ -54,14 +57,12 @@ jobs:
       # main.css IS committed, so the theme directory can be zipped and uploaded
       # through the WordPress admin without a build step. It is rebuilt here
       # anyway, so a commit that changed a template but forgot to recompile
-      # cannot ship stale CSS — the committed copy is a convenience, not the
-      # source of truth.
+      # cannot ship stale CSS.
       - name: Build theme CSS
         run: pnpm wp:css
 
-      # Catches a fatal before it reaches a live server. `php -l` is cheap and it
-      # is the difference between a syntax slip being a failed workflow and being
-      # a white screen on production.
+      # Cheap, and the difference between a syntax slip being a failed workflow
+      # and being a white screen on production.
       - name: Lint PHP
         run: |
           sudo apt-get -qq update && sudo apt-get -qq install -y php8.3-cli >/dev/null
@@ -72,7 +73,9 @@ jobs:
           echo "checked $(find wp/themes wp/plugins -name '*.php' | wc -l) PHP files"
           exit $fail
 
-      - name: Verify the theme has its required files
+      # WordPress refuses to activate a theme missing style.css or index.php, and
+      # the failure appears in the admin rather than in this log.
+      - name: Verify theme and plugin structure
         run: |
           for f in wp/themes/frontpaged/style.css \
                    wp/themes/frontpaged/index.php \
@@ -81,65 +84,79 @@ jobs:
                    wp/plugins/frontpaged-core/frontpaged-core.php; do
             [ -s "$f" ] || { echo "MISSING OR EMPTY: $f"; exit 1; }
           done
-          echo "theme and plugin structure OK"
+          echo "structure OK"
 
-      # SSH is only on Hostinger Business plans and above. On a lower plan,
-      # delete this step and use the FTP one below instead.
-      - name: Deploy over SSH (rsync)
-        if: vars.HOSTINGER_TRANSPORT == 'ssh'
+      - name: Open SSH connection
         env:
-          KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          KEY:  ${{ secrets.HOSTINGER_SSH_KEY }}
           HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
-          USER: ${{ secrets.HOSTINGER_SSH_USER }}
           PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # Pinning the host key rather than using StrictHostKeyChecking=no: the
+          # latter accepts whatever answers, which is the whole attack.
+          ssh-keyscan -p "${PORT:-65002}" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          echo "host key pinned"
+
+      - name: Deploy theme and plugin
+        env:
+          HOST:   ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER:   ${{ secrets.HOSTINGER_SSH_USER }}
+          PORT:   ${{ secrets.HOSTINGER_SSH_PORT }}
           TARGET: ${{ secrets.HOSTINGER_WP_CONTENT }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p "${PORT:-22}" "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          SSH="ssh -p ${PORT:-65002} -i ~/.ssh/deploy_key"
 
           # Trailing slashes matter: "src/" copies the CONTENTS of src into dest.
-          # Without them rsync would nest the directory one level deeper on every
-          # run. --delete is safe because each call targets one leaf directory.
-          rsync -az --delete -e "ssh -p ${PORT:-22} -i ~/.ssh/id_ed25519" \
+          # Without them rsync nests the directory one level deeper every run.
+          #
+          # --delete is scoped to one leaf directory per call, so a file removed
+          # from the repo is removed from the server while everything alongside
+          # wp-content is untouched.
+          rsync -az --delete --exclude='.DS_Store' -e "$SSH" \
             wp/themes/frontpaged/ "$USER@$HOST:$TARGET/themes/frontpaged/"
 
-          rsync -az --delete -e "ssh -p ${PORT:-22} -i ~/.ssh/id_ed25519" \
+          rsync -az --delete --exclude='.DS_Store' -e "$SSH" \
             wp/plugins/frontpaged-core/ "$USER@$HOST:$TARGET/plugins/frontpaged-core/"
 
-      # Works on every Hostinger plan. Slower, and it compares file-by-file
-      # rather than syncing a delta.
-      - name: Deploy over FTP
-        if: vars.HOSTINGER_TRANSPORT != 'ssh'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.HOSTINGER_FTP_HOST }}
-          username: ${{ secrets.HOSTINGER_FTP_USER }}
-          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./wp/themes/frontpaged/
-          server-dir: ${{ secrets.HOSTINGER_WP_CONTENT }}/themes/frontpaged/
-          # Never let a deploy reach outside the directory it owns.
-          dangerous-clean-slate: false
+          echo "synced"
 
-      - name: Deploy plugin over FTP
-        if: vars.HOSTINGER_TRANSPORT != 'ssh'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.HOSTINGER_FTP_HOST }}
-          username: ${{ secrets.HOSTINGER_FTP_USER }}
-          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./wp/plugins/frontpaged-core/
-          server-dir: ${{ secrets.HOSTINGER_WP_CONTENT }}/plugins/frontpaged-core/
-          dangerous-clean-slate: false
-
-      # A deploy that silently 500s is worse than one that fails loudly.
-      - name: Smoke test the live site
+      # Content is NOT deployed by git — the 56 posts live in the database. This
+      # runs only when asked, because re-importing on every code deploy would
+      # overwrite edits made in the admin.
+      - name: Re-import content
+        if: github.event_name == 'workflow_dispatch' && inputs.run_import
+        env:
+          HOST:   ${{ secrets.HOSTINGER_SSH_HOST }}
+          USER:   ${{ secrets.HOSTINGER_SSH_USER }}
+          PORT:   ${{ secrets.HOSTINGER_SSH_PORT }}
+          TARGET: ${{ secrets.HOSTINGER_WP_CONTENT }}
         run: |
+          pnpm wp:export
+          SSH="ssh -p ${PORT:-65002} -i ~/.ssh/deploy_key"
+          rsync -az -e "$SSH" wp/migration/ "$USER@$HOST:$TARGET/migration/"
+          $SSH "$USER@$HOST" \
+            "cd \$(dirname '$TARGET') && wp eval-file wp-content/migration/import.php --skip-plugins=advanced-custom-fields-pro"
+
+      # Verifies the deploy actually landed, rather than that something returns
+      # 200. Before cutover the static export still answers on this domain and
+      # would pass a naive status check while proving nothing — so this looks for
+      # the theme's own stylesheet path, which only the WordPress build emits.
+      - name: Smoke test
+        env:
+          SITE: ${{ vars.WP_SMOKE_URL || 'https://frontpaged.io' }}
+        run: |
+          fail=0
           for path in / /industries/med-spas/ /blog/ /pricing/; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://frontpaged.io$path")
-            printf '  %-28s %s\n' "$path" "$code"
-            [ "$code" = "200" ] || { echo "FAILED: $path returned $code"; exit 1; }
+            body=$(curl -sS --max-time 30 -w '\n%{http_code}' "$SITE$path" || echo "000")
+            code=$(printf '%s' "$body" | tail -1)
+            if printf '%s' "$body" | grep -q 'themes/frontpaged'; then served=wordpress; else served=other; fi
+            printf '  %-26s %s  serving:%s\n' "$path" "$code" "$served"
+            [ "$code" = "200" ] || fail=1
           done
+          if [ "$fail" = "1" ]; then echo "::error::a page did not return 200"; exit 1; fi
+          if ! curl -sS --max-time 30 "$SITE/" | grep -q 'themes/frontpaged'; then
+            echo "::warning::$SITE is not yet served by this theme — expected before DNS cutover."
+          fi

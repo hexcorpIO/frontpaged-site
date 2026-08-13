@@ -8,3 +8,7 @@ migration/data/
 # committed. It lives here and is read at install time only.
 .env
 *.zip
+
+# SSH deploy keypair. The private half must never be committed —
+# this repository is public.
+secrets/

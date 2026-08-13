@@ -69,28 +69,53 @@ any is not a 200.
 `public_html` and checks out the `deploy` branch there. Left connected, it will
 fight the WordPress install — at best reverting files, at worst wiping it.
 
-### Secrets to add (Settings → Secrets and variables → Actions)
+### Setting up SSH deploy
 
-SSH (Business plans and above, faster):
+A dedicated deploy keypair has been generated at `wp/secrets/hostinger_deploy`
+(gitignored — this repository is public, and the private half must never be
+committed).
 
-| Secret | Example |
-|---|---|
-| `HOSTINGER_SSH_HOST` | `123.45.67.89` |
-| `HOSTINGER_SSH_USER` | `u123456789` |
-| `HOSTINGER_SSH_PORT` | `65002` |
-| `HOSTINGER_SSH_KEY` | contents of a private key whose public half is in hPanel → SSH Access |
-| `HOSTINGER_WP_CONTENT` | `/home/u123456789/domains/frontpaged.io/public_html/wp-content` |
+**1. Authorise the public key on Hostinger.**
+hPanel → Advanced → SSH Access → Manage SSH keys → Add key. Paste:
 
-Then add a repository **variable** `HOSTINGER_TRANSPORT` = `ssh`.
+```
+wp/secrets/hostinger_deploy.pub
+```
 
-FTP (any plan) — leave `HOSTINGER_TRANSPORT` unset and add:
+Note the **host, username and port** shown on that page — Hostinger uses port
+`65002`, not 22.
 
-| Secret | Example |
-|---|---|
-| `HOSTINGER_FTP_HOST` | `ftp.frontpaged.io` |
-| `HOSTINGER_FTP_USER` | from hPanel → Files → FTP Accounts |
-| `HOSTINGER_FTP_PASSWORD` | |
-| `HOSTINGER_WP_CONTENT` | `/public_html/wp-content` (FTP paths are relative to the FTP root) |
+**2. Add the GitHub secrets.** Settings → Secrets and variables → Actions:
+
+| Secret | Where to find it | Example |
+|---|---|---|
+| `HOSTINGER_SSH_HOST` | hPanel → SSH Access | `123.45.67.89` |
+| `HOSTINGER_SSH_USER` | hPanel → SSH Access | `u123456789` |
+| `HOSTINGER_SSH_PORT` | hPanel → SSH Access | `65002` |
+| `HOSTINGER_SSH_KEY` | `pbcopy < wp/secrets/hostinger_deploy` | the whole private key including BEGIN/END lines |
+| `HOSTINGER_WP_CONTENT` | absolute path on the server | `/home/u123456789/domains/frontpaged.io/public_html/wp-content` |
+
+**3. Confirm the path before the first deploy.** rsync will happily create a
+wrong directory and report success:
+
+```
+ssh -p 65002 -i wp/secrets/hostinger_deploy u123456789@HOST \
+  'ls -d ~/domains/frontpaged.io/public_html/wp-content/themes'
+```
+
+**4. Optionally set `WP_SMOKE_URL`** (a repository *variable*, not a secret) to
+a staging URL while testing. It defaults to `https://frontpaged.io`, which still
+serves the static export until DNS moves — the smoke test reports that as a
+warning rather than a false pass.
+
+### Re-importing content
+
+Content is not deployed by git. Run the workflow manually from the Actions tab
+with **"Also re-import content"** ticked, which exports from `src/lib` and
+`content/blog`, rsyncs the data, and runs the importer over SSH.
+
+Do this only when the source content changed. It matches on slug and updates in
+place, so it will overwrite edits made in the WordPress admin.
 
 ### What still is not deployed by git
 

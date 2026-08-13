@@ -1,19 +1,31 @@
 import Link from "next/link";
 import Container from "./Container";
 
-// Split hero for service pages: copy + CTAs on the left, a relevant visual on the right.
+// Split hero for service and industry pages: copy + CTAs on the left, a relevant
+// visual on the right.
+//
+// The secondary CTA is configurable because a hardcoded "See pricing → /pricing/"
+// was actively wrong on industry hubs. Those pages already show that industry's
+// three tiers further down, so the button sent a visitor who had just
+// self-identified back to a table listing all eight industries — undoing the
+// selection they had already made. An industry hub now jumps to its own prices.
 export default function ServiceHero({
   eyebrow,
   title,
   lead,
   quickAnswer,
   visual,
+  secondaryHref = "/pricing/",
+  secondaryLabel = "See pricing",
 }: {
   eyebrow: string;
   title: React.ReactNode;
   lead: string;
   quickAnswer: React.ReactNode;
   visual: React.ReactNode;
+  /** Where the secondary CTA points. Defaults to the all-industries pricing table. */
+  secondaryHref?: string;
+  secondaryLabel?: string;
 }) {
   return (
     <section
@@ -41,10 +53,10 @@ export default function ServiceHero({
                 Get a free visibility check
               </Link>
               <Link
-                href="/pricing/"
+                href={secondaryHref}
                 className="inline-flex items-center justify-center rounded-full border border-warm-line px-8 py-4 text-[17px] font-semibold text-navy transition hover:border-teal hover:bg-soft"
               >
-                See pricing
+                {secondaryLabel}
               </Link>
             </div>
           </div>

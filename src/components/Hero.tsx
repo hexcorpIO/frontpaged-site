@@ -40,7 +40,14 @@ export default function Hero() {
               <Button href="#contact" size="lg">
                 Get your free visibility check
               </Button>
-              <Button href="/pricing/" size="lg" variant="ghost">
+              {/* Goes to /industries/, not /pricing/. The homepage previously
+                  offered two competing pricing paths — "See plans" straight to the
+                  all-industries table, and "See pricing for your industry" to the
+                  industry list. Both end at a price, but only one asks who you are
+                  first, and prices here mean nothing until that's answered. One
+                  path now: pick your industry, see your ladder. /pricing/ stays as
+                  the comparison view for anyone who wants it. */}
+              <Button href="/industries/" size="lg" variant="ghost">
                 See plans
               </Button>
             </div>

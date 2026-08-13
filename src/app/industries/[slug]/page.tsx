@@ -237,6 +237,10 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
           title={v.heroTagline}
           lead={v.metaDescription}
           quickAnswer={v.quickAnswer}
+          // This page already carries this industry's three tiers. Sending the
+          // visitor to /pricing/ would discard the selection they just made.
+          secondaryHref="#pricing"
+          secondaryLabel={`See ${v.name} pricing`}
           visual={heroVisual}
         />
 

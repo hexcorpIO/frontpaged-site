@@ -13,8 +13,10 @@ const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 export default function PricingBand({ vertical }: { vertical: Vertical }) {
   return (
     <section
+      id="pricing"
       aria-labelledby="pricing-heading"
-      className="border-t border-warm-line py-14 sm:py-16"
+      // scroll-mt clears the sticky header when jumped to from the hero
+      className="scroll-mt-24 border-t border-warm-line py-14 sm:py-16"
     >
       <h2
         id="pricing-heading"

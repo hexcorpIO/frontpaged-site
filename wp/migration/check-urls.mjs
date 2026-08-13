@@ -52,4 +52,11 @@ for (const m of missing) {
   console.log(`  ${String(m.status).padEnd(4)} ${m.route}${m.location ? ` -> ${m.location}` : ""}`);
 }
 
+// PHP notices never appear in the response body — WP_DEBUG_DISPLAY is off, so
+// they go only to debug.log. Grepping the HTML for "Warning:" reported a clean
+// sweep while page-glossary.php was emitting one on every request. Reading the
+// log is the only check that actually sees them.
+console.log("Now check the log for notices this sweep cannot see:");
+console.log("  docker compose -f wp/docker/docker-compose.yml exec -T wordpress cat /var/www/html/wp-content/debug.log\n");
+
 process.exit(missing.length ? 1 : 0);

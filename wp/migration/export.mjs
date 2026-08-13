@@ -124,7 +124,10 @@ write(
     slug: g.slug,
     title: g.term,
     definition: g.definition,
-    also_known_as: g.also ?? "",
+    // `also` is a list in the registry — sometimes empty, sometimes several
+    // aliases. Flattened here rather than in the template, so exactly one place
+    // knows the shape.
+    also_known_as: Array.isArray(g.also) ? g.also.join(", ") : (g.also ?? ""),
     context: g.context ?? "",
     category: g.category ?? "",
   }))

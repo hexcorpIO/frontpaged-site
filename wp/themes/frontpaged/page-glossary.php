@@ -29,8 +29,14 @@ $terms = get_posts([
       <?php foreach ($terms as $term) : ?>
         <div id="<?php echo esc_attr($term->post_name); ?>" class="rounded-2xl border border-warm-line bg-white p-6">
           <dt class="font-serif text-[19px] leading-snug text-navy"><?php echo esc_html(get_the_title($term)); ?></dt>
-          <?php if ($also = fpc_field('also_known_as', $term->ID)) : ?>
-            <p class="mt-1 text-[13px] text-warm-grey/80">Also: <?php echo esc_html((string) $also); ?></p>
+          <?php
+          // Tolerates a list as well as a string: the field is free text in the
+          // admin, and casting an array to string is a warning plus the literal
+          // word "Array" on a published page.
+          $also = fpc_field('also_known_as', $term->ID);
+          $also = is_array($also) ? implode(', ', array_filter(array_map('strval', $also))) : (string) $also;
+          if ($also !== '') : ?>
+            <p class="mt-1 text-[13px] text-warm-grey/80">Also: <?php echo esc_html($also); ?></p>
           <?php endif; ?>
           <dd class="mt-3 text-[15.5px] leading-[1.7] text-warm-grey"><?php echo esc_html((string) fpc_field('definition', $term->ID)); ?></dd>
         </div>

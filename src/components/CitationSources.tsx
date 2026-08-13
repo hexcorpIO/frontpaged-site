@@ -8,6 +8,8 @@ import type { SourceRef } from "@/lib/verticals/types";
 // names them, and they give the page outbound links to the recognised entities
 // of its own category — the same entity-linking argument src/components/JsonLd.tsx
 // makes for `knowsAbout`, applied to the sources rather than the topics.
+import { slugify } from "@/lib/tracking";
+
 export default function CitationSources({
   sources,
   audienceNoun,
@@ -42,6 +44,8 @@ export default function CitationSources({
             <a
               href={s.url}
               rel="nofollow noopener"
+              data-track-id={`citation-source-${slugify(s.label)}`}
+              data-track-type="citation"
               className="inline-block rounded-full border border-warm-line bg-cream px-4 py-2 text-[14px] font-medium text-teal-dark transition duration-200 hover:border-teal"
             >
               {s.label}

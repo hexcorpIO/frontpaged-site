@@ -42,6 +42,10 @@ export default function IndustryGrid() {
               <Link
                 key={v.slug}
                 href={hasHub ? `/industries/${v.slug}/` : "/contact/"}
+                // Which industry a visitor picks is the single most useful thing
+                // this page can tell us — it is the segment, chosen by them.
+                data-track-id={`industry-card-${v.slug}`}
+                data-track-type="card"
                 className="group flex flex-col rounded-2xl border border-warm-line bg-white p-6 shadow-[0_8px_30px_rgba(21,38,63,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-teal"
               >
                 <h3 className="font-serif text-[18px] font-semibold leading-snug text-navy group-hover:text-teal-dark">

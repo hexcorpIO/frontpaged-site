@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
+import ClickTracking from "@/components/ClickTracking";
+import ConsentDefaults from "@/components/ConsentDefaults";
 import GoogleTagManager, {
   GoogleTagManagerNoScript,
 } from "@/components/GoogleTagManager";
@@ -79,6 +81,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}>
+      {/* Consent Mode defaults must be set before the GTM container runs. A
+          synchronous head script is the only placement that guarantees it —
+          check-tracking.mjs asserts both the presence and the ordering against
+          the built HTML so a refactor cannot quietly invert them. */}
+      <head>
+        <ConsentDefaults />
+      </head>
       <body className="flex min-h-full flex-col font-sans">
         <GoogleTagManagerNoScript />
         <noscript>
@@ -86,6 +95,7 @@ export default function RootLayout({
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         {children}
+        <ClickTracking />
         <GoogleTagManager />
       </body>
     </html>

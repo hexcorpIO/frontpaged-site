@@ -12,6 +12,8 @@ const regimeLabel: Record<ComplianceProfile["regime"], string> = {
 // and the disclaimers required for this vertical. All three render as visible
 // page text — a disclaimer that only exists in markup (a `title` or
 // `aria-label`) does not satisfy a bar rule.
+import { slugify } from "@/lib/tracking";
+
 export default function ComplianceNote({ profile }: { profile: ComplianceProfile }) {
   return (
     <section
@@ -55,6 +57,8 @@ export default function ComplianceNote({ profile }: { profile: ComplianceProfile
             <a
               href={s.url}
               rel="nofollow noopener"
+              data-track-id={`compliance-source-${slugify(s.label)}`}
+              data-track-type="citation"
               className="font-medium text-teal-dark underline-offset-2 hover:underline"
             >
               {s.label}

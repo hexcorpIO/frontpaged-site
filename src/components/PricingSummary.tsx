@@ -68,11 +68,14 @@ export default function PricingSummary() {
                 split the click for no gain. Comparing all plans is still reachable
                 as a text link. */}
             <div className="mt-6">
-              <Button href="/industries/">See pricing for your industry</Button>
+              <Button href="/industries/" trackId="pricing-summary-see-industry-pricing">
+                See pricing for your industry
+              </Button>
               <p className="mt-4 text-[14.5px] text-warm-grey">
                 Or{" "}
                 <Link
                   href="/pricing/"
+                  data-track-id="pricing-summary-compare-all"
                   className="text-teal underline underline-offset-2"
                 >
                   compare every industry side by side
@@ -96,7 +99,12 @@ export default function PricingSummary() {
             <p className="mt-3 rounded-lg bg-soft px-3.5 py-2.5 text-[13.5px] font-medium text-teal-dark">
               {auditOffer.credit}
             </p>
-            <Button href="/contact/" variant="ghost" className="mt-4 w-full">
+            <Button
+              href="/contact/"
+              variant="ghost"
+              className="mt-4 w-full"
+              trackId="pricing-summary-paid-audit"
+            >
               {auditOffer.cta}
             </Button>
           </div>

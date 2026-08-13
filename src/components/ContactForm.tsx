@@ -24,6 +24,7 @@ export default function ContactForm() {
           Email{" "}
           <a
             href={`mailto:${site.email}`}
+            data-track-id="contact-fallback-email"
             className="text-teal underline underline-offset-2"
           >
             {site.email}
@@ -31,6 +32,7 @@ export default function ContactForm() {
           or call{" "}
           <a
             href={site.phoneHref}
+            data-track-id="contact-fallback-phone"
             className="text-teal underline underline-offset-2"
           >
             {site.phone}
@@ -136,6 +138,8 @@ export default function ContactForm() {
 
       <button
         type="submit"
+        data-track-id="contact-form-submit"
+        data-track-type="cta"
         className="mt-6 w-full rounded-lg bg-teal px-6 py-3.5 text-[16px] font-semibold text-white transition hover:bg-teal/90 sm:w-auto"
       >
         Send message

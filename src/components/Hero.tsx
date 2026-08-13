@@ -37,7 +37,7 @@ export default function Hero() {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3.5">
-              <Button href="#contact" size="lg">
+              <Button href="#contact" size="lg" trackId="hero-primary-visibility-check">
                 Get your free visibility check
               </Button>
               {/* Goes to /industries/, not /pricing/. The homepage previously
@@ -47,7 +47,7 @@ export default function Hero() {
                   first, and prices here mean nothing until that's answered. One
                   path now: pick your industry, see your ladder. /pricing/ stays as
                   the comparison view for anyone who wants it. */}
-              <Button href="/industries/" size="lg" variant="ghost">
+              <Button href="/industries/" size="lg" variant="ghost" trackId="hero-secondary-see-plans">
                 See plans
               </Button>
             </div>

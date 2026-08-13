@@ -102,6 +102,8 @@ export default function HowAiDecides() {
           </div>
           <Link
             href="/ai-readiness-check/"
+            data-track-id="how-ai-decides-scorecard-cta"
+            data-track-type="cta"
             className="inline-flex shrink-0 items-center justify-center rounded-lg bg-teal px-7 py-3.5 text-[16px] font-semibold text-white transition hover:bg-teal/90"
           >
             Take the check

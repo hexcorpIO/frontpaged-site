@@ -2,6 +2,7 @@ import Link from "next/link";
 import Container from "./Container";
 import Logo from "./Logo";
 import { site } from "@/lib/site";
+import { slugify } from "@/lib/tracking";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getIndustryBody } from "@/lib/industries";
 import { getPublishedAddOnServices } from "@/lib/services";
@@ -49,7 +50,11 @@ function Column({
       <ul className="space-y-2">
         {links.map((l) => (
           <li key={l.href + l.label}>
-            <Link href={l.href} className="text-warm-grey hover:text-teal-dark">
+            <Link
+              href={l.href}
+              data-track-id={`footer-${slugify(title)}-${slugify(l.label)}`}
+              className="text-warm-grey hover:text-teal-dark"
+            >
               {l.label}
             </Link>
           </li>
@@ -71,16 +76,26 @@ export default function SiteFooter() {
               done for you, nationwide.
             </p>
             <div className="mt-4 flex flex-col gap-1.5">
-              <a href={site.phoneHref} className="font-medium text-navy hover:text-teal-dark">
+              <a
+                href={site.phoneHref}
+                data-track-id="footer-phone"
+                className="font-medium text-navy hover:text-teal-dark"
+              >
                 {site.phone}
               </a>
-              <a href={`mailto:${site.email}`} className="hover:text-teal-dark">
+              <a
+                href={`mailto:${site.email}`}
+                data-track-id="footer-email"
+                className="hover:text-teal-dark"
+              >
                 {site.email}
               </a>
               <a
                 href={site.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track-id="footer-social-linkedin"
+                data-track-type="social"
                 className="font-medium hover:text-teal-dark"
               >
                 LinkedIn

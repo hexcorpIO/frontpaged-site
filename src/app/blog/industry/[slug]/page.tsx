@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import SiteHeader from "@/components/SiteHeader";
-import TopBanner from "@/components/TopBanner";
-import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CtaPanel from "@/components/CtaPanel";
@@ -109,91 +106,91 @@ export default async function IndustryArchive({
     ],
   };
 
+  // No TopBanner/SiteHeader/<main>/SiteFooter here: src/app/blog/layout.tsx
+  // already wraps everything under /blog/ in exactly those. Rendering them again
+  // produced two <header> and two <main> landmarks on this route, which doubled
+  // every nav and footer link in the page's link graph and broke the single-main
+  // rule that assistive tech and the site's own semantic-HTML pitch depend on.
   return (
     <>
-      <TopBanner />
-      <SiteHeader />
-      <main>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-        <Breadcrumbs
-          className="border-b border-warm-line"
-          crumbs={[
-            { label: "Home", href: "/" },
-            { label: "Blog", href: "/blog/" },
-            { label: v.name },
-          ]}
-        />
+      <Breadcrumbs
+        className="border-b border-warm-line"
+        crumbs={[
+          { label: "Home", href: "/" },
+          { label: "Blog", href: "/blog/" },
+          { label: v.name },
+        ]}
+      />
 
-        <section className="bg-gradient-to-b from-cream to-white py-14 sm:py-16">
-          <Container>
-            <div className="max-w-3xl">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-teal">
-                {v.name}
-              </p>
-              <h1 className="mt-3 font-serif text-[38px] leading-[1.1] text-navy sm:text-[46px]">
-                SEO and AI-search articles for {v.nameSingular} owners
-              </h1>
-              <p className="mt-6 text-[17px] leading-[1.7] text-warm-grey">
-                {posts.length} {posts.length === 1 ? "article" : "articles"} written
-                for this industry specifically — not general marketing advice with the
-                nouns swapped.
-                {hasHub && (
-                  <>
-                    {" "}
-                    For what we actually do here, see{" "}
-                    <Link
-                      href={`/industries/${v.slug}/`}
-                      className="text-teal underline underline-offset-2"
-                    >
-                      {v.name.toLowerCase()} services
-                    </Link>
-                    .
-                  </>
-                )}
-              </p>
-            </div>
-          </Container>
-        </section>
-
-        <section className="py-12 sm:py-14">
-          <Container>
-            <ul className="divide-y divide-line border-y border-line">
-              {posts.map((p) => (
-                <li key={p.slug} className="py-6">
-                  <Link href={`/blog/${p.slug}/`} className="group block">
-                    <p className="font-serif text-[21px] leading-snug text-navy group-hover:text-teal">
-                      {p.title}
-                    </p>
-                    <p className="mt-2 text-[15.5px] leading-[1.65] text-warm-grey">
-                      {p.description}
-                    </p>
-                    <p className="mt-2.5 text-[13.5px] text-warm-grey/80">
-                      <time dateTime={p.date}>{formatDate(p.date)}</time>
-                      <span aria-hidden="true"> · </span>
-                      {p.readingTime} min read
-                    </p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <p className="mt-10 text-[15.5px] text-warm-grey">
-              Browsing a different industry?{" "}
-              <Link href="/blog/" className="text-teal underline underline-offset-2">
-                See every article
-              </Link>
-              .
+      <section className="bg-gradient-to-b from-cream to-white py-14 sm:py-16">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-teal">
+              {v.name}
             </p>
-          </Container>
-        </section>
+            <h1 className="mt-3 font-serif text-[38px] leading-[1.1] text-navy sm:text-[46px]">
+              SEO and AI-search articles for {v.nameSingular} owners
+            </h1>
+            <p className="mt-6 text-[17px] leading-[1.7] text-warm-grey">
+              {posts.length} {posts.length === 1 ? "article" : "articles"} written
+              for this industry specifically — not general marketing advice with the
+              nouns swapped.
+              {hasHub && (
+                <>
+                  {" "}
+                  For what we actually do here, see{" "}
+                  <Link
+                    href={`/industries/${v.slug}/`}
+                    className="text-teal underline underline-offset-2"
+                  >
+                    {v.name.toLowerCase()} services
+                  </Link>
+                  .
+                </>
+              )}
+            </p>
+          </div>
+        </Container>
+      </section>
 
-        <CtaPanel />
-      </main>
-      <SiteFooter />
+      <section className="py-12 sm:py-14">
+        <Container>
+          <ul className="divide-y divide-line border-y border-line">
+            {posts.map((p) => (
+              <li key={p.slug} className="py-6">
+                <Link href={`/blog/${p.slug}/`} className="group block">
+                  <p className="font-serif text-[21px] leading-snug text-navy group-hover:text-teal">
+                    {p.title}
+                  </p>
+                  <p className="mt-2 text-[15.5px] leading-[1.65] text-warm-grey">
+                    {p.description}
+                  </p>
+                  <p className="mt-2.5 text-[13.5px] text-warm-grey/80">
+                    <time dateTime={p.date}>{formatDate(p.date)}</time>
+                    <span aria-hidden="true"> · </span>
+                    {p.readingTime} min read
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-10 text-[15.5px] text-warm-grey">
+            Browsing a different industry?{" "}
+            <Link href="/blog/" className="text-teal underline underline-offset-2">
+              See every article
+            </Link>
+            .
+          </p>
+        </Container>
+      </section>
+
+      <CtaPanel />
     </>
   );
 }

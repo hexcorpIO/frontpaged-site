@@ -1,6 +1,7 @@
 import Button from "./Button";
 import { founding } from "@/lib/site";
 import { foundingPrice, annualPrice } from "@/lib/verticals/pricing";
+import { slugify } from "@/lib/tracking";
 import type { Vertical } from "@/lib/verticals/types";
 
 const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
@@ -87,7 +88,14 @@ export default function PricingBand({ vertical }: { vertical: Vertical }) {
                 </li>
               ))}
             </ul>
-            <Button href="/contact/" variant={t.featured ? "solid" : "ghost"} className="w-full">
+            <Button
+              href="/contact/"
+              variant={t.featured ? "solid" : "ghost"}
+              className="w-full"
+              // Tier name, not button copy: every tier's CTA reads the same, so a
+              // derived id would merge three separate buying signals into one.
+              trackId={`pricing-tier-${vertical.slug}-${slugify(t.name)}`}
+            >
               {t.cta}
             </Button>
           </article>

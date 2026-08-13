@@ -24,7 +24,11 @@ export default function ContactBand() {
 
         <p className="mt-6 text-[15px] text-[#9fb6cc]">
           Prefer email? Reach us at{" "}
-          <a href={`mailto:${site.email}`} className="text-white underline">
+          <a
+            href={`mailto:${site.email}`}
+            data-track-id="contact-band-email"
+            className="text-white underline"
+          >
             {site.email}
           </a>
         </p>

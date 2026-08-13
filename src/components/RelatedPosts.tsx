@@ -38,7 +38,11 @@ export default function RelatedPosts({
         </h2>
         <p className="mt-4 max-w-[760px] text-[16px] leading-[1.7] text-warm-grey">
           Our {name} library is still being written. In the meantime, the{" "}
-          <Link href="/blog/" className="font-semibold text-teal-dark hover:text-teal">
+          <Link
+            href="/blog/"
+            data-track-id="related-empty-blog-index"
+            className="font-semibold text-teal-dark hover:text-teal"
+          >
             Frontpaged blog
           </Link>{" "}
           covers how AI engines decide who to cite, how answer-first pages get extracted, and
@@ -65,6 +69,8 @@ export default function RelatedPosts({
           <li key={p.slug}>
             <Link
               href={`/blog/${p.slug}/`}
+              data-track-id={`related-post-${p.slug}`}
+              data-track-type="card"
               className="block h-full rounded-xl border border-warm-line bg-cream p-5 transition duration-200 hover:border-teal"
             >
               <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-teal-dark">
@@ -80,7 +86,11 @@ export default function RelatedPosts({
       </ul>
       <p className="mt-6 text-[15px] text-warm-grey">
         More in the{" "}
-        <Link href="/blog/" className="font-semibold text-teal-dark hover:text-teal">
+        <Link
+          href="/blog/"
+          data-track-id="related-more-blog-index"
+          className="font-semibold text-teal-dark hover:text-teal"
+        >
           Frontpaged blog
         </Link>
         .

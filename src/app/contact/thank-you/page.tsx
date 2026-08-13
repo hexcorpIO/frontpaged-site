@@ -4,6 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import TopBanner from "@/components/TopBanner";
 import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
+import TrackEvent from "@/components/TrackEvent";
 import { site, ogImage } from "@/lib/site";
 
 const PATH = "/contact/thank-you/";
@@ -34,6 +35,11 @@ export default function ThankYou() {
     <>
       <TopBanner />
       <SiteHeader />
+      {/* Formspree only redirects here on success, so this is the submission
+          count — not the click count, which would include validation failures
+          and anything the honeypot swallowed. Mark this as the conversion in
+          GA4, not the button. */}
+      <TrackEvent event="generate_lead" params={{ lead_source: "contact_form" }} />
       <main>
         <section className="bg-gradient-to-b from-cream to-white py-20 sm:py-24">
           <Container>

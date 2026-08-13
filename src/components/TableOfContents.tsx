@@ -40,6 +40,8 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
             </span>
             <a
               href={`#${h.id}`}
+              data-track-id={`toc-${h.id}`}
+              data-track-type="toc"
               className="text-ink hover:text-teal hover:underline underline-offset-2"
             >
               {h.text}

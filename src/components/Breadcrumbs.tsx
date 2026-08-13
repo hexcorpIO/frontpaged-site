@@ -11,6 +11,8 @@ import Container from "./Container";
 //
 // The last crumb is the current page and is deliberately not a link.
 
+import { slugify } from "@/lib/tracking";
+
 export type Crumb = { label: string; href?: string };
 
 export default function Breadcrumbs({
@@ -31,6 +33,7 @@ export default function Breadcrumbs({
                 {c.href && !isLast ? (
                   <Link
                     href={c.href}
+                    data-track-id={`breadcrumb-${i}-${slugify(c.label)}`}
                     className="hover:text-teal hover:underline underline-offset-2"
                   >
                     {c.label}

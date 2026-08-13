@@ -13,8 +13,9 @@
     "check:seo": "node scripts/check-seo.mjs",
     "check:duplication": "node scripts/check-duplication.mjs",
     "check:links": "node scripts/check-links.mjs",
+    "check:tracking": "node scripts/check-tracking.mjs",
     "test": "node --test tests/*.test.mjs",
-    "verify": "pnpm test && pnpm check:content && pnpm check:duplication && pnpm build && pnpm check:seo && pnpm check:links"
+    "verify": "pnpm test && pnpm check:content && pnpm check:duplication && pnpm build && pnpm check:seo && pnpm check:links && pnpm check:tracking"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

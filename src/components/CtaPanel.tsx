@@ -24,6 +24,8 @@ export default function CtaPanel({
             <p className="mt-4 max-w-md text-[17px] leading-[1.7] text-[#cdd6e2]">{sub}</p>
             <Link
               href="/contact/"
+              data-track-id="cta-panel-visibility-check"
+              data-track-type="cta"
               className="mt-7 inline-flex items-center justify-center rounded-full bg-teal px-8 py-4 text-[17px] font-semibold text-white transition hover:bg-white hover:text-navy"
             >
               {cta}

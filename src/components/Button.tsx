@@ -5,6 +5,13 @@ type Props = {
   variant?: "solid" | "ghost";
   size?: "md" | "lg";
   className?: string;
+  /**
+   * Stable analytics identifier. Every Button is a conversion action of some
+   * kind, so leaving this off means the click is reported under an ID derived
+   * from its label — which silently changes the day someone rewrites the copy.
+   * Set it wherever the number is one we report on.
+   */
+  trackId?: string;
 };
 
 const base =
@@ -27,9 +34,15 @@ export default function Button({
   variant = "solid",
   size = "md",
   className = "",
+  trackId,
 }: Props) {
   return (
-    <a href={href} className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}>
+    <a
+      href={href}
+      data-track-id={trackId}
+      data-track-type="cta"
+      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+    >
       {children}
     </a>
   );

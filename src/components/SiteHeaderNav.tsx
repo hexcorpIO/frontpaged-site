@@ -5,6 +5,7 @@ import Link from "next/link";
 import Container from "./Container";
 import Logo from "./Logo";
 import { site } from "@/lib/site";
+import { slugify } from "@/lib/tracking";
 
 export type NavLink = { href: string; label: string };
 
@@ -48,6 +49,7 @@ function Dropdown({ label, items }: { label: string; items: NavLink[] }) {
             <li key={i.href + i.label}>
               <Link
                 href={i.href}
+                data-track-id={`header-dropdown-${label.toLowerCase()}-${slugify(i.label)}`}
                 className="block rounded-lg px-3 py-2 text-[15px] text-navy hover:bg-soft hover:text-teal-dark"
               >
                 {i.label}
@@ -74,7 +76,7 @@ export default function SiteHeaderNav({
     <header className="sticky top-0 z-20 border-b border-warm-line bg-cream/85 backdrop-blur-md">
       <Container>
         <nav className="flex h-[66px] items-center justify-between" aria-label="Primary">
-          <Link href="/" className="text-[22px]" onClick={close}>
+          <Link href="/" data-track-id="header-logo-home" className="text-[22px]" onClick={close}>
             <Logo />
             <span className="sr-only">{site.name} home</span>
           </Link>
@@ -85,17 +87,18 @@ export default function SiteHeaderNav({
             <Dropdown label="Services" items={services} />
             <Link
               href="/ai-readiness-check/"
+              data-track-id="header-free-check"
               className="text-[15px] font-medium text-teal-dark hover:text-teal"
             >
               Free check
             </Link>
-            <Link href="/pricing/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
+            <Link href="/pricing/" data-track-id="header-pricing" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Pricing
             </Link>
-            <Link href="/blog/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
+            <Link href="/blog/" data-track-id="header-blog" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               Blog
             </Link>
-            <Link href="/faq/" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
+            <Link href="/faq/" data-track-id="header-faq" className="text-[15px] font-medium text-navy/80 hover:text-teal-dark">
               FAQ
             </Link>
             <a
@@ -103,6 +106,8 @@ export default function SiteHeaderNav({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Frontpaged on Instagram"
+              data-track-id="header-social-instagram"
+              data-track-type="social"
               className="text-navy/70 transition hover:text-teal-dark"
             >
               <InstagramIcon />
@@ -112,12 +117,16 @@ export default function SiteHeaderNav({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Frontpaged on LinkedIn"
+              data-track-id="header-social-linkedin"
+              data-track-type="social"
               className="text-navy/70 transition hover:text-teal-dark"
             >
               <LinkedInIcon />
             </a>
             <Link
               href="/contact/"
+              data-track-id="header-cta-visibility-check"
+              data-track-type="cta"
               className="rounded-full bg-teal px-5 py-2.5 text-[14px] font-semibold text-white transition hover:bg-teal-dark"
             >
               Free visibility check
@@ -129,6 +138,8 @@ export default function SiteHeaderNav({
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
+            data-track-id={open ? "header-mobile-menu-close" : "header-mobile-menu-open"}
+            data-track-type="control"
             aria-expanded={open}
             className="flex h-10 w-10 items-center justify-center rounded-lg text-navy hover:bg-soft lg:hidden"
           >
@@ -158,7 +169,12 @@ export default function SiteHeaderNav({
               <ul className="space-y-1.5">
                 {industries.map((i) => (
                   <li key={i.href + i.label}>
-                    <Link href={i.href} onClick={close} className="text-[15px] text-navy hover:text-teal-dark">
+                    <Link
+                      href={i.href}
+                      data-track-id={`mobile-industry-${slugify(i.label)}`}
+                      onClick={close}
+                      className="text-[15px] text-navy hover:text-teal-dark"
+                    >
                       {i.label}
                     </Link>
                   </li>
@@ -172,7 +188,12 @@ export default function SiteHeaderNav({
               <ul className="space-y-1.5">
                 {services.map((i) => (
                   <li key={i.href}>
-                    <Link href={i.href} onClick={close} className="text-[15px] text-navy hover:text-teal-dark">
+                    <Link
+                      href={i.href}
+                      data-track-id={`mobile-service-${slugify(i.label)}`}
+                      onClick={close}
+                      className="text-[15px] text-navy hover:text-teal-dark"
+                    >
                       {i.label}
                     </Link>
                   </li>
@@ -180,25 +201,27 @@ export default function SiteHeaderNav({
               </ul>
             </div>
             <div className="flex flex-col gap-1.5">
-              <Link href="/ai-readiness-check/" onClick={close} className="text-[15px] font-medium text-teal-dark hover:text-teal">
+              <Link href="/ai-readiness-check/" onClick={close} data-track-id="mobile-free-check" className="text-[15px] font-medium text-teal-dark hover:text-teal">
                 Free check
               </Link>
-              <Link href="/pricing/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+              <Link href="/pricing/" onClick={close} data-track-id="mobile-pricing" className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 Pricing
               </Link>
-              <Link href="/blog/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+              <Link href="/blog/" onClick={close} data-track-id="mobile-blog" className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 Blog
               </Link>
-              <Link href="/faq/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+              <Link href="/faq/" onClick={close} data-track-id="mobile-faq" className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 FAQ
               </Link>
-              <Link href="/about/" onClick={close} className="text-[15px] font-medium text-navy hover:text-teal-dark">
+              <Link href="/about/" onClick={close} data-track-id="mobile-about" className="text-[15px] font-medium text-navy hover:text-teal-dark">
                 About
               </Link>
               <a
                 href={site.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track-id="mobile-social-instagram"
+                data-track-type="social"
                 className="inline-flex items-center gap-2 text-[15px] font-medium text-navy hover:text-teal-dark"
               >
                 <InstagramIcon className="h-[18px] w-[18px]" /> Instagram
@@ -207,6 +230,8 @@ export default function SiteHeaderNav({
                 href={site.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-track-id="mobile-social-linkedin"
+                data-track-type="social"
                 className="inline-flex items-center gap-2 text-[15px] font-medium text-navy hover:text-teal-dark"
               >
                 <LinkedInIcon className="h-[18px] w-[18px]" /> LinkedIn
@@ -215,6 +240,8 @@ export default function SiteHeaderNav({
             <Link
               href="/contact/"
               onClick={close}
+              data-track-id="mobile-cta-visibility-check"
+              data-track-type="cta"
               className="inline-flex w-full items-center justify-center rounded-full bg-teal px-5 py-3 text-[15px] font-semibold text-white transition hover:bg-teal-dark"
             >
               Free visibility check

@@ -10,6 +10,8 @@ export default function TopBanner() {
           // Site-wide cross-promo — nofollow so it doesn't pass link equity off
           // every page on the site.
           rel="noopener noreferrer nofollow"
+          data-track-id="top-banner-tageasy"
+          data-track-type="cta"
           className="font-semibold text-white underline decoration-teal decoration-2 underline-offset-2 hover:text-teal"
         >
           Meet TagEasy →

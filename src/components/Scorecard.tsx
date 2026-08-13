@@ -8,6 +8,7 @@ import {
   MAX_SCORE,
   type Answer,
 } from "@/lib/scorecard";
+import { pushToDataLayer } from "./ClickTracking";
 import { site } from "@/lib/site";
 
 // Interactive scorecard. Client-side only — no network call, no data leaves the
@@ -76,7 +77,18 @@ export default function Scorecard() {
                         name={q.id}
                         value={o.value}
                         checked={active}
-                        onChange={() => setAnswers((a) => ({ ...a, [q.id]: o.value }))}
+                        onChange={() => {
+                          setAnswers((a) => ({ ...a, [q.id]: o.value }));
+                          // Question number, not the answer given: where people
+                          // abandon is the actionable fact, and recording which
+                          // weaknesses a named business admitted to would be a
+                          // different and much less defensible thing to collect.
+                          pushToDataLayer({
+                            event: "scorecard_answer",
+                            scorecard_question: i + 1,
+                            scorecard_total_questions: questions.length,
+                          });
+                        }}
                         className="sr-only"
                       />
                       {o.label}
@@ -92,7 +104,19 @@ export default function Scorecard() {
       <div className="mt-10 border-t border-line pt-8">
         <button
           type="button"
-          onClick={() => setSubmitted(true)}
+          data-track-id="scorecard-see-results"
+          data-track-type="cta"
+          onClick={() => {
+            pushToDataLayer({
+              event: "scorecard_complete",
+              scorecard_score: result.score,
+              scorecard_max: MAX_SCORE,
+              scorecard_band: result.band.label,
+              scorecard_answered: answered,
+              scorecard_partial: !complete,
+            });
+            setSubmitted(true);
+          }}
           disabled={answered === 0}
           className="rounded-lg bg-teal px-8 py-3.5 text-[16px] font-semibold text-white transition hover:bg-teal/90 disabled:cursor-not-allowed disabled:opacity-40"
         >
@@ -197,12 +221,15 @@ function Results({
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/contact/"
+            data-track-id="scorecard-results-visibility-check"
+            data-track-type="cta"
             className="inline-flex items-center rounded-lg bg-teal px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-teal/90"
           >
             Get your free visibility check
           </Link>
           <button
             type="button"
+            data-track-id="scorecard-change-answers"
             onClick={onRevise}
             className="inline-flex items-center rounded-lg border border-white/25 px-6 py-3 text-[16px] font-semibold text-white transition hover:bg-white/10"
           >
@@ -211,7 +238,11 @@ function Results({
         </div>
         <p className="mt-5 text-[14px] text-[#9fb6cc]">
           Questions in the meantime:{" "}
-          <a href={`mailto:${site.email}`} className="underline underline-offset-2">
+          <a
+            href={`mailto:${site.email}`}
+            data-track-id="scorecard-results-email"
+            className="underline underline-offset-2"
+          >
             {site.email}
           </a>
         </p>
@@ -256,8 +287,19 @@ function EmailResults({ result }: { result: ReturnType<typeof score> }) {
         body: new FormData(form),
       });
       setStatus(res.ok ? "sent" : "error");
+      if (res.ok) {
+        pushToDataLayer({
+          event: "generate_lead",
+          lead_source: "scorecard_plan_request",
+          scorecard_score: result.score,
+          scorecard_band: result.band.label,
+        });
+      } else {
+        pushToDataLayer({ event: "form_error", form_name: "scorecard_plan_request" });
+      }
     } catch {
       setStatus("error");
+      pushToDataLayer({ event: "form_error", form_name: "scorecard_plan_request" });
     }
   }
 
@@ -321,6 +363,8 @@ function EmailResults({ result }: { result: ReturnType<typeof score> }) {
 
       <button
         type="submit"
+        data-track-id="scorecard-send-plan"
+        data-track-type="cta"
         disabled={status === "sending"}
         className="mt-5 rounded-lg bg-teal px-7 py-3 text-[16px] font-semibold text-white transition hover:bg-teal/90 disabled:opacity-50"
       >

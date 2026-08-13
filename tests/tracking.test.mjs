@@ -316,3 +316,109 @@ test("answer counting fires check_start once and halfway once, in any order", ()
   assert.equal(events.filter((e) => e === "check_start").length, 1);
   assert.equal(events.filter((e) => e === "check_progress").length, 1);
 });
+
+// ── Click attribution ────────────────────────────────────────────────────
+
+import {
+  buildSchedulerUrl,
+  mergeAttribution,
+  parseAttribution,
+  readCookie,
+  serializeCookie,
+} from "../src/lib/attribution.ts";
+
+test("parseAttribution picks up utm and every ad click id", () => {
+  const a = parseAttribution("?utm_source=google&utm_medium=cpc&utm_campaign=medspa&gclid=ABC123");
+  assert.deepEqual(a, {
+    utm_source: "google", utm_medium: "cpc", utm_campaign: "medspa", gclid: "ABC123",
+  });
+  assert.equal(parseAttribution("?wbraid=W1").wbraid, "W1");
+  assert.equal(parseAttribution("?gbraid=G1").gbraid, "G1");
+});
+
+test("parseAttribution returns empty for a direct visit and ignores junk", () => {
+  assert.deepEqual(parseAttribution(""), {});
+  assert.deepEqual(parseAttribution("?ref=twitter&fbclid=x"), {});
+});
+
+test("attribution round-trips through the cookie", () => {
+  const a = { utm_source: "google", gclid: "ABC 123&x=1" };
+  assert.deepEqual(readCookie(`fp_click=${serializeCookie(a)}`), a);
+});
+
+// A truncated or hand-edited cookie must not throw: this is read on the page
+// where a booking is about to happen, and an exception would take the scheduler
+// down with it.
+test("readCookie survives corrupt input", () => {
+  for (const c of ["", "fp_click=", "fp_click=%7Bbroken", "fp_click=null",
+                   "fp_click=%5B1%2C2%5D", "other=1", "fp_click=%22str%22"]) {
+    assert.deepEqual(readCookie(c), {}, `for ${c}`);
+  }
+});
+
+test("readCookie is not fooled by a similarly named cookie", () => {
+  const a = serializeCookie({ utm_source: "real" });
+  assert.deepEqual(readCookie(`not_fp_click=${serializeCookie({ utm_source: "decoy" })}; fp_click=${a}`),
+                   { utm_source: "real" });
+});
+
+// Last touch, but only when the new visit actually carries parameters. An ad
+// click followed by a direct return visit must not erase the gclid before the
+// person books.
+test("mergeAttribution keeps the stored value on a direct return visit", () => {
+  const stored = { gclid: "ABC", utm_source: "google" };
+  assert.deepEqual(mergeAttribution(stored, {}), stored);
+});
+
+test("mergeAttribution lets a newer campaign replace an older one", () => {
+  assert.deepEqual(
+    mergeAttribution({ gclid: "OLD", utm_source: "google" }, { utm_source: "bing" }),
+    { utm_source: "bing" },
+  );
+});
+
+test("buildSchedulerUrl carries utm through and the click id in utm_content", () => {
+  const url = buildSchedulerUrl(
+    "https://calendly.com/benton-frontpaged/30min",
+    { utm_source: "google", utm_medium: "cpc", utm_campaign: "medspa", gclid: "ABC123" },
+    "med-spas",
+  );
+  const q = new URL(url).searchParams;
+  assert.equal(q.get("utm_source"), "google");
+  assert.equal(q.get("utm_medium"), "cpc");
+  assert.equal(q.get("utm_campaign"), "medspa");
+  assert.equal(q.get("utm_content"), "gclid:ABC123");
+  assert.equal(q.get("utm_term"), "med-spas");
+  assert.ok(url.startsWith("https://calendly.com/benton-frontpaged/30min?"));
+});
+
+test("buildSchedulerUrl prefers gclid, then wbraid, then gbraid", () => {
+  const at = (a) => new URL(buildSchedulerUrl("https://c.io/x", a, "none")).searchParams.get("utm_content");
+  assert.equal(at({ gclid: "G", wbraid: "W", gbraid: "B" }), "gclid:G");
+  assert.equal(at({ wbraid: "W", gbraid: "B" }), "gclid:W");
+  assert.equal(at({ gbraid: "B" }), "gclid:B");
+  assert.equal(at({}), null);
+});
+
+test("buildSchedulerUrl always sets utm_term, defaulting to none", () => {
+  assert.equal(new URL(buildSchedulerUrl("https://c.io/x", {}, "")).searchParams.get("utm_term"), "none");
+  assert.equal(new URL(buildSchedulerUrl("https://c.io/x", {}, "estate-law")).searchParams.get("utm_term"), "estate-law");
+});
+
+test("buildSchedulerUrl preserves query already on the configured URL", () => {
+  const q = new URL(buildSchedulerUrl("https://c.io/x?hide_gdpr_banner=1", {}, "none")).searchParams;
+  assert.equal(q.get("hide_gdpr_banner"), "1");
+  assert.equal(q.get("utm_term"), "none");
+});
+
+// site.ts imports a directory ("./verticals"), which the bundler resolves and
+// Node's ESM loader does not — so the configured URL is read as text rather
+// than imported. The assertion is the same: the real value must build cleanly.
+test("buildSchedulerUrl produces a valid URL for the configured Calendly link", () => {
+  const src = fs.readFileSync("src/lib/site.ts", "utf8");
+  const calendly = src.match(/calendly:\s*"([^"]+)"/)?.[1];
+  assert.ok(calendly, "site.ts no longer defines a calendly URL");
+  const url = buildSchedulerUrl(calendly, { gclid: "X" }, "med-spas");
+  assert.doesNotThrow(() => new URL(url));
+  assert.ok(url.startsWith(calendly), `${url} does not start with ${calendly}`);
+});

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
+import AttributionCapture from "@/components/AttributionCapture";
 import ClickTracking from "@/components/ClickTracking";
 import PageContextUpdates, { PageContextScript } from "@/components/PageContext";
 import ConsentDefaults, { ConsentGrant } from "@/components/ConsentDefaults";
@@ -104,6 +105,7 @@ export default function RootLayout({
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         {children}
+        <AttributionCapture />
         <ClickTracking />
         <PageContextUpdates />
         <GoogleTagManager />

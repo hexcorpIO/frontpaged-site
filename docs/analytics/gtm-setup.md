@@ -167,6 +167,70 @@ where someone describes their problem and asks for a reply. Marking both as the
 same key event would inflate the number the business is managed on. `generate_lead`
 stays the contact form only.
 
+### `consultation_booked` — a Calendly booking
+
+| Key | Value |
+|---|---|
+| `scheduler` | `calendly` |
+| `industry` | vertical slug or `none` |
+
+Fired from a `message` listener that checks `e.origin` contains `calendly.com`
+before trusting anything — any page can postMessage into this window, and
+without the check a third-party frame could fabricate a booking. Registered once
+per document, not once per widget: two schedulers can appear on one page and a
+single booking must not push twice.
+
+This is the most valuable event on the site. Mark it a key event in GA4.
+
+## Click attribution
+
+`utm_*` and the ad click id are captured from the landing URL into an `fp_click`
+cookie, then rebuilt onto the Calendly URL so they land in the booking record
+and the webhook — which is how an ad click reaches the CRM.
+
+| Slot | Carries |
+|---|---|
+| `utm_source`, `utm_medium`, `utm_campaign` | passed through untouched |
+| `utm_content` | `gclid:<value>` — Calendly has no field of its own for it |
+| `utm_term` | the industry slug |
+
+`utm_term` and `utm_content` are therefore **repurposed**: whatever was on the
+landing URL in those two slots is overwritten. The other three are left alone.
+
+Whichever of `gclid` / `wbraid` / `gbraid` is present is used, in that order —
+Google sets a different one per surface (Search, iOS web-to-app, iOS app-to-web).
+
+**Last touch, but only on a real click.** A visit carrying no parameters leaves
+the stored value alone, so an ad click followed by a direct return visit does
+not erase the gclid before the person books. This mirrors Google's own `_gcl_aw`.
+
+### The cookie was never being written
+
+The snippet this came from reads `fp_click`; nothing had ever written one. As
+supplied it returned `{}` on every visit and no attribution reached Calendly —
+silently, because an empty object is also what a legitimate direct visit
+produces. `src/lib/attribution.ts` and `AttributionCapture.tsx` are the missing
+half.
+
+### Consent gate
+
+`RESPECT_CONSENT` in `AttributionCapture.tsx` is `true`. The cookie is only
+written once `ad_storage` is granted.
+
+**Today nothing is ever granted**, because there is no banner — so no ad click
+id is stored and `gclid` does not reach the booking record. `utm_term=<industry>`
+still does, since it is derived at render time rather than read from storage.
+
+This is deliberate. Writing our own cookie to store what Google's tags are
+forbidden from storing would work around the consent control rather than honour
+it. Flip the constant to capture regardless; better, ship a banner and the gate
+opens by itself.
+
+### Cal.com
+
+Not implemented. The site uses Calendly in two places and Cal.com nowhere, so
+the 7B variant would have been dead code.
+
 ## What to build in GTM
 
 **1. Variables.** One Data Layer Variable per key above — Variables → New →
@@ -176,7 +240,7 @@ leave the default value empty.
 **2. Triggers.** Custom Event triggers matching each event name: `click`,
 `generate_lead`, `scorecard_answer`, `scorecard_complete`, `form_error`,
 `page_context_change`, `fp_consent_granted`, `check_start`, `check_progress`,
-`check_complete`, `check_email_share`, `result_cta_click`.
+`check_complete`, `check_email_share`, `result_cta_click`, `consultation_booked`.
 
 Do **not** use GTM's built-in "All Elements" click trigger with CSS selector
 conditions. Those break on a Tailwind class change; `data-track-id` cannot.
@@ -190,7 +254,8 @@ exactly like the tracking being broken. Register at minimum `click_id`,
 `click_type`, `page_type`, `industry`, `page_slug`, `lead_source`, `score_bucket`.
 `content_group` is native to GA4 and needs no registration.
 
-**5. Mark `generate_lead` as a key event** in GA4 Admin → Events.
+**5. Mark `generate_lead` and `consultation_booked` as key events** in GA4
+Admin → Events.
 
 ## Adding a new link later
 
@@ -228,5 +293,6 @@ unnoticed until the tracking work counted the ids.
 - Verify in GTM Preview mode. The pure logic has unit tests and the emitted HTML
   is gated, but the listener's behaviour in a real browser has not been observed.
 - Search Console verification, which is where query data comes from.
-- A consent banner, if consent is ever to be granted. See "The grant half".
+- A consent banner. It now gates two things: consent granting, and whether
+  `gclid` is ever captured for ads attribution.
 - A privacy policy. The site now has GTM, a form, and no `/privacy/` page.

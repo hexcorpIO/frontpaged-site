@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import ClickTracking from "@/components/ClickTracking";
+import PageContextUpdates, { PageContextScript } from "@/components/PageContext";
 import ConsentDefaults, { ConsentGrant } from "@/components/ConsentDefaults";
 import GoogleTagManager, {
   GoogleTagManagerNoScript,
@@ -91,6 +92,10 @@ export default function RootLayout({
             read. Nothing calls it yet — there is no Accept control on the site,
             so consent remains denied until a banner exists to invoke it. */}
         <ConsentGrant />
+        {/* After consent, before the container: the first page_view then carries
+            page_type and industry. PageContextUpdates re-pushes on client-side
+            navigation, which this script cannot see. */}
+        <PageContextScript />
       </head>
       <body className="flex min-h-full flex-col font-sans">
         <GoogleTagManagerNoScript />
@@ -100,6 +105,7 @@ export default function RootLayout({
         </noscript>
         {children}
         <ClickTracking />
+        <PageContextUpdates />
         <GoogleTagManager />
       </body>
     </html>

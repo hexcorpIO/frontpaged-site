@@ -57,6 +57,35 @@ In GTM, tick **"Enable consent overview"** under Admin → Container Settings so
 tags declare which signals they require — otherwise a tag can ignore the signal
 entirely.
 
+## Page-scoped context
+
+Set in `<head>` before the container ([`src/components/PageContext.tsx`](../../src/components/PageContext.tsx)),
+so the first `page_view` already carries it.
+
+| Key | Values |
+|---|---|
+| `page_type` | `home`, `industry`, `industry-index`, `service`, `service-index`, `pricing`, `check`, `contact`, `blog`, `faq`, `about`, `other` |
+| `industry` | one of the eight vertical slugs, or `none` |
+| `content_group` | `page_type` title-cased — GA4 reads this natively |
+| `tier_context` | always `none` today; a placeholder |
+
+**It re-pushes on client-side navigation.** Twenty-six components link with
+`next/link`, so most page changes never reload the document. A head script alone
+runs once, at entry — someone landing on `/industries/med-spas/` and clicking to
+`/pricing/` would stay tagged `industry=med-spas` for the whole session. The
+classifier is exposed as `window.__fpPageContext()` and called again on every
+route change, pushing `page_context_change`.
+
+Both halves call the same function rather than reimplementing the rules, so
+they cannot drift. In GTM, fire the GA4 page_view on `page_context_change` as
+well as on container load, or SPA navigations go uncounted.
+
+`page_type` has exactly **one** writer. Click events deliberately do not set it —
+two vocabularies on one GA4 dimension produces reports that disagree with
+themselves. Clicks carry `page_slug` instead, which nothing else writes and
+which keeps the granularity this coarser classifier drops (which post, which
+service).
+
 ## What the site emits
 
 ### `click` — every clickable element, everywhere
@@ -75,8 +104,7 @@ have no JSX to attach a handler to.
 | `click_section` | `how-ai-decides` | Nearest section id or heading. |
 | `click_region` | `main` | `header`, `main`, `footer`. |
 | `click_destination` | `internal` | `internal`, `external`, `anchor`, `mailto`, `tel` |
-| `page_type` | `industry` | See `pageContext()` in [`src/lib/tracking.ts`](../../src/lib/tracking.ts). |
-| `page_slug` | `personal-injury-law` | The vertical, service or post slug. |
+| `page_slug` | `personal-injury-law` | The vertical, service or post slug. `page_type` is **not** set here — see above. |
 
 ### `generate_lead` — a real inquiry
 
@@ -110,7 +138,8 @@ Data Layer Variable, name it exactly as the key. Fifteen of them. Version 2,
 leave the default value empty.
 
 **2. Triggers.** Custom Event triggers matching each event name: `click`,
-`generate_lead`, `scorecard_answer`, `scorecard_complete`, `form_error`.
+`generate_lead`, `scorecard_answer`, `scorecard_complete`, `form_error`,
+`page_context_change`, `fp_consent_granted`.
 
 Do **not** use GTM's built-in "All Elements" click trigger with CSS selector
 conditions. Those break on a Tailwind class change; `data-track-id` cannot.
@@ -121,7 +150,8 @@ tags per trigger, passing the matching variables as event parameters.
 **4. Register custom dimensions in GA4.** Admin → Custom definitions. Parameters
 not registered there are collected and then not shown in any report, which looks
 exactly like the tracking being broken. Register at minimum `click_id`,
-`click_type`, `page_type`, `page_slug`, `lead_source`, `scorecard_band`.
+`click_type`, `page_type`, `industry`, `page_slug`, `lead_source`, `scorecard_band`.
+`content_group` is native to GA4 and needs no registration.
 
 **5. Mark `generate_lead` as a key event** in GA4 Admin → Events.
 

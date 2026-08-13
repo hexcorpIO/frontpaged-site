@@ -134,3 +134,91 @@ test("normalizeText truncates with an ellipsis", () => {
   assert.equal(out.length, 20);
   assert.ok(out.endsWith("…"));
 });
+
+// ── Page-scoped context ──────────────────────────────────────────────────
+//
+// The classifier in PageContext.tsx is a raw JS string, so TypeScript never
+// looks at it and a typo there fails silently at runtime. It is extracted and
+// executed here for the same reason the pricing formula has tests: it is the
+// definition of a dimension that decisions get made on.
+
+import fs from "node:fs";
+
+function loadPageContext() {
+  const src = fs.readFileSync("src/components/PageContext.tsx", "utf8");
+  const open = "const PAGE_CONTEXT = `";
+  const body = src.slice(src.indexOf(open) + open.length, src.indexOf("`;\n\n/** The head half"));
+  const sandbox = {
+    window: { dataLayer: [] },
+    location: { pathname: "/" },
+  };
+  sandbox.window.window = sandbox.window;
+  const run = new Function(
+    "window",
+    "location",
+    `var dataLayer = window.dataLayer;${body}; return window.__fpPageContext;`,
+  );
+  return { ctx: run(sandbox.window, sandbox.location), pushed: sandbox.window.dataLayer };
+}
+
+test("page context classifies every route family", () => {
+  const { ctx } = loadPageContext();
+  const cases = [
+    ["/", "home", "none"],
+    ["/industries/", "industry-index", "none"],
+    ["/industries/med-spas/", "industry", "med-spas"],
+    ["/industries/real-estate-teams/", "industry", "real-estate-teams"],
+    ["/services/", "service-index", "none"],
+    ["/services/analytics-and-tracking/", "service", "none"],
+    ["/pricing/", "pricing", "none"],
+    ["/ai-readiness-check/", "check", "none"],
+    ["/contact/", "contact", "none"],
+    ["/contact/thank-you/", "contact", "none"],
+    ["/blog/", "blog", "none"],
+    ["/blog/what-is-generative-engine-optimization/", "blog", "none"],
+    ["/faq/", "faq", "none"],
+    ["/about/", "about", "none"],
+  ];
+  for (const [path, pageType, industry] of cases) {
+    const out = ctx(path);
+    assert.equal(out.page_type, pageType, `page_type for ${path}`);
+    assert.equal(out.industry, industry, `industry for ${path}`);
+  }
+});
+
+// /blog/industry/<slug>/ is a filtered blog index whose URL contains a vertical
+// slug. The classifier keys off "/industries/", not "/industry/", so it must not
+// attribute those pages to the vertical — that would inflate every industry's
+// numbers with blog traffic.
+test("page context does not read an industry out of the blog industry index", () => {
+  const { ctx } = loadPageContext();
+  const out = ctx("/blog/industry/med-spas/");
+  assert.equal(out.industry, "none");
+  assert.equal(out.page_type, "blog");
+});
+
+test("page context industry map matches the published vertical slugs", async () => {
+  const { getPublishedVerticals } = await import("../src/lib/verticals/index.ts");
+  const { ctx } = loadPageContext();
+  for (const v of getPublishedVerticals()) {
+    assert.equal(
+      ctx(`/industries/${v.slug}/`).industry,
+      v.slug,
+      `${v.slug} is missing from the INDUSTRIES map in PageContext.tsx`,
+    );
+  }
+});
+
+test("page context derives content_group from page_type", () => {
+  const { ctx } = loadPageContext();
+  assert.equal(ctx("/").content_group, "Home");
+  assert.equal(ctx("/industries/med-spas/").content_group, "Industry");
+  assert.equal(ctx("/ai-readiness-check/").content_group, "Check");
+});
+
+test("page context pushes once for the entry page", () => {
+  const { pushed } = loadPageContext();
+  assert.equal(pushed.length, 1);
+  assert.equal(pushed[0].page_type, "home");
+  assert.equal(pushed[0].tier_context, "none");
+});

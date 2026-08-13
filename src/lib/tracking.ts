@@ -22,7 +22,9 @@ export type ClickPayload = {
   click_section: string;
   click_region: Region;
   click_destination: Destination;
-  page_type: PageType;
+  // No page_type here: PageContext owns that key at page scope. See the note in
+  // ClickTracking — two writers with different vocabularies on one GA4
+  // dimension is worse than one coarse writer.
   page_slug: string;
 };
 

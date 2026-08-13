@@ -95,6 +95,15 @@ for (const file of files) {
 
     // The grant helper is a no-op until a banner calls it, but it has to exist
     // and be defined after the defaults so gtag() is declared in source order.
+    // Page context must be in <head> and run before the container, or the first
+    // page_view lands with no page_type or industry on it.
+    const pageCtxInHead = head.indexOf("__fpPageContext");
+    if (pageCtxInHead === -1) {
+      errors.push(`${route}: page context script is missing from <head>`);
+    } else if (containerAt !== -1 && pageCtxInHead > containerAt) {
+      errors.push(`${route}: page context runs AFTER the GTM container`);
+    }
+
     if (grantInHead === -1) {
       errors.push(`${route}: consent grant helper fpConsentGrant is missing from <head>`);
     } else if (consentInHead !== -1 && grantInHead < consentInHead) {

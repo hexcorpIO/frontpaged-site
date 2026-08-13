@@ -129,7 +129,13 @@ export default function ClickTracking() {
         el.textContent?.trim() || el.getAttribute("aria-label") || "",
       );
 
-      const { pageType, pageSlug } = pageContext(window.location.pathname);
+      // page_type is deliberately NOT set here. PageContext owns it, at page
+      // scope, and two writers with different vocabularies on one key is how a
+      // GA4 dimension ends up disagreeing with itself — click events saying
+      // "scorecard" while the page_view on the same page says "check".
+      // page_slug has no other writer and adds the granularity the page-scoped
+      // classifier drops (which post, which service).
+      const { pageSlug } = pageContext(window.location.pathname);
 
       const payload: ClickPayload = {
         event: "click",
@@ -145,7 +151,6 @@ export default function ClickTracking() {
         click_section: section,
         click_region: findRegion(el),
         click_destination: destination,
-        page_type: pageType,
         page_slug: pageSlug,
       };
 

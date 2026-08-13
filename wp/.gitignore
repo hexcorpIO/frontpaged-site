@@ -1,0 +1,5 @@
+# Exported content is derived from src/lib/* and content/blog/* by
+# migration/export.mjs. Regenerating it is one command, and committing 1.5MB of
+# duplicated post bodies would put every article in the repo twice — where the
+# two copies would immediately start drifting.
+migration/data/

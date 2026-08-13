@@ -1,4 +1,34 @@
-# WordPress cutover runbook
+# WordPress cutover — COMPLETE (2026-08-13)
+
+frontpaged.io is live on WordPress. 51 of 51 URLs are served by the theme,
+Lighthouse reads 100 / 100 / 96 / 100 on the homepage, LCP 0.5s, 615 KiB.
+
+## How the cutover actually happened, and the mistake in it
+
+It was not executed as the ordered plan below. `wp rewrite flush --hard`
+rewrote `.htaccess` — `--hard` writes the file, plain `flush` does not — and
+Hostinger's DirectoryIndex prefers `index.php`, so the homepage switched to
+WordPress the moment that ran. That was unintended.
+
+Two things broke for roughly fifteen minutes and were then fixed:
+
+- **The redirects vanished.** WordPress's generated `.htaccess` replaced the
+  static one, taking the www→apex rule and the `/med-spa-seo-*` and
+  `/services/med-spa-seo/` 301s with it. Those URLs returned 404 until
+  `wp/htaccess/.htaccess` was installed.
+- **The site served a mix.** Only the homepage moved. WordPress routes to
+  `index.php` solely when no matching FILE exists, so every inner URL kept
+  serving the stale `index.html` left by the last static deploy — with the old
+  med-spa-era `<h1>` on it. A URL check reported "51 resolve" while testing the
+  static leftovers rather than WordPress at all.
+
+The lesson worth keeping: **`--hard` on `wp rewrite flush` is a live-site
+change, not a cache operation.**
+
+The static export was tarred to `~/static-site-backup-*.tar.gz` on the server
+before removal, and remains regenerable from the `deploy` branch.
+
+## Original runbook
 
 The build is complete and verified locally. This is what remains, in order.
 Nothing here has been done — production is still serving the static export.

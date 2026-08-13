@@ -95,10 +95,28 @@ jobs:
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s\n' "$KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
+
           # Pinning the host key rather than using StrictHostKeyChecking=no: the
           # latter accepts whatever answers, which is the whole attack.
-          ssh-keyscan -p "${PORT:-65002}" -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          echo "host key pinned"
+          #
+          # Retried, because a shared host rate-limits and will refuse a
+          # connection that succeeds moments later — and the first version sent
+          # ssh-keyscan's stderr to /dev/null, so a failure appeared as a bare
+          # "exit code 1" with nothing to diagnose.
+          for attempt in 1 2 3 4 5; do
+            if ssh-keyscan -T 10 -p "${PORT:-65002}" -H "$HOST" >> ~/.ssh/known_hosts 2>/tmp/keyscan.err; then
+              if [ -s ~/.ssh/known_hosts ]; then
+                echo "host key pinned (attempt $attempt)"
+                exit 0
+              fi
+            fi
+            echo "attempt $attempt failed: $(tr -d '\n' < /tmp/keyscan.err | tail -c 200)"
+            sleep $((attempt * 5))
+          done
+
+          echo "::error::could not reach $HOST:${PORT:-65002} after 5 attempts"
+          cat /tmp/keyscan.err
+          exit 1
 
       - name: Deploy theme and plugin
         env:

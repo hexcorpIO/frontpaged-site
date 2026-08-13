@@ -74,16 +74,34 @@ for (const file of files) {
   //    the raw HTML because the check is about script placement, and it is
   //    asserted at all because the ordering is invisible: get it wrong and the
   //    page looks and behaves identically while the consent signal is lost.
+  // Next serialises the React tree into inline flight data at the foot of the
+  // page, so every one of these strings ALSO appears there. Presence is checked
+  // against the head slice only — searching the whole document would find the
+  // flight copy and report a deleted head script as merely misplaced.
   const headEnd = raw.indexOf("</head>");
-  const consentAt = raw.indexOf("gtag('consent'");
+  const head = headEnd === -1 ? "" : raw.slice(0, headEnd);
+  const consentInHead = head.indexOf("gtag('consent', 'default'");
+  const grantInHead = head.indexOf("function fpConsentGrant");
   const containerAt = raw.indexOf("gtm.start");
-  if (consentAt === -1) {
-    errors.push(`${route}: no Consent Mode default found`);
-  } else if (headEnd === -1 || consentAt > headEnd) {
-    errors.push(`${route}: Consent Mode default is outside <head>`);
-  } else if (containerAt !== -1 && consentAt > containerAt) {
-    errors.push(`${route}: Consent Mode default runs AFTER the GTM container`);
+
+  if (headEnd === -1) {
+    errors.push(`${route}: no </head> found`);
+  } else {
+    if (consentInHead === -1) {
+      errors.push(`${route}: Consent Mode default is missing from <head>`);
+    } else if (containerAt !== -1 && consentInHead > containerAt) {
+      errors.push(`${route}: Consent Mode default runs AFTER the GTM container`);
+    }
+
+    // The grant helper is a no-op until a banner calls it, but it has to exist
+    // and be defined after the defaults so gtag() is declared in source order.
+    if (grantInHead === -1) {
+      errors.push(`${route}: consent grant helper fpConsentGrant is missing from <head>`);
+    } else if (consentInHead !== -1 && grantInHead < consentInHead) {
+      errors.push(`${route}: fpConsentGrant is defined before the consent defaults`);
+    }
   }
+
   const ids = [...html.matchAll(/data-track-id="([^"]*)"/g)].map((m) => m[1]);
 
   // 1. Malformed ids. An unresolved template literal or a stray uppercase turns

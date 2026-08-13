@@ -29,13 +29,33 @@ identifier is stored, so sessions are modelled rather than stitched and a
 returning visitor reads as new. Reports populate with estimates rather than
 counts.
 
-**Nothing calls `gtag('consent', 'update', ...)`, so these defaults are also the
-permanent state.** Cookieless by default is a defensible position — it is
-roughly the posture that avoids needing a cookie banner in the first place — but
-it is a choice, and it caps what GA4 can tell you. Granting storage later needs
-a banner or CMP issuing the update call. In GTM, tick **"Enable consent
-overview"** under Admin → Container Settings so tags declare which signals they
-require.
+### The grant half
+
+`fpConsentGrant()` is defined in `<head>` after the defaults. Calling it moves
+the four denied signals to `granted` and pushes `fp_consent_granted`.
+
+```html
+<button onclick="fpConsentGrant()">Accept</button>
+```
+
+**Nothing calls it yet.** There is no Accept control on the site, so every
+visitor stays denied and GA4 stays cookieless. The function is the hook a banner
+will use, not a banner.
+
+**It also does not persist the choice.** Consent Mode state lives in memory for
+the life of the page. A visitor who accepts is denied again on their next
+navigation, so acceptance achieves nothing beyond the current page. A working
+banner needs three things, and the site currently has one:
+
+1. ✅ A grant function.
+2. ❌ Storage of the decision — a cookie or `localStorage` entry written on accept.
+3. ❌ A read of that store on every page load that re-issues the update **before
+   the container**, in the same head script as the defaults. Without this, step 2
+   is decoration.
+
+In GTM, tick **"Enable consent overview"** under Admin → Container Settings so
+tags declare which signals they require — otherwise a tag can ignore the signal
+entirely.
 
 ## What the site emits
 
@@ -126,8 +146,8 @@ metric in GA4 without anything visibly breaking.
 `pnpm verify`, fails the build on: malformed or empty ids, ids containing
 `undefined`, the same id twice on one page, a missing sitewide or
 route-required id, duplicated `<main>`/`<header>`/`<footer>` landmarks, and a
-Consent Mode default that is missing, outside `<head>`, or ordered after the
-container.
+Consent Mode default that is missing from `<head>` or ordered after the
+container, and a missing or mis-ordered `fpConsentGrant`.
 
 That last rule exists because `/blog/industry/<slug>/` shipped with two of each
 — the page rendered its own shell inside a layout that already supplied one.
@@ -141,4 +161,5 @@ unnoticed until the tracking work counted the ids.
 - Verify in GTM Preview mode. The pure logic has unit tests and the emitted HTML
   is gated, but the listener's behaviour in a real browser has not been observed.
 - Search Console verification, which is where query data comes from.
+- A consent banner, if consent is ever to be granted. See "The grant half".
 - A privacy policy. The site now has GTM, a form, and no `/privacy/` page.

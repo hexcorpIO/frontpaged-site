@@ -35,3 +35,35 @@ gtag('consent', 'default', {
 export default function ConsentDefaults() {
   return <script dangerouslySetInnerHTML={{ __html: CONSENT_DEFAULTS }} />;
 }
+
+// The grant half of Consent Mode: a global an Accept control can call to move
+// the four denied signals to granted.
+//
+// Defined in <head> alongside the defaults so it exists before any markup that
+// might reference it, and so the two halves of the consent contract are read
+// together rather than discovered separately.
+//
+// TWO THINGS THIS DOES NOT DO, both deliberate — see docs/analytics/gtm-setup.md:
+//
+// 1. Nothing calls it. There is no cookie banner on this site, so today this is
+//    a function waiting for a caller and consent stays denied for every visitor.
+// 2. It does not persist the choice. Consent Mode state lives in memory for the
+//    life of the page, so a visitor who accepts is denied again on their next
+//    navigation. A banner has to store the decision and re-issue the update on
+//    load, ahead of the container, or accepting achieves nothing beyond the
+//    current page.
+//
+// Both are the banner's job. This is the hook it will call.
+const CONSENT_GRANT = `function fpConsentGrant(){
+  gtag('consent', 'update', {
+    ad_storage: 'granted',
+    ad_user_data: 'granted',
+    ad_personalization: 'granted',
+    analytics_storage: 'granted'
+  });
+  dataLayer.push({event: 'fp_consent_granted'});
+}`;
+
+export function ConsentGrant() {
+  return <script dangerouslySetInnerHTML={{ __html: CONSENT_GRANT }} />;
+}

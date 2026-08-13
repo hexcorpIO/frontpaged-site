@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import ClickTracking from "@/components/ClickTracking";
-import ConsentDefaults from "@/components/ConsentDefaults";
+import ConsentDefaults, { ConsentGrant } from "@/components/ConsentDefaults";
 import GoogleTagManager, {
   GoogleTagManagerNoScript,
 } from "@/components/GoogleTagManager";
@@ -87,6 +87,10 @@ export default function RootLayout({
           the built HTML so a refactor cannot quietly invert them. */}
       <head>
         <ConsentDefaults />
+        {/* Defined after the defaults so gtag() is already declared when this is
+            read. Nothing calls it yet — there is no Accept control on the site,
+            so consent remains denied until a banner exists to invoke it. */}
+        <ConsentGrant />
       </head>
       <body className="flex min-h-full flex-col font-sans">
         <GoogleTagManagerNoScript />

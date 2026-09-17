@@ -14,6 +14,7 @@
     "check:duplication": "node scripts/check-duplication.mjs",
     "check:links": "node scripts/check-links.mjs",
     "check:tracking": "node scripts/check-tracking.mjs",
+    "visibility": "node audit/run.mjs",
     "test": "node --test tests/*.test.mjs",
     "verify": "pnpm test && pnpm check:content && pnpm check:duplication && pnpm build && pnpm check:seo && pnpm check:links && pnpm check:tracking",
     "wp:css": "tailwindcss -i wp/themes/frontpaged/assets/css/input.css -o wp/themes/frontpaged/assets/css/main.css --minify",

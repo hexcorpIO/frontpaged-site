@@ -114,7 +114,7 @@ function fpc_scorecard_config(): array
         // Unanswered questions score zero rather than being excluded, so a
         // half-finished scorecard cannot report an inflated result.
         'points'   => ['yes' => 2, 'partly' => 1, 'no' => 0],
-        'endpoint' => (string) fpc_option('form_endpoint'),
+        'endpoint' => fpc_lead_endpoint(),
         'email'    => (string) fpc_option('email'),
     ];
 }

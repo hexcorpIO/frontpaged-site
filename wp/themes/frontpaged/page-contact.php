@@ -2,7 +2,8 @@
 declare(strict_types=1);
 get_header();
 fp_breadcrumbs([['name' => 'Home', 'url' => home_url('/')], ['name' => 'Contact']]);
-$endpoint = (string) fpc_option('form_endpoint');
+// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- a flag set by our own redirect, not user input that does anything.
+$failed = isset($_GET['sent']) && $_GET['sent'] === 'error';
 ?>
 <section class="bg-gradient-to-b from-cream to-white py-16 sm:py-20">
   <div class="<?php echo esc_attr(fp_container()); ?>">
@@ -37,61 +38,55 @@ $endpoint = (string) fpc_option('form_endpoint');
       </div>
 
       <div>
-        <?php if ($endpoint) : ?>
-          <?php // A plain HTML POST. No server of our own, and it works without
-                // JavaScript — a form that silently loses an inquiry is worse
-                // than no form. ?>
-          <form action="<?php echo esc_url($endpoint); ?>" method="POST" class="rounded-2xl border border-line bg-white p-8">
-            <h2 class="font-serif text-[21px] leading-snug text-navy">Send us a note</h2>
-            <p class="mt-3 text-[15.5px] leading-[1.7] text-warm-grey">Not ready to book a call? Tell us what you&rsquo;re working on and we&rsquo;ll reply within one business day.</p>
+        <form action="<?php echo esc_url(fpc_lead_endpoint()); ?>" method="POST" class="rounded-2xl border border-line bg-white p-8">
+          <h2 class="font-serif text-[21px] leading-snug text-navy">Send us a note</h2>
+          <p class="mt-3 text-[15.5px] leading-[1.7] text-warm-grey">Not ready to book a call? Tell us what you&rsquo;re working on and we&rsquo;ll reply within one business day.</p>
 
-            <?php // Formspree's redirect field is _next. _redirect is Basin's name
-                  // for it and is silently ignored, which sends people to a
-                  // stranger's confirmation page instead of ours. ?>
-            <input type="hidden" name="_next" value="<?php echo esc_url(home_url('/contact/thank-you/')); ?>">
-            <input type="hidden" name="_subject" value="New inquiry from frontpaged.io">
-            <div aria-hidden="true" style="position:absolute;left:-9999px">
-              <label for="company-website">Do not fill this in</label>
-              <input id="company-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
-            </div>
-
-            <div class="mt-6 grid gap-5 sm:grid-cols-2">
-              <?php foreach ([['name','Your name','text','name',true],['email','Email','email','email',true],['business','Business name','text','organization',false],['phone','Phone (optional)','tel','tel',false]] as [$id,$label,$type,$auto,$req]) : ?>
-                <div>
-                  <label for="<?php echo esc_attr($id); ?>" class="block text-[14px] font-medium text-navy"><?php echo esc_html($label); ?><?php echo $req ? ' <span class="text-teal">*</span>' : ''; ?></label>
-                  <input id="<?php echo esc_attr($id); ?>" name="<?php echo esc_attr($id); ?>" type="<?php echo esc_attr($type); ?>" autocomplete="<?php echo esc_attr($auto); ?>" <?php echo $req ? 'required' : ''; ?> class="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25">
-                </div>
-              <?php endforeach; ?>
-            </div>
-
-            <div class="mt-5">
-              <label for="industry" class="block text-[14px] font-medium text-navy">Industry</label>
-              <select id="industry" name="industry" class="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25">
-                <option value="">Select one</option>
-                <?php foreach (fpc_all_industries() as $industry) : ?>
-                  <option value="<?php echo esc_attr(get_the_title($industry)); ?>"><?php echo esc_html(get_the_title($industry)); ?></option>
-                <?php endforeach; ?>
-                <option value="Other">Something else</option>
-              </select>
-            </div>
-
-            <div class="mt-5">
-              <label for="message" class="block text-[14px] font-medium text-navy">What are you trying to fix?</label>
-              <textarea id="message" name="message" rows="5" required placeholder="Your market, what you've tried, and what isn't working." class="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink placeholder:text-warm-grey/60 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"></textarea>
-            </div>
-
-            <button type="submit" data-track-id="contact-form-submit" data-track-type="cta" class="mt-6 w-full rounded-lg bg-teal px-6 py-3.5 text-[16px] font-semibold text-white transition hover:bg-teal/90 sm:w-auto">Send message</button>
-            <p class="mt-4 text-[13.5px] leading-[1.6] text-warm-grey">We reply within one business day. Please don&rsquo;t include patient, client, or case details — this form isn&rsquo;t a secure channel.</p>
-          </form>
-        <?php else : ?>
-          <div class="rounded-2xl border border-line bg-cream p-8">
-            <h2 class="font-serif text-[21px] leading-snug text-navy">Send us a note</h2>
-            <p class="mt-4 text-[16px] leading-[1.75] text-warm-grey">
-              Email <a href="mailto:<?php echo esc_attr((string) fpc_option('email')); ?>" data-track-id="contact-fallback-email" class="text-teal underline underline-offset-2"><?php echo esc_html((string) fpc_option('email')); ?></a>
-              or call <a href="<?php echo esc_attr((string) fpc_option('phone_href')); ?>" data-track-id="contact-fallback-phone" class="text-teal underline underline-offset-2"><?php echo esc_html((string) fpc_option('phone')); ?></a>.
+          <?php // Posts to our own handler (plugin inc/leads.php), which records
+                // the lead before delivering it and then sends the visitor to
+                // /contact/thank-you/. Plain HTML POST, works without JavaScript. ?>
+          <input type="hidden" name="action" value="<?php echo esc_attr(FPC_LEAD_ACTION); ?>">
+          <input type="hidden" name="fp_source" value="contact">
+          <input type="hidden" name="_subject" value="New inquiry from frontpaged.io">
+          <?php if ($failed) : ?>
+            <p role="alert" class="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-[14.5px] leading-[1.6] text-red-800">
+              That didn&rsquo;t go through. Please try again, or email
+              <a href="mailto:<?php echo esc_attr((string) fpc_option('email')); ?>" class="underline"><?php echo esc_html((string) fpc_option('email')); ?></a>.
             </p>
+          <?php endif; ?>
+          <div aria-hidden="true" style="position:absolute;left:-9999px">
+            <label for="company-website">Do not fill this in</label>
+            <input id="company-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
           </div>
-        <?php endif; ?>
+
+          <div class="mt-6 grid gap-5 sm:grid-cols-2">
+            <?php foreach ([['name','Your name','text','name',true],['email','Email','email','email',true],['business','Business name','text','organization',false],['phone','Phone (optional)','tel','tel',false]] as [$id,$label,$type,$auto,$req]) : ?>
+              <div>
+                <label for="<?php echo esc_attr($id); ?>" class="block text-[14px] font-medium text-navy"><?php echo esc_html($label); ?><?php echo $req ? ' <span class="text-teal">*</span>' : ''; ?></label>
+                <input id="<?php echo esc_attr($id); ?>" name="<?php echo esc_attr($id); ?>" type="<?php echo esc_attr($type); ?>" autocomplete="<?php echo esc_attr($auto); ?>" <?php echo $req ? 'required' : ''; ?> class="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25">
+              </div>
+            <?php endforeach; ?>
+          </div>
+
+          <div class="mt-5">
+            <label for="industry" class="block text-[14px] font-medium text-navy">Industry</label>
+            <select id="industry" name="industry" class="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25">
+              <option value="">Select one</option>
+              <?php foreach (fpc_all_industries() as $industry) : ?>
+                <option value="<?php echo esc_attr(get_the_title($industry)); ?>"><?php echo esc_html(get_the_title($industry)); ?></option>
+              <?php endforeach; ?>
+              <option value="Other">Something else</option>
+            </select>
+          </div>
+
+          <div class="mt-5">
+            <label for="message" class="block text-[14px] font-medium text-navy">What are you trying to fix?</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Your market, what you've tried, and what isn't working." class="mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-[16px] text-ink placeholder:text-warm-grey/60 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25"></textarea>
+          </div>
+
+          <button type="submit" data-track-id="contact-form-submit" data-track-type="cta" class="mt-6 w-full rounded-lg bg-teal px-6 py-3.5 text-[16px] font-semibold text-white transition hover:bg-teal/90 sm:w-auto">Send message</button>
+          <p class="mt-4 text-[13.5px] leading-[1.6] text-warm-grey">We reply within one business day. Please don&rsquo;t include patient, client, or case details — this form isn&rsquo;t a secure channel.</p>
+        </form>
       </div>
     </div>
   </div>

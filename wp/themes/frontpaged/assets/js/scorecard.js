@@ -154,6 +154,7 @@
   function emailFormHtml() {
     if (!config.endpoint) return "";
     return '<form data-email-form class="mt-10 rounded-2xl border border-line bg-white p-7">' +
+      '<input type="hidden" name="action" value="fpc_lead"><input type="hidden" name="fp_source" value="scorecard">' +
       '<h2 class="font-serif text-[20px] leading-snug text-navy">Want this as a plan you can act on?</h2>' +
       '<p class="mt-3 text-[16px] leading-[1.7] text-warm-grey">We&rsquo;ll send your breakdown with the fixes ordered by what would move first in your industry. Your results above stay visible either way — this is optional.</p>' +
       '<div class="mt-5 grid gap-4 sm:grid-cols-[1.2fr_1fr]">' +

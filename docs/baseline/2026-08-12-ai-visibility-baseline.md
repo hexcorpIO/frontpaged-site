@@ -111,3 +111,28 @@ date visible:
 
 Six screenshots, ten minutes. If the content works, the matching set in November is the
 proof this site currently lacks — produced by our own product, on our own site.
+
+---
+
+## Re-run 1 — 2026-10-27 (76 days)
+
+Same four queries, same method (web search, results inspected for
+`frontpaged.io`). Run two weeks early, alongside the privacy-page release.
+
+| # | Query | frontpaged.io | Named instead |
+|---|---|---|---|
+| 1 | GEO agency for med spas, cited by ChatGPT | **absent** | Web Tonic's "21 compared" listicle (now naming Inject Digital, The GEO Agency, Aesthetic Bureau), ThinkProfits, The Med Spa Agency, Trakkr tools roundup |
+| 2 | SEO agency for PI law firms, AI citations | **absent** | Rankings.io (publishes a PI GEO case study), AEO Engine, iLawyer Marketing, InterCore, Webhive, Fuel Online; LawFuel "13 leading AI search agencies" listicle |
+| 3 | Who does AI search optimization for medical practices | **absent** | AI Search Engineers (press-release driven, Aug 2026), Officite AIO Plus, Glacial Multimedia, Trakkr |
+| 4 | Brand query "Frontpaged frontpaged.io GEO agency" | **absent** | Generic GEO-agency pages; no brand-collision result this time |
+
+What changed since August: nothing in our favour yet. The competitors that
+moved are the ones publishing **named case studies with numbers** (Rankings.io,
+AEO Engine) and the ones **appearing in third-party listicles** (Web Tonic,
+LawFuel). Both are things a site cannot do for itself; both are the next lever.
+
+Not captured, again: ChatGPT and Perplexity answers. No Perplexity API key is
+configured on this machine, so `pnpm visibility` could not run. The owner to-do
+below still stands.
+
+Next re-run: **2026-11-10** as scheduled, or sooner if a listicle inclusion lands.

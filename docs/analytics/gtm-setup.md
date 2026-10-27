@@ -175,20 +175,18 @@ silently, because an empty object is also what a legitimate direct visit
 produces. `src/lib/attribution.ts` and `AttributionCapture.tsx` are the missing
 half.
 
-### Consent gate — attribution is currently inert
+### Consent gate — attribution is on (since 2026-10-27)
 
-`RESPECT_CONSENT` in `AttributionCapture.tsx` is `true`, and it permits storage
-only after a `consent` command grants `ad_storage`. Since the consent scripts
-were removed, no such command is ever pushed, so **the cookie is never written**
-and `gclid` / `utm_*` never reach Calendly. `utm_term=<industry>` still arrives,
-because it is derived at render time rather than read from storage.
+`RESPECT_CONSENT` in `AttributionCapture.tsx` is now `false`, and the WordPress
+plugin's `capture_attribution` setting (Settings → Tracking) defaults to on, so
+the `fp_click` cookie is written on any landing that carries `utm_*` or an ad
+click id, and `gclid` / `utm_*` reach the Calendly booking. It was switched on
+in the same change that published `/privacy/`, which names the cookie, what it
+holds and its 90-day lifetime — keep the two in step if either changes.
 
-It was left off rather than flipped as a side effect of removing the consent
-scripts: storing advertising identifiers expands what the site collects, and
-that should be chosen on purpose — ideally alongside a privacy policy, which
-this site still does not have.
-
-**To turn attribution on: set `RESPECT_CONSENT` to `false`.** One line.
+Set `RESPECT_CONSENT` back to `true` only once a consent framework pushes
+`consent` commands to the dataLayer; it then permits storage only after
+`ad_storage` is granted.
 
 ### Cal.com
 
@@ -249,8 +247,9 @@ well as on container load.
 **3. Declared but never sent:** `channel`, `form_id`. Nothing in the site pushes
 either. Either remove them or tell me what should populate them.
 
-**4. `fp_click` reads a cookie that is never written**, because
-`RESPECT_CONSENT` gates it — see the consent gate section above.
+**4. `fp_click` is written since 2026-10-27** — see the consent gate section
+above. The variable the container declares should now read a value on
+campaign landings; confirm in Preview mode.
 
 **5. Register the custom dimensions in GA4.** Admin → Custom definitions.
 A parameter not registered there is collected and then absent from every report,
@@ -295,4 +294,4 @@ unnoticed until the tracking work counted the ids.
 - Verify in GTM Preview mode. The pure logic has unit tests and the emitted HTML
   is gated, but the listener's behaviour in a real browser has not been observed.
 - Search Console verification, which is where query data comes from.
-- A privacy policy. The site now has GTM, a form, and no `/privacy/` page.
+- ~~A privacy policy.~~ Published at `/privacy/` on 2026-10-27.

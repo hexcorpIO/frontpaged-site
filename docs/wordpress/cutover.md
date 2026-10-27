@@ -235,10 +235,19 @@ back is a DNS change, and no WordPress content is lost by doing it.
 
 - **The founder photo and the six baseline screenshots** are still missing.
   They were missing before this migration too.
-- **No `/privacy/` page.** The site runs GTM and a third-party form without one.
-- **Attribution capture is off.** `RESPECT_CONSENT` in `AttributionCapture.tsx`
-  gates the `fp_click` cookie, and no consent state is declared, so `gclid`
-  never reaches the booking record. The container declares an `fp_click`
-  variable that will read empty until this is decided.
 - **Visual diff not performed.** Layouts were ported from the components rather
   than compared screenshot by screenshot. Worth a pass on a staging host.
+
+Closed on 2026-10-27: `/privacy/` is published (sourced from
+`content/pages/privacy.md`, imported like a post), and attribution capture is
+on in both the Next.js source and the plugin.
+
+## Post dates: the database wins
+
+Six posts were pulled forward about two months in the WordPress admin after
+the import, and the repo still carried the original dates. Because the importer
+schedules any post whose source date is in the future, a re-import would have
+un-published three live, indexed URLs. The repo dates were corrected to match
+the live site on 2026-10-27. If a date is ever changed in the admin again,
+change it in `content/blog/<slug>.md` in the same sitting — the import matches
+on slug and overwrites.

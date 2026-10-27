@@ -152,6 +152,12 @@ jobs:
           PORT:   ${{ secrets.HOSTINGER_SSH_PORT }}
           TARGET: ${{ secrets.HOSTINGER_WP_CONTENT }}
         run: |
+          # The exporter reads the two core service pages out of the built
+          # HTML (see coreServices in wp/migration/export.mjs), so the static
+          # build has to exist first. On a laptop it usually already does; on
+          # a fresh runner it never does, and the first dispatched import died
+          # on a missing out/services/*/index.html before touching the server.
+          pnpm build
           pnpm wp:export
           SSH="ssh -p ${PORT:-65002} -i ~/.ssh/deploy_key"
           rsync -az -e "$SSH" wp/migration/ "$USER@$HOST:$TARGET/migration/"

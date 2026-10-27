@@ -139,6 +139,7 @@ $option_keys = [
     'calendly'          => 'field_opt_calendly',
     'form_endpoint'     => 'field_opt_form',
     'gtm_id'            => 'field_opt_gtm',
+    'capture_attribution' => 'field_opt_capture_attribution',
     'founding_enabled'  => 'field_opt_founding_enabled',
     'founding_slots'    => 'field_opt_founding_slots',
     'founding_headline' => 'field_opt_founding_headline',
@@ -370,6 +371,7 @@ $pages = [
     ['glossary',            'Glossary'],
     ['about',               'About'],
     ['ai-readiness-check',  'AI Readiness Check'],
+    ['privacy',             'Privacy Policy'],
 ];
 
 $page_ids = [];
@@ -379,6 +381,21 @@ foreach ($pages as [$slug, $title]) {
 
 // /contact/thank-you/ is a child page, so the URL nests exactly as it does now.
 fpc_upsert('page', 'thank-you', 'Message received', '', ['post_parent' => $page_ids['contact']]);
+
+// Editorial pages carry their body from content/pages/*.md. The excerpt doubles
+// as the meta description (fpc_meta_description falls through to it — pages
+// have no ACF SEO group), and the post date is the policy's "last updated".
+$editorial = 0;
+foreach (fpc_read('pages') as $row) {
+    $date = $row['updated'] ? date('Y-m-d H:i:s', strtotime((string) $row['updated'])) : current_time('mysql');
+    fpc_upsert('page', $row['slug'], $row['title'], $row['blocks'], [
+        'post_excerpt'  => $row['meta_description'],
+        'post_date'     => $date,
+        'post_date_gmt' => get_gmt_from_date($date),
+    ]);
+    $editorial++;
+}
+WP_CLI::log(sprintf('Editorial pages: %d.', $editorial));
 
 update_option('show_on_front', 'page');
 update_option('page_on_front', $page_ids['home']);

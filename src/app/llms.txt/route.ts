@@ -1,6 +1,6 @@
 import { getAllPosts } from "@/lib/blog";
 import { glossary } from "@/lib/glossary";
-import { site, priceRange, auditOffer, founding, guarantee, usd } from "@/lib/site";
+import { site, priceRange, auditOffer, founding, guarantee, usd, relatedSites } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getPublishedAddOnServices } from "@/lib/services";
 import { getIndustryBody } from "@/lib/industries";
@@ -79,6 +79,13 @@ ${getPublishedAddOnServices()
 - [FAQ](${site.url}/faq/): Answers on AI search, timelines, scope, and compliance
 - [Glossary](${site.url}/glossary/): ${glossary.length} SEO, GEO, and AI-search terms defined
 - [Contact](${site.url}/contact/): Book a free visibility check
+- [Privacy](${site.url}/privacy/): What the site collects and why
+
+## Related sites
+
+Built by the same founder:
+
+${relatedSites.map((r) => `- [${r.name}](${r.url}): ${r.blurb}`).join("\n")}
 
 ## Definitions
 

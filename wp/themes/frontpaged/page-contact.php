@@ -85,7 +85,7 @@ $failed = isset($_GET['sent']) && $_GET['sent'] === 'error';
           </div>
 
           <button type="submit" data-track-id="contact-form-submit" data-track-type="cta" class="mt-6 w-full rounded-lg bg-teal px-6 py-3.5 text-[16px] font-semibold text-white transition hover:bg-teal/90 sm:w-auto">Send message</button>
-          <p class="mt-4 text-[13.5px] leading-[1.6] text-warm-grey">We reply within one business day. Please don&rsquo;t include patient, client, or case details — this form isn&rsquo;t a secure channel.</p>
+          <p class="mt-4 text-[13.5px] leading-[1.6] text-warm-grey">We reply within one business day. Please don&rsquo;t include patient, client, or case details — this form isn&rsquo;t a secure channel. How we handle what you send is in our <a href="<?php echo esc_url(home_url('/privacy/')); ?>" class="underline underline-offset-2 hover:text-teal-dark">privacy policy</a>.</p>
         </form>
       </div>
     </div>

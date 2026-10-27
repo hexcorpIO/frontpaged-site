@@ -18,6 +18,10 @@
           <a href="mailto:<?php echo esc_attr((string) fpc_option('email')); ?>" data-track-id="footer-email" class="hover:text-teal-dark"><?php echo esc_html((string) fpc_option('email')); ?></a>
           <a href="<?php echo esc_url((string) fpc_option('linkedin')); ?>" target="_blank" rel="noopener noreferrer" data-track-id="footer-social-linkedin" data-track-type="social" class="font-medium hover:text-teal-dark">LinkedIn</a>
         </div>
+        <p class="mt-5 text-[13px] leading-[1.6]">
+          Also from our founder:
+          <?php foreach (fpc_related_sites() as $i => $related) : ?><?php echo $i > 0 ? ' &middot; ' : ' '; ?><a href="<?php echo esc_url($related['url']); ?>" target="_blank" rel="noopener" data-track-id="<?php echo esc_attr('footer-related-' . sanitize_title($related['name'])); ?>" data-track-type="link" class="font-medium text-navy hover:text-teal-dark"><?php echo esc_html($related['name']); ?></a><?php endforeach; ?>
+        </p>
       </div>
 
       <div>
@@ -49,6 +53,7 @@
             '/faq/'               => 'FAQ',
             '/glossary/'          => 'Glossary',
             '/contact/'           => 'Contact',
+            '/privacy/'           => 'Privacy',
           ] as $path => $label) : ?>
             <li><a href="<?php echo esc_url(home_url($path)); ?>" data-track-id="<?php echo esc_attr('footer-company-' . sanitize_title($label)); ?>" class="hover:text-teal-dark"><?php echo esc_html($label); ?></a></li>
           <?php endforeach; ?>

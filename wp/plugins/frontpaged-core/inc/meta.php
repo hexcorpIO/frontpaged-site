@@ -256,6 +256,14 @@ add_action('template_redirect', static function (): void {
         printf("- [%s](%s)\n", get_the_title($service), get_permalink($service));
     }
 
+    printf("\n## Company\n\n- [About](%s)\n- [Pricing](%s)\n- [FAQ](%s)\n- [Glossary](%s)\n- [Privacy](%s)\n",
+        home_url('/about/'), home_url('/pricing/'), home_url('/faq/'), home_url('/glossary/'), home_url('/privacy/'));
+
+    echo "\n## Related sites\n\nBuilt by the same founder:\n\n";
+    foreach (fpc_related_sites() as $related) {
+        printf("- [%s](%s): %s\n", $related['name'], $related['url'], $related['blurb']);
+    }
+
     printf("\n## Contact\n\n- Email: %s\n- Phone: %s\n", fpc_option('email'), fpc_option('phone'));
     exit;
 });

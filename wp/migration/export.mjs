@@ -151,6 +151,8 @@ write("settings", {
   calendly: site.calendly,
   form_endpoint: site.formEndpoint,
   gtm_id: site.gtmId,
+  // 1 since the privacy policy went up; the plugin default is also on.
+  capture_attribution: 1,
   founding_enabled: founding.enabled ? 1 : 0,
   founding_slots: founding.slotsPerVertical,
   founding_headline: founding.headline,
@@ -198,6 +200,33 @@ write(
       };
     })
     .sort((a, b) => String(a.date).localeCompare(String(b.date)))
+);
+
+/* ── Editorial pages ─────────────────────────────────────────────────── */
+//
+// Markdown pages that are neither posts nor industries — today only the privacy
+// policy. The importer writes the body into the matching WordPress page so the
+// text on the live site is the text in git, not something retyped in the editor.
+
+const PAGES = path.join(process.cwd(), "content/pages");
+
+write(
+  "pages",
+  fs.existsSync(PAGES)
+    ? fs
+        .readdirSync(PAGES)
+        .filter((f) => f.endsWith(".md"))
+        .map((file) => {
+          const { data, content } = matter(fs.readFileSync(path.join(PAGES, file), "utf8"));
+          return {
+            slug: file.replace(/\.md$/, ""),
+            title: data.title ?? "",
+            meta_description: data.description ?? "",
+            updated: data.updated ?? "",
+            blocks: markdownToBlocks(content),
+          };
+        })
+    : []
 );
 
 console.log("\nExported to wp/migration/data/");

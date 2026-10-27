@@ -181,6 +181,7 @@ function fpc_brand_default(string $name)
         'calendly'          => 'https://calendly.com/benton-frontpaged/30min',
         'form_endpoint'     => 'https://formspree.io/f/mppadnvo',
         'gtm_id'            => 'GTM-NBL9BS2M',
+        'capture_attribution' => true,
         'area_served'       => 'the United States',
         'founding_enabled'  => true,
         'founding_slots'    => 5,
@@ -195,6 +196,23 @@ function fpc_brand_default(string $name)
     ];
 
     return $defaults[$name] ?? null;
+}
+
+/**
+ * Other products the founder builds, linked from the footer and the About page.
+ *
+ * Mirrors `relatedSites` in src/lib/site.ts. The importer carries only flat
+ * settings, so this list is kept in both places on purpose — two short arrays
+ * beat a nested-options field group for two links.
+ *
+ * @return array<int, array{name: string, url: string, blurb: string}>
+ */
+function fpc_related_sites(): array
+{
+    return [
+        ['name' => 'HexCorp', 'url' => 'https://hexcorp.io/',     'blurb' => 'WordPress plugins and tools for small business'],
+        ['name' => 'TagEasy', 'url' => 'https://www.tageasy.io/', 'blurb' => 'conversion tracking that tells you when it breaks'],
+    ];
 }
 
 /* -------------------------------------------------------------------------

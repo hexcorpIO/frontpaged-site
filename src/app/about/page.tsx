@@ -6,7 +6,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Container from "@/components/Container";
 import CtaPanel from "@/components/CtaPanel";
 import { SearchIcon, SparkleIcon, CheckIcon, FileIcon } from "@/components/Icons";
-import { site, founder, guarantee, priceRange, ogImage } from "@/lib/site";
+import { site, founder, guarantee, priceRange, ogImage, relatedSites } from "@/lib/site";
 import { getPublishedVerticals } from "@/lib/verticals";
 
 const PATH = "/about";
@@ -349,6 +349,25 @@ export default function AboutPage() {
                   Connect on LinkedIn
                 </a>
               )}
+              <p className="mt-6 text-[15.5px] leading-[1.7] text-warm-grey">
+                Outside Frontpaged, {founder.name.split(" ")[0]} also builds{" "}
+                {relatedSites.map((s, i) => (
+                  <span key={s.url}>
+                    {i > 0 && (i === relatedSites.length - 1 ? " and " : ", ")}
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener"
+                      data-track-id={`about-related-${s.name.toLowerCase()}`}
+                      className="font-semibold text-teal-dark hover:text-teal"
+                    >
+                      {s.name}
+                    </a>
+                    , {s.blurb}
+                  </span>
+                ))}
+                .
+              </p>
             </Container>
           </section>
         )}

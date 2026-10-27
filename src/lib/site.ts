@@ -154,6 +154,26 @@ export const founder = {
 // so the two can't drift out of sync.
 export const founderId = `${site.url}/about#founder`;
 
+// Other products the founder builds. Linked from the footer and the About page
+// as plain, followed links: a real relationship between three sites owned by
+// the same person is exactly what a cross-link is for, and declaring it openly
+// is better than letting an engine infer it from a shared registrant.
+//
+// Mirrored by fpc_related_sites() in wp/plugins/frontpaged-core/inc/fields.php
+// — the importer only carries flat settings, so this list is kept in both.
+export const relatedSites = [
+  {
+    name: "HexCorp",
+    url: "https://hexcorp.io/",
+    blurb: "WordPress plugins and tools for small business",
+  },
+  {
+    name: "TagEasy",
+    url: "https://www.tageasy.io/",
+    blurb: "conversion tracking that tells you when it breaks",
+  },
+] as const;
+
 export const usd = (n: number) => `$${n.toLocaleString("en-US")}`;
 
 // Shared Open Graph image, single source of truth for every page's openGraph.images.

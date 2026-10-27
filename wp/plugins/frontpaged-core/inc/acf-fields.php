@@ -454,6 +454,15 @@ function fpc_register_options(): void
 
             ['key' => 'field_opt_tab_tracking', 'label' => 'Tracking', 'type' => 'tab'],
             ['key' => 'field_opt_gtm', 'name' => 'gtm_id', 'label' => 'GTM container ID', 'type' => 'text', 'instructions' => 'Empty removes the container sitewide.'],
+            [
+                'key'           => 'field_opt_capture_attribution',
+                'name'          => 'capture_attribution',
+                'label'         => 'Capture campaign attribution',
+                'type'          => 'true_false',
+                'ui'            => 1,
+                'default_value' => 1,
+                'instructions'  => 'Writes the fp_click cookie (utm_* and ad click ids, 90 days) so bookings carry their campaign. The privacy policy at /privacy/ describes it; keep the two in step.',
+            ],
         ],
     ]);
 }

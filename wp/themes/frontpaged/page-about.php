@@ -38,6 +38,11 @@ fp_breadcrumbs([['name' => 'Home', 'url' => home_url('/')], ['name' => 'About']]
         <?php endif; ?>
         <a href="<?php echo esc_url(home_url('/author/benton-purvis/')); ?>" data-track-id="about-author-archive" class="font-semibold text-teal-dark hover:text-teal">Articles &rarr;</a>
       </div>
+      <?php $related = fpc_related_sites(); $first = explode(' ', (string) fpc_option('founder_name'))[0]; ?>
+      <p class="mt-6 text-[15.5px] leading-[1.7] text-warm-grey">
+        Outside Frontpaged, <?php echo esc_html($first); ?> also builds
+        <?php foreach ($related as $i => $r) : ?><?php echo $i > 0 ? ($i === count($related) - 1 ? ' and ' : ', ') : ''; ?><a href="<?php echo esc_url($r['url']); ?>" target="_blank" rel="noopener" data-track-id="<?php echo esc_attr('about-related-' . sanitize_title($r['name'])); ?>" class="font-semibold text-teal-dark hover:text-teal"><?php echo esc_html($r['name']); ?></a>, <?php echo esc_html($r['blurb']); ?><?php endforeach; ?>.
+      </p>
     </div>
   </div>
 </section>

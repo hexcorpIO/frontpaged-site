@@ -147,7 +147,12 @@ export default function ContactForm() {
 
       <p className="mt-4 text-[13.5px] leading-[1.6] text-warm-grey">
         We reply within one business day. Please don&rsquo;t include patient,
-        client, or case details — this form isn&rsquo;t a secure channel.
+        client, or case details — this form isn&rsquo;t a secure channel. How we
+        handle what you send is in our{" "}
+        <a href="/privacy/" className="underline underline-offset-2 hover:text-teal-dark">
+          privacy policy
+        </a>
+        .
       </p>
     </form>
   );

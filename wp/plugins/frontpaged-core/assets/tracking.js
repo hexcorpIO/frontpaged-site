@@ -155,19 +155,17 @@
       if (!match) return {};
       var parsed = JSON.parse(decodeURIComponent(match[1]));
       return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
-    } catch (e) {
+    } catch {
       return {};
     }
   }
 
   /**
-   * The capture half is gated off.
+   * The capture half.
    *
-   * The site declares no Consent Mode state, and storing a gclid is advertising
-   * storage. This was left switched off on the Next.js build as a deliberate
-   * decision rather than an oversight, and the same decision carries across.
-   * Set captureAttribution true in the plugin settings to enable it — ideally
-   * alongside a privacy policy, which the site still does not have.
+   * On by default since the privacy policy at /privacy/ went up: it names this
+   * cookie, what it holds (campaign values only) and its 90-day lifetime.
+   * Settings → Tracking → "Capture campaign attribution" switches it off.
    */
   (function captureAttribution() {
     var config = window.fpcConfig || {};

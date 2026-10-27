@@ -169,9 +169,10 @@ function fpc_enqueue_tracking(): void
     wp_localize_script($handle, 'fpcConfig', [
         'calendly'  => (string) fpc_option('calendly'),
         'formEndpoint' => (string) fpc_option('form_endpoint'),
-        // Kept for parity with the Next.js build. The cookie gate stays closed
-        // while this is false; see the note in the JS.
-        'captureAttribution' => false,
+        // On by default since the privacy policy went up (2026-10-27): the
+        // policy names the fp_click cookie, what it holds and for how long.
+        // Settings → Tracking switches it off without a deploy.
+        'captureAttribution' => (bool) fpc_option('capture_attribution', true),
     ]);
 }
 add_action('wp_enqueue_scripts', 'fpc_enqueue_tracking');

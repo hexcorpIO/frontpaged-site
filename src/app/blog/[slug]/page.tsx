@@ -7,7 +7,7 @@ import { formatDate } from "@/lib/formatDate";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TableOfContents from "@/components/TableOfContents";
 import { getVertical } from "@/lib/verticals";
-import { site, ogImage, founder, founderId } from "@/lib/site";
+import { site, founder, founderId } from "@/lib/site";
 
 type Params = { slug: string };
 

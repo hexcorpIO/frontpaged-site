@@ -13,27 +13,16 @@ import {
 
 // Writes the fp_click cookie the scheduler reads.
 //
-// ─────────────────────────────────────────────────────────────────────────────
-// CONSENT — READ THIS BEFORE WONDERING WHY THE COOKIE IS EMPTY
+// Capture is ON. The site declares no Consent Mode state and shows no cookie
+// banner; the privacy policy at /privacy/ names this cookie, what it holds
+// (campaign parameters and ad click ids only), and its 90-day lifetime. That
+// page is the thing that made switching this on a decision rather than an
+// accident — it was deliberately left off until the policy existed.
 //
-// The site no longer declares any Consent Mode state: the default and grant
-// scripts were removed. Nothing pushes a 'consent' command, so the walk below
-// finds none and storage stays disallowed.
-//
-// The effect is that **no fp_click cookie is ever written**, and therefore no
-// gclid, wbraid, gbraid or utm_* reaches the Calendly booking record. The
-// industry still does, because utm_term is derived at render time rather than
-// read from storage.
-//
-// This is left switched off deliberately rather than flipped as a side effect
-// of removing the consent scripts. Starting to store advertising identifiers is
-// an expansion of what the site collects, and it should be a decision someone
-// makes on purpose — ideally alongside a privacy policy, which this site still
-// does not have.
-//
-// To capture: set RESPECT_CONSENT to false. One line, and attribution starts
-// working on the next deploy.
-const RESPECT_CONSENT = true;
+// RESPECT_CONSENT exists for the day a consent framework is added: set it to
+// true and the cookie is written only after a 'consent' command granting
+// ad_storage has been pushed to the dataLayer.
+const RESPECT_CONSENT = false;
 
 /**
  * Whether storage is currently permitted.

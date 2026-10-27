@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "./Container";
 import Logo from "./Logo";
-import { site } from "@/lib/site";
+import { site, relatedSites } from "@/lib/site";
 import { slugify } from "@/lib/tracking";
 import { getPublishedVerticals } from "@/lib/verticals";
 import { getIndustryBody } from "@/lib/industries";
@@ -33,6 +33,7 @@ const company = [
   { href: "/faq/", label: "FAQ" },
   { href: "/glossary/", label: "Glossary" },
   { href: "/contact/", label: "Contact" },
+  { href: "/privacy/", label: "Privacy" },
 ];
 
 function Column({
@@ -101,6 +102,24 @@ export default function SiteFooter() {
                 LinkedIn
               </a>
             </div>
+            <p className="mt-5 text-[13px] leading-[1.6]">
+              Also from our founder:{" "}
+              {relatedSites.map((s, i) => (
+                <span key={s.url}>
+                  {i > 0 && " · "}
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener"
+                    data-track-id={`footer-related-${s.name.toLowerCase()}`}
+                    data-track-type="link"
+                    className="font-medium text-navy hover:text-teal-dark"
+                  >
+                    {s.name}
+                  </a>
+                </span>
+              ))}
+            </p>
           </div>
           <Column title="Industries" links={industries} />
           <Column title="Services" links={services} />

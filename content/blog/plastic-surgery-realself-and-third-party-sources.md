@@ -2,7 +2,7 @@
 title: "The Third-Party Sources That Decide Your Reputation"
 metaTitle: "The Third-Party Sources That Decide Reputation"
 description: "Prospective patients trust procedure communities and society directories more than your website. Those sources are also what AI assistants cite."
-date: "2026-11-05"
+date: "2026-09-05"
 author: "Benton Purvis"
 tags: ["Plastic Surgery", "Trust", "GEO"]
 vertical: "plastic-surgery"

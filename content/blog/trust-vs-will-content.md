@@ -2,7 +2,7 @@
 title: "Everyone Asks Trust or Will. Almost No Page Answers It."
 metaTitle: "Trust or Will: The Question Nobody Answers"
 description: "The most-searched estate planning question gets the least useful answer online. Answering it honestly is how a local firm outperforms national publishers."
-date: "2026-11-09"
+date: "2026-09-10"
 author: "Benton Purvis"
 tags: ["Legal", "Content", "SEO"]
 vertical: "estate-law"

@@ -2,7 +2,7 @@
 title: "How to Run a Med Spa Competitor Analysis That Finds Real Gaps"
 metaTitle: "How to Run a Med Spa Competitor Analysis"
 description: "A practical competitor audit for med spas: what to look at, what to ignore, and how to turn what you find into a content plan you can actually execute."
-date: "2026-10-21"
+date: "2026-08-21"
 author: "Benton Purvis"
 tags: ["Strategy", "SEO", "Competitive Analysis"]
 vertical: "med-spas"

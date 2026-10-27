@@ -2,7 +2,7 @@
 title: "Insurance Directories Are a Dermatology Discovery Channel"
 metaTitle: "Insurance Directories as a Derm Discovery Channel"
 description: "Many dermatology patients never use a search engine to find you — they start in their insurer's directory. Most practices treat it as paperwork."
-date: "2026-10-15"
+date: "2026-08-22"
 author: "Benton Purvis"
 tags: ["Dermatology", "Local SEO", "Trust"]
 vertical: "dermatology"

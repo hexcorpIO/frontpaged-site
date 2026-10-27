@@ -2,7 +2,7 @@
 title: "Procedure Pages That Survive a Second Opinion"
 metaTitle: "Procedure Pages That Survive a Second Opinion"
 description: "Plastic surgery patients consult two or three surgeons. Your procedure page has to hold up after they've heard someone else explain the same operation."
-date: "2026-10-22"
+date: "2026-08-23"
 author: "Benton Purvis"
 tags: ["Plastic Surgery", "Content", "SEO"]
 vertical: "plastic-surgery"

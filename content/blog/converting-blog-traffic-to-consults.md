@@ -1,7 +1,7 @@
 ---
 title: "Turning Blog Traffic Into Booked Consultations"
 description: "Traffic that never books is a cost, not an asset. Here's how med spas convert blog readers into consultations without a hard sales pitch."
-date: "2026-11-04"
+date: "2026-09-04"
 author: "Benton Purvis"
 tags: ["Conversion", "Content", "Strategy"]
 vertical: "med-spas"

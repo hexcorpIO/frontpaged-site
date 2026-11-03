@@ -294,6 +294,73 @@ function fpc_blogposting_node(WP_Post $post): array
 }
 
 /**
+ * Posts on the current blog route. pre_get_posts lifts the page size to -1 on
+ * both routes, so the main query already holds the whole list.
+ *
+ * @return WP_Post[]
+ */
+function fpc_listed_posts(): array
+{
+    global $wp_query;
+    return array_values(array_filter(
+        (array) $wp_query->posts,
+        static fn($p): bool => $p instanceof WP_Post
+    ));
+}
+
+function fpc_blog_node(string $permalink): array
+{
+    return [
+        '@type'       => 'Blog',
+        '@id'         => $permalink . '#blog',
+        'url'         => $permalink,
+        'name'        => fpc_option('brand_name') . ' Blog',
+        'description' => 'Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across eight industries.',
+        'inLanguage'  => 'en-US',
+        'publisher'   => ['@id' => fpc_id('#org')],
+        'isPartOf'    => ['@id' => fpc_id('#website')],
+        'blogPost'    => array_map(
+            static fn(WP_Post $p): array => [
+                '@type'         => 'BlogPosting',
+                '@id'           => get_permalink($p) . '#article',
+                'url'           => get_permalink($p),
+                'headline'      => get_the_title($p),
+                'datePublished' => get_the_date('c', $p),
+                'author'        => ['@id' => fpc_founder_id()],
+            ],
+            fpc_listed_posts()
+        ),
+    ];
+}
+
+/** A per-industry archive: the page, and the ordered list it carries. */
+function fpc_industry_archive_node(WP_Term $term, string $permalink): array
+{
+    return [
+        '@type'      => 'CollectionPage',
+        '@id'        => $permalink . '#page',
+        'url'        => $permalink,
+        'name'       => $term->name . ' articles',
+        'about'      => ['@id' => fpc_id('#org')],
+        'isPartOf'   => ['@id' => fpc_id('#website')],
+        'mainEntity' => [
+            '@type'           => 'ItemList',
+            '@id'             => $permalink . '#list',
+            'itemListElement' => array_map(
+                static fn(int $i, WP_Post $p): array => [
+                    '@type'    => 'ListItem',
+                    'position' => $i + 1,
+                    'name'     => get_the_title($p),
+                    'url'      => get_permalink($p),
+                ],
+                array_keys(fpc_listed_posts()),
+                fpc_listed_posts()
+            ),
+        ],
+    ];
+}
+
+/**
  * Assemble and print the graph for whatever is currently being rendered.
  */
 function fpc_print_schema(): void
@@ -322,6 +389,17 @@ function fpc_print_schema(): void
         $crumbs[] = ['name' => 'Industries'];
     } elseif (is_post_type_archive('service')) {
         $crumbs[] = ['name' => 'Services'];
+    } elseif (is_home()) {
+        // The index as a publication with a known post list, as the static
+        // export declared it. The port dropped this, and the two blog routes
+        // went out with no node of their own.
+        $graph[] = fpc_blog_node($permalink);
+        $crumbs[] = ['name' => 'Blog', 'url' => $permalink];
+    } elseif (is_tax('post_industry')) {
+        $term = get_queried_object();
+        $graph[] = fpc_industry_archive_node($term, $permalink);
+        $crumbs[] = ['name' => 'Blog', 'url' => fpc_id('blog/')];
+        $crumbs[] = ['name' => $term->name, 'url' => $permalink];
     }
 
     // The glossary is a DefinedTermSet rather than 32 thin pages. Each term is

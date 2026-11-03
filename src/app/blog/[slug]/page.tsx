@@ -44,7 +44,9 @@ export async function generateMetadata({
       description: post.description,
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
-      authors: [post.author],
+      // First name only on bylines, at the founder's request; the Person
+      // node below keeps the full name so the entity stays distinguishable.
+      authors: [post.author.split(" ")[0]],
       // This post's own generated card, not the site-wide one. See
       // opengraph-image.tsx in this segment — the explicit `images` here is
       // required because setting `openGraph` at all replaces the parent's
@@ -194,7 +196,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
             {/* Author links to their own page rather than sitting as plain text —
                 the Person entity that 49 posts reference should be reachable. */}
             <Link href="/author/benton-purvis/" className="hover:text-teal hover:underline underline-offset-2">
-              {post.author}
+              {post.author.split(" ")[0]}
             </Link>
             {post.updated && (
               <>

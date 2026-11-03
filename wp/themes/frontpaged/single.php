@@ -26,7 +26,7 @@ while (have_posts()) : the_post();
         <?php endif; ?>
         <h1 class="mt-4 font-serif text-[36px] leading-[1.1] text-navy sm:text-[44px]"><?php the_title(); ?></h1>
         <p class="mt-5 text-[14px] text-warm-grey">
-          <a href="<?php echo esc_url(get_author_posts_url((int) get_the_author_meta('ID'))); ?>" data-track-id="post-byline-author" class="font-medium text-navy hover:text-teal-dark"><?php the_author(); ?></a>
+          <a href="<?php echo esc_url(get_author_posts_url((int) get_the_author_meta('ID'))); ?>" data-track-id="post-byline-author" class="font-medium text-navy hover:text-teal-dark"><?php echo esc_html(explode(' ', (string) get_the_author())[0]); ?></a>
           <span aria-hidden="true"> · </span>
           <time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date('j F Y')); ?></time>
           <?php if ($updated = fpc_field('updated', $id)) : ?>

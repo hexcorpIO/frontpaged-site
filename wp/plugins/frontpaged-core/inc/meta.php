@@ -134,7 +134,10 @@ function fpc_print_meta(): void
 
     if (is_singular('post')) {
         printf("<meta property=\"article:published_time\" content=\"%s\">\n", esc_attr(get_the_date('c', $post)));
-        printf("<meta property=\"article:author\" content=\"%s\">\n", esc_attr((string) fpc_option('founder_name')));
+        // Bylines carry the first name only, at the founder's request. The
+        // Person node in schema.php keeps the full name so the entity stays
+        // distinguishable; this is display, not identity.
+        printf("<meta property=\"article:author\" content=\"%s\">\n", esc_attr(explode(' ', (string) fpc_option('founder_name'))[0]));
     }
 }
 add_action('wp_head', 'fpc_print_meta', 5);

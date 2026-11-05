@@ -33,7 +33,10 @@ const PAGE_CONTEXT = `(function () {
     'med-spas':'med-spas','plastic-surgery':'plastic-surgery','dermatology':'dermatology',
     'wellness':'wellness','concierge-medicine':'concierge-medicine',
     'personal-injury-law':'personal-injury-law','estate-law':'estate-law',
-    'real-estate-teams':'real-estate-teams'
+    'real-estate-teams':'real-estate-teams','cosmetic-dentistry':'cosmetic-dentistry',
+    'family-law':'family-law','wealth-management':'wealth-management',
+    'construction':'construction','architecture':'architecture',
+    'interior-design':'interior-design'
   };
   window.__fpPageContext = function (path) {
     path = path || location.pathname;

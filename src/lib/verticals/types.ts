@@ -29,7 +29,13 @@ export type PricingBand = {
   enterpriseFrom: number;
 };
 
-export type ComplianceRegime = "medical" | "legal" | "real-estate";
+export type ComplianceRegime =
+  | "medical"
+  | "legal"
+  | "real-estate"
+  | "financial"
+  | "construction"
+  | "design";
 
 export type ComplianceProfile = {
   regime: ComplianceRegime;

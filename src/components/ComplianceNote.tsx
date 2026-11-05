@@ -6,6 +6,9 @@ const regimeLabel: Record<ComplianceProfile["regime"], string> = {
   medical: "medical marketing",
   legal: "attorney advertising",
   "real-estate": "real estate advertising",
+  financial: "investment adviser marketing",
+  construction: "contractor advertising",
+  design: "design-profession advertising",
 };
 
 // Trust section: what governs the content we write, what we refuse to write,

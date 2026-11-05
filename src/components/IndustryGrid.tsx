@@ -30,7 +30,7 @@ export default function IndustryGrid() {
         <SectionHeading
           id="industries-grid-heading"
           kicker="Industries"
-          title="Eight industries. Different searches, different answers."
+          title="Fourteen industries. Different searches, different answers."
           sub="A patient, a client, and a buyer all trust different sources when AI answers their question — so pricing, FAQs, and citation sources are built specific to the industry you're in."
         />
         <div className="mt-10 grid gap-[18px] sm:grid-cols-2 lg:grid-cols-4">

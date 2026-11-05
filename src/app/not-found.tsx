@@ -33,7 +33,7 @@ const destinations = [
   {
     href: "/industries/",
     label: "Industries We Serve",
-    blurb: "SEO built for the way each of our eight industries is actually searched.",
+    blurb: "SEO built for the way each of our fourteen industries is actually searched.",
   },
   {
     href: "/services/generative-engine-optimization/",

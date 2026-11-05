@@ -55,6 +55,42 @@ export const industries = {
     problem:
       "I'm selling a $1.2M home in {{city}}. Which agents or teams should I interview, and what should I ask them?",
   },
+  "cosmetic-dentistry": {
+    noun: "cosmetic dentist",
+    service: "dental implants",
+    problem:
+      "I'm missing two back teeth and my dentist mentioned implants. What does that cost, and who in {{city}} should I see?",
+  },
+  "family-law": {
+    noun: "divorce attorney",
+    service: "a contested divorce",
+    problem:
+      "My spouse and I are separating and we disagree about custody of our kids. Who is a good divorce attorney in {{city}}?",
+  },
+  "wealth-management": {
+    noun: "financial advisor",
+    service: "retirement planning",
+    problem:
+      "I'm 58 with most of my savings in a 401(k) and want help planning retirement. Who is a good fee-only financial advisor in {{city}}?",
+  },
+  construction: {
+    noun: "custom home builder",
+    service: "a custom home build",
+    problem:
+      "We bought a lot and want to build a custom home. How do I choose a builder, and who in {{city}} does good work?",
+  },
+  architecture: {
+    noun: "residential architect",
+    service: "a home addition",
+    problem:
+      "We want to add a second story to our house in {{city}}. Do we need an architect, and who should we talk to?",
+  },
+  "interior-design": {
+    noun: "interior designer",
+    service: "furnishing a whole home",
+    problem:
+      "We just moved into a new house in {{city}} and want help furnishing the whole thing. How much does an interior designer cost and who's good?",
+  },
 };
 
 export function getIndustry(slug) {

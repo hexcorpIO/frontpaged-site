@@ -15,7 +15,7 @@ const canonical = `${site.url}${PATH}`;
 export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
-    "Frontpaged builds SEO and Generative Engine Optimization content for eight service industries — see pricing, FAQs, and compliance for each.",
+    "Frontpaged builds SEO and Generative Engine Optimization content for fourteen service industries — see pricing, FAQs, and compliance for each.",
   alternates: { canonical: `${PATH}/` },
   openGraph: {
     type: "website",

@@ -9,7 +9,7 @@ import { site, ogImage, founder, founderId } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Blog — SEO & AI-Search Visibility",
   description:
-    "Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across eight industries.",
+    "Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across fourteen industries.",
   alternates: { canonical: "/blog" },
   openGraph: {
     type: "website",
@@ -51,7 +51,7 @@ export default function BlogIndex() {
         url: canonical,
         name: `${site.name} Blog`,
         description:
-          "Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across eight industries.",
+          "Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across fourteen industries.",
         inLanguage: "en-US",
         publisher: {
           "@type": "Organization",

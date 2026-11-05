@@ -225,11 +225,13 @@ export default async function IndustryHub({ params }: { params: Promise<Params> 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Gated by exclusion, not by an explicit allowlist: the TagEasy cross-promo
-          reads badly next to an attorney-advertising or Fair Housing hub, so it's
-          suppressed only on the two non-medical regimes rather than turned on
-          per-vertical — a new medical-adjacent vertical gets the banner by
-          default, the way every other page on the site already does. */}
-      {v.compliance.regime !== "legal" && v.compliance.regime !== "real-estate" && <TopBanner />}
+          reads badly next to an attorney-advertising, Fair Housing, or SEC/FINRA
+          hub, so it's suppressed only on those three regimes rather than turned
+          on per-vertical — any other vertical gets the banner by default, the
+          way every other page on the site already does. */}
+      {v.compliance.regime !== "legal" &&
+        v.compliance.regime !== "real-estate" &&
+        v.compliance.regime !== "financial" && <TopBanner />}
       <SiteHeader />
       <main>
         <ServiceHero

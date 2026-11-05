@@ -3,7 +3,7 @@
 # Frontpaged.io
 
 Marketing website for **Frontpaged**, an agency selling **SEO + Generative Engine
-Optimization (GEO)** content services to **high-ticket local businesses** across eight
+Optimization (GEO)** content services to **high-ticket local businesses** across fourteen
 industries, nationwide and remote.
 
 ## Read this first: what is actually live
@@ -55,8 +55,9 @@ Treat every page as a portfolio piece. If it wouldn't impress an SEO-savvy prosp
 
 ## Industries and pricing
 
-Eight verticals, each a record in `src/lib/verticals/<slug>.ts`: med-spas, plastic-surgery,
-dermatology, wellness, concierge-medicine, personal-injury-law, estate-law, real-estate-teams.
+Fourteen verticals, each a record in `src/lib/verticals/<slug>.ts`: med-spas, plastic-surgery,
+dermatology, wellness, concierge-medicine, cosmetic-dentistry, personal-injury-law, family-law,
+estate-law, wealth-management, real-estate-teams, construction, architecture, interior-design.
 Each record carries its own three-tier pricing band, FAQs, compliance profile and citation
 sources. **Pricing differs by industry**; there is no single price table.
 

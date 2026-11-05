@@ -315,7 +315,7 @@ function fpc_blog_node(string $permalink): array
         '@id'         => $permalink . '#blog',
         'url'         => $permalink,
         'name'        => fpc_option('brand_name') . ' Blog',
-        'description' => 'Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across eight industries.',
+        'description' => 'Practical guides on SEO, Generative Engine Optimization (GEO), and getting a business recommended by Google and AI search across fourteen industries.',
         'inLanguage'  => 'en-US',
         'publisher'   => ['@id' => fpc_id('#org')],
         'isPartOf'    => ['@id' => fpc_id('#website')],
